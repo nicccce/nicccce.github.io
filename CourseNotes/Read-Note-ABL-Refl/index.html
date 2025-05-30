@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://nicccce.github.io">
-  <title>Hello World | NICCCCE</title>
+  <title>Read-Note-ABL-Refl | NICCCCE</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="Welcome to NICK&#39;s BLOG! At Beginning iiiii This is my first blog !!!!!">
+  <meta name="description" content="Paper Deep Dive: “Efficient Rectification of Neuro-Symbolic Reasoning Inconsistencies by Abductive Reflection”TL;DR (Key Takeaways)This paper introduces Abductive Reflection (ABL-Refl), a novel neuro-">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://nicccce.github.io/Home/hello-world/">
+<meta property="og:title" content="Read-Note-ABL-Refl">
+<meta property="og:url" content="https://nicccce.github.io/CourseNotes/Read-Note-ABL-Refl/">
 <meta property="og:site_name" content="NICCCCE">
-<meta property="og:description" content="Welcome to NICK&#39;s BLOG! At Beginning iiiii This is my first blog !!!!!">
+<meta property="og:description" content="Paper Deep Dive: “Efficient Rectification of Neuro-Symbolic Reasoning Inconsistencies by Abductive Reflection”TL;DR (Key Takeaways)This paper introduces Abductive Reflection (ABL-Refl), a novel neuro-">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="3024-04-02T09:11:40.000Z">
-<meta property="article:modified_time" content="2024-05-07T18:25:54.017Z">
+<meta property="article:published_time" content="2025-03-02T08:37:16.000Z">
+<meta property="article:modified_time" content="2025-05-30T22:17:02.542Z">
 <meta property="article:author" content="NICK">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="Deep Learning">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="NICCCCE" type="application/atom+xml">
@@ -199,14 +201,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Read-Note-ABL-Refl" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      Read-Note-ABL-Refl
     </h1>
   
 
@@ -218,8 +220,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/Home/hello-world/" class="archive-article-date">
-        <time datetime="3024-04-02T09:11:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>3024-04-02</time>
+<a href="/CourseNotes/Read-Note-ABL-Refl/" class="archive-article-date">
+        <time datetime="2025-03-02T08:37:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-03-02</time>
 </a>
 
   
@@ -232,7 +234,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">13字</span>
+      <span class="post-count">594字</span>
     </span>
   </span>
 
@@ -241,7 +243,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">3分</span>
     </span>
   </span>
 </div>
@@ -252,9 +254,136 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>Welcome to NICK's BLOG!</p>
-<h2 id="at-beginning">At Beginning</h2>
-<p>iiiii This is my first blog !!!!!</p>
+    <h1 id="Paper-Deep-Dive-“Efficient-Rectification-of-Neuro-Symbolic-Reasoning-Inconsistencies-by-Abductive-Reflection”"><a href="#Paper-Deep-Dive-“Efficient-Rectification-of-Neuro-Symbolic-Reasoning-Inconsistencies-by-Abductive-Reflection”" class="headerlink" title="Paper Deep Dive: “Efficient Rectification of Neuro-Symbolic Reasoning Inconsistencies by Abductive Reflection”"></a><strong>Paper Deep Dive: “Efficient Rectification of Neuro-Symbolic Reasoning Inconsistencies by Abductive Reflection”</strong></h1><h2 id="TL-DR-Key-Takeaways"><a href="#TL-DR-Key-Takeaways" class="headerlink" title="TL;DR (Key Takeaways)"></a><strong>TL;DR (Key Takeaways)</strong></h2><p>This paper introduces <strong>Abductive Reflection (ABL-Refl)</strong>, a novel neuro-symbolic (NeSy) learning framework that <strong>efficiently detects and corrects inconsistencies</strong> between neural network outputs and symbolic reasoning. Inspired by human <strong>dual-process cognition (System 1 &amp; System 2)</strong>, ABL-Refl uses a <strong>reflection mechanism</strong> to flag errors in neural predictions and invokes <strong>abductive reasoning</strong> to fix them.</p>
+<p><strong>Why it matters?</strong></p>
+<ul>
+<li><strong>Efficiency</strong>: Avoids costly combinatorial search in prior ABL methods.</li>
+<li><strong>Accuracy</strong>: Outperforms state-of-the-art NeSy methods on Sudoku and combinatorial optimization tasks.</li>
+<li><strong>Versatility</strong>: Works with <strong>symbolic, visual, and graph-structured data</strong>, leveraging different forms of domain knowledge (logic, math, etc.).</li>
+</ul>
+<hr>
+<span id="more"></span>
+<h2 id="1-Background-amp-Motivation"><a href="#1-Background-amp-Motivation" class="headerlink" title="1. Background &amp; Motivation"></a><strong>1. Background &amp; Motivation</strong></h2><h3 id="Neuro-Symbolic-AI-amp-Human-Cognition"><a href="#Neuro-Symbolic-AI-amp-Human-Cognition" class="headerlink" title="Neuro-Symbolic AI &amp; Human Cognition"></a><strong>Neuro-Symbolic AI &amp; Human Cognition</strong></h3><p>NeSy AI combines:</p>
+<ul>
+<li><strong>System 1 (Neural Networks)</strong>: Fast, intuitive pattern recognition (e.g., guessing Sudoku digits).</li>
+<li><strong>System 2 (Symbolic Reasoning)</strong>: Slow, logical reasoning (e.g., enforcing Sudoku rules).</li>
+</ul>
+<p><strong>Problem</strong>: Neural networks often produce outputs that <strong>violate domain knowledge</strong> (e.g., duplicate numbers in Sudoku). Fixing these errors is computationally expensive in prior methods like <strong>Abductive Learning (ABL)</strong>, which requires exhaustive search.</p>
+<h3 id="Cognitive-Reflection-as-Inspiration"><a href="#Cognitive-Reflection-as-Inspiration" class="headerlink" title="Cognitive Reflection as Inspiration"></a><strong>Cognitive Reflection as Inspiration</strong></h3><p>Humans <strong>detect errors intuitively</strong> and refine them via reasoning. ABL-Refl mimics this by:</p>
+<ol>
+<li><strong>Generating a “reflection vector”</strong> (like an error-detection attention mechanism).</li>
+<li><strong>Using abduction</strong> (a form of logical reasoning) to correct flagged errors.</li>
+</ol>
+<hr>
+<h2 id="2-Method-ABL-Refl"><a href="#2-Method-ABL-Refl" class="headerlink" title="2. Method: ABL-Refl"></a><strong>2. Method: ABL-Refl</strong></h2><h3 id="Key-Components"><a href="#Key-Components" class="headerlink" title="Key Components"></a><strong>Key Components</strong></h3><ol>
+<li><p><strong>Neural Network (f)</strong></p>
+<ul>
+<li>Processes input (e.g., Sudoku grid, images, graphs).</li>
+<li>Outputs an <strong>intuitive prediction</strong> (e.g., guessed digits).</li>
+</ul>
+</li>
+<li><p><strong>Reflection Layer (R)</strong></p>
+<ul>
+<li><p>Generates a </p>
+<p>binary reflection vector</p>
+<p> (r ∈ {0,1}ⁿ), where:</p>
+<ul>
+<li><strong>rᵢ = 1</strong> → “This prediction is likely wrong!”</li>
+<li><strong>rᵢ = 0</strong> → “This prediction is probably fine.”</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Abductive Reasoning (KB)</strong></p>
+<ul>
+<li>Takes the <strong>error-masked output</strong> (where flagged predictions are removed).</li>
+<li>Uses <strong>domain knowledge (KB)</strong> to fill in the blanks logically.</li>
+</ul>
+</li>
+</ol>
+<h3 id="Training-ABL-Refl"><a href="#Training-ABL-Refl" class="headerlink" title="Training ABL-Refl"></a><strong>Training ABL-Refl</strong></h3><ul>
+<li><strong>Unsupervised learning for reflection</strong>: The reflection vector is trained using <strong>domain knowledge only</strong> (no extra labels needed).</li>
+<li>Loss functions:<ul>
+<li><strong>Consistency loss (L_con)</strong>: Maximizes improvement in KB consistency after reflection.</li>
+<li><strong>Reflection size loss (L_size)</strong>: Encourages <strong>sparse corrections</strong> (don’t over-rely on abduction).</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="3-Experiments-amp-Results"><a href="#3-Experiments-amp-Results" class="headerlink" title="3. Experiments &amp; Results"></a><strong>3. Experiments &amp; Results</strong></h2><h3 id="Task-1-Solving-Sudoku-Symbolic-amp-Visual-Inputs"><a href="#Task-1-Solving-Sudoku-Symbolic-amp-Visual-Inputs" class="headerlink" title="Task 1: Solving Sudoku (Symbolic &amp; Visual Inputs)"></a><strong>Task 1: Solving Sudoku (Symbolic &amp; Visual Inputs)</strong></h3><ul>
+<li><strong>Baselines</strong>: RRN, CL-STE, SATNet, pure GNN.</li>
+<li>Results:<ul>
+<li><strong>ABL-Refl achieves ~97% accuracy</strong>, outperforming baselines by <strong>~20%</strong>.</li>
+<li><strong>Faster training</strong>: Reaches high accuracy in <strong>fewer epochs</strong>.</li>
+<li><strong>Works with images</strong>: Handles <strong>visual Sudoku (MNIST digits)</strong> with <strong>93.5% accuracy</strong>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Task-2-Graph-Combinatorial-Optimization-Max-Clique-amp-Independent-Set"><a href="#Task-2-Graph-Combinatorial-Optimization-Max-Clique-amp-Independent-Set" class="headerlink" title="Task 2: Graph Combinatorial Optimization (Max Clique &amp; Independent Set)"></a><strong>Task 2: Graph Combinatorial Optimization (Max Clique &amp; Independent Set)</strong></h3><ul>
+<li><strong>Baselines</strong>: Erdos, Neural SFE.</li>
+<li>Results:<ul>
+<li><strong>Near-perfect approximation ratios (~0.98-0.99)</strong>.</li>
+<li><strong>Scales well</strong> to large graphs (e.g., COLLAB dataset with 5K graphs).</li>
+</ul>
+</li>
+</ul>
+<h3 id="Efficiency-Gains"><a href="#Efficiency-Gains" class="headerlink" title="Efficiency Gains"></a><strong>Efficiency Gains</strong></h3><ul>
+<li>ABL-Refl vs. Pure Symbolic Solvers:<ul>
+<li><strong>~3x faster</strong> on propositional logic (MiniSAT).</li>
+<li><strong>~5x faster</strong> on first-order logic (Prolog).</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="4-Why-Does-ABL-Refl-Work-So-Well"><a href="#4-Why-Does-ABL-Refl-Work-So-Well" class="headerlink" title="4. Why Does ABL-Refl Work So Well?"></a><strong>4. Why Does ABL-Refl Work So Well?</strong></h2><h3 id="Comparison-with-Alternative-Error-Detection-Methods"><a href="#Comparison-with-Alternative-Error-Detection-Methods" class="headerlink" title="Comparison with Alternative Error-Detection Methods"></a><strong>Comparison with Alternative Error-Detection Methods</strong></h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>How It Works</th>
+<th>Problems</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ABL (Old)</strong></td>
+<td>Brute-force search for inconsistencies</td>
+<td><strong>Too slow</strong> (exponential complexity)</td>
+</tr>
+<tr>
+<td><strong>NN Confidence</strong></td>
+<td>Trust low-confidence predictions as errors</td>
+<td><strong>No KB awareness</strong> → poor error detection</td>
+</tr>
+<tr>
+<td><strong>NASR</strong></td>
+<td>External Transformer-based error detector</td>
+<td>Needs <strong>synthetic data</strong>, less efficient</td>
+</tr>
+<tr>
+<td><strong>ABL-Refl</strong></td>
+<td>Learns KB-aware reflection <strong>without extra data</strong></td>
+<td><strong>Best accuracy &amp; efficiency</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Key Insight</strong>: The reflection mechanism <strong>directly links neural embeddings to KB</strong>, making error detection <strong>more precise</strong> than heuristic methods.</p>
+<hr>
+<h2 id="5-Limitations-amp-Future-Work"><a href="#5-Limitations-amp-Future-Work" class="headerlink" title="5. Limitations &amp; Future Work"></a><strong>5. Limitations &amp; Future Work</strong></h2><ul>
+<li><strong>KB dependency</strong>: Requires <strong>explicit domain knowledge</strong> (but many NeSy methods do).</li>
+<li><strong>Scalability to very large n?</strong> (e.g., n &gt; 1000) needs further testing.</li>
+<li><p>Potential applications:</p>
+<ul>
+<li><strong>LLM fact-checking</strong>: Detect &amp; correct hallucinations using symbolic KB.</li>
+<li><strong>Robotics</strong>: Combine perception (neural) with logical planning (symbolic).<strong>References &amp; Links</strong></li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/XXXX.XXXXX">Paper PDF</a> (if available)</p>
+</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/abductive-learning/ablkit">ABL Toolkit</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.kaggle.com/datasets/rohanrao/sudoku">Sudoku Dataset</a></li>
+</ul>
 
     
 
@@ -269,7 +398,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://nicccce.github.io/Home/hello-world/" title="Hello World" target="_blank">https://nicccce.github.io/Home/hello-world/</a>
+          <a href="https://nicccce.github.io/CourseNotes/Read-Note-ABL-Refl/" title="Read-Note-ABL-Refl" target="_blank">https://nicccce.github.io/CourseNotes/Read-Note-ABL-Refl/</a>
         </li>
         
         <li>
@@ -285,19 +414,29 @@
   </div>
   <div class="article-info article-info-index">
     
-    <div class="article-pop-out tagcloud">
-      <i class="icon-tuding"></i>
-      <a class="article-tag-list-link color3">置顶</a>
-    </div>
     
-    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Deep Learning</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Home//" class="article-tag-list-link color5">Home</a>
+        			<a href="/categories/CourseNotes//" class="article-tag-list-link color2">CourseNotes</a>
         		</li>
       		
 		</ul>
@@ -352,7 +491,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://nicccce.github.io/Home/hello-world/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://nicccce.github.io/CourseNotes/Read-Note-ABL-Refl/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -367,9 +506,18 @@
 
 <nav id="article-nav">
   
+    <a href="/Home/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
   
-    <a href="/CourseNotes/Read-Note-ABL-Refl/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Read-Note-ABL-Refl</div>
+  
+    <a href="/CourseNotes/Deep-Learning-Note/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Deep Learning Note</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -396,7 +544,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#at-beginning"><span class="toc-number">1.</span> <span class="toc-text">At Beginning</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Paper-Deep-Dive-%E2%80%9CEfficient-Rectification-of-Neuro-Symbolic-Reasoning-Inconsistencies-by-Abductive-Reflection%E2%80%9D"><span class="toc-number">1.</span> <span class="toc-text">Paper Deep Dive: “Efficient Rectification of Neuro-Symbolic Reasoning Inconsistencies by Abductive Reflection”</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#TL-DR-Key-Takeaways"><span class="toc-number">1.1.</span> <span class="toc-text">TL;DR (Key Takeaways)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Background-amp-Motivation"><span class="toc-number">1.2.</span> <span class="toc-text">1. Background &amp; Motivation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Neuro-Symbolic-AI-amp-Human-Cognition"><span class="toc-number">1.2.1.</span> <span class="toc-text">Neuro-Symbolic AI &amp; Human Cognition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cognitive-Reflection-as-Inspiration"><span class="toc-number">1.2.2.</span> <span class="toc-text">Cognitive Reflection as Inspiration</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Method-ABL-Refl"><span class="toc-number">1.3.</span> <span class="toc-text">2. Method: ABL-Refl</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Key-Components"><span class="toc-number">1.3.1.</span> <span class="toc-text">Key Components</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Training-ABL-Refl"><span class="toc-number">1.3.2.</span> <span class="toc-text">Training ABL-Refl</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Experiments-amp-Results"><span class="toc-number">1.4.</span> <span class="toc-text">3. Experiments &amp; Results</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Task-1-Solving-Sudoku-Symbolic-amp-Visual-Inputs"><span class="toc-number">1.4.1.</span> <span class="toc-text">Task 1: Solving Sudoku (Symbolic &amp; Visual Inputs)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Task-2-Graph-Combinatorial-Optimization-Max-Clique-amp-Independent-Set"><span class="toc-number">1.4.2.</span> <span class="toc-text">Task 2: Graph Combinatorial Optimization (Max Clique &amp; Independent Set)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Efficiency-Gains"><span class="toc-number">1.4.3.</span> <span class="toc-text">Efficiency Gains</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Why-Does-ABL-Refl-Work-So-Well"><span class="toc-number">1.5.</span> <span class="toc-text">4. Why Does ABL-Refl Work So Well?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Comparison-with-Alternative-Error-Detection-Methods"><span class="toc-number">1.5.1.</span> <span class="toc-text">Comparison with Alternative Error-Detection Methods</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Limitations-amp-Future-Work"><span class="toc-number">1.6.</span> <span class="toc-text">5. Limitations &amp; Future Work</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
