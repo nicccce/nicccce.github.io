@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://nicccce.github.io/image-20250611213131508.png">
 <meta property="og:image" content="https://nicccce.github.io/image-20250611213634599.png">
 <meta property="article:published_time" content="2025-06-11T09:11:40.000Z">
-<meta property="article:modified_time" content="2025-06-11T14:51:27.537Z">
+<meta property="article:modified_time" content="2025-06-11T14:56:41.248Z">
 <meta property="article:author" content="NICK">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
@@ -391,7 +391,8 @@ class="math inline">\(k\)</span>的节点的概率分布（对前面的求和）
 <p><strong>Girvan-Newman方法</strong>（一种分割法）</p>
 <p>核心思想：不断删除高介数的边（承载大量信息流代表其位置在关系紧密群体的交界处）</p>
 <p>①找出一条或多条介数最高的边并移除它，得到图划分的第一层区域</p>
-<p>②重新计算所有的介数</p>
+<p>②重新计算所有的介数，再将高介数的边移除，得到嵌套在大区域里的小区域</p>
+<p>③重复①、②</p>
 
     
 
