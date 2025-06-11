@@ -297,6 +297,192 @@
 
 
   
+    <article id="post-Network-Crowd-and-Market-" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/CourseNotes/Network-Crowd-and-Market-/" target="_blank">青春喂了后端</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/CourseNotes/Network-Crowd-and-Market-/" class="archive-article-date">
+        <time datetime="2025-06-11T09:11:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-06-11</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <hr />
+<h1 id="众智科学与网络化产业">众智科学与网络化产业</h1>
+<h2 id="第一章-图论基础">第一章 图论基础</h2>
+<h3 id="一些概念"><strong>一些概念</strong></h3>
+<ul>
+<li><p>图 = 事物（节点） + 联系（边）</p></li>
+<li><p>同构</p></li>
+<li><p>邻接矩阵</p></li>
+<li><p>关联矩阵：m*n的矩阵，横坐标是边集<span
+class="math inline">\(v_1到v_n\)</span>，纵坐标是点集<span
+class="math inline">\(e_1到e_m\)</span>，每列上都有两个<span
+class="math inline">\(1\)</span> ,<span
+class="math inline">\(A_{i,j_1}=A_{i,j_2}=1\)</span>表示<span
+class="math inline">\(e_i\)</span>连接了<span
+class="math inline">\(v_{j_1},v_{j_2}\)</span></p></li>
+<li><p>图的直径：任意两个节点之间的最大距离</p></li>
+<li><p>连通、连通分量</p></li>
+<li><p>割点、割边（桥）</p></li>
+<li><p>捷径：AB相连且AB没有共同的相邻节点，则边AB为捷径（删除捷径会将AB间的距离增加2以上）</p></li>
+<li><p>欧拉路，欧拉回路</p></li>
+<li><p>二部图（二分图）：</p>
+<ul>
+<li>二分图判断：染色法</li>
+<li>二分图最大匹配问题：
+<ul>
+<li>用最大流求解二分图匹配</li>
+<li>匈牙利算法：跟最大流一样，只是不用补s和t，直接从每个点开始增广</li>
+</ul></li>
+</ul></li>
+<li><p>现实中若干典型网络：</p>
+<ul>
+<li>合作图
+<ul>
+<li>例如，一群学者之间合著关系（co-authorship）</li>
+<li>节点：人；边：当且仅当两个人有合著的文章</li>
+</ul></li>
+<li>交流网
+<ul>
+<li>例如，一所大学师生之间的电子邮件关系网</li>
+<li>节点：人；边：两人之间发过一定量的往返邮件</li>
+</ul></li>
+<li>信息链接网（有向）
+<ul>
+<li>万维网上的网页之间的链接关系</li>
+<li>论文之间的引用关系</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="最短路算法"><strong>最短路算法</strong></h3>
+<ul>
+<li>BFS</li>
+<li>A*：用优先队列替换BFS的队列，每次拓展离终点曼哈顿距离最小的点</li>
+<li>DFS</li>
+<li>Floyd-Warshall</li>
+<li>Bellman-Ford</li>
+<li>SPFA：Bellman-Ford的优化，只有上一次被松弛的结点所连接的边，才有可能引起下一次的松弛操作。用队列来维护「哪些结点可能会引起松弛操作」，每次用他的邻边去尝试松弛，并把成功松弛的点入队。</li>
+<li>Dijkstra</li>
+</ul>
+<h2 id="第二章-强联系和弱联系">第二章 强联系和弱联系</h2>
+<h3 id="三元闭包">三元闭包</h3>
+<p>在一个社交圈内，若两个人有一个共同的朋友，则这两人在未来成为朋友的可能性就会提高</p>
+<p>聚集系数 ：
+A的任意两个朋友之间也是朋友的概率（即邻居间朋友对的个数除以总对数）</p>
+<h3 id="社会网络结构的统计特征">社会网络结构的统计特征</h3>
+<p><strong>度分布</strong></p>
+<p>(1）度分布函数。<span
+class="math inline">\(P(k)\)</span>表示网络中度为<span
+class="math inline">\(k\)</span>的节点在整个网络中所占的比例。</p>
+<p>(2）累积度分布函数（Cumulative Degree Distribution Function）。<span
+class="math inline">\(P(k)\)</span>表示度不小于<span
+class="math inline">\(k\)</span>的节点的概率分布（对前面的求和）。</p>
+<p>度分布可区分不同类型的网络。</p>
+<p><strong>平均路径长度</strong></p>
+<p>任意两个节点间最短路径的平均长度，也叫做网络的平均距离或网络的特征路径长度。</p>
+<p>刻画了网络节点之间进行信息传递的代价大小，
+在线社交网络中常用其衡量用户之间关系的紧密程度。</p>
+<p><strong>网络直径</strong></p>
+<p><strong>有效直径</strong></p>
+<p>至少90%的互连节点对之间的距离均不超过的最小值</p>
+<p><strong>网络密度</strong></p>
+<p><span class="math display">\[ d(G) = \frac{2L}{N(N - 1)}
+\]</span></p>
+<p>网络中实际存在边数与可容纳的边数上限的比值</p>
+<p>可用于刻画网络中节点间相互连边的密集程度</p>
+<p>在线社交网络中常用来测量社交关系的密集程度以及演化趋势</p>
+<p><strong>绝对密度公式</strong></p>
+<p><span class="math display">\[ \quad d(G) = \frac{M}{\left[
+\frac{4SR^3}{3D} \right]} \]</span></p>
+<p>来比较不同规模网络的密度有效直径</p>
+<p>D表示网络直径，R表示半径，S表示根据直径算出的圆周长</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/CourseNotes//" class="article-tag-list-link color2">CourseNotes</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/CourseNotes/Network-Crowd-and-Market-/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Read-Note-ABL-Refl" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
