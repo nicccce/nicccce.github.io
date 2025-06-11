@@ -297,7 +297,7 @@
 
 
   
-    <article id="post-Network-Crowd-and-Market-" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Network-Crowd-and-Market" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -305,7 +305,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/CourseNotes/Network-Crowd-and-Market-/" target="_blank">青春喂了后端</a>
+	  <a class="article-title" href="/CourseNotes/Network-Crowd-and-Market/" target="_blank">青春喂了后端</a>
   
     </h1>
   
@@ -313,7 +313,7 @@
 
   
   
-<a href="/CourseNotes/Network-Crowd-and-Market-/" class="archive-article-date">
+<a href="/CourseNotes/Network-Crowd-and-Market/" class="archive-article-date">
         <time datetime="2025-06-11T09:11:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-06-11</time>
 </a>
 
@@ -387,7 +387,7 @@ class="math inline">\(v_{j_1},v_{j_2}\)</span></p></li>
 <h2 id="第二章-强联系和弱联系">第二章 强联系和弱联系</h2>
 <h3 id="三元闭包">三元闭包</h3>
 <p>在一个社交圈内，若两个人有一个共同的朋友，则这两人在未来成为朋友的可能性就会提高</p>
-<p>聚集系数 ：
+<p><strong>聚集系数</strong> ：
 A的任意两个朋友之间也是朋友的概率（即邻居间朋友对的个数除以总对数）</p>
 <h3 id="社会网络结构的统计特征">社会网络结构的统计特征</h3>
 <p><strong>度分布</strong></p>
@@ -412,10 +412,56 @@ class="math inline">\(k\)</span>的节点的概率分布（对前面的求和）
 <p>可用于刻画网络中节点间相互连边的密集程度</p>
 <p>在线社交网络中常用来测量社交关系的密集程度以及演化趋势</p>
 <p><strong>绝对密度公式</strong></p>
+<p>【没看懂】</p>
 <p><span class="math display">\[ \quad d(G) = \frac{M}{\left[
 \frac{4SR^3}{3D} \right]} \]</span></p>
 <p>来比较不同规模网络的密度有效直径</p>
 <p>D表示网络直径，R表示半径，S表示根据直径算出的圆周长</p>
+<p><strong>介数</strong></p>
+<p><span class="math display">\[ C_{\mathrm{B}}(k) = \sum_{i \in V}
+\sum_{\substack{j \neq i \in V}} \frac{\delta_{ij}(k)}{\delta_{ij}}
+\]</span></p>
+<p>用来描述网络中节点承载最短路径数的能力</p>
+<p>节点（或边）的介数等于网络中所有最短路径中经过该节点（或边）的概率之和</p>
+<p>描述了节点在网络中的影响力与中心性程度</p>
+<p><strong>介数计算的一种算法：</strong></p>
+<p>从一个节点（A）开始，做广度优先搜索，将节点分层（以便于下面的步骤）</p>
+<p>确定从A到其他每个节点的最短路径的条数</p>
+<p>确定当从节点A沿最短路径向其他所有节点发送1个单位流量时，经过每条边的流量</p>
+<p>对每一个节点，重复上述过程，累计，<strong>除以2</strong>，即得每条边的介数。</p>
+<p>计算方法：</p>
+<p>①DFS分层并求出A到每个点的最短路数量（每个节点旁边标的数）</p>
+<figure>
+<img src="/image-20250611213131508.png" alt="image-20250611213131508" />
+<figcaption aria-hidden="true">image-20250611213131508</figcaption>
+</figure>
+<p>②从最底层往回推流量，每经过一个点总流量+1，然后根据父节点的路径数平分</p>
+<figure>
+<img src="/image-20250611213634599.png" alt="image-20250611213634599" />
+<figcaption aria-hidden="true">image-20250611213634599</figcaption>
+</figure>
+<h3 id="强三元闭包">强三元闭包</h3>
+<p><strong>强三元闭包原理（假设）</strong></p>
+<p>如果A-B和A-C之间的关系为强关系，则B-C
+之间形成边的可能性应该很高；</p>
+<p>若A有两个强关系邻居B和C，但B-C之间没有任何关系（s或w），则称节点A违背了强三元闭包原理；</p>
+<p>如果节点A没有违背强三元闭包原理，则称节点A符合强三元闭包原理。</p>
+<p><strong>捷径 = 弱关系</strong></p>
+<p>断言（肉眼可证）：若节点A符合强三元闭包，且至少有两个强关系邻居，则与A相连的任何捷径必定意味着是弱关系。</p>
+<p><strong>嵌入性</strong></p>
+<p>一条边的嵌入性指两个端点共同邻居的数量</p>
+<p>嵌入性高的两个人比较相互信任</p>
+<p><strong>结构洞</strong></p>
+<p>存在于网络节点集合之间的“空地”</p>
+<p>当一个人用与他相关的多条捷径跨越了结构洞的优势：</p>
+<p>①可以更早获得来自网络中多个互不交叉部分的信息</p>
+<p>②处在捷径的一端对其创造性有放大功能</p>
+<p>③有某种社交“把关”的机会，能够控制相邻节点访问其他群体和获取信息。这个位置给予了这个人一种权利资源。</p>
+<h3 id="社会网络的划分">社会网络的划分</h3>
+<p><strong>Girvan-Newman方法</strong>（一种分割法）</p>
+<p>核心思想：不断删除高介数的边（承载大量信息流代表其位置在关系紧密群体的交界处）</p>
+<p>①找出一条或多条介数最高的边并移除它，得到图划分的第一层区域</p>
+<p>②重新计算所有的介数</p>
 
     
 
@@ -453,7 +499,7 @@ class="math inline">\(k\)</span>的节点的概率分布（对前面的求和）
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/CourseNotes/Network-Crowd-and-Market-/">展开全文 >></a>
+      <a class="article-more-a" href="/CourseNotes/Network-Crowd-and-Market/">展开全文 >></a>
     </p>
     
 
