@@ -432,12 +432,12 @@ class="math inline">\(k\)</span>的节点的概率分布（对前面的求和）
 <p>计算方法：</p>
 <p>①DFS分层并求出A到每个点的最短路数量（每个节点旁边标的数）</p>
 <figure>
-<img src="/image-20250611213131508.png" alt="image-20250611213131508" />
+<img src="image-20250611213131508.png" alt="image-20250611213131508" />
 <figcaption aria-hidden="true">image-20250611213131508</figcaption>
 </figure>
 <p>②从最底层往回推流量，每经过一个点总流量+1，然后根据父节点的路径数平分</p>
 <figure>
-<img src="/image-20250611213634599.png" alt="image-20250611213634599" />
+<img src="image-20250611213634599.png" alt="image-20250611213634599" />
 <figcaption aria-hidden="true">image-20250611213634599</figcaption>
 </figure>
 <h3 id="强三元闭包">强三元闭包</h3>
@@ -463,6 +463,64 @@ class="math inline">\(k\)</span>的节点的概率分布（对前面的求和）
 <p>①找出一条或多条介数最高的边并移除它，得到图划分的第一层区域</p>
 <p>②重新计算所有的介数，再将高介数的边移除，得到嵌套在大区域里的小区域</p>
 <p>③重复①、②</p>
+<h2 id="第四章-网络及其存在的环境">第四章 网络及其存在的环境</h2>
+<h3 id="同质性homophily">同质性（homophily）</h3>
+<p>同质性是社会网络结构形成的基本外部原因</p>
+<p><strong>社会网络中同质性的简单测度</strong></p>
+<p>基本思想：如果端点颜色相同的边较多，则同质性显现较强</p>
+<p>给定一个二色图G，让<span
+class="math inline">\(p\)</span>为一种颜色节点占比，<span
+class="math inline">\(q=1-p\)</span>对应另一种颜色节点占比</p>
+<p>考虑”假若按照该占比随机着色“，于是两端颜色不同的边出现的概率为<span
+class="math inline">\(2 \cdot p \cdot q\)</span></p>
+<p>比较G中的情况：<span
+class="math inline">\(\frac{端点异色边数}{总边数}\)</span></p>
+<p>若明显小于<span class="math inline">\(2 \cdot p \cdot
+q\)</span>，则可认为同质性明显</p>
+<figure>
+<img src="image-20250612111051020.png" alt="image-20250612111051020" />
+<figcaption aria-hidden="true">image-20250612111051020</figcaption>
+</figure>
+<h3
+id="同质性对社会网络演化的影响"><strong>同质性对社会网络演化的影响</strong></h3>
+<ul>
+<li><strong>选择性</strong>：人们倾向于和他们相似的人成为朋友 -&gt;
+<strong>社团闭包</strong></li>
+</ul>
+<p><strong>从属网络</strong></p>
+<p>每个人和活动都是一个点，连线表示归属关系的二分图。也被翻译为归属网络</p>
+<p>描述了人们相遇的机会</p>
+<figure>
+<img src="image-20250612112629135.png" alt="image-20250612112629135" />
+<figcaption aria-hidden="true">image-20250612112629135</figcaption>
+</figure>
+<ul>
+<li><strong>社会化</strong>：人们也会因为需要和朋友们保持一致而改变自己的行为
+-&gt;<strong>会员闭包</strong></li>
+</ul>
+<p><strong>社会归属网</strong></p>
+<p>三元闭包、社团闭包、会员闭包可同时显现</p>
+<figure>
+<img src="image-20250612113458382.png" alt="image-20250612113458382" />
+<figcaption aria-hidden="true">image-20250612113458382</figcaption>
+</figure>
+<p><strong>根据闭包推算变化</strong></p>
+<p>假设</p>
+<p>如果两个不相识的人有了3个或更多共同朋友，则他们下一时点前会成为朋友
+如果某人有2个或更多朋友参加了某个俱乐部，则他在下一时点前参加该俱乐部
+如果两个不相识的人参加了2个或更多相同的俱乐部，则他们在下一时点前会成为朋友</p>
+<p>创建邻接矩阵A和归属矩阵B</p>
+<figure>
+<img src="image-20250612142521129.png" alt="image-20250612142521129" />
+<figcaption aria-hidden="true">image-20250612142521129</figcaption>
+</figure>
+<h3 id="隔离segregation">隔离（segregation）</h3>
+<p>同质性影响与结果（固有特质相同-&gt;可变特质趋同）</p>
+<p><strong>谢林模型</strong></p>
+<figure>
+<img src="image-20250612142822060.png" alt="image-20250612142822060" />
+<figcaption aria-hidden="true">image-20250612142822060</figcaption>
+</figure>
 
     
 
