@@ -326,56 +326,48 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <hr />
-<h1 id="众智科学与网络化产业">众智科学与网络化产业</h1>
-<h2 id="第一章-图论基础">第一章 图论基础</h2>
-<h3 id="一些概念"><strong>一些概念</strong></h3>
-<ul>
-<li><p>图 = 事物（节点） + 联系（边）</p></li>
-<li><p>同构</p></li>
-<li><p>邻接矩阵</p></li>
-<li><p>关联矩阵：m*n的矩阵，横坐标是边集<span
-class="math inline">\(v_1到v_n\)</span>，纵坐标是点集<span
-class="math inline">\(e_1到e_m\)</span>，每列上都有两个<span
-class="math inline">\(1\)</span> ,<span
-class="math inline">\(A_{i,j_1}=A_{i,j_2}=1\)</span>表示<span
-class="math inline">\(e_i\)</span>连接了<span
-class="math inline">\(v_{j_1},v_{j_2}\)</span></p></li>
-<li><p>图的直径：任意两个节点之间的最大距离</p></li>
-<li><p>连通、连通分量</p></li>
-<li><p>割点、割边（桥）</p></li>
-<li><p>捷径：AB相连且AB没有共同的相邻节点，则边AB为捷径（删除捷径会将AB间的距离增加2以上）</p></li>
-<li><p>欧拉路，欧拉回路</p></li>
-<li><p>二部图（二分图）：</p>
-<ul>
+    <hr>
+<h1 id="众智科学与网络化产业"><a href="#众智科学与网络化产业" class="headerlink" title="众智科学与网络化产业"></a>众智科学与网络化产业</h1><h2 id="第一章-图论基础"><a href="#第一章-图论基础" class="headerlink" title="第一章 图论基础"></a>第一章 图论基础</h2><h3 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a><strong>一些概念</strong></h3><ul>
+<li><p>图 = 事物（节点） + 联系（边）</p>
+</li>
+<li><p>同构</p>
+</li>
+<li>邻接矩阵</li>
+<li>关联矩阵：m*n的矩阵，横坐标是边集$v_1到v_n$，纵坐标是点集$e_1到e_m$，每列上都有两个$1$ ,$A_{i,j_1}=A_{i,j_2}=1$表示$e_i$连接了$v_{j_1},v_{j_2}$</li>
+<li>图的直径：任意两个节点之间的最大距离</li>
+<li>连通、连通分量</li>
+<li>割点、割边（桥）</li>
+<li>捷径：AB相连且AB没有共同的相邻节点，则边AB为捷径（删除捷径会将AB间的距离增加2以上）</li>
+<li>欧拉路，欧拉回路</li>
+<li>二部图（二分图）：<ul>
 <li>二分图判断：染色法</li>
-<li>二分图最大匹配问题：
-<ul>
+<li>二分图最大匹配问题：<ul>
 <li>用最大流求解二分图匹配</li>
 <li>匈牙利算法：跟最大流一样，只是不用补s和t，直接从每个点开始增广</li>
-</ul></li>
-</ul></li>
-<li><p>现实中若干典型网络：</p>
-<ul>
-<li>合作图
-<ul>
+</ul>
+</li>
+</ul>
+</li>
+<li>现实中若干典型网络：<ul>
+<li>合作图<ul>
 <li>例如，一群学者之间合著关系（co-authorship）</li>
 <li>节点：人；边：当且仅当两个人有合著的文章</li>
-</ul></li>
-<li>交流网
-<ul>
+</ul>
+</li>
+<li>交流网<ul>
 <li>例如，一所大学师生之间的电子邮件关系网</li>
 <li>节点：人；边：两人之间发过一定量的往返邮件</li>
-</ul></li>
-<li>信息链接网（有向）
-<ul>
+</ul>
+</li>
+<li>信息链接网（有向）<ul>
 <li>万维网上的网页之间的链接关系</li>
 <li>论文之间的引用关系</li>
-</ul></li>
-</ul></li>
 </ul>
-<h3 id="最短路算法"><strong>最短路算法</strong></h3>
-<ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="最短路算法"><a href="#最短路算法" class="headerlink" title="最短路算法"></a><strong>最短路算法</strong></h3><ul>
 <li>BFS</li>
 <li>A*：用优先队列替换BFS的队列，每次拓展离终点曼哈顿距离最小的点</li>
 <li>DFS</li>
@@ -384,144 +376,9 @@ class="math inline">\(v_{j_1},v_{j_2}\)</span></p></li>
 <li>SPFA：Bellman-Ford的优化，只有上一次被松弛的结点所连接的边，才有可能引起下一次的松弛操作。用队列来维护「哪些结点可能会引起松弛操作」，每次用他的邻边去尝试松弛，并把成功松弛的点入队。</li>
 <li>Dijkstra</li>
 </ul>
-<h2 id="第二章-强联系和弱联系">第二章 强联系和弱联系</h2>
-<h3 id="三元闭包">三元闭包</h3>
-<p>在一个社交圈内，若两个人有一个共同的朋友，则这两人在未来成为朋友的可能性就会提高</p>
-<p><strong>聚集系数</strong> ：
-A的任意两个朋友之间也是朋友的概率（即邻居间朋友对的个数除以总对数）</p>
-<h3 id="社会网络结构的统计特征">社会网络结构的统计特征</h3>
-<p><strong>度分布</strong></p>
-<p>(1）度分布函数。<span
-class="math inline">\(P(k)\)</span>表示网络中度为<span
-class="math inline">\(k\)</span>的节点在整个网络中所占的比例。</p>
-<p>(2）累积度分布函数（Cumulative Degree Distribution Function）。<span
-class="math inline">\(P(k)\)</span>表示度不小于<span
-class="math inline">\(k\)</span>的节点的概率分布（对前面的求和）。</p>
-<p>度分布可区分不同类型的网络。</p>
-<p><strong>平均路径长度</strong></p>
-<p>任意两个节点间最短路径的平均长度，也叫做网络的平均距离或网络的特征路径长度。</p>
-<p>刻画了网络节点之间进行信息传递的代价大小，
-在线社交网络中常用其衡量用户之间关系的紧密程度。</p>
-<p><strong>网络直径</strong></p>
-<p><strong>有效直径</strong></p>
-<p>至少90%的互连节点对之间的距离均不超过的最小值</p>
-<p><strong>网络密度</strong></p>
-<p><span class="math display">\[ d(G) = \frac{2L}{N(N - 1)}
-\]</span></p>
-<p>网络中实际存在边数与可容纳的边数上限的比值</p>
-<p>可用于刻画网络中节点间相互连边的密集程度</p>
-<p>在线社交网络中常用来测量社交关系的密集程度以及演化趋势</p>
-<p><strong>绝对密度公式</strong></p>
-<p>【没看懂】</p>
-<p><span class="math display">\[ \quad d(G) = \frac{M}{\left[
-\frac{4SR^3}{3D} \right]} \]</span></p>
-<p>来比较不同规模网络的密度有效直径</p>
-<p>D表示网络直径，R表示半径，S表示根据直径算出的圆周长</p>
-<p><strong>介数</strong></p>
-<p><span class="math display">\[ C_{\mathrm{B}}(k) = \sum_{i \in V}
-\sum_{\substack{j \neq i \in V}} \frac{\delta_{ij}(k)}{\delta_{ij}}
-\]</span></p>
-<p>用来描述网络中节点承载最短路径数的能力</p>
-<p>节点（或边）的介数等于网络中所有最短路径中经过该节点（或边）的概率之和</p>
-<p>描述了节点在网络中的影响力与中心性程度</p>
-<p><strong>介数计算的一种算法：</strong></p>
-<p>从一个节点（A）开始，做广度优先搜索，将节点分层（以便于下面的步骤）</p>
-<p>确定从A到其他每个节点的最短路径的条数</p>
-<p>确定当从节点A沿最短路径向其他所有节点发送1个单位流量时，经过每条边的流量</p>
-<p>对每一个节点，重复上述过程，累计，<strong>除以2</strong>，即得每条边的介数。</p>
-<p>计算方法：</p>
-<p>①DFS分层并求出A到每个点的最短路数量（每个节点旁边标的数）</p>
-<figure>
-<img src="image-20250611213131508.png" alt="image-20250611213131508" />
-<figcaption aria-hidden="true">image-20250611213131508</figcaption>
-</figure>
-<p>②从最底层往回推流量，每经过一个点总流量+1，然后根据父节点的路径数平分</p>
-<figure>
-<img src="image-20250611213634599.png" alt="image-20250611213634599" />
-<figcaption aria-hidden="true">image-20250611213634599</figcaption>
-</figure>
-<h3 id="强三元闭包">强三元闭包</h3>
-<p><strong>强三元闭包原理（假设）</strong></p>
-<p>如果A-B和A-C之间的关系为强关系，则B-C
-之间形成边的可能性应该很高；</p>
-<p>若A有两个强关系邻居B和C，但B-C之间没有任何关系（s或w），则称节点A违背了强三元闭包原理；</p>
-<p>如果节点A没有违背强三元闭包原理，则称节点A符合强三元闭包原理。</p>
-<p><strong>捷径 = 弱关系</strong></p>
-<p>断言（肉眼可证）：若节点A符合强三元闭包，且至少有两个强关系邻居，则与A相连的任何捷径必定意味着是弱关系。</p>
-<p><strong>嵌入性</strong></p>
-<p>一条边的嵌入性指两个端点共同邻居的数量</p>
-<p>嵌入性高的两个人比较相互信任</p>
-<p><strong>结构洞</strong></p>
-<p>存在于网络节点集合之间的“空地”</p>
-<p>当一个人用与他相关的多条捷径跨越了结构洞的优势：</p>
-<p>①可以更早获得来自网络中多个互不交叉部分的信息</p>
-<p>②处在捷径的一端对其创造性有放大功能</p>
-<p>③有某种社交“把关”的机会，能够控制相邻节点访问其他群体和获取信息。这个位置给予了这个人一种权利资源。</p>
-<h3 id="社会网络的划分">社会网络的划分</h3>
-<p><strong>Girvan-Newman方法</strong>（一种分割法）</p>
-<p>核心思想：不断删除高介数的边（承载大量信息流代表其位置在关系紧密群体的交界处）</p>
-<p>①找出一条或多条介数最高的边并移除它，得到图划分的第一层区域</p>
-<p>②重新计算所有的介数，再将高介数的边移除，得到嵌套在大区域里的小区域</p>
-<p>③重复①、②</p>
-<h2 id="第四章-网络及其存在的环境">第四章 网络及其存在的环境</h2>
-<h3 id="同质性homophily">同质性（homophily）</h3>
-<p>同质性是社会网络结构形成的基本外部原因</p>
-<p><strong>社会网络中同质性的简单测度</strong></p>
-<p>基本思想：如果端点颜色相同的边较多，则同质性显现较强</p>
-<p>给定一个二色图G，让<span
-class="math inline">\(p\)</span>为一种颜色节点占比，<span
-class="math inline">\(q=1-p\)</span>对应另一种颜色节点占比</p>
-<p>考虑”假若按照该占比随机着色“，于是两端颜色不同的边出现的概率为<span
-class="math inline">\(2 \cdot p \cdot q\)</span></p>
-<p>比较G中的情况：<span
-class="math inline">\(\frac{端点异色边数}{总边数}\)</span></p>
-<p>若明显小于<span class="math inline">\(2 \cdot p \cdot
-q\)</span>，则可认为同质性明显</p>
-<figure>
-<img src="image-20250612111051020.png" alt="image-20250612111051020" />
-<figcaption aria-hidden="true">image-20250612111051020</figcaption>
-</figure>
-<h3
-id="同质性对社会网络演化的影响"><strong>同质性对社会网络演化的影响</strong></h3>
-<ul>
-<li><strong>选择性</strong>：人们倾向于和他们相似的人成为朋友 -&gt;
-<strong>社团闭包</strong></li>
-</ul>
-<p><strong>从属网络</strong></p>
-<p>每个人和活动都是一个点，连线表示归属关系的二分图。也被翻译为归属网络</p>
-<p>描述了人们相遇的机会</p>
-<figure>
-<img src="image-20250612112629135.png" alt="image-20250612112629135" />
-<figcaption aria-hidden="true">image-20250612112629135</figcaption>
-</figure>
-<ul>
-<li><strong>社会化</strong>：人们也会因为需要和朋友们保持一致而改变自己的行为
--&gt;<strong>会员闭包</strong></li>
-</ul>
-<p><strong>社会归属网</strong></p>
-<p>三元闭包、社团闭包、会员闭包可同时显现</p>
-<figure>
-<img src="image-20250612113458382.png" alt="image-20250612113458382" />
-<figcaption aria-hidden="true">image-20250612113458382</figcaption>
-</figure>
-<p><strong>根据闭包推算变化</strong></p>
-<p>假设</p>
-<p>如果两个不相识的人有了3个或更多共同朋友，则他们下一时点前会成为朋友
-如果某人有2个或更多朋友参加了某个俱乐部，则他在下一时点前参加该俱乐部
-如果两个不相识的人参加了2个或更多相同的俱乐部，则他们在下一时点前会成为朋友</p>
-<p>创建邻接矩阵A和归属矩阵B</p>
-<figure>
-<img src="image-20250612142521129.png" alt="image-20250612142521129" />
-<figcaption aria-hidden="true">image-20250612142521129</figcaption>
-</figure>
-<h3 id="隔离segregation">隔离（segregation）</h3>
-<p>同质性影响与结果（固有特质相同-&gt;可变特质趋同）</p>
-<p><strong>谢林模型</strong></p>
-<figure>
-<img src="image-20250612142822060.png" alt="image-20250612142822060" />
-<figcaption aria-hidden="true">image-20250612142822060</figcaption>
-</figure>
-
+    
+    <a class="article-more-a" href="/CourseNotes/Network-Crowd-and-Market/#more">more >></a>
+    
     
 
     
