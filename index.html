@@ -326,48 +326,56 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <hr>
-<h1 id="众智科学与网络化产业"><a href="#众智科学与网络化产业" class="headerlink" title="众智科学与网络化产业"></a>众智科学与网络化产业</h1><h2 id="第一章-图论基础"><a href="#第一章-图论基础" class="headerlink" title="第一章 图论基础"></a>第一章 图论基础</h2><h3 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a><strong>一些概念</strong></h3><ul>
-<li><p>图 = 事物（节点） + 联系（边）</p>
-</li>
-<li><p>同构</p>
-</li>
-<li>邻接矩阵</li>
-<li>关联矩阵：m*n的矩阵，横坐标是边集$v_1到v_n$，纵坐标是点集$e_1到e_m$，每列上都有两个$1$ ,$A_{i,j_1}=A_{i,j_2}=1$表示$e_i$连接了$v_{j_1},v_{j_2}$</li>
-<li>图的直径：任意两个节点之间的最大距离</li>
-<li>连通、连通分量</li>
-<li>割点、割边（桥）</li>
-<li>捷径：AB相连且AB没有共同的相邻节点，则边AB为捷径（删除捷径会将AB间的距离增加2以上）</li>
-<li>欧拉路，欧拉回路</li>
-<li>二部图（二分图）：<ul>
+    <hr />
+<h1 id="众智科学与网络化产业">众智科学与网络化产业</h1>
+<h2 id="第一章-图论基础">第一章 图论基础</h2>
+<h3 id="一些概念"><strong>一些概念</strong></h3>
+<ul>
+<li><p>图 = 事物（节点） + 联系（边）</p></li>
+<li><p>同构</p></li>
+<li><p>邻接矩阵</p></li>
+<li><p>关联矩阵：m*n的矩阵，横坐标是边集<span
+class="math inline">\(v_1到v_n\)</span>，纵坐标是点集<span
+class="math inline">\(e_1到e_m\)</span>，每列上都有两个<span
+class="math inline">\(1\)</span> ,<span
+class="math inline">\(A_{i,j_1}=A_{i,j_2}=1\)</span>表示<span
+class="math inline">\(e_i\)</span>连接了<span
+class="math inline">\(v_{j_1},v_{j_2}\)</span></p></li>
+<li><p>图的直径：任意两个节点之间的最大距离</p></li>
+<li><p>连通、连通分量</p></li>
+<li><p>割点、割边（桥）</p></li>
+<li><p>捷径：AB相连且AB没有共同的相邻节点，则边AB为捷径（删除捷径会将AB间的距离增加2以上）</p></li>
+<li><p>欧拉路，欧拉回路</p></li>
+<li><p>二部图（二分图）：</p>
+<ul>
 <li>二分图判断：染色法</li>
-<li>二分图最大匹配问题：<ul>
+<li>二分图最大匹配问题：
+<ul>
 <li>用最大流求解二分图匹配</li>
 <li>匈牙利算法：跟最大流一样，只是不用补s和t，直接从每个点开始增广</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>现实中若干典型网络：<ul>
-<li>合作图<ul>
+</ul></li>
+</ul></li>
+<li><p>现实中若干典型网络：</p>
+<ul>
+<li>合作图
+<ul>
 <li>例如，一群学者之间合著关系（co-authorship）</li>
 <li>节点：人；边：当且仅当两个人有合著的文章</li>
-</ul>
-</li>
-<li>交流网<ul>
+</ul></li>
+<li>交流网
+<ul>
 <li>例如，一所大学师生之间的电子邮件关系网</li>
 <li>节点：人；边：两人之间发过一定量的往返邮件</li>
-</ul>
-</li>
-<li>信息链接网（有向）<ul>
+</ul></li>
+<li>信息链接网（有向）
+<ul>
 <li>万维网上的网页之间的链接关系</li>
 <li>论文之间的引用关系</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="最短路算法"><a href="#最短路算法" class="headerlink" title="最短路算法"></a><strong>最短路算法</strong></h3><ul>
+<h3 id="最短路算法"><strong>最短路算法</strong></h3>
+<ul>
 <li>BFS</li>
 <li>A*：用优先队列替换BFS的队列，每次拓展离终点曼哈顿距离最小的点</li>
 <li>DFS</li>

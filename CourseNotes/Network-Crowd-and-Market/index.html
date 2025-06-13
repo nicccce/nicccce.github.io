@@ -10,12 +10,12 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="众智科学与网络化产业第一章 图论基础一些概念 图 &#x3D; 事物（节点） + 联系（边）  同构  邻接矩阵 关联矩阵：m*n的矩阵，横坐标是边集$v_1到v_n$，纵坐标是点集$e_1到e_m$，每列上都有两个$1$ ,$A_{i,j_1}&#x3D;A_{i,j_2}&#x3D;1$表示$e_i$连接了$v_{j_1},v_{j_2}$ 图的直径：任意两个节点之间的最大距离 连通、连通分量 割点、割边（桥） 捷径：A">
+  <meta name="description" content="众智科学与网络化产业 第一章 图论基础 一些概念  图 &#x3D; 事物（节点） + 联系（边） 同构 邻接矩阵 关联矩阵：m*n的矩阵，横坐标是边集\(v_1到v_n\)，纵坐标是点集\(e_1到e_m\)，每列上都有两个\(1\) ,\(A_{i,j_1}&#x3D;A_{i,j_2}&#x3D;1\)表示\(e_i\)连接了\(v_{j_1},v_{j_2}\) 图的直径：任意两个节点之间的最大距离">
 <meta property="og:type" content="article">
 <meta property="og:title" content="青春喂了后端">
 <meta property="og:url" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/">
 <meta property="og:site_name" content="NICCCCE">
-<meta property="og:description" content="众智科学与网络化产业第一章 图论基础一些概念 图 &#x3D; 事物（节点） + 联系（边）  同构  邻接矩阵 关联矩阵：m*n的矩阵，横坐标是边集$v_1到v_n$，纵坐标是点集$e_1到e_m$，每列上都有两个$1$ ,$A_{i,j_1}&#x3D;A_{i,j_2}&#x3D;1$表示$e_i$连接了$v_{j_1},v_{j_2}$ 图的直径：任意两个节点之间的最大距离 连通、连通分量 割点、割边（桥） 捷径：A">
+<meta property="og:description" content="众智科学与网络化产业 第一章 图论基础 一些概念  图 &#x3D; 事物（节点） + 联系（边） 同构 邻接矩阵 关联矩阵：m*n的矩阵，横坐标是边集\(v_1到v_n\)，纵坐标是点集\(e_1到e_m\)，每列上都有两个\(1\) ,\(A_{i,j_1}&#x3D;A_{i,j_2}&#x3D;1\)表示\(e_i\)连接了\(v_{j_1},v_{j_2}\) 图的直径：任意两个节点之间的最大距离">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250611213131508.png">
 <meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250611213634599.png">
@@ -24,29 +24,48 @@
 <meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612113458382.png">
 <meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612142521129.png">
 <meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612142822060.png">
-<meta property="og:image" content="https://nicccce.github.io/image-20250612143939225.png">
-<meta property="og:image" content="https://nicccce.github.io/image-20250612153423338.png">
-<meta property="og:image" content="https://nicccce.github.io/image-20250612153222207.png">
-<meta property="og:image" content="https://nicccce.github.io/image-20250612153600827.png">
-<meta property="og:image" content="https://nicccce.github.io/image-20250612153614107.png">
-<meta property="og:image" content="https://nicccce.github.io/image-20250612160108296.png">
-<meta property="og:image" content="https://nicccce.github.io/image-20250612171555756.png">
-<meta property="og:image" content="https://nicccce.github.io/image-20250612172037878.png">
-<meta property="og:image" content="https://nicccce.github.io/image-20250612172050925.png">
-<meta property="og:image" content="https://nicccce.github.io/image-20250612172330702.png">
-<meta property="og:image" content="https://nicccce.github.io/image-20250612172528833.png">
-<meta property="og:image" content="https://nicccce.github.io/image-20250612173714114.png">
-<meta property="og:image" content="https://nicccce.github.io/image-20250612174424257.png">
-<meta property="og:image" content="https://nicccce.github.io/image-20250612174532487.png">
-<meta property="og:image" content="https://nicccce.github.io/image-20250612175220616.png">
-<meta property="og:image" content="https://nicccce.github.io/image-20250612174659111.png">
-<meta property="og:image" content="https://nicccce.github.io/image-20250612175105758.png">
-<meta property="og:image" content="https://nicccce.github.io/image-20250612204227922.png">
-<meta property="og:image" content="https://nicccce.github.io/image-20250612205103243.png">
-<meta property="og:image" content="https://nicccce.github.io/image-20250612205536327.png">
-<meta property="og:image" content="https://nicccce.github.io/image-20250612210111036.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612143939225.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612153423338.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612153222207.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612153600827.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612153614107.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612160108296.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612171555756.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612172037878.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612172050925.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612172330702.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612172528833.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612173714114.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612174424257.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612174532487.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612175220616.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612174659111.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612175105758.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612204227922.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612205103243.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612205536327.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612210111036.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612211501713.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612211505853.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612212609249.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612212844011.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250612224808758.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250613112910190.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250613114100087.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250613114124878.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250613114212171.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250613114324969.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250613152235293.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250613161556779.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250613170449876.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250613170454021.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250613170458321.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250613193721682.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250613193737654.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250613193757331.png">
+<meta property="og:image" content="https://nicccce.github.io/CourseNotes/Network-Crowd-and-Market/image-20250613194836037.png">
 <meta property="article:published_time" content="2025-06-11T09:11:40.000Z">
-<meta property="article:modified_time" content="2025-06-12T13:03:27.782Z">
+<meta property="article:modified_time" content="2025-06-13T13:41:32.466Z">
 <meta property="article:author" content="NICK">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
@@ -262,7 +281,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">3.9k字</span>
+      <span class="post-count">6.4k字</span>
     </span>
   </span>
 
@@ -271,7 +290,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">13分</span>
+      <span class="post-count">23分</span>
     </span>
   </span>
 </div>
@@ -282,48 +301,56 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <hr>
-<h1 id="众智科学与网络化产业"><a href="#众智科学与网络化产业" class="headerlink" title="众智科学与网络化产业"></a>众智科学与网络化产业</h1><h2 id="第一章-图论基础"><a href="#第一章-图论基础" class="headerlink" title="第一章 图论基础"></a>第一章 图论基础</h2><h3 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a><strong>一些概念</strong></h3><ul>
-<li><p>图 = 事物（节点） + 联系（边）</p>
-</li>
-<li><p>同构</p>
-</li>
-<li>邻接矩阵</li>
-<li>关联矩阵：m*n的矩阵，横坐标是边集$v_1到v_n$，纵坐标是点集$e_1到e_m$，每列上都有两个$1$ ,$A_{i,j_1}=A_{i,j_2}=1$表示$e_i$连接了$v_{j_1},v_{j_2}$</li>
-<li>图的直径：任意两个节点之间的最大距离</li>
-<li>连通、连通分量</li>
-<li>割点、割边（桥）</li>
-<li>捷径：AB相连且AB没有共同的相邻节点，则边AB为捷径（删除捷径会将AB间的距离增加2以上）</li>
-<li>欧拉路，欧拉回路</li>
-<li>二部图（二分图）：<ul>
+    <hr />
+<h1 id="众智科学与网络化产业">众智科学与网络化产业</h1>
+<h2 id="第一章-图论基础">第一章 图论基础</h2>
+<h3 id="一些概念"><strong>一些概念</strong></h3>
+<ul>
+<li><p>图 = 事物（节点） + 联系（边）</p></li>
+<li><p>同构</p></li>
+<li><p>邻接矩阵</p></li>
+<li><p>关联矩阵：m*n的矩阵，横坐标是边集<span
+class="math inline">\(v_1到v_n\)</span>，纵坐标是点集<span
+class="math inline">\(e_1到e_m\)</span>，每列上都有两个<span
+class="math inline">\(1\)</span> ,<span
+class="math inline">\(A_{i,j_1}=A_{i,j_2}=1\)</span>表示<span
+class="math inline">\(e_i\)</span>连接了<span
+class="math inline">\(v_{j_1},v_{j_2}\)</span></p></li>
+<li><p>图的直径：任意两个节点之间的最大距离</p></li>
+<li><p>连通、连通分量</p></li>
+<li><p>割点、割边（桥）</p></li>
+<li><p>捷径：AB相连且AB没有共同的相邻节点，则边AB为捷径（删除捷径会将AB间的距离增加2以上）</p></li>
+<li><p>欧拉路，欧拉回路</p></li>
+<li><p>二部图（二分图）：</p>
+<ul>
 <li>二分图判断：染色法</li>
-<li>二分图最大匹配问题：<ul>
+<li>二分图最大匹配问题：
+<ul>
 <li>用最大流求解二分图匹配</li>
 <li>匈牙利算法：跟最大流一样，只是不用补s和t，直接从每个点开始增广</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>现实中若干典型网络：<ul>
-<li>合作图<ul>
+</ul></li>
+</ul></li>
+<li><p>现实中若干典型网络：</p>
+<ul>
+<li>合作图
+<ul>
 <li>例如，一群学者之间合著关系（co-authorship）</li>
 <li>节点：人；边：当且仅当两个人有合著的文章</li>
-</ul>
-</li>
-<li>交流网<ul>
+</ul></li>
+<li>交流网
+<ul>
 <li>例如，一所大学师生之间的电子邮件关系网</li>
 <li>节点：人；边：两人之间发过一定量的往返邮件</li>
-</ul>
-</li>
-<li>信息链接网（有向）<ul>
+</ul></li>
+<li>信息链接网（有向）
+<ul>
 <li>万维网上的网页之间的链接关系</li>
 <li>论文之间的引用关系</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="最短路算法"><a href="#最短路算法" class="headerlink" title="最短路算法"></a><strong>最短路算法</strong></h3><ul>
+<h3 id="最短路算法"><strong>最短路算法</strong></h3>
+<ul>
 <li>BFS</li>
 <li>A*：用优先队列替换BFS的队列，每次拓展离终点曼哈顿距离最小的点</li>
 <li>DFS</li>
@@ -333,28 +360,44 @@
 <li>Dijkstra</li>
 </ul>
 <span id="more"></span>
-<h2 id="第二章-强联系和弱联系"><a href="#第二章-强联系和弱联系" class="headerlink" title="第二章 强联系和弱联系"></a>第二章 强联系和弱联系</h2><h3 id="三元闭包"><a href="#三元闭包" class="headerlink" title="三元闭包"></a>三元闭包</h3><p>在一个社交圈内，若两个人有一个共同的朋友，则这两人在未来成为朋友的可能性就会提高</p>
-<p><strong>聚集系数</strong> ： A的任意两个朋友之间也是朋友的概率（即邻居间朋友对的个数除以总对数）</p>
-<h3 id="社会网络结构的统计特征"><a href="#社会网络结构的统计特征" class="headerlink" title="社会网络结构的统计特征"></a>社会网络结构的统计特征</h3><p><strong>度分布</strong></p>
-<p>(1）度分布函数。$P(k)$表示网络中度为$k$的节点在整个网络中所占的比例。 </p>
-<p>(2）累积度分布函数（Cumulative Degree Distribution Function）。$P(k)$表示度不小于$k$的节点的概率分布（对前面的求和）。</p>
+<h2 id="第二章-强联系和弱联系">第二章 强联系和弱联系</h2>
+<h3 id="三元闭包">三元闭包</h3>
+<p>在一个社交圈内，若两个人有一个共同的朋友，则这两人在未来成为朋友的可能性就会提高</p>
+<p><strong>聚集系数</strong> ：
+A的任意两个朋友之间也是朋友的概率（即邻居间朋友对的个数除以总对数）</p>
+<h3 id="社会网络结构的统计特征">社会网络结构的统计特征</h3>
+<p><strong>度分布</strong></p>
+<p>(1）度分布函数。<span
+class="math inline">\(P(k)\)</span>表示网络中度为<span
+class="math inline">\(k\)</span>的节点在整个网络中所占的比例。</p>
+<p>(2）累积度分布函数（Cumulative Degree Distribution Function）。<span
+class="math inline">\(P(k)\)</span>表示度不小于<span
+class="math inline">\(k\)</span>的节点的概率分布（对前面的求和）。</p>
 <p>度分布可区分不同类型的网络。</p>
 <p><strong>平均路径长度</strong></p>
-<p>任意两个节点间最短路径的平均长度，也叫做网络的平均距离或网络的特征路径长度。 </p>
-<p>刻画了网络节点之间进行信息传递的代价大小， 在线社交网络中常用其衡量用户之间关系的紧密程度。</p>
+<p>任意两个节点间最短路径的平均长度，也叫做网络的平均距离或网络的特征路径长度。</p>
+<p>刻画了网络节点之间进行信息传递的代价大小，
+在线社交网络中常用其衡量用户之间关系的紧密程度。</p>
 <p><strong>网络直径</strong></p>
 <p><strong>有效直径</strong></p>
 <p>至少90%的互连节点对之间的距离均不超过的最小值</p>
 <p><strong>网络密度</strong></p>
-<script type="math/tex; mode=display">d(G) = \frac{2L}{N(N - 1)}</script><p>网络中实际存在边数与可容纳的边数上限的比值</p>
+<p><span class="math display">\[ d(G) = \frac{2L}{N(N - 1)}
+\]</span></p>
+<p>网络中实际存在边数与可容纳的边数上限的比值</p>
 <p>可用于刻画网络中节点间相互连边的密集程度</p>
 <p>在线社交网络中常用来测量社交关系的密集程度以及演化趋势</p>
 <p><strong>绝对密度公式</strong></p>
 <p>【没看懂】</p>
-<script type="math/tex; mode=display">\quad d(G) = \frac{M}{\left[ \frac{4SR^3}{3D} \right]}</script><p>来比较不同规模网络的密度有效直径</p>
+<p><span class="math display">\[ \quad d(G) = \frac{M}{\left[
+\frac{4SR^3}{3D} \right]} \]</span></p>
+<p>来比较不同规模网络的密度有效直径</p>
 <p>D表示网络直径，R表示半径，S表示根据直径算出的圆周长</p>
 <p><strong>介数</strong></p>
-<script type="math/tex; mode=display">C_{\mathrm{B}}(k) = \sum_{i \in V} \sum_{\substack{j \neq i \in V}} \frac{\delta_{ij}(k)}{\delta_{ij}}</script><p>用来描述网络中节点承载最短路径数的能力</p>
+<p><span class="math display">\[ C_{\mathrm{B}}(k) = \sum_{i \in V}
+\sum_{\substack{j \neq i \in V}} \frac{\delta_{ij}(k)}{\delta_{ij}}
+\]</span></p>
+<p>用来描述网络中节点承载最短路径数的能力</p>
 <p>节点（或边）的介数等于网络中所有最短路径中经过该节点（或边）的概率之和</p>
 <p>描述了节点在网络中的影响力与中心性程度</p>
 <p><strong>介数计算的一种算法：</strong></p>
@@ -364,11 +407,19 @@
 <p>对每一个节点，重复上述过程，累计，<strong>除以2</strong>，即得每条边的介数。</p>
 <p>计算方法：</p>
 <p>①DFS分层并求出A到每个点的最短路数量（每个节点旁边标的数）</p>
-<p><img src="image-20250611213131508.png" alt="image-20250611213131508"></p>
+<figure>
+<img src="image-20250611213131508.png" alt="image-20250611213131508" />
+<figcaption aria-hidden="true">image-20250611213131508</figcaption>
+</figure>
 <p>②从最底层往回推流量，每经过一个点总流量+1，然后根据父节点的路径数平分</p>
-<p><img src="image-20250611213634599.png" alt="image-20250611213634599"></p>
-<h3 id="强三元闭包"><a href="#强三元闭包" class="headerlink" title="强三元闭包"></a>强三元闭包</h3><p><strong>强三元闭包原理（假设）</strong></p>
-<p>如果A-B和A-C之间的关系为强关系，则B-C 之间形成边的可能性应该很高；</p>
+<figure>
+<img src="image-20250611213634599.png" alt="image-20250611213634599" />
+<figcaption aria-hidden="true">image-20250611213634599</figcaption>
+</figure>
+<h3 id="强三元闭包">强三元闭包</h3>
+<p><strong>强三元闭包原理（假设）</strong></p>
+<p>如果A-B和A-C之间的关系为强关系，则B-C
+之间形成边的可能性应该很高；</p>
 <p>若A有两个强关系邻居B和C，但B-C之间没有任何关系（s或w），则称节点A违背了强三元闭包原理；</p>
 <p>如果节点A没有违背强三元闭包原理，则称节点A符合强三元闭包原理。</p>
 <p><strong>捷径 = 弱关系</strong></p>
@@ -382,50 +433,89 @@
 <p>①可以更早获得来自网络中多个互不交叉部分的信息</p>
 <p>②处在捷径的一端对其创造性有放大功能</p>
 <p>③有某种社交“把关”的机会，能够控制相邻节点访问其他群体和获取信息。这个位置给予了这个人一种权利资源。</p>
-<h3 id="社会网络的划分"><a href="#社会网络的划分" class="headerlink" title="社会网络的划分"></a>社会网络的划分</h3><p><strong>Girvan-Newman方法</strong>（一种分割法）</p>
+<h3 id="社会网络的划分">社会网络的划分</h3>
+<p><strong>Girvan-Newman方法</strong>（一种分割法）</p>
 <p>核心思想：不断删除高介数的边（承载大量信息流代表其位置在关系紧密群体的交界处）</p>
 <p>①找出一条或多条介数最高的边并移除它，得到图划分的第一层区域</p>
 <p>②重新计算所有的介数，再将高介数的边移除，得到嵌套在大区域里的小区域</p>
 <p>③重复①、②</p>
-<h2 id="第三章-网络及其存在的环境"><a href="#第三章-网络及其存在的环境" class="headerlink" title="第三章 网络及其存在的环境"></a>第三章 网络及其存在的环境</h2><h3 id="同质性（homophily）"><a href="#同质性（homophily）" class="headerlink" title="同质性（homophily）"></a>同质性（homophily）</h3><p>同质性是社会网络结构形成的基本外部原因</p>
+<h2 id="第三章-网络及其存在的环境">第三章 网络及其存在的环境</h2>
+<h3 id="同质性homophily">同质性（homophily）</h3>
+<p>同质性是社会网络结构形成的基本外部原因</p>
 <p><strong>社会网络中同质性的简单测度</strong></p>
 <p>基本思想：如果端点颜色相同的边较多，则同质性显现较强</p>
-<p>给定一个二色图G，让$p$为一种颜色节点占比，$q=1-p$对应另一种颜色节点占比</p>
-<p>考虑”假若按照该占比随机着色“，于是两端颜色不同的边出现的概率为$2 \cdot p \cdot q$</p>
-<p>比较G中的情况：$\frac{端点异色边数}{总边数}$</p>
-<p>若明显小于$2 \cdot p \cdot q$，则可认为同质性明显</p>
-<p><img src="image-20250612111051020.png" alt="image-20250612111051020"></p>
-<h3 id="同质性对社会网络演化的影响"><a href="#同质性对社会网络演化的影响" class="headerlink" title="同质性对社会网络演化的影响"></a><strong>同质性对社会网络演化的影响</strong></h3><ul>
-<li><strong>选择性</strong>：人们倾向于和他们相似的人成为朋友 -&gt; <strong>社团闭包</strong></li>
+<p>给定一个二色图G，让<span
+class="math inline">\(p\)</span>为一种颜色节点占比，<span
+class="math inline">\(q=1-p\)</span>对应另一种颜色节点占比</p>
+<p>考虑”假若按照该占比随机着色“，于是两端颜色不同的边出现的概率为<span
+class="math inline">\(2 \cdot p \cdot q\)</span></p>
+<p>比较G中的情况：<span
+class="math inline">\(\frac{端点异色边数}{总边数}\)</span></p>
+<p>若明显小于<span class="math inline">\(2 \cdot p \cdot
+q\)</span>，则可认为同质性明显</p>
+<figure>
+<img src="image-20250612111051020.png" alt="image-20250612111051020" />
+<figcaption aria-hidden="true">image-20250612111051020</figcaption>
+</figure>
+<h3
+id="同质性对社会网络演化的影响"><strong>同质性对社会网络演化的影响</strong></h3>
+<ul>
+<li><strong>选择性</strong>：人们倾向于和他们相似的人成为朋友 -&gt;
+<strong>社团闭包</strong></li>
 </ul>
 <p><strong>从属网络</strong></p>
 <p>每个人和活动都是一个点，连线表示归属关系的二分图。也被翻译为归属网络</p>
 <p>描述了人们相遇的机会</p>
-<p><img src="image-20250612112629135.png" alt="image-20250612112629135"></p>
+<figure>
+<img src="image-20250612112629135.png" alt="image-20250612112629135" />
+<figcaption aria-hidden="true">image-20250612112629135</figcaption>
+</figure>
 <ul>
-<li><strong>社会化</strong>：人们也会因为需要和朋友们保持一致而改变自己的行为 -&gt;<strong>会员闭包</strong></li>
+<li><strong>社会化</strong>：人们也会因为需要和朋友们保持一致而改变自己的行为
+-&gt;<strong>会员闭包</strong></li>
 </ul>
 <p><strong>社会归属网</strong></p>
 <p>三元闭包、社团闭包、会员闭包可同时显现</p>
-<p><img src="image-20250612113458382.png" alt="image-20250612113458382"></p>
+<figure>
+<img src="image-20250612113458382.png" alt="image-20250612113458382" />
+<figcaption aria-hidden="true">image-20250612113458382</figcaption>
+</figure>
 <p><strong>根据闭包推算变化</strong></p>
 <p>假设</p>
-<p>如果两个不相识的人有了3个或更多共同朋友，则他们下一时点前会成为朋友<br>如果某人有2个或更多朋友参加了某个俱乐部，则他在下一时点前参加该俱乐部<br>如果两个不相识的人参加了2个或更多相同的俱乐部，则他们在下一时点前会成为朋友</p>
+<p>如果两个不相识的人有了3个或更多共同朋友，则他们下一时点前会成为朋友
+如果某人有2个或更多朋友参加了某个俱乐部，则他在下一时点前参加该俱乐部
+如果两个不相识的人参加了2个或更多相同的俱乐部，则他们在下一时点前会成为朋友</p>
 <p>创建邻接矩阵A和归属矩阵B</p>
-<p><img src="image-20250612142521129.png" alt="image-20250612142521129"></p>
-<h3 id="隔离（segregation）"><a href="#隔离（segregation）" class="headerlink" title="隔离（segregation）"></a>隔离（segregation）</h3><p>同质性影响与结果（固有特质相同-&gt;可变特质趋同）</p>
+<figure>
+<img src="image-20250612142521129.png" alt="image-20250612142521129" />
+<figcaption aria-hidden="true">image-20250612142521129</figcaption>
+</figure>
+<h3 id="隔离segregation">隔离（segregation）</h3>
+<p>同质性影响与结果（固有特质相同-&gt;可变特质趋同）</p>
 <p><strong>谢林模型</strong></p>
-<p><img src="image-20250612142822060.png" alt="image-20250612142822060"></p>
-<h2 id="第四章-正关系与负关系"><a href="#第四章-正关系与负关系" class="headerlink" title="第四章 正关系与负关系"></a>第四章 正关系与负关系</h2><h3 id="平衡性"><a href="#平衡性" class="headerlink" title="平衡性"></a>平衡性</h3><p><strong>边的正负性</strong><br>支持(+)与反对(-)；朋友(+)与敌人(-)</p>
-<p><strong>稳定性</strong><br><img src="/image-20250612143939225.png" alt="image-20250612143939225"></p>
-<p><strong>社会网络（图）的结构平衡</strong><br>若图中所有三角关系都是平衡的即每个三角关系要么3＋，要么1＋和2－），则该完全图结构平衡。</p>
-<p><strong>平衡定理</strong><br>如果一个标记（＋／－）的完全图是平衡的，则要么它的所有节点两两都是朋友，要么它的节点可以被分为两组，X和Y，其中X组内的节点两两都是‘＋’关系，Y组内的节点两两也都是‘＋’关系，而X组中的每个节点与Y组中每个节点之间都是‘－’关系。</p>
-<h3 id="弱平衡网络"><a href="#弱平衡网络" class="headerlink" title="弱平衡网络"></a>弱平衡网络</h3><p>只是不允许（＋＋－）的网络</p>
-<p><strong>弱平衡网络中的平衡定理</strong><br>节点可分成若干组，组内均为朋友（＋），组间均为敌人（－）</p>
-<p><strong>非完全网络中的平衡</strong><br>允许一些边的缺失，即考虑非完全图情形</p>
-<h3 id="近似平衡的网络"><a href="#近似平衡的网络" class="headerlink" title="近似平衡的网络"></a>近似平衡的网络</h3><p>允许网络中有少量三角形不平衡（即可以出现少量“－－－”或“－＋＋”）</p>
+<figure>
+<img src="image-20250612142822060.png" alt="image-20250612142822060" />
+<figcaption aria-hidden="true">image-20250612142822060</figcaption>
+</figure>
+<h2 id="第四章-正关系与负关系">第四章 正关系与负关系</h2>
+<h3 id="平衡性">平衡性</h3>
+<p><strong>边的正负性</strong> 支持(+)与反对(-)；朋友(+)与敌人(-)</p>
+<p><strong>稳定性</strong> <img src="image-20250612143939225.png"
+alt="image-20250612143939225" /></p>
+<p><strong>社会网络（图）的结构平衡</strong>
+若图中所有三角关系都是平衡的即每个三角关系要么3＋，要么1＋和2－），则该完全图结构平衡。</p>
+<p><strong>平衡定理</strong>
+如果一个标记（＋／－）的完全图是平衡的，则要么它的所有节点两两都是朋友，要么它的节点可以被分为两组，X和Y，其中X组内的节点两两都是‘＋’关系，Y组内的节点两两也都是‘＋’关系，而X组中的每个节点与Y组中每个节点之间都是‘－’关系。</p>
+<h3 id="弱平衡网络">弱平衡网络</h3>
+<p>只是不允许（＋＋－）的网络</p>
+<p><strong>弱平衡网络中的平衡定理</strong>
+节点可分成若干组，组内均为朋友（＋），组间均为敌人（－）</p>
+<p><strong>非完全网络中的平衡</strong>
+允许一些边的缺失，即考虑非完全图情形</p>
+<h3 id="近似平衡的网络">近似平衡的网络</h3>
+<p>允许网络中有少量三角形不平衡（即可以出现少量“－－－”或“－＋＋”）</p>
 <p><strong>结论</strong></p>
-<p>若一个完全标注图中至少99.9%的三角形是平衡的（+++或—+），则</p>
+<p>若一个完全标注图中至少99.9%的三角形是平衡的（+++或--+），则</p>
 <p>① 存在一个至少包含90%节点的子集，它们两两间至少有90%互为朋友（+）</p>
 <p>② 可以将节点集划分为两个子集X和Y，满足：</p>
 <ul>
@@ -433,70 +523,410 @@
 <li>Y中至少有90%的节点对都互为朋友（+）</li>
 <li>X和Y之间的节点对中至少有90%的互为敌人（-）</li>
 </ul>
-<h3 id="非完全结构的平衡性"><a href="#非完全结构的平衡性" class="headerlink" title="非完全结构的平衡性"></a><strong>非完全结构的平衡性</strong></h3><p><strong>结构平衡的定义</strong></p>
+<h3 id="非完全结构的平衡性"><strong>非完全结构的平衡性</strong></h3>
+<p><strong>结构平衡的定义</strong></p>
 <p>①可以通过补充缺失的边（带符号），成一个平衡网络</p>
 <p>②节点可以分成两组（组内边为＋，跨组为－）</p>
 <p><strong>判别</strong></p>
 <p>图是平衡的，当且仅当它不包含奇数个负关系的边的圈。</p>
 <p>方法：对简约图（把全是正关系的一组看成一个整体）进行广度优先搜索</p>
-<p><img src="/image-20250612153423338.png" alt="image-20250612153423338"></p>
-<p><img src="/image-20250612153222207.png" alt="image-20250612153222207"></p>
+<figure>
+<img src="image-20250612153423338.png" alt="image-20250612153423338" />
+<figcaption aria-hidden="true">image-20250612153423338</figcaption>
+</figure>
+<figure>
+<img src="image-20250612153222207.png" alt="image-20250612153222207" />
+<figcaption aria-hidden="true">image-20250612153222207</figcaption>
+</figure>
 <p>对如下nxm方格态，通过归纳法证明若每个小方格都是平衡的，整体一定平衡</p>
-<p><img src="/image-20250612153600827.png" alt="image-20250612153600827"><img src="/image-20250612153614107.png" alt="image-20250612153614107"></p>
-<h2 id="第五章-小世界现象"><a href="#第五章-小世界现象" class="headerlink" title="第五章 小世界现象"></a>第五章 小世界现象</h2><p><strong>六度分隔</strong><br>人类社会网络中，任何两个人之间的最短路径长度都不超过6</p>
-<p><strong>短视搜索</strong><br>一种有目标的、基于局部信息的网络搜索过程。<br>每个节点有一个特征（根据需求可有不同定义），任何两个节点之间的特征可以谈差别（特征距离，不同于网络距离）<br>每个节点仅知道自己和自己网络邻居节点的特征；<br>搜索过程可看成是信息传递的过程，节点将信息（目标节点的特征）传给离目标节点距离较近（差别较小）的网络邻居节点</p>
+<p><img src="image-20250612153600827.png"
+alt="image-20250612153600827" /><img src="image-20250612153614107.png"
+alt="image-20250612153614107" /></p>
+<h2 id="第五章-小世界现象">第五章 小世界现象</h2>
+<p><strong>六度分隔</strong>
+人类社会网络中，任何两个人之间的最短路径长度都不超过6</p>
+<p><strong>短视搜索</strong> 一种有目标的、基于局部信息的网络搜索过程。
+每个节点有一个特征（根据需求可有不同定义），任何两个节点之间的特征可以谈差别（特征距离，不同于网络距离）
+每个节点仅知道自己和自己网络邻居节点的特征；
+搜索过程可看成是信息传递的过程，节点将信息（目标节点的特征）传给离目标节点距离较近（差别较小）的网络邻居节点</p>
 <p><strong>形成社会网络的两种基本力量</strong></p>
 <p>同质性，弱关系</p>
-<h3 id="Watts-Strogatz模型"><a href="#Watts-Strogatz模型" class="headerlink" title="Watts-Strogatz模型"></a>Watts-Strogatz模型</h3><p><img src="/image-20250612160108296.png" alt="image-20250612160108296"></p>
+<h3 id="watts-strogatz模型">Watts-Strogatz模型</h3>
+<figure>
+<img src="image-20250612160108296.png" alt="image-20250612160108296" />
+<figcaption aria-hidden="true">image-20250612160108296</figcaption>
+</figure>
 <p>其中，r是同质连接的参数，表示某个节点到那些相距r网格步以内的节点的连接；k是弱关系连接的参数，表示对某个节点，在网络中随机均匀选择k个节点建立弱关系连接。</p>
 <p><strong>Watts-Strogatz-Kleinberg模型</strong></p>
 <p>在Watts-Strogatz模型基础上，让两个节点存在随机边（弱关系）的概率与距离的某个幂次（q）成反比。</p>
-<p>在Watts-Strogatz模型基础上，让两个节点之间存在随机边的概率与距离的某个幂次（q）成反比<br>q：控制远程连接的概率随距离递减的强度（Watts-Strogatz模型对应于q=0）</p>
+<p>在Watts-Strogatz模型基础上，让两个节点之间存在随机边的概率与距离的某个幂次（q）成反比
+q：控制远程连接的概率随距离递减的强度（Watts-Strogatz模型对应于q=0）</p>
 <p>理论结果：当q=2时，分散搜索达到最佳效果</p>
-<h2 id="第六章-搜索引擎"><a href="#第六章-搜索引擎" class="headerlink" title="第六章 搜索引擎"></a>第六章 搜索引擎</h2><p>网页的中枢与权威性(一篇网页可以兼具两个性质)<br>权威性：被很多网页指向，权威值（auth）<br>中枢性：指向很多网页，中枢值（hub）</p>
-<h3 id="HITS算法"><a href="#HITS算法" class="headerlink" title="HITS算法"></a><strong>HITS算法</strong></h3><p><img src="/image-20250612171555756.png" alt="image-20250612171555756"></p>
-<p><img src="/image-20250612172037878.png" alt="image-20250612172037878"><img src="/image-20250612172050925.png" alt="image-20250612172050925"></p>
+<h2 id="第六章-搜索引擎">第六章 搜索引擎</h2>
+<p>网页的中枢与权威性(一篇网页可以兼具两个性质)
+权威性：被很多网页指向，权威值（auth）
+中枢性：指向很多网页，中枢值（hub）</p>
+<h3 id="hits算法"><strong>HITS算法</strong></h3>
+<figure>
+<img src="image-20250612171555756.png" alt="image-20250612171555756" />
+<figcaption aria-hidden="true">image-20250612171555756</figcaption>
+</figure>
+<p><img src="image-20250612172037878.png"
+alt="image-20250612172037878" /><img src="image-20250612172050925.png"
+alt="image-20250612172050925" /></p>
 <p><strong>归一化与极限</strong></p>
-<p>在每一轮结束后做归一化：值／总和<br>归一化结果随迭代次数趋向于一个极限<br>相继两次迭代的值不变</p>
-<h3 id="PageRank"><a href="#PageRank" class="headerlink" title="PageRank"></a>PageRank</h3><p>利用网页间的链接关系计算网页重要性</p>
-<p>输入：一个有n个节点的网络（有向图），设所有节点的PageRank初始值为1/ n。<br>选择操作的步骤数k<br>对PageRank做k次更新操作，每次使用以下规则：<br>每个节点将自己当前的PageRank值通过出向链接均分传递给所指向的节点<br>若没有出向链接，则认为传递给自己（或者说保留）<br>每个节点以从入向链接获得的（包括可能自传的）所有值之和更新它的PageRank</p>
+<p>在每一轮结束后做归一化：值／总和 归一化结果随迭代次数趋向于一个极限
+相继两次迭代的值不变</p>
+<h3 id="pagerank">PageRank</h3>
+<p>利用网页间的链接关系计算网页重要性</p>
+<p>输入：一个有n个节点的网络（有向图），设所有节点的PageRank初始值为1/
+n。 选择操作的步骤数k 对PageRank做k次更新操作，每次使用以下规则：
+每个节点将自己当前的PageRank值通过出向链接均分传递给所指向的节点
+若没有出向链接，则认为传递给自己（或者说保留）
+每个节点以从入向链接获得的（包括可能自传的）所有值之和更新它的PageRank</p>
 <p>对于前面的那个图（这个表格有问题，每个点的初值应该是1/4）：</p>
-<p><img src="/image-20250612172330702.png" alt="image-20250612172330702"></p>
+<figure>
+<img src="image-20250612172330702.png" alt="image-20250612172330702" />
+<figcaption aria-hidden="true">image-20250612172330702</figcaption>
+</figure>
 <p>可以通过数学方式得到：</p>
-<p><img src="/image-20250612172528833.png" alt="image-20250612172528833"></p>
+<figure>
+<img src="image-20250612172528833.png" alt="image-20250612172528833" />
+<figcaption aria-hidden="true">image-20250612172528833</figcaption>
+</figure>
 <p><strong>同比缩减与统一补偿规则</strong></p>
 <p>防止PR值不恰当地集中到个别节点（共谋制造垃圾网页的情况）。</p>
 <p><strong>同比缩减</strong>：在每次运行基本PageRank更新规则后，将每一节点的PageRank值都乘以一个小于1的比例因子s，0&lt;s&lt;1，经验值在0.8-0.9之间。</p>
 <p><strong>统一补偿</strong>：在每一节点的PageRank值上统一加上(1-s)/n。</p>
 <p><strong>随机游走</strong></p>
-<p>PageRank的一种等价理解<br>问题：考虑一篇网页x，问经过k步随机游走到达x的概率是多少？<br>证明：到达x的概率等于运行PageRank基本算法k步得到的值。</p>
-<h2 id="第七章-博弈论基础"><a href="#第七章-博弈论基础" class="headerlink" title="第七章 博弈论基础"></a>第七章 博弈论基础</h2><p><img src="/image-20250612173714114.png" alt="image-20250612173714114"> </p>
-<p><img src="/image-20250612174424257.png" alt="image-20250612174424257"></p>
-<p><img src="/image-20250612174532487.png" alt="image-20250612174532487"></p>
+<p>PageRank的一种等价理解
+问题：考虑一篇网页x，问经过k步随机游走到达x的概率是多少？
+证明：到达x的概率等于运行PageRank基本算法k步得到的值。</p>
+<h2 id="第七章-博弈论基础">第七章 博弈论基础</h2>
+<figure>
+<img src="image-20250612173714114.png" alt="image-20250612173714114" />
+<figcaption aria-hidden="true">image-20250612173714114</figcaption>
+</figure>
+<figure>
+<img src="image-20250612174424257.png" alt="image-20250612174424257" />
+<figcaption aria-hidden="true">image-20250612174424257</figcaption>
+</figure>
+<figure>
+<img src="image-20250612174532487.png" alt="image-20250612174532487" />
+<figcaption aria-hidden="true">image-20250612174532487</figcaption>
+</figure>
 <p><strong>严格占优</strong></p>
-<p>下图中，对参与人1来说，无论参与人2选 <code>L</code> 还是 <code>R</code>，<code>U</code> 的收益<strong>严格大于</strong> <code>D</code> 的收益，因此 <code>U</code> 是<strong>严格占优策略</strong>。</p>
-<p>对参与人2来说<code>R</code> 是<strong>占优策略</strong>（因为从不比 <code>L</code> 差，且有时更好），但<strong>不是严格占优</strong>（因为存在情况收益相等）。</p>
-<p><code>L</code> 是 <code>U</code> 的最佳应对，但不是严格的：当参与人1选 <code>U</code> 时，参与人2选 <code>L</code> 或 <code>R</code> 都得到 <strong>3</strong>，无严格优劣，因此 <code>L</code> 是<strong>非严格最佳应对</strong>。</p>
-<p><code>R</code> 是 <code>D</code> 的严格最佳应对：当参与人1选 <code>D</code> 时，参与人2选 <code>R</code> 得 <strong>4</strong>，选 <code>L</code> 得 <strong>0</strong> → <code>R</code> <strong>严格更优</strong>（4 &gt; 0）。</p>
-<p><img src="/image-20250612175220616.png" alt="image-20250612175220616"></p>
-<p><strong>纳什均衡</strong><br><img src="/image-20250612174659111.png" alt="image-20250612174659111"></p>
-<p>纳什均衡可以有多个，不能推断到底哪个均衡会出现<br>一般来说，纳什均衡概念能有助于缩小预测范围，但它并不一定能给出唯一的预测。</p>
+<p>下图中，对参与人1来说，无论参与人2选 <code>L</code> 还是
+<code>R</code>，<code>U</code> 的收益<strong>严格大于</strong>
+<code>D</code> 的收益，因此 <code>U</code>
+是<strong>严格占优策略</strong>。</p>
+<p>对参与人2来说<code>R</code> 是<strong>占优策略</strong>（因为从不比
+<code>L</code>
+差，且有时更好），但<strong>不是严格占优</strong>（因为存在情况收益相等）。</p>
+<p><code>L</code> 是 <code>U</code>
+的最佳应对，但不是严格的：当参与人1选 <code>U</code> 时，参与人2选
+<code>L</code> 或 <code>R</code> 都得到
+<strong>3</strong>，无严格优劣，因此 <code>L</code>
+是<strong>非严格最佳应对</strong>。</p>
+<p><code>R</code> 是 <code>D</code> 的严格最佳应对：当参与人1选
+<code>D</code> 时，参与人2选 <code>R</code> 得 <strong>4</strong>，选
+<code>L</code> 得 <strong>0</strong> → <code>R</code>
+<strong>严格更优</strong>（4 &gt; 0）。</p>
+<figure>
+<img src="image-20250612175220616.png" alt="image-20250612175220616" />
+<figcaption aria-hidden="true">image-20250612175220616</figcaption>
+</figure>
+<p><strong>纳什均衡</strong> <img src="image-20250612174659111.png"
+alt="image-20250612174659111" /></p>
+<p>纳什均衡可以有多个，不能推断到底哪个均衡会出现
+一般来说，纳什均衡概念能有助于缩小预测范围，但它并不一定能给出唯一的预测。</p>
 <p><strong>零和博弈</strong></p>
-<p><img src="/image-20250612175105758.png" alt="image-20250612175105758"></p>
+<figure>
+<img src="image-20250612175105758.png" alt="image-20250612175105758" />
+<figcaption aria-hidden="true">image-20250612175105758</figcaption>
+</figure>
 <p><strong>混合策略</strong></p>
-<p><img src="/image-20250612204227922.png" alt="image-20250612204227922"></p>
-<p><img src="/image-20250612205103243.png" alt="image-20250612205103243"></p>
+<figure>
+<img src="image-20250612204227922.png" alt="image-20250612204227922" />
+<figcaption aria-hidden="true">image-20250612204227922</figcaption>
+</figure>
+<figure>
+<img src="image-20250612205103243.png" alt="image-20250612205103243" />
+<figcaption aria-hidden="true">image-20250612205103243</figcaption>
+</figure>
 <p><strong>混合策略均衡</strong></p>
 <p><strong>让对手无法通过改变策略来占便宜</strong>，即让对手对你策略的选择<strong>无差异</strong>（即无论对手选什么策略，期望收益相同）。</p>
-<p>以进攻方的最优混合策略举例，进攻方选择抛球概率$p=\frac{1}{3}$，使得防守方无论选防守抛球还是防守持球，<strong>期望收益相同</strong>：</p>
-<p><img src="/image-20250612205536327.png" alt="image-20250612205536327"></p>
+<p>以进攻方的最优混合策略举例，进攻方选择抛球概率<span
+class="math inline">\(p=\frac{1}{3}\)</span>，使得防守方无论选防守抛球还是防守持球，<strong>期望收益相同</strong>：</p>
+<figure>
+<img src="image-20250612205536327.png" alt="image-20250612205536327" />
+<figcaption aria-hidden="true">image-20250612205536327</figcaption>
+</figure>
 <p><strong>纳什的奠基性贡献</strong></p>
 <p>证明了具有有限参与者和有限纯策略集的博弈一定存在纳什均衡（包括混合策略均衡）</p>
 <p><strong>社会最优</strong></p>
 <p>社会福利：某个策略组对应的各方回报的总和</p>
-<p><img src="/image-20250612210111036.png" alt="image-20250612210111036"></p>
+<figure>
+<img src="image-20250612210111036.png" alt="image-20250612210111036" />
+<figcaption aria-hidden="true">image-20250612210111036</figcaption>
+</figure>
 <p>纳什均衡和社会最优有可能一致，从社会应用的意义上讲，那是均衡和社会最优一致的系统是理想系统。</p>
-<h2 id="第八章-博弈论应用"><a href="#第八章-博弈论应用" class="headerlink" title="第八章 博弈论应用"></a>第八章 博弈论应用</h2>
+<h2 id="第八章-博弈论应用">第八章 博弈论应用</h2>
+<h3 id="布雷斯悖论">布雷斯悖论</h3>
+<p>对于如下交通网，假设有4000辆车，如果同时走A-C或者D-B则所需时间为40+45=85分钟，如果一半司机走A-C-B，一半司机走A-D-B则时间为20+45=65，为纳什均衡</p>
+<figure>
+<img src="image-20250612211501713.png" alt="image-20250612211501713" />
+<figcaption aria-hidden="true">image-20250612211501713</figcaption>
+</figure>
+<p>多修了一条路可能情况会更糟，在追求个人利益最大化动机的驱使下，解决社会问题不能仅靠增加资源，还要注意调整结构
+均衡状态下，每个司机的纳什均衡策略都是A-C-D-B，40+40=80&gt;65，增加了一条路情况反倒变得更糟</p>
+<figure>
+<img src="image-20250612211505853.png" alt="image-20250612211505853" />
+<figcaption aria-hidden="true">image-20250612211505853</figcaption>
+</figure>
+<p>解决方案：</p>
+<p>交融管制、收费</p>
+<p><strong>拍卖</strong></p>
+<p>（1）英式拍卖——增价拍卖</p>
+<p>买方不断出价（提高售价），部分买方逐渐退出，直至剩下一个买方，以当前价格获得商品</p>
+<p>（2）荷兰式拍卖——降价拍卖</p>
+<p>卖方从最高价逐渐降价，直至有第一个买方接受当前价格，获得商品</p>
+<p>（3）首价密封拍卖</p>
+<p>买方同时向卖方提交密封报价，出价最高者以其出价获得商品</p>
+<p>（4）次价密封拍卖</p>
+<p>买方同时向卖方提交密封报价，出价最高者以次价获得商品</p>
+<p>次价拍卖鼓励人们说真话，我出价的占优策略即是真实估价，如果我拿到购买权，我会以低于我出价的价格购买商品，赚；如果我没拿到购买权，如果此时我想拿到购买权，需要出价比第一人高，这超乎我对商品的估价，收益为负。因此，出真实估价是占优策略</p>
+<h3 id="匹配问题"><strong>匹配问题</strong></h3>
+<figure>
+<img src="image-20250612212609249.png" alt="image-20250612212609249" />
+<figcaption aria-hidden="true">image-20250612212609249</figcaption>
+</figure>
+<p>对任意一组价格pj，以最大差价（vij-pj）为指引做边，都定义了体现买方喜好的一种二部图，称为偏好卖家图。
+如果偏好卖家图中存在完美匹配，则意味着出现了一个“合理分配”</p>
+<figure>
+<img src="image-20250612212844011.png" alt="image-20250612212844011" />
+<figcaption aria-hidden="true">image-20250612212844011</figcaption>
+</figure>
+<h2 id="第九章-广告">第九章 广告</h2>
+<h3 id="广告定价"><strong>广告定价</strong></h3>
+<p>互联网公司给出每个广告位的点击率，供广告主估计广告位价值=点击率×
+×单次点击估值 <img src="image-20250612224808758.png"
+alt="image-20250612224808758" /></p>
+<p><strong>特定完美匹配形式</strong></p>
+<p>有n个广告位（ai），n个广告主（xi），i=1,2,…,n</p>
+<p>每个广告位有一个点击率，ri，i=1,2,…,n，假设 ri&gt;rj，i&lt;j</p>
+<p>每个广告主有一个点击收入估值，pi，i=1,2,…,n，假设
+pi&gt;pj，i&lt;j</p>
+<p>形成一个对广告位的估值矩阵：V={vij}, i=1,…n,
+j=1,…n，其中，vij=pi*rj</p>
+<p>断言，在如此估值矩阵下，对应匹配市场的社会最优配置方案一定是ai匹配给xi，i=1,2,…,n。</p>
+<h3 id="gsp"><strong>GSP</strong></h3>
+<p><strong>核心机制</strong>：出价最高的竞拍者获得<strong>价值最高的广告位</strong>，但只需支付<strong>次高出价</strong>（而非自己的报价）。</p>
+<p><strong>广告主的策略考量</strong></p>
+<ul>
+<li>估值（<span class="math inline">\(V_i\)</span>) vs. 实际支付（<span
+class="math inline">\(P_i\)</span>）:
+<ul>
+<li>广告主不仅关注广告位的价值（如点击率），还需计算<strong>净收益</strong>（<span
+class="math inline">\(V_i-P_i\)</span>）。</li>
+<li>例子中：
+<ul>
+<li>若x按估值报价7，获得广告位A：
+<ul>
+<li>支付 = 次高价6（来自y），净收益 = 7×10−6×10=10。</li>
+</ul></li>
+<li>若x故意压低报价至5，获得广告位B：
+<ul>
+<li>支付 = 次高价1（来自z），净收益 = 7×4−1×4=24。</li>
+</ul></li>
+</ul></li>
+<li><strong>结论</strong>：在GSP中，广告主可能<strong>策略性压低报价</strong>以追求更高净收益，而非单纯按估值出价。</li>
+</ul></li>
+</ul>
+<figure>
+<img src="image-20250613112910190.png" alt="image-20250613112910190" />
+<figcaption aria-hidden="true">image-20250613112910190</figcaption>
+</figure>
+<h3 id="vcg">VCG</h3>
+<p>让每个人支付的价格等于他的出现对其他人造成的价值损失总和。具体来说：</p>
+<p>按照出价的高低，将广告位（按点击率递减顺序）分给广告主。</p>
+<p>对于广告主 X ，他的支付价格如下确定</p>
+<p>设，在该匹配中，其他人的出价总和为Σ1</p>
+<p>从广告主集合中去掉
+X，其他人按照出价形成新的最优匹配（对应一个新的出价总和Σ2）</p>
+<p>Σ2−Σ1 就是 x要支付的价格（VCG价格）</p>
+<figure>
+<img src="image-20250613114100087.png" alt="image-20250613114100087" />
+<figcaption aria-hidden="true">image-20250613114100087</figcaption>
+</figure>
+<figure>
+<img src="image-20250613114124878.png" alt="image-20250613114124878" />
+<figcaption aria-hidden="true">image-20250613114124878</figcaption>
+</figure>
+<figure>
+<img src="image-20250613114212171.png" alt="image-20250613114212171" />
+<figcaption aria-hidden="true">image-20250613114212171</figcaption>
+</figure>
+<figure>
+<img src="image-20250613114324969.png" alt="image-20250613114324969" />
+<figcaption aria-hidden="true">image-20250613114324969</figcaption>
+</figure>
+<h2 id="第十章-权力">第十章 权力</h2>
+<h3 id="社会网络中的权力"><strong>社会网络中的权力</strong></h3>
+<p>一个点所以具有权力，是因为其他节点对其具有依附性，它具有排他性——有能力排除其他店，饱和性——心理学原则，当能比其他成员得到更多的
+，倾向于不满足从一个关系中得到均值份额，中心性——处于结构洞位置上的节点</p>
+<p><strong>结果</strong></p>
+<p>给定一个图，”结果“是其中的一个匹配（一个点无冲突的边的子集）</p>
+<p><strong>稳定结果</strong></p>
+<p>稳定结果指谈判中双方达成的、<strong>无外部因素破坏</strong>的协议（如无人能通过单方面行动获得更高收益）。</p>
+<p>不稳定：存在一条不在结果中的边，其两端的价值之和小于1</p>
+<p>稳定：不存在不稳定的边</p>
+<h3 id="纳什协议解">纳什协议解</h3>
+<ul>
+<li><strong>场景</strong>：两个个体（A和B）需要通过谈判分配<strong>1美元</strong>的总收益。</li>
+<li><strong>核心思想</strong>：引入<strong>外部选项（威胁点）</strong>作为谈判底线，体现结构性权力</li>
+<li><strong>外部选项</strong>：如果谈判破裂，A和B的备选收益分别为
+<strong>x</strong> 和 <strong>y</strong>（即“谈崩”时的保底收益）。</li>
+<li>约束条件：
+<ul>
+<li><span class="math inline">\(0≤x&lt;1,
+0≤y&lt;1\)</span>（外部选项不能超过总收益）。</li>
+<li><span
+class="math inline">\(x+y&lt;1\)</span>（否则无需谈判，各自选择外部选项即可）。</li>
+</ul></li>
+<li>纳什理论结果：
+<ul>
+<li>A至少得到x，B至少得到y</li>
+<li>AB有相等的谈判权力，双方满意于均分剩余：<span
+class="math inline">\(s = 1-x-y\)</span></li>
+<li>A：<span class="math inline">\(x+\frac{1}{2}s\)</span></li>
+<li>B：<span class="math inline">\(y+\frac{1}{2}s\)</span></li>
+</ul></li>
+</ul>
+<p><strong>应用</strong></p>
+<p>设：你有一个家族企业，到了一个发展的瓶颈，自己做下去需要很大的资源和一批新的人才，这对你来说很难做到。于是有两种可能，一是维持现状，那么它对你来说的价值有1000万。另一种是卖出去。现在有一家实力强的公司表示了兴趣，认为你的业务与他们是很好的互补。而你了解到买过去后对他们的价值是8000万。</p>
+<p>问：什么样的成交价对你们双方是合理的？</p>
+<figure>
+<img src="image-20250613152235293.png" alt="image-20250613152235293" />
+<figcaption aria-hidden="true">image-20250613152235293</figcaption>
+</figure>
+<p><strong>x</strong>=1000 万</p>
+<p><strong>y</strong>=0万</p>
+<p><strong>总合作价值</strong>=8000万</p>
+<p><strong><em>s</em></strong>=总合作价值−(<strong><em>x</em></strong>+<strong><em>y</em></strong>)=8000−(1000+0)=7000
+万</p>
+<p><strong>最终分配</strong>：</p>
+<ul>
+<li><strong><em>你的总收益</em></strong>：外部选项 + 剩余的一半 =
+1000+3500=4500 万。</li>
+<li><strong><em>买方的总收益</em></strong>：0+3500=3500 万。</li>
+</ul>
+<p><strong>平衡结果 与 稳定结果 的关系</strong></p>
+<p>稳定结果：不在结果匹配中的边，两端节点的赋值之和不小于1
+平衡结果：在结果匹配中的边，两端节点的赋值满足纳什议价解
+证明：平衡结果一定是稳定结果</p>
+<p>对于预测网络交换实验的结果，平衡结果是比稳定结果更精细的概念</p>
+<h3 id="网络交换模型">网络交换模型</h3>
+<p>平衡结果：给定网络其余部分为每个节点提供的最好外部选项，一个交换结果称为平衡的条件是，对匹配的每条边来说，价值的划分体现了两个节点的纳什议价结果</p>
+<figure>
+<img src="image-20250613161556779.png" alt="image-20250613161556779" />
+<figcaption aria-hidden="true">image-20250613161556779</figcaption>
+</figure>
+<p>（图b） 对于A和B，其外部选项之和为 <span class="math display">\[
+0+\frac{1}{3}=\frac{1}{3} \]</span> 那么两人平分剩下的<span
+class="math inline">\(\frac{2}{3}\)</span>，即： - A为 <span
+class="math display">\[ 0+\frac{1}{3}=\frac{1}{3} \]</span> - B为 <span
+class="math display">\[ \frac{1}{3}+\frac{1}{3}=\frac{2}{3} \]</span>
+同理C和D也一样满足纳什议价解，故图(b)为一个平衡结果。</p>
+<h2 id="第十一章-从众和流行">第十一章 从众和流行</h2>
+<p><strong>信息级联</strong></p>
+<p>当人们放弃了自己的想法与认同别人的看法时，我们认为发生了群集或信息级联</p>
+<p><strong>经典问题：判断蓝多罐或红多罐实验</strong></p>
+<p>概率论-贝叶斯公式的基本使用</p>
+<figure>
+<img src="image-20250613170449876.png" alt="image-20250613170449876" />
+<figcaption aria-hidden="true">image-20250613170449876</figcaption>
+</figure>
+<figure>
+<img src="image-20250613170454021.png" alt="image-20250613170454021" />
+<figcaption aria-hidden="true">image-20250613170454021</figcaption>
+</figure>
+<figure>
+<img src="image-20250613170458321.png" alt="image-20250613170458321" />
+<figcaption aria-hidden="true">image-20250613170458321</figcaption>
+</figure>
+<p><strong>结论</strong></p>
+<p>结论1：当一个私有信号比另一个多出2个就会形成级联
+结论2：形成级联前后人能够推测前人的私有信号，级联开始后便不能推测</p>
+<h4 id="级联模型">级联模型</h4>
+<p><strong>基本概念</strong></p>
+<p>Pr[A]：表示A发生的概率</p>
+<ul>
+<li>状态</li>
+</ul>
+<p>G:好状态,Pr[G]=p</p>
+<p>B:坏状态,Pr[B]=1-p</p>
+<ul>
+<li>回报</li>
+</ul>
+<p>接受G正收益vg，接受B负收益vb</p>
+<p>拒绝为0</p>
+<p><span class="math inline">\(v_gp+v_b(1-p)=0\)</span></p>
+<ul>
+<li>信号</li>
+</ul>
+<p>高信号<strong>H：</strong>表示接受是一个好主意</p>
+<p>低信号<strong>L：</strong>表示接受是一个坏主意</p>
+<p>更准确的说，如果接受的是一个好主意，高信号比低信号更容易出现，反之亦然</p>
+<p>Pr[H|G]=q&gt;0.5 Pr[H|B]=1-q&lt;0.5</p>
+<ul>
+<li>用该模型描述取球实验</li>
+</ul>
+<p>状态：蓝球多/红球多</p>
+<p>猜测蓝球多表示“接受”，与实际相符则“接受”是一个“好主意”G，否则为B</p>
+<p>接受是一个好主意的先验概率为p=0.5，即确实是蓝球多的概率为0.5</p>
+<p>如果：拿到蓝色球，则得到一个高信号（即拿到蓝球是高信号）</p>
+<p>那么： Pr[H|G]=Pr[blue|major-blue] = q = 2/3</p>
+<p>在这个模型中，<strong>信号是私有的</strong></p>
+<h4 id="幂率">幂率</h4>
+<p>一个随着k值的某个固定的幂次递减的函数称为一个幂率</p>
+<p><span class="math display">\[\frac{a}{k^c}\]</span></p>
+<p><strong>基本特性</strong></p>
+<ul>
+<li>Scale free（无标度，不受比例尺度影响的）</li>
+</ul>
+<p>Scale free函数隐含着自相似（self similarity）</p>
+<ul>
+<li>平均行为不反映典型行为</li>
+</ul>
+<p>“典型行为”－经常遇到的；</p>
+<p>“平均行为”－总和／个数</p>
+<p>正态分布的“平均行为”反映“典型行为”</p>
+<p>典型看到“中等个子”，大个子和矮个子都很稀少</p>
+<h2 id="第十二章-新事物扩散">第十二章 新事物扩散</h2>
+<h3 id="扩散模型">扩散模型</h3>
+<figure>
+<img src="image-20250613193721682.png" alt="image-20250613193721682" />
+<figcaption aria-hidden="true">image-20250613193721682</figcaption>
+</figure>
+<figure>
+<img src="image-20250613193737654.png" alt="image-20250613193737654" />
+<figcaption aria-hidden="true">image-20250613193737654</figcaption>
+</figure>
+<h3 id="聚簇">聚簇</h3>
+<figure>
+<img src="image-20250613193757331.png" alt="image-20250613193757331" />
+<figcaption aria-hidden="true">image-20250613193757331</figcaption>
+</figure>
+<p>假设a=3，b=2，则门槛值<span
+class="math inline">\(q=\frac{b}{a+b}=\frac{2}{5}\)</span></p>
+<p>下图中存在密度大于<span
+class="math inline">\(\frac{3}{5}\)</span>的聚簇（<strong>阻碍聚簇</strong>），所以不可能存在完全级联（初用集无法扩散至整张图）</p>
+<figure>
+<img src="image-20250613194836037.png" alt="image-20250613194836037" />
+<figcaption aria-hidden="true">image-20250613194836037</figcaption>
+</figure>
+
     
 
     
@@ -652,7 +1082,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BC%97%E6%99%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%8C%96%E4%BA%A7%E4%B8%9A"><span class="toc-number">1.</span> <span class="toc-text">众智科学与网络化产业</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%9B%BE%E8%AE%BA%E5%9F%BA%E7%A1%80"><span class="toc-number">1.1.</span> <span class="toc-text">第一章 图论基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.1.</span> <span class="toc-text">一些概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%AE%97%E6%B3%95"><span class="toc-number">1.1.2.</span> <span class="toc-text">最短路算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%BC%BA%E8%81%94%E7%B3%BB%E5%92%8C%E5%BC%B1%E8%81%94%E7%B3%BB"><span class="toc-number">1.2.</span> <span class="toc-text">第二章 强联系和弱联系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E5%85%83%E9%97%AD%E5%8C%85"><span class="toc-number">1.2.1.</span> <span class="toc-text">三元闭包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BE%E4%BC%9A%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E7%9A%84%E7%BB%9F%E8%AE%A1%E7%89%B9%E5%BE%81"><span class="toc-number">1.2.2.</span> <span class="toc-text">社会网络结构的统计特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%BA%E4%B8%89%E5%85%83%E9%97%AD%E5%8C%85"><span class="toc-number">1.2.3.</span> <span class="toc-text">强三元闭包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BE%E4%BC%9A%E7%BD%91%E7%BB%9C%E7%9A%84%E5%88%92%E5%88%86"><span class="toc-number">1.2.4.</span> <span class="toc-text">社会网络的划分</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%BD%91%E7%BB%9C%E5%8F%8A%E5%85%B6%E5%AD%98%E5%9C%A8%E7%9A%84%E7%8E%AF%E5%A2%83"><span class="toc-number">1.3.</span> <span class="toc-text">第三章 网络及其存在的环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8C%E8%B4%A8%E6%80%A7%EF%BC%88homophily%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">同质性（homophily）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8C%E8%B4%A8%E6%80%A7%E5%AF%B9%E7%A4%BE%E4%BC%9A%E7%BD%91%E7%BB%9C%E6%BC%94%E5%8C%96%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-number">1.3.2.</span> <span class="toc-text">同质性对社会网络演化的影响</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%94%E7%A6%BB%EF%BC%88segregation%EF%BC%89"><span class="toc-number">1.3.3.</span> <span class="toc-text">隔离（segregation）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%AD%A3%E5%85%B3%E7%B3%BB%E4%B8%8E%E8%B4%9F%E5%85%B3%E7%B3%BB"><span class="toc-number">1.4.</span> <span class="toc-text">第四章 正关系与负关系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B3%E8%A1%A1%E6%80%A7"><span class="toc-number">1.4.1.</span> <span class="toc-text">平衡性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%B1%E5%B9%B3%E8%A1%A1%E7%BD%91%E7%BB%9C"><span class="toc-number">1.4.2.</span> <span class="toc-text">弱平衡网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%91%E4%BC%BC%E5%B9%B3%E8%A1%A1%E7%9A%84%E7%BD%91%E7%BB%9C"><span class="toc-number">1.4.3.</span> <span class="toc-text">近似平衡的网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E5%AE%8C%E5%85%A8%E7%BB%93%E6%9E%84%E7%9A%84%E5%B9%B3%E8%A1%A1%E6%80%A7"><span class="toc-number">1.4.4.</span> <span class="toc-text">非完全结构的平衡性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%B0%8F%E4%B8%96%E7%95%8C%E7%8E%B0%E8%B1%A1"><span class="toc-number">1.5.</span> <span class="toc-text">第五章 小世界现象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Watts-Strogatz%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.5.1.</span> <span class="toc-text">Watts-Strogatz模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E"><span class="toc-number">1.6.</span> <span class="toc-text">第六章 搜索引擎</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HITS%E7%AE%97%E6%B3%95"><span class="toc-number">1.6.1.</span> <span class="toc-text">HITS算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PageRank"><span class="toc-number">1.6.2.</span> <span class="toc-text">PageRank</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0-%E5%8D%9A%E5%BC%88%E8%AE%BA%E5%9F%BA%E7%A1%80"><span class="toc-number">1.7.</span> <span class="toc-text">第七章 博弈论基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0-%E5%8D%9A%E5%BC%88%E8%AE%BA%E5%BA%94%E7%94%A8"><span class="toc-number">1.8.</span> <span class="toc-text">第八章 博弈论应用</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BC%97%E6%99%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%8C%96%E4%BA%A7%E4%B8%9A"><span class="toc-number">1.</span> <span class="toc-text">众智科学与网络化产业</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%9B%BE%E8%AE%BA%E5%9F%BA%E7%A1%80"><span class="toc-number">1.1.</span> <span class="toc-text">第一章 图论基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.1.</span> <span class="toc-text">一些概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%AE%97%E6%B3%95"><span class="toc-number">1.1.2.</span> <span class="toc-text">最短路算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%BC%BA%E8%81%94%E7%B3%BB%E5%92%8C%E5%BC%B1%E8%81%94%E7%B3%BB"><span class="toc-number">1.2.</span> <span class="toc-text">第二章 强联系和弱联系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E5%85%83%E9%97%AD%E5%8C%85"><span class="toc-number">1.2.1.</span> <span class="toc-text">三元闭包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BE%E4%BC%9A%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E7%9A%84%E7%BB%9F%E8%AE%A1%E7%89%B9%E5%BE%81"><span class="toc-number">1.2.2.</span> <span class="toc-text">社会网络结构的统计特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%BA%E4%B8%89%E5%85%83%E9%97%AD%E5%8C%85"><span class="toc-number">1.2.3.</span> <span class="toc-text">强三元闭包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BE%E4%BC%9A%E7%BD%91%E7%BB%9C%E7%9A%84%E5%88%92%E5%88%86"><span class="toc-number">1.2.4.</span> <span class="toc-text">社会网络的划分</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%BD%91%E7%BB%9C%E5%8F%8A%E5%85%B6%E5%AD%98%E5%9C%A8%E7%9A%84%E7%8E%AF%E5%A2%83"><span class="toc-number">1.3.</span> <span class="toc-text">第三章 网络及其存在的环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8C%E8%B4%A8%E6%80%A7homophily"><span class="toc-number">1.3.1.</span> <span class="toc-text">同质性（homophily）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8C%E8%B4%A8%E6%80%A7%E5%AF%B9%E7%A4%BE%E4%BC%9A%E7%BD%91%E7%BB%9C%E6%BC%94%E5%8C%96%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-number">1.3.2.</span> <span class="toc-text">同质性对社会网络演化的影响</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%94%E7%A6%BBsegregation"><span class="toc-number">1.3.3.</span> <span class="toc-text">隔离（segregation）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%AD%A3%E5%85%B3%E7%B3%BB%E4%B8%8E%E8%B4%9F%E5%85%B3%E7%B3%BB"><span class="toc-number">1.4.</span> <span class="toc-text">第四章 正关系与负关系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B3%E8%A1%A1%E6%80%A7"><span class="toc-number">1.4.1.</span> <span class="toc-text">平衡性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%B1%E5%B9%B3%E8%A1%A1%E7%BD%91%E7%BB%9C"><span class="toc-number">1.4.2.</span> <span class="toc-text">弱平衡网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%91%E4%BC%BC%E5%B9%B3%E8%A1%A1%E7%9A%84%E7%BD%91%E7%BB%9C"><span class="toc-number">1.4.3.</span> <span class="toc-text">近似平衡的网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E5%AE%8C%E5%85%A8%E7%BB%93%E6%9E%84%E7%9A%84%E5%B9%B3%E8%A1%A1%E6%80%A7"><span class="toc-number">1.4.4.</span> <span class="toc-text">非完全结构的平衡性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%B0%8F%E4%B8%96%E7%95%8C%E7%8E%B0%E8%B1%A1"><span class="toc-number">1.5.</span> <span class="toc-text">第五章 小世界现象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#watts-strogatz%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.5.1.</span> <span class="toc-text">Watts-Strogatz模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E"><span class="toc-number">1.6.</span> <span class="toc-text">第六章 搜索引擎</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#hits%E7%AE%97%E6%B3%95"><span class="toc-number">1.6.1.</span> <span class="toc-text">HITS算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pagerank"><span class="toc-number">1.6.2.</span> <span class="toc-text">PageRank</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0-%E5%8D%9A%E5%BC%88%E8%AE%BA%E5%9F%BA%E7%A1%80"><span class="toc-number">1.7.</span> <span class="toc-text">第七章 博弈论基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0-%E5%8D%9A%E5%BC%88%E8%AE%BA%E5%BA%94%E7%94%A8"><span class="toc-number">1.8.</span> <span class="toc-text">第八章 博弈论应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%83%E9%9B%B7%E6%96%AF%E6%82%96%E8%AE%BA"><span class="toc-number">1.8.1.</span> <span class="toc-text">布雷斯悖论</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98"><span class="toc-number">1.8.2.</span> <span class="toc-text">匹配问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E5%B9%BF%E5%91%8A"><span class="toc-number">1.9.</span> <span class="toc-text">第九章 广告</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%BF%E5%91%8A%E5%AE%9A%E4%BB%B7"><span class="toc-number">1.9.1.</span> <span class="toc-text">广告定价</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gsp"><span class="toc-number">1.9.2.</span> <span class="toc-text">GSP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vcg"><span class="toc-number">1.9.3.</span> <span class="toc-text">VCG</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E7%AB%A0-%E6%9D%83%E5%8A%9B"><span class="toc-number">1.10.</span> <span class="toc-text">第十章 权力</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BE%E4%BC%9A%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E6%9D%83%E5%8A%9B"><span class="toc-number">1.10.1.</span> <span class="toc-text">社会网络中的权力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%B3%E4%BB%80%E5%8D%8F%E8%AE%AE%E8%A7%A3"><span class="toc-number">1.10.2.</span> <span class="toc-text">纳什协议解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E4%BA%A4%E6%8D%A2%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.10.3.</span> <span class="toc-text">网络交换模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E4%BB%8E%E4%BC%97%E5%92%8C%E6%B5%81%E8%A1%8C"><span class="toc-number">1.11.</span> <span class="toc-text">第十一章 从众和流行</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%A7%E8%81%94%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.11.0.1.</span> <span class="toc-text">级联模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B9%82%E7%8E%87"><span class="toc-number">1.11.0.2.</span> <span class="toc-text">幂率</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0-%E6%96%B0%E4%BA%8B%E7%89%A9%E6%89%A9%E6%95%A3"><span class="toc-number">1.12.</span> <span class="toc-text">第十二章 新事物扩散</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.12.1.</span> <span class="toc-text">扩散模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E7%B0%87"><span class="toc-number">1.12.2.</span> <span class="toc-text">聚簇</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
