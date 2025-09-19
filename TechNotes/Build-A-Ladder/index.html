@@ -6,18 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://nicccce.github.io">
-  <title>Archives: 2024/11 | NICCCCE</title>
+  <title>搭建梯子 | NICCCCE</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="NICK&#39;s BLOG">
-<meta property="og:type" content="website">
-<meta property="og:title" content="NICCCCE">
-<meta property="og:url" content="https://nicccce.github.io/archives/2024/11/">
+  <meta name="description" content="搭建梯子 常见梯子协议 “梯子”通常指用于翻墙或代理的工具，其核心依赖各种协议来传输数据。下面我列出一些常见的协议，包括传统VPN协议（如OpenVPN、WireGuard）和代理协议（如Shadowsocks、Trojan，常用于绕过审查）。 我将使用表格形式比较，便于阅读。数据基于常见协议的通用特性。           协议名称 基本原理 优点 缺点 Cl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搭建梯子">
+<meta property="og:url" content="https://nicccce.github.io/TechNotes/Build-A-Ladder/">
 <meta property="og:site_name" content="NICCCCE">
-<meta property="og:description" content="NICK&#39;s BLOG">
+<meta property="og:description" content="搭建梯子 常见梯子协议 “梯子”通常指用于翻墙或代理的工具，其核心依赖各种协议来传输数据。下面我列出一些常见的协议，包括传统VPN协议（如OpenVPN、WireGuard）和代理协议（如Shadowsocks、Trojan，常用于绕过审查）。 我将使用表格形式比较，便于阅读。数据基于常见协议的通用特性。           协议名称 基本原理 优点 缺点 Cl">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-09-19T11:40:17.000Z">
+<meta property="article:modified_time" content="2025-09-19T13:15:45.308Z">
 <meta property="article:author" content="NICK">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="Clash">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="NICCCCE" type="application/atom+xml">
@@ -197,41 +201,733 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Build-A-Ladder" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/TechNotes/Pinia-Note/" class="archive-article-date">
-        <time datetime="2024-11-21T14:35:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-11-21</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/TechNotes/Pinia-Note/" target="_blank">Pinia笔记</a>
   
+    <h1 class="article-title" itemprop="name">
+      搭建梯子
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/TechNotes/Build-A-Ladder/" class="archive-article-date">
+        <time datetime="2025-09-19T11:40:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-09-19</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">6.3k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">28分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="搭建梯子">搭建梯子</h1>
+<h2 id="常见梯子协议">常见梯子协议</h2>
+<p>“梯子”通常指用于翻墙或代理的工具，其核心依赖各种协议来传输数据。下面我列出一些常见的协议，包括传统VPN协议（如OpenVPN、WireGuard）和代理协议（如Shadowsocks、Trojan，常用于绕过审查）。</p>
+<p>我将使用表格形式比较，便于阅读。数据基于常见协议的通用特性。</p>
+<table>
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 22%" />
+<col style="width: 24%" />
+<col style="width: 21%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>协议名称</th>
+<th>基本原理</th>
+<th>优点</th>
+<th>缺点</th>
+<th>Clash 是否支持</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>OpenVPN</td>
+<td>开源协议，使用SSL/TLS加密，建立隧道传输数据。</td>
+<td>安全性高，支持强加密（如AES-256）；开源，可自定义配置；兼容性好。</td>
+<td>速度较慢（加密开销大）；配置复杂，不适合初学者。</td>
+<td>不直接支持，但可以通过Clash Meta的兼容模式或外部配置间接使用。</td>
+</tr>
+<tr class="even">
+<td>WireGuard</td>
+<td>现代轻量级协议，使用ChaCha20加密，专注于速度和简单性。</td>
+<td>速度快、代码简洁、安全性高；易设置，低延迟。</td>
+<td>较新协议，可能在某些旧设备上兼容性差；不支持UDP伪装。</td>
+<td>是，支持WireGuard协议。</td>
+</tr>
+<tr class="odd">
+<td>IKEv2/IPSec</td>
+<td>结合IKEv2密钥交换和IPSec加密，常用于移动设备。</td>
+<td>连接稳定、速度快；适合切换网络（如WiFi到移动数据）。</td>
+<td>可能被防火墙检测阻塞；安全性不如OpenVPN。</td>
+<td>不支持。</td>
+</tr>
+<tr class="even">
+<td>L2TP/IPSec</td>
+<td>第2层隧道协议结合IPSec加密，内置于许多系统。</td>
+<td>易设置，许多设备原生支持；兼容性广。</td>
+<td>速度慢；安全性一般，可能有漏洞。</td>
+<td>不支持。</td>
+</tr>
+<tr class="odd">
+<td>PPTP</td>
+<td>旧式点对点隧道协议，使用GRE封装。</td>
+<td>速度快、设置简单。</td>
+<td>安全性极低，已过时，不推荐使用。</td>
+<td>不支持。</td>
+</tr>
+<tr class="even">
+<td>Shadowsocks (SS)</td>
+<td>代理协议，通过SOCKS5伪装流量，绕过审查。</td>
+<td>伪装能力强、速度快；简单高效，常用于翻墙。</td>
+<td>加密不如VPN全面；依赖服务器配置。</td>
+<td>是，支持SS和SSR（ShadowsocksR）变体。</td>
+</tr>
+<tr class="odd">
+<td>VMess (V2Ray)</td>
+<td>V2Ray框架下的协议，支持多路复用和伪装。</td>
+<td>高度自定义、绕过检测强；支持多协议 multiplexing。</td>
+<td>配置复杂；资源消耗较高。</td>
+<td>是，支持V2Ray/VMess。</td>
+</tr>
+<tr class="even">
+<td>Trojan</td>
+<td>基于HTTPS伪装的代理协议，模拟正常Web流量。</td>
+<td>检测难度高、稳定；加密强。</td>
+<td>依赖TLS证书；速度中等。</td>
+<td>是，支持Trojan。</td>
+</tr>
+<tr class="odd">
+<td>Hysteria/Hysteria2</td>
+<td>基于QUIC的协议，专注于抗丢包和高吞吐。</td>
+<td>速度极快、抗干扰强；适合弱网络环境。</td>
+<td>配置稍复杂；兼容性取决于客户端。</td>
+<td>是，支持Hysteria和Hysteria2。</td>
+</tr>
+<tr class="even">
+<td>SOCKS5</td>
+<td>通用代理协议，支持UDP/TCP。</td>
+<td>灵活、兼容多种应用；速度快。</td>
+<td>无加密，安全性低；易被检测。</td>
+<td>是，支持SOCKS。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>附加说明</strong></p>
+<p>对于翻墙需求，优先考虑Shadowsocks、Trojan或Hysteria，这些协议在绕过GFW方面表现更好。传统VPN如WireGuard适合隐私保护，但可能被封锁。</p>
+<h2 id="常见协议搭建">常见协议搭建</h2>
+<h3 id="服务器性能优化">服务器性能优化</h3>
+<p>优化服务器性能适用于所有代理协议（如
+Shadowsocks、Trojan、V2Ray），可提高连接速度、降低延迟并支持更多并发连接。以下是主要优化的用途和原理，以及具体配置步骤。</p>
+<h4 id="优化用途和原理">优化用途和原理</h4>
+<ul>
+<li><strong>TCP Fast Open</strong>：
+<ul>
+<li><strong>用途</strong>：减少 TCP
+连接建立的往返时间（RTT），提高首次连接速度。</li>
+<li><strong>原理</strong>：TCP Fast Open
+允许在三次握手时携带数据，减少一次往返。这对高延迟网络（如跨国连接）尤为有效，特别适合
+TLS 协议（如 Trojan、V2Ray）或频繁建立连接的场景（如
+Shadowsocks）。</li>
+</ul></li>
+<li><strong>文件描述符限制调整</strong>：
+<ul>
+<li><strong>用途</strong>：增加服务器支持的并发连接数，防止因高负载导致连接失败。</li>
+<li><strong>原理</strong>：文件描述符是系统分配给网络连接和文件的资源句柄。默认限制较低（通常
+1024），可能不足以应对高并发。提高限制（如
+51200）允许服务器处理更多同时连接。</li>
+</ul></li>
+</ul>
+<h4 id="优化配置步骤">优化配置步骤</h4>
+<p><strong>Red Hat/CentOS</strong></p>
+<ul>
+<li><p><strong>开启 TCP Fast Open</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/sysctl.d/99-tcp-fastopen.conf</span><br></pre></td></tr></table></figure>
+<p>添加：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net.ipv4.tcp_fastopen = 3</span><br></pre></td></tr></table></figure>
+<p>应用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sysctl -p /etc/sysctl.d/99-tcp-fastopen.conf</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>调整文件描述符限制</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/security/limits.conf</span><br></pre></td></tr></table></figure>
+<p>添加：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* soft nofile 51200</span><br><span class="line">* hard nofile 51200</span><br></pre></td></tr></table></figure>
+<p>应用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ulimit</span> -n 51200</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>Ubuntu/Debian</strong></p>
+<ul>
+<li><p><strong>开启 TCP Fast Open</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/sysctl.conf</span><br></pre></td></tr></table></figure>
+<p>添加：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net.ipv4.tcp_fastopen = 3</span><br></pre></td></tr></table></figure>
+<p>应用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sysctl -p</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>调整文件描述符限制</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/security/limits.conf</span><br></pre></td></tr></table></figure>
+<p>添加：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* soft nofile 51200</span><br><span class="line">* hard nofile 51200</span><br></pre></td></tr></table></figure>
+<p>应用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ulimit</span> -n 51200</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="shadowsocks">Shadowsocks</h3>
+<h4 id="工作原理">工作原理</h4>
+<p>Shadowsocks 是一种基于 SOCKS5
+的代理协议，通过在客户端和服务器之间建立加密通道传输数据。其核心优势在于轻量高效和伪装能力。客户端将数据加密后发送到服务器，服务器解密后转发到目标网站，返回的数据则反向加密传输。由于其流量可以伪装为常规
+SOCKS5 流量，且支持多种加密算法（如 <code>chacha20-ietf-poly1305</code>
+和 <code>aes-256-gcm</code>），Shadowsocks 能有效绕过防火墙检测（如
+GFW），特别适合翻墙场景。相比传统 VPN，Shadowsocks
+更专注于代理而非全面隧道，配置更灵活但不加密整个网络栈。</p>
+<h4 id="默认端口">默认端口</h4>
+<p>Shadowsocks 默认使用 <strong>8388</strong>
+端口，但可以自定义为任意高位端口（1024-65535）。建议选择随机高位端口以降低被扫描或封锁的风险。配置文件中的
+<code>server_port</code> 参数用于设置此端口。</p>
+<h4 id="red-hatcentos">Red Hat/CentOS</h4>
+<p><strong>环境</strong></p>
+<ul>
+<li>操作系统：RHEL 8/9 或 CentOS 8/9</li>
+<li>权限：Root 或 sudo 权限</li>
+<li>工具：Shadowsocks-libev（推荐，轻量高效）</li>
+</ul>
+<p><strong>步骤</strong></p>
+<p><strong>1. 更新系统并安装依赖</strong></p>
+<p>确保系统软件包是最新的，并安装必要的工具。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf update -y</span><br><span class="line">sudo dnf install -y epel-release</span><br><span class="line">sudo dnf install -y curl wget git</span><br></pre></td></tr></table></figure>
+<p><strong>2. 安装 Shadowsocks-libev</strong></p>
+<p>RHEL/CentOS 不提供官方的 Shadowsocks-libev
+包，需通过源码编译安装。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装编译依赖</span></span><br><span class="line">sudo dnf groupinstall -y <span class="string">&quot;Development Tools&quot;</span></span><br><span class="line">sudo dnf install -y libev-devel libsodium-devel mbedtls-devel c-ares-devel</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载并编译 Shadowsocks-libev</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/shadowsocks/shadowsocks-libev.git</span><br><span class="line"><span class="built_in">cd</span> shadowsocks-libev</span><br><span class="line">git submodule update --init</span><br><span class="line">./autogen.sh</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+<p><strong>3. 配置 Shadowsocks</strong></p>
+<p>创建配置文件 <code>/etc/shadowsocks-libev/config.json</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">mkdir</span> -p /etc/shadowsocks-libev</span><br><span class="line">sudo nano /etc/shadowsocks-libev/config.json</span><br></pre></td></tr></table></figure>
+<p>粘贴以下配置（根据需要修改）：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;server&quot;</span><span class="punctuation">:</span><span class="string">&quot;0.0.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;server_port&quot;</span><span class="punctuation">:</span><span class="number">8388</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;local_port&quot;</span><span class="punctuation">:</span><span class="number">1080</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;password&quot;</span><span class="punctuation">:</span><span class="string">&quot;your_secure_password&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;timeout&quot;</span><span class="punctuation">:</span><span class="number">300</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;method&quot;</span><span class="punctuation">:</span><span class="string">&quot;chacha20-ietf-poly1305&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;fast_open&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;nameserver&quot;</span><span class="punctuation">:</span><span class="string">&quot;8.8.8.8&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;mode&quot;</span><span class="punctuation">:</span><span class="string">&quot;tcp_and_udp&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>server</strong>：监听地址，0.0.0.0 表示所有接口。</li>
+<li><strong>server_port</strong>：服务端口，建议 8388
+或随机高位端口（避免被扫描）。</li>
+<li><strong>password</strong>：设置强密码，建议 16
+位以上随机字符串。</li>
+<li><strong>method</strong>：推荐 <code>chacha20-ietf-poly1305</code> 或
+<code>aes-256-gcm</code>，安全性高且性能好。</li>
+<li><strong>fast_open</strong>：启用 TCP Fast Open，减少连接延迟。</li>
+<li><strong>mode</strong>：支持 TCP 和 UDP，适合多种应用。</li>
+</ul>
+<p>保存并退出（Ctrl+O, Enter, Ctrl+X）。</p>
+<p><strong>4. 创建 systemd 服务</strong></p>
+<p>Shadowsocks-libev 需要手动创建 systemd 服务文件以便管理。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/systemd/system/shadowsocks-libev.service</span><br></pre></td></tr></table></figure>
+<p>添加以下内容：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=Shadowsocks-libev Server</span><br><span class="line"><span class="attr">After</span>=network.target</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">Type</span>=simple</span><br><span class="line"><span class="attr">ExecStart</span>=/usr/local/bin/ss-server -c /etc/shadowsocks-libev/config.json</span><br><span class="line"><span class="attr">Restart</span>=<span class="literal">on</span>-failure</span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=multi-user.target</span><br></pre></td></tr></table></figure>
+<p>保存后，启用并启动服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl start shadowsocks-libev</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> shadowsocks-libev</span><br></pre></td></tr></table></figure>
+<p>检查服务状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl status shadowsocks-libev</span><br></pre></td></tr></table></figure>
+<h4 id="ubuntudebian">Ubuntu/Debian</h4>
+<p><strong>环境</strong></p>
+<ul>
+<li>操作系统：Ubuntu 20.04/22.04 或 Debian 10/11</li>
+<li>权限：Root 或 sudo 权限</li>
+<li>工具：Shadowsocks-libev（推荐，轻量高效）</li>
+</ul>
+<p><strong>步骤</strong></p>
+<p><strong>1. 更新系统并安装依赖</strong></p>
+<p>确保系统软件包是最新的，并安装必要的工具。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt upgrade -y</span><br><span class="line">sudo apt install -y curl wget software-properties-common</span><br></pre></td></tr></table></figure>
+<p><strong>2. 安装 Shadowsocks-libev</strong></p>
+<p>Ubuntu/Debian 提供官方 PPA，安装更简单。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加 PPA</span></span><br><span class="line">sudo add-apt-repository ppa:max-c-lv/shadowsocks-libev -y</span><br><span class="line">sudo apt update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 Shadowsocks-libev</span></span><br><span class="line">sudo apt install -y shadowsocks-libev</span><br></pre></td></tr></table></figure>
+<p><strong>3. 配置 Shadowsocks</strong></p>
+<p>创建配置文件 <code>/etc/shadowsocks-libev/config.json</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">mkdir</span> -p /etc/shadowsocks-libev</span><br><span class="line">sudo nano /etc/shadowsocks-libev/config.json</span><br></pre></td></tr></table></figure>
+<p>粘贴以下配置（根据需要修改）：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;server&quot;</span><span class="punctuation">:</span><span class="string">&quot;0.0.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;server_port&quot;</span><span class="punctuation">:</span><span class="number">8388</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;local_port&quot;</span><span class="punctuation">:</span><span class="number">1080</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;password&quot;</span><span class="punctuation">:</span><span class="string">&quot;your_secure_password&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;timeout&quot;</span><span class="punctuation">:</span><span class="number">300</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;method&quot;</span><span class="punctuation">:</span><span class="string">&quot;chacha20-ietf-poly1305&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;fast_open&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;nameserver&quot;</span><span class="punctuation">:</span><span class="string">&quot;8.8.8.8&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;mode&quot;</span><span class="punctuation">:</span><span class="string">&quot;tcp_and_udp&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>server</strong>：监听地址，0.0.0.0 表示所有接口。</li>
+<li><strong>server_port</strong>：服务端口，建议 8388
+或随机高位端口（避免被扫描）。</li>
+<li><strong>password</strong>：设置强密码，建议 16
+位以上随机字符串。</li>
+<li><strong>method</strong>：推荐 <code>chacha20-ietf-poly1305</code> 或
+<code>aes-256-gcm</code>，安全性高且性能好。</li>
+<li><strong>fast_open</strong>：启用 TCP Fast Open，减少连接延迟。</li>
+<li><strong>mode</strong>：支持 TCP 和 UDP，适合多种应用。</li>
+</ul>
+<p>保存并退出（Ctrl+O, Enter, Ctrl+X）。</p>
+<p><strong>4. 启动 Shadowsocks 服务</strong></p>
+<p>Shadowsocks-libev 默认以服务形式运行，配置 systemd 服务。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">sudo systemctl start shadowsocks-libev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置开机自启</span></span><br><span class="line">sudo systemctl <span class="built_in">enable</span> shadowsocks-libev</span><br></pre></td></tr></table></figure>
+<p>检查服务状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl status shadowsocks-libev</span><br></pre></td></tr></table></figure>
+<h3 id="trojan">Trojan</h3>
+<h4 id="工作原理-1">工作原理</h4>
+<p>Trojan 是一种基于 HTTPS 的代理协议，设计目标是伪装成常规的 Web
+流量以绕过深度包检测（如 GFW）。它利用 TLS/SSL
+加密，客户端与服务器之间的通信通过 HTTPS 协议（基于 TCP 443
+端口）进行，流量看起来像是普通的 HTTPS 网站访问。Trojan
+服务器接收客户端请求后，验证 TLS
+证书和密码，解密数据并转发到目标地址。返回的数据同样通过 TLS
+加密回传。这种伪装使得 Trojan
+在严格审查环境下难以被检测，适合翻墙场景。相比 Shadowsocks，Trojan
+的加密更强（依赖 TLS），但需要有效的 SSL 证书。</p>
+<h4 id="默认端口-1">默认端口</h4>
+<p>Trojan 默认使用 <strong>443</strong> 端口，与标准 HTTPS
+一致。这使得其流量难以与常规 Web 流量区分，增强了伪装能力。配置文件中的
+<code>local_port</code> 参数设置此端口，可根据需要更改，但建议保留 443
+以最大化伪装效果。</p>
+<h4 id="red-hatcentos-1">Red Hat/CentOS</h4>
+<p><strong>环境</strong></p>
+<ul>
+<li>操作系统：RHEL 8/9 或 CentOS 8/9</li>
+<li>权限：Root 或 sudo 权限</li>
+<li>工具：Trojan（官方实现，轻量高效）</li>
+</ul>
+<p><strong>步骤</strong></p>
+<p><strong>1. 更新系统并安装依赖</strong></p>
+<p>确保系统软件包是最新的，并安装必要的工具。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf update -y</span><br><span class="line">sudo dnf install -y epel-release</span><br><span class="line">sudo dnf install -y curl wget git openssl</span><br></pre></td></tr></table></figure>
+<p><strong>2. 安装 Trojan</strong></p>
+<p>Trojan 需要从源码编译安装。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装编译依赖</span></span><br><span class="line">sudo dnf groupinstall -y <span class="string">&quot;Development Tools&quot;</span></span><br><span class="line">sudo dnf install -y boost-devel openssl-devel</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载并编译 Trojan</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/trojan-gfw/trojan.git</span><br><span class="line"><span class="built_in">cd</span> trojan</span><br><span class="line">cmake .</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+<p><strong>3. 获取 SSL 证书</strong></p>
+<p>Trojan 需要有效的 SSL/TLS 证书。</p>
+<blockquote>
+<p>使用 Let’s Encrypt 获取免费证书。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf install -y certbot python3-certbot-nginx</span><br><span class="line">sudo certbot certonly --standalone -d your_domain.com</span><br></pre></td></tr></table></figure>
+<p>证书通常存储在
+<code>/etc/letsencrypt/live/your_domain.com/</code>，记录
+<code>fullchain.pem</code> 和 <code>privkey.pem</code> 的路径。</p>
+</blockquote>
+<p><strong>4. 配置 Trojan</strong></p>
+<p>创建配置文件 <code>/usr/local/etc/trojan/config.json</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">mkdir</span> -p /usr/local/etc/trojan</span><br><span class="line">sudo nano /usr/local/etc/trojan/config.json</span><br></pre></td></tr></table></figure>
+<p>添加以下配置（根据需要修改）：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;run_type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;server&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;local_addr&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0.0.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;local_port&quot;</span><span class="punctuation">:</span> <span class="number">443</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;remote_addr&quot;</span><span class="punctuation">:</span> <span class="string">&quot;127.0.0.1&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;remote_port&quot;</span><span class="punctuation">:</span> <span class="number">80</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;password&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;your_secure_password&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;ssl&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;cert&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/etc/letsencrypt/live/your_domain.com/fullchain.pem&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/etc/letsencrypt/live/your_domain.com/privkey.pem&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;cipher&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;prefer_server_cipher&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;tcp&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;fast_open&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>local_addr</strong>：监听所有接口（0.0.0.0）。</li>
+<li><strong>local_port</strong>：端口 443，模拟 HTTPS 流量。</li>
+<li><strong>password</strong>：强密码，建议 16 位以上。</li>
+<li><strong>cert</strong> 和 <strong>key</strong>：SSL
+证书和私钥路径。</li>
+<li><strong>fast_open</strong>：启用 TCP Fast Open 降低延迟。</li>
+</ul>
+<p>保存并退出（Ctrl+O, Enter, Ctrl+X）。</p>
+<p><strong>5. 创建 systemd 服务</strong></p>
+<p>创建 systemd 服务文件以管理 Trojan。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/systemd/system/trojan.service</span><br></pre></td></tr></table></figure>
+<p>添加：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=Trojan Server</span><br><span class="line"><span class="attr">After</span>=network.target</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">Type</span>=simple</span><br><span class="line"><span class="attr">ExecStart</span>=/usr/local/bin/trojan -c /usr/local/etc/trojan/config.json</span><br><span class="line"><span class="attr">Restart</span>=<span class="literal">on</span>-failure</span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=multi-user.target</span><br></pre></td></tr></table></figure>
+<p>启用并启动服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl start trojan</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> trojan</span><br></pre></td></tr></table></figure>
+<p>检查服务状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl status trojan</span><br></pre></td></tr></table></figure>
+<h4 id="ubuntudebian-1">Ubuntu/Debian</h4>
+<p><strong>环境</strong></p>
+<ul>
+<li>操作系统：Ubuntu 20.04/22.04 或 Debian 10/11</li>
+<li>权限：Root 或 sudo 权限</li>
+<li>工具：Trojan（官方实现，轻量高效）</li>
+</ul>
+<p><strong>步骤</strong></p>
+<p><strong>1. 更新系统并安装依赖</strong></p>
+<p>确保系统软件包是最新的，并安装必要的工具。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt upgrade -y</span><br><span class="line">sudo apt install -y curl wget git openssl</span><br></pre></td></tr></table></figure>
+<p><strong>2. 安装 Trojan</strong></p>
+<p>从源码编译安装 Trojan。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装编译依赖</span></span><br><span class="line">sudo apt install -y build-essential cmake libboost-all-dev libssl-dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载并编译 Trojan</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/trojan-gfw/trojan.git</span><br><span class="line"><span class="built_in">cd</span> trojan</span><br><span class="line">cmake .</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+<p><strong>3. 获取 SSL 证书</strong></p>
+<p>Trojan 需要有效的 SSL/TLS 证书。</p>
+<blockquote>
+<p>使用 Let’s Encrypt 获取免费证书。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf install -y certbot python3-certbot-nginx</span><br><span class="line">sudo certbot certonly --standalone -d your_domain.com</span><br></pre></td></tr></table></figure>
+<p>证书通常存储在
+<code>/etc/letsencrypt/live/your_domain.com/</code>，记录
+<code>fullchain.pem</code> 和 <code>privkey.pem</code> 的路径。</p>
+</blockquote>
+<p><strong>4. 配置 Trojan</strong></p>
+<p>创建配置文件 <code>/usr/local/etc/trojan/config.json</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">mkdir</span> -p /usr/local/etc/trojan</span><br><span class="line">sudo nano /usr/local/etc/trojan/config.json</span><br></pre></td></tr></table></figure>
+<p>添加（根据需要修改）：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;run_type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;server&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;local_addr&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0.0.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;local_port&quot;</span><span class="punctuation">:</span> <span class="number">443</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;remote_addr&quot;</span><span class="punctuation">:</span> <span class="string">&quot;127.0.0.1&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;remote_port&quot;</span><span class="punctuation">:</span> <span class="number">80</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;password&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;your_secure_password&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;ssl&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;cert&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/etc/letsencrypt/live/your_domain.com/fullchain.pem&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/etc/letsencrypt/live/your_domain.com/privkey.pem&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;cipher&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;prefer_server_cipher&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;tcp&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;fast_open&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>保存并退出（Ctrl+O, Enter, Ctrl+X）。</p>
+<p><strong>5. 创建 systemd 服务</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/systemd/system/trojan.service</span><br></pre></td></tr></table></figure>
+<p>添加：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=Trojan Server</span><br><span class="line"><span class="attr">After</span>=network.target</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">Type</span>=simple</span><br><span class="line"><span class="attr">ExecStart</span>=/usr/local/bin/trojan -c /usr/local/etc/trojan/config.json</span><br><span class="line"><span class="attr">Restart</span>=<span class="literal">on</span>-failure</span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=multi-user.target</span><br></pre></td></tr></table></figure>
+<p>启用并启动：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl start trojan</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> trojan</span><br></pre></td></tr></table></figure>
+<p>检查状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl status trojan</span><br></pre></td></tr></table></figure>
+<h3 id="v2ray-vmess">V2Ray (VMess)</h3>
+<h4 id="工作原理-2">工作原理</h4>
+<p>VMess 是 V2Ray
+框架下的核心代理协议，通过加密和多路复用（multiplexing）实现高效、安全的流量传输。客户端与服务器通过加密通道通信，支持动态端口、流量伪装（如
+HTTP/HTTPS 或 WebSocket）和多路复用以降低检测风险。VMess
+流量可伪装为常规 Web 流量，结合 TLS 或其他传输协议（如
+WebSocket），使其在严格审查环境下表现优异。相比 Shadowsocks，VMess
+配置更复杂但功能更强大；相比 Trojan，它更灵活但伪装能力稍逊。VMess
+适合需要高自定义和复杂路由规则的翻墙场景。</p>
+<h4 id="默认端口-2">默认端口</h4>
+<p>VMess 没有固定的默认端口，但通常使用 <strong>443</strong>（模拟
+HTTPS）或 <strong>1080</strong>（常见代理端口）。建议使用 443
+以增强伪装效果，配置文件中的 <code>port</code> 参数用于设置端口。</p>
+<h4 id="red-hatcentos-2">Red Hat/CentOS</h4>
+<p><strong>环境</strong></p>
+<ul>
+<li>操作系统：RHEL 8/9 或 CentOS 8/9</li>
+<li>权限：Root 或 sudo 权限</li>
+<li>工具：V2Ray（官方实现，功能强大）</li>
+</ul>
+<p><strong>步骤</strong></p>
+<p><strong>1. 更新系统并安装依赖</strong></p>
+<p>确保系统软件包是最新的，并安装必要的工具。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf update -y</span><br><span class="line">sudo dnf install -y epel-release</span><br><span class="line">sudo dnf install -y curl wget git unzip</span><br></pre></td></tr></table></figure>
+<p><strong>2. 安装 V2Ray</strong></p>
+<p>从官方发布页面下载并安装 V2Ray。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载最新版 V2Ray</span></span><br><span class="line">bash &lt;(curl -L https://github.com/v2fly/v2ray-core/releases/latest/download/install-release.sh)</span><br></pre></td></tr></table></figure>
+<p>这会将 V2Ray 安装到 <code>/usr/local/bin/v2ray</code> 和配置文件到
+<code>/usr/local/etc/v2ray</code>。</p>
+<p><strong>3. 获取 SSL 证书</strong></p>
+<p>VMess 若使用 TLS 传输（如 HTTPS 伪装）需要 SSL 证书。使用 Let’s
+Encrypt 获取免费证书。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf install -y certbot python3-certbot-nginx</span><br><span class="line">sudo certbot certonly --standalone -d your_domain.com</span><br></pre></td></tr></table></figure>
+<p>证书存储在 <code>/etc/letsencrypt/live/your_domain.com/</code>，记录
+<code>fullchain.pem</code> 和 <code>privkey.pem</code> 路径。</p>
+<p><strong>4. 配置 V2Ray</strong></p>
+<p>创建配置文件 <code>/usr/local/etc/v2ray/config.json</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">mkdir</span> -p /usr/local/etc/v2ray</span><br><span class="line">sudo nano /usr/local/etc/v2ray/config.json</span><br></pre></td></tr></table></figure>
+<p>添加以下配置（使用 VMess + TLS，需修改）：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;inbounds&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;port&quot;</span><span class="punctuation">:</span> <span class="number">443</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;protocol&quot;</span><span class="punctuation">:</span> <span class="string">&quot;vmess&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;settings&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;clients&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;your_uuid&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;alterId&quot;</span><span class="punctuation">:</span> <span class="number">0</span></span><br><span class="line">                <span class="punctuation">&#125;</span></span><br><span class="line">            <span class="punctuation">]</span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;streamSettings&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;network&quot;</span><span class="punctuation">:</span> <span class="string">&quot;tcp&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;security&quot;</span><span class="punctuation">:</span> <span class="string">&quot;tls&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;tlsSettings&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;certificates&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                    <span class="punctuation">&#123;</span></span><br><span class="line">                        <span class="attr">&quot;certificateFile&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/etc/letsencrypt/live/your_domain.com/fullchain.pem&quot;</span><span class="punctuation">,</span></span><br><span class="line">                        <span class="attr">&quot;keyFile&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/etc/letsencrypt/live/your_domain.com/privkey.pem&quot;</span></span><br><span class="line">                    <span class="punctuation">&#125;</span></span><br><span class="line">                <span class="punctuation">]</span></span><br><span class="line">            <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;outbounds&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;protocol&quot;</span><span class="punctuation">:</span> <span class="string">&quot;freedom&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;settings&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>port</strong>：443，模拟 HTTPS 流量。</li>
+<li><strong>id</strong>：使用 UUID（运行 <code>v2ray uuid</code>
+生成）。</li>
+<li><strong>alterId</strong>：建议设为 0（新版 V2Ray 默认）。</li>
+<li><strong>certificateFile</strong> 和 <strong>keyFile</strong>：SSL
+证书和私钥路径。</li>
+<li><strong>streamSettings</strong>：使用 TLS 传输，伪装 HTTPS。</li>
+</ul>
+<p>保存并退出（Ctrl+O, Enter, Ctrl+X）。</p>
+<p><strong>5. 创建 systemd 服务</strong></p>
+<p>V2Ray 默认提供 systemd 服务，确认配置文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> v2ray</span><br><span class="line">sudo systemctl start v2ray</span><br></pre></td></tr></table></figure>
+<p>检查服务状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl status v2ray</span><br></pre></td></tr></table></figure>
+<h4 id="ubuntudebian-2">Ubuntu/Debian</h4>
+<p><strong>环境</strong></p>
+<ul>
+<li>操作系统：Ubuntu 20.04/22.04 或 Debian 10/11</li>
+<li>权限：Root 或 sudo 权限</li>
+<li>工具：V2Ray（官方实现，功能强大）</li>
+</ul>
+<p><strong>步骤</strong></p>
+<p><strong>1. 更新系统并安装依赖</strong></p>
+<p>确保系统软件包是最新的，并安装必要的工具。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt upgrade -y</span><br><span class="line">sudo apt install -y curl wget git unzip</span><br></pre></td></tr></table></figure>
+<p><strong>2. 安装 V2Ray</strong></p>
+<p>使用官方安装脚本。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash &lt;(curl -L https://github.com/v2fly/v2ray-core/releases/latest/download/install-release.sh)</span><br></pre></td></tr></table></figure>
+<p>安装路径同 Red Hat/CentOS。</p>
+<p><strong>3. 获取 SSL 证书</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install -y certbot python3-certbot-nginx</span><br><span class="line">sudo certbot certonly --standalone -d your_domain.com</span><br></pre></td></tr></table></figure>
+<p>证书存储在 <code>/etc/letsencrypt/live/your_domain.com/</code>。</p>
+<p><strong>4. 配置 V2Ray</strong></p>
+<p>创建配置文件 <code>/usr/local/etc/v2ray/config.json</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">mkdir</span> -p /usr/local/etc/v2ray</span><br><span class="line">sudo nano /usr/local/etc/v2ray/config.json</span><br></pre></td></tr></table></figure>
+<p>添加（与 Red Hat/CentOS 相同，需修改）：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;inbounds&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;port&quot;</span><span class="punctuation">:</span> <span class="number">443</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;protocol&quot;</span><span class="punctuation">:</span> <span class="string">&quot;vmess&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;settings&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;clients&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;your_uuid&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;alterId&quot;</span><span class="punctuation">:</span> <span class="number">0</span></span><br><span class="line">                <span class="punctuation">&#125;</span></span><br><span class="line">            <span class="punctuation">]</span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;streamSettings&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;network&quot;</span><span class="punctuation">:</span> <span class="string">&quot;tcp&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;security&quot;</span><span class="punctuation">:</span> <span class="string">&quot;tls&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;tlsSettings&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;certificates&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                    <span class="punctuation">&#123;</span></span><br><span class="line">                        <span class="attr">&quot;certificateFile&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/etc/letsencrypt/live/your_domain.com/fullchain.pem&quot;</span><span class="punctuation">,</span></span><br><span class="line">                        <span class="attr">&quot;keyFile&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/etc/letsencrypt/live/your_domain.com/privkey.pem&quot;</span></span><br><span class="line">                    <span class="punctuation">&#125;</span></span><br><span class="line">                <span class="punctuation">]</span></span><br><span class="line">            <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;outbounds&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;protocol&quot;</span><span class="punctuation">:</span> <span class="string">&quot;freedom&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;settings&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>保存并退出（Ctrl+O, Enter, Ctrl+X）。</p>
+<p><strong>5. 创建 systemd 服务</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> v2ray</span><br><span class="line">sudo systemctl start v2ray</span><br></pre></td></tr></table></figure>
+<p>检查状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl status v2ray</span><br></pre></td></tr></table></figure>
+<h3 id="客户端连接">客户端连接</h3>
+<p>在客户端（如 Clash Verge、V2Ray 客户端）配置：</p>
+<ul>
+<li><strong>服务器地址</strong>：服务器公网 IP 或域名</li>
+<li><strong>端口</strong>：协议对应端口（如 Shadowsocks
+8388、Trojan/V2Ray 443）</li>
+<li><strong>密码/ID</strong>：配置文件中的密码或 UUID</li>
+<li><strong>协议</strong>：Shadowsocks、Trojan 或 VMess</li>
+<li><strong>TLS</strong>（Trojan/V2Ray）：启用，需有效证书</li>
+</ul>
+<p><strong>Clash Verge 支持</strong>： Clash 完全支持
+Shadowsocks、Trojan 和 VMess 协议。在 Clash 中，导入以下 YAML 配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">proxies:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">&quot;ss-server&quot;</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">ss</span></span><br><span class="line">    <span class="attr">server:</span> <span class="string">your_server_ip</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">8388</span></span><br><span class="line">    <span class="attr">cipher:</span> <span class="string">chacha20-ietf-poly1305</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">your_secure_password</span></span><br><span class="line">    <span class="attr">udp:</span> <span class="literal">true</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">&quot;trojan-server&quot;</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">trojan</span></span><br><span class="line">    <span class="attr">server:</span> <span class="string">your_domain.com</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">443</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">your_secure_password</span></span><br><span class="line">    <span class="attr">sni:</span> <span class="string">your_domain.com</span></span><br><span class="line">    <span class="attr">skip-cert-verify:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">udp:</span> <span class="literal">true</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">&quot;vmess-server&quot;</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">vmess</span></span><br><span class="line">    <span class="attr">server:</span> <span class="string">your_domain.com</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">443</span></span><br><span class="line">    <span class="attr">uuid:</span> <span class="string">your_uuid</span></span><br><span class="line">    <span class="attr">alterId:</span> <span class="number">0</span></span><br><span class="line">    <span class="attr">cipher:</span> <span class="string">auto</span></span><br><span class="line">    <span class="attr">tls:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">skip-cert-verify:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">network:</span> <span class="string">tcp</span></span><br><span class="line">    <span class="attr">udp:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h2 id="clash-客户端配置">Clash 客户端配置</h2>
+<p>Clash（如 Clash Verge）是一个功能强大的代理客户端，支持多种协议（如
+Shadowsocks、Trojan、VMess）。以下是你提供的 Clash
+配置文件中各部分的作用和推荐配置方式：</p>
+<h3 id="配置文件解析">配置文件解析</h3>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">port:</span> <span class="number">7890</span></span><br><span class="line"><span class="attr">allow-lan:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">mode:</span> <span class="string">rule</span></span><br><span class="line"><span class="attr">log-level:</span> <span class="string">info</span></span><br><span class="line"><span class="attr">unified-delay:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">global-client-fingerprint:</span> <span class="string">chrome</span></span><br><span class="line"><span class="attr">dns:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">listen:</span> <span class="string">:53</span></span><br><span class="line">  <span class="attr">ipv6:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">enhanced-mode:</span> <span class="string">fake-ip</span></span><br><span class="line">  <span class="attr">fake-ip-range:</span> <span class="number">198.18</span><span class="number">.0</span><span class="number">.1</span><span class="string">/16</span></span><br><span class="line">  <span class="attr">default-nameserver:</span> </span><br><span class="line">    <span class="bullet">-</span> <span class="number">223.5</span><span class="number">.5</span><span class="number">.5</span></span><br><span class="line">    <span class="bullet">-</span> <span class="number">8.8</span><span class="number">.8</span><span class="number">.8</span></span><br><span class="line">  <span class="attr">nameserver:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">https://dns.alidns.com/dns-query</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">https://doh.pub/dns-query</span></span><br><span class="line">  <span class="attr">fallback:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">https://1.0.0.1/dns-query</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">tls://dns.google</span></span><br><span class="line">  <span class="attr">fallback-filter:</span></span><br><span class="line">    <span class="attr">geoip:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">geoip-code:</span> <span class="string">CN</span></span><br><span class="line">    <span class="attr">ipcidr:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">240.0</span><span class="number">.0</span><span class="number">.0</span><span class="string">/4</span></span><br><span class="line"><span class="attr">proxies:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">&quot;ss-server&quot;</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">ss</span></span><br><span class="line">    <span class="attr">server:</span> <span class="string">your_server_ip</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">8388</span></span><br><span class="line">    <span class="attr">cipher:</span> <span class="string">chacha20-ietf-poly1305</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">your_secure_password</span></span><br><span class="line">    <span class="attr">udp:</span> <span class="literal">true</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">&quot;trojan-server&quot;</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">trojan</span></span><br><span class="line">    <span class="attr">server:</span> <span class="string">your_domain.com</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">443</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">your_secure_password</span></span><br><span class="line">    <span class="attr">sni:</span> <span class="string">your_domain.com</span></span><br><span class="line">    <span class="attr">skip-cert-verify:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">udp:</span> <span class="literal">true</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">&quot;vmess-server&quot;</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">vmess</span></span><br><span class="line">    <span class="attr">server:</span> <span class="string">your_domain.com</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">443</span></span><br><span class="line">    <span class="attr">uuid:</span> <span class="string">your_uuid</span></span><br><span class="line">    <span class="attr">alterId:</span> <span class="number">0</span></span><br><span class="line">    <span class="attr">cipher:</span> <span class="string">auto</span></span><br><span class="line">    <span class="attr">tls:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">skip-cert-verify:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">network:</span> <span class="string">tcp</span></span><br><span class="line">    <span class="attr">udp:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">proxy-groups:</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">负载均衡</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">load-balance</span></span><br><span class="line">  <span class="attr">url:</span> <span class="string">https://cp.cloudflare.com/generate_204</span></span><br><span class="line">  <span class="attr">interval:</span> <span class="number">300</span></span><br><span class="line">  <span class="attr">strategy:</span> <span class="string">round-robin</span></span><br><span class="line">  <span class="attr">proxies:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">ss-server</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">自动选择</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">url-test</span></span><br><span class="line">  <span class="attr">url:</span> <span class="string">https://cp.cloudflare.com/generate_204</span></span><br><span class="line">  <span class="attr">interval:</span> <span class="number">300</span></span><br><span class="line">  <span class="attr">tolerance:</span> <span class="number">50</span></span><br><span class="line">  <span class="attr">proxies:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">ss-server</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Nick666</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">select</span></span><br><span class="line">  <span class="attr">proxies:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">负载均衡</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">自动选择</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">DIRECT</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">ss-server</span></span><br><span class="line"><span class="attr">rules:</span></span><br><span class="line">  <span class="comment"># 规则部分待补充</span></span><br></pre></td></tr></table></figure>
+<p><strong>各部分作用与配置建议</strong>：</p>
+<ol type="1">
+<li><p><strong>基本配置</strong>：</p>
+<ul>
+<li><strong>port: 7890</strong>
+<ul>
+<li><strong>作用</strong>：设置 Clash 的 HTTP
+代理端口，客户端通过此端口访问代理（如浏览器设置代理为
+<code>127.0.0.1:7890</code>）。</li>
+<li><strong>推荐配置</strong>：默认
+7890，需确保本地无其他程序占用。可改为其他端口（如
+8080），但需同步更新客户端配置。</li>
+</ul></li>
+<li><strong>allow-lan: true</strong>
+<ul>
+<li><strong>作用</strong>：允许局域网设备通过 Clash
+代理访问网络（如手机连接电脑的 Clash 代理）。</li>
+<li><strong>推荐配置</strong>：若仅本地使用，设为 <code>false</code>
+以提高安全性；若需局域网共享，设为
+<code>true</code>，并确保防火墙允许相关端口（如 7890）。</li>
+</ul></li>
+<li><strong>mode: rule</strong>
+<ul>
+<li><strong>作用</strong>：设置代理模式，<code>rule</code>
+表示按规则分流（根据 <code>rules</code>
+决定哪些流量走代理）。其他选项包括 <code>global</code>（全部走代理）或
+<code>direct</code>（全部直连）。</li>
+<li><strong>推荐配置</strong>：<code>rule</code>
+适合国内用户，结合规则实现国内外流量分流；<code>global</code>
+适合完全代理场景。</li>
+</ul></li>
+<li><strong>log-level: info</strong>
+<ul>
+<li><strong>作用</strong>：设置日志级别，<code>info</code>
+显示常规日志信息。其他选项：<code>silent</code>（无日志）、<code>warning</code>、<code>error</code>、<code>debug</code>。</li>
+<li><strong>推荐配置</strong>：日常使用设为
+<code>info</code>；调试时设为 <code>debug</code>；生产环境可设为
+<code>warning</code> 或 <code>error</code> 减少日志。</li>
+</ul></li>
+<li><strong>unified-delay: true</strong>
+<ul>
+<li><strong>作用</strong>：启用统一延迟测试，规范化不同协议的延迟测量结果。</li>
+<li><strong>推荐配置</strong>：设为
+<code>true</code>，确保延迟测试准确，方便选择最优节点。</li>
+</ul></li>
+<li><strong>global-client-fingerprint: chrome</strong>
+<ul>
+<li><strong>作用</strong>：伪装客户端的 TLS 指纹为 Chrome
+浏览器，降低被防火墙检测的风险。</li>
+<li><strong>推荐配置</strong>：设为 <code>chrome</code>
+或其他主流浏览器（如 <code>firefox</code>），增强伪装效果。</li>
+</ul></li>
+</ul></li>
+<li><p><strong>DNS 配置</strong>：</p>
+<ul>
+<li><strong>enable: true</strong>
+<ul>
+<li><strong>作用</strong>：启用 Clash 的 DNS 解析功能，接管系统 DNS
+请求。</li>
+<li><strong>推荐配置</strong>：设为 <code>true</code>，确保 DNS
+请求通过代理，防止泄露。</li>
+</ul></li>
+<li><strong>listen: :53</strong>
+<ul>
+<li><strong>作用</strong>：Clash 监听本地 53 端口处理 DNS 请求（需 root
+权限或重定向）。</li>
+<li><strong>推荐配置</strong>：保持
+<code>:53</code>，但需确保系统防火墙允许 53 端口，或使用高位端口（如
+1053）避免冲突。</li>
+</ul></li>
+<li><strong>ipv6: true</strong>
+<ul>
+<li><strong>作用</strong>：启用 IPv6 DNS 解析支持。</li>
+<li><strong>推荐配置</strong>：国内环境建议设为
+<code>false</code>（多数网络 IPv6 不稳定）；若网络支持 IPv6，可设为
+<code>true</code>。</li>
+</ul></li>
+<li><strong>enhanced-mode: fake-ip</strong>
+<ul>
+<li><strong>作用</strong>：使用 Fake IP 模式，将域名解析为虚拟
+IP（<code>198.18.0.1/16</code>），通过 Clash 代理解析真实地址，防止 DNS
+污染。</li>
+<li><strong>推荐配置</strong>：<code>fake-ip</code>
+适合翻墙场景；若无需防污染，可用 <code>redir-host</code> 模式。</li>
+</ul></li>
+<li><strong>fake-ip-range: 198.18.0.1/16</strong>
+<ul>
+<li><strong>作用</strong>：Fake IP 的 IP 范围，Clash 用此范围分配虚拟
+IP。</li>
+<li><strong>推荐配置</strong>：默认
+<code>198.18.0.1/16</code>，无需修改，确保不与本地网络冲突。</li>
+</ul></li>
+<li><strong>default-nameserver</strong>:
+<ul>
+<li><strong>作用</strong>：用于解析 DNS 配置本身的域名（如
+<code>dns.alidns.com</code>）。</li>
+<li><strong>配置</strong>：<code>223.5.5.5</code>（阿里
+DNS）、<code>8.8.8.8</code>（Google DNS），国内建议优先使用国内
+DNS。</li>
+</ul></li>
+<li><strong>nameserver</strong>:
+<ul>
+<li><strong>作用</strong>：主 DNS 服务器，处理国内域名解析（如
+<code>https://dns.alidns.com/dns-query</code>）。</li>
+<li><strong>推荐配置</strong>：使用 DoH（DNS over
+HTTPS）服务器，如阿里、腾讯的 DoH，提升安全性。</li>
+</ul></li>
+<li><strong>fallback</strong>:
+<ul>
+<li><strong>作用</strong>：备用 DNS 服务器，处理国外域名解析（如
+<code>https://1.0.0.1/dns-query</code>、Google DNS）。</li>
+<li><strong>推荐配置</strong>：使用国外 DoH/TLS
+服务器，确保翻墙域名解析正常。</li>
+</ul></li>
+<li><strong>fallback-filter</strong>:
+<ul>
+<li><strong>作用</strong>：过滤 DNS 解析结果，决定哪些域名使用
+<code>fallback</code> 服务器。</li>
+<li><strong>geoip: true, geoip-code: CN</strong>：国内 IP 地址使用
+<code>nameserver</code> 解析。</li>
+<li><strong>ipcidr: 240.0.0.0/4</strong>：指定 IP 范围（如组播地址）走
+<code>fallback</code>。</li>
+<li><strong>推荐配置</strong>：保持 <code>geoip: true</code> 和
+<code>geoip-code: CN</code>，确保国内域名走国内 DNS，国外域名走国外
+DNS。</li>
+</ul></li>
+</ul></li>
+<li><p><strong>proxies</strong>：</p>
+<ul>
+<li><p><strong>作用</strong>：定义代理节点（如 Shadowsocks
+节点）。</p></li>
+<li><p><strong>示例</strong>：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">proxies:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">&quot;ss-server&quot;</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">ss</span></span><br><span class="line">    <span class="attr">server:</span> <span class="string">your_server_ip</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">8388</span></span><br><span class="line">    <span class="attr">cipher:</span> <span class="string">chacha20-ietf-poly1305</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">your_secure_password</span></span><br><span class="line">    <span class="attr">udp:</span> <span class="literal">true</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">&quot;trojan-server&quot;</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">trojan</span></span><br><span class="line">    <span class="attr">server:</span> <span class="string">your_domain.com</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">443</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">your_secure_password</span></span><br><span class="line">    <span class="attr">sni:</span> <span class="string">your_domain.com</span></span><br><span class="line">    <span class="attr">skip-cert-verify:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">udp:</span> <span class="literal">true</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">&quot;vmess-server&quot;</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">vmess</span></span><br><span class="line">    <span class="attr">server:</span> <span class="string">your_domain.com</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">443</span></span><br><span class="line">    <span class="attr">uuid:</span> <span class="string">your_uuid</span></span><br><span class="line">    <span class="attr">alterId:</span> <span class="number">0</span></span><br><span class="line">    <span class="attr">cipher:</span> <span class="string">auto</span></span><br><span class="line">    <span class="attr">tls:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">skip-cert-verify:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">network:</span> <span class="string">tcp</span></span><br><span class="line">    <span class="attr">udp:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>name</strong>：节点名称，任意设置，便于识别。</li>
+<li><strong>type</strong>：协议类型。</li>
+<li><strong>server</strong>：服务器 IP 或域名。</li>
+<li><strong>port</strong>：服务器端口，与服务器配置一致。</li>
+<li><strong>cipher</strong>：加密算法，需与服务器一致。</li>
+<li><strong>password</strong>：密码，需与服务器一致。</li>
+<li><strong>udp</strong>：启用 UDP 支持，适合游戏或实时应用。</li>
+</ul></li>
+<li><p><strong>推荐配置</strong>：确保
+<code>server</code>、<code>port</code>、<code>cipher</code> 和
+<code>password</code> 与服务器配置完全匹配；<code>udp: true</code>
+适合需要 UDP 的场景。</p></li>
+</ul></li>
+<li><p><strong>proxy-groups</strong>：</p>
+<ul>
+<li><p><strong>作用</strong>：定义代理组，控制节点的选择方式（如手动选择、自动测试、负载均衡）。</p></li>
+<li><p><strong>示例</strong>：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">负载均衡</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">load-balance</span></span><br><span class="line">  <span class="attr">url:</span> <span class="string">https://cp.cloudflare.com/generate_204</span></span><br><span class="line">  <span class="attr">interval:</span> <span class="number">300</span></span><br><span class="line">  <span class="attr">strategy:</span> <span class="string">round-robin</span></span><br><span class="line">  <span class="attr">proxies:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">ss-server</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">自动选择</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">url-test</span></span><br><span class="line">  <span class="attr">url:</span> <span class="string">https://cp.cloudflare.com/generate_204</span></span><br><span class="line">  <span class="attr">interval:</span> <span class="number">300</span></span><br><span class="line">  <span class="attr">tolerance:</span> <span class="number">50</span></span><br><span class="line">  <span class="attr">proxies:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">ss-server</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Nick666</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">select</span></span><br><span class="line">  <span class="attr">proxies:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">负载均衡</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">自动选择</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">DIRECT</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">ss-server</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>负载均衡</strong>（<code>type: load-balance</code>）：
+<ul>
+<li><strong>作用</strong>：将流量平均分配到多个节点，适合高负载场景。</li>
+<li><strong>url</strong>：测试延迟的
+URL，<code>https://cp.cloudflare.com/generate_204</code>
+是一个快速响应地址。</li>
+<li><strong>interval</strong>：测试间隔（秒），300 表示每 5
+分钟测试一次。</li>
+<li><strong>strategy: round-robin</strong>：轮询分配流量，另可选
+<code>consistent-hashing</code>。</li>
+<li><strong>推荐配置</strong>：适合多节点场景，<code>interval</code>
+设为 300-600，<code>url</code> 使用可靠测试地址。</li>
+</ul></li>
+<li><strong>自动选择</strong>（<code>type: url-test</code>）：
+<ul>
+<li><strong>作用</strong>：自动选择延迟最低的节点。</li>
+<li><strong>tolerance</strong>：延迟变化容忍度（毫秒），50
+表示延迟变化小于 50ms 不切换。</li>
+<li><strong>推荐配置</strong>：<code>interval</code> 设为
+300-600，<code>tolerance</code> 设为 50-100，适合动态选择最优节点。</li>
+</ul></li>
+<li><strong>手动选择</strong>（<code>type: select</code>）：
+<ul>
+<li><strong>作用</strong>：允许用户手动选择代理组或节点（如
+<code>负载均衡</code>、<code>自动选择</code>、直接连接或具体节点）。</li>
+<li><strong>推荐配置</strong>：作为顶层组，包含其他组和
+<code>DIRECT</code>，便于灵活切换。</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p><strong>rules</strong>：</p>
+<ul>
+<li><p><strong>作用</strong>：定义流量分流规则，决定哪些流量走代理、哪些直连。</p></li>
+<li><p><strong>示例</strong>（需补充完整规则）：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">rules:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">DOMAIN-SUFFIX,google.com,自动选择</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">DOMAIN-SUFFIX,cn,DIRECT</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">GEOIP,CN,DIRECT</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">MATCH,Nick666</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>DOMAIN-SUFFIX</strong>：匹配域名后缀（如
+<code>google.com</code> 走代理）。</li>
+<li><strong>GEOIP</strong>：匹配 IP 地理位置（如国内 IP 直连）。</li>
+<li><strong>MATCH</strong>：默认规则，匹配未命中规则的流量。</li>
+<li><strong>推荐配置</strong>：
+<ul>
+<li>使用域名规则（如 <code>DOMAIN-SUFFIX</code>）区分国内外流量。</li>
+<li>使用 <code>GEOIP,CN,DIRECT</code> 确保国内流量直连。</li>
+<li>规则文件可从开源项目（如 <a
+target="_blank" rel="noopener" href="https://github.com/Loyalsoldier/clash-rules">Loyalsoldier/clash-rules</a>）导入，减少手动配置。</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ol>
+
+    
+
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          NICK
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://nicccce.github.io/TechNotes/Build-A-Ladder/" title="搭建梯子" target="_blank">https://nicccce.github.io/TechNotes/Build-A-Ladder/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -241,21 +937,13 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScrip</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTML</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Clash</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -268,145 +956,127 @@
 	</div>
 
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://nicccce.github.io/TechNotes/Build-A-Ladder/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/TechNotes/Vue3-Note/" class="archive-article-date">
-        <time datetime="2024-11-20T10:25:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-11-20</time>
-</a>
 
+
+<nav id="article-nav">
+  
+    <a href="/Home/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/TechNotes/React-Note/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">React笔记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/TechNotes/Vue3-Note/" target="_blank">Vue3笔记</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScrip</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTML</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/TechNotes//" class="article-tag-list-link color5">TechNotes</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%90%AD%E5%BB%BA%E6%A2%AF%E5%AD%90"><span class="toc-number">1.</span> <span class="toc-text">搭建梯子</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E6%A2%AF%E5%AD%90%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.1.</span> <span class="toc-text">常见梯子协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%8D%8F%E8%AE%AE%E6%90%AD%E5%BB%BA"><span class="toc-number">1.2.</span> <span class="toc-text">常见协议搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-number">1.2.1.</span> <span class="toc-text">服务器性能优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E7%94%A8%E9%80%94%E5%92%8C%E5%8E%9F%E7%90%86"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">优化用途和原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E9%85%8D%E7%BD%AE%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">优化配置步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shadowsocks"><span class="toc-number">1.2.2.</span> <span class="toc-text">Shadowsocks</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">工作原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E7%AB%AF%E5%8F%A3"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">默认端口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#red-hatcentos"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">Red Hat&#x2F;CentOS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ubuntudebian"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">Ubuntu&#x2F;Debian</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#trojan"><span class="toc-number">1.2.3.</span> <span class="toc-text">Trojan</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86-1"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">工作原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E7%AB%AF%E5%8F%A3-1"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">默认端口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#red-hatcentos-1"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">Red Hat&#x2F;CentOS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ubuntudebian-1"><span class="toc-number">1.2.3.4.</span> <span class="toc-text">Ubuntu&#x2F;Debian</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v2ray-vmess"><span class="toc-number">1.2.4.</span> <span class="toc-text">V2Ray (VMess)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86-2"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">工作原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E7%AB%AF%E5%8F%A3-2"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">默认端口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#red-hatcentos-2"><span class="toc-number">1.2.4.3.</span> <span class="toc-text">Red Hat&#x2F;CentOS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ubuntudebian-2"><span class="toc-number">1.2.4.4.</span> <span class="toc-text">Ubuntu&#x2F;Debian</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.2.5.</span> <span class="toc-text">客户端连接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#clash-%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%85%8D%E7%BD%AE"><span class="toc-number">1.3.</span> <span class="toc-text">Clash 客户端配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90"><span class="toc-number">1.3.1.</span> <span class="toc-text">配置文件解析</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/ACM/Root-Divide/" class="archive-article-date">
-        <time datetime="2024-11-12T11:47:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-11-12</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/ACM/Root-Divide/" target="_blank">根号分治</a>
-  
-    </h1>
-  
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">c++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ACM</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/ACM//" class="article-tag-list-link color4">ACM</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+
+
+
+
+
+
+
 
 
           </div>
@@ -447,8 +1117,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
