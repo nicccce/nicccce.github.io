@@ -10,19 +10,19 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="VS Code Remote-SSH 配置局域网代理前言1. 案发现场最近在远程服务器（Ubuntu Docker 容器）上配置 Gemini Code Assist 时，遇到了一个非常折磨人的问题： 点击插件的 Sign in，浏览器弹出了 Google 授权页面，我一路点击确认，最后页面显示 “Make sure you downloaded this app”的时候就无限循环没有进度了。">
+  <meta name="description" content="VS Code Remote-SSH 配置局域网代理 前言 1. 案发现场 最近在远程服务器（Ubuntu Docker 容器）上配置 Gemini Code Assist 时，遇到了一个非常折磨人的问题： 点击插件的 Sign in，浏览器弹出了 Google 授权页面，我一路点击确认，最后页面显示 “Make sure you downloaded this app”的时候就无限">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VS Code Remote-SSH 配置局域网代理">
 <meta property="og:url" content="https://nicccce.github.io/TechNotes/Remote-SSH-Proxy/">
 <meta property="og:site_name" content="NICCCCE">
-<meta property="og:description" content="VS Code Remote-SSH 配置局域网代理前言1. 案发现场最近在远程服务器（Ubuntu Docker 容器）上配置 Gemini Code Assist 时，遇到了一个非常折磨人的问题： 点击插件的 Sign in，浏览器弹出了 Google 授权页面，我一路点击确认，最后页面显示 “Make sure you downloaded this app”的时候就无限循环没有进度了。">
+<meta property="og:description" content="VS Code Remote-SSH 配置局域网代理 前言 1. 案发现场 最近在远程服务器（Ubuntu Docker 容器）上配置 Gemini Code Assist 时，遇到了一个非常折磨人的问题： 点击插件的 Sign in，浏览器弹出了 Google 授权页面，我一路点击确认，最后页面显示 “Make sure you downloaded this app”的时候就无限">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://nicccce.github.io/TechNotes/Remote-SSH-Proxy/image-20260308214015505.png">
 <meta property="og:image" content="https://nicccce.github.io/TechNotes/Remote-SSH-Proxy/image-20260308214552565.png">
 <meta property="og:image" content="https://nicccce.github.io/TechNotes/Remote-SSH-Proxy/image-20260308214523128.png">
 <meta property="og:image" content="https://nicccce.github.io/TechNotes/Remote-SSH-Proxy/image-20260308214739322.png">
 <meta property="article:published_time" content="2026-03-08T13:49:16.000Z">
-<meta property="article:modified_time" content="2026-03-08T13:50:50.376Z">
+<meta property="article:modified_time" content="2026-03-08T14:17:09.398Z">
 <meta property="article:author" content="NICK">
 <meta property="article:tag" content="日志">
 <meta property="article:tag" content="开发">
@@ -259,93 +259,169 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h1 id="VS-Code-Remote-SSH-配置局域网代理"><a href="#VS-Code-Remote-SSH-配置局域网代理" class="headerlink" title="VS Code Remote-SSH 配置局域网代理"></a>VS Code Remote-SSH 配置局域网代理</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><h4 id="1-案发现场"><a href="#1-案发现场" class="headerlink" title="1. 案发现场"></a>1. 案发现场</h4><p>最近在远程服务器（Ubuntu Docker 容器）上配置 <strong>Gemini Code Assist</strong> 时，遇到了一个非常折磨人的问题： 点击插件的 <strong>Sign in</strong>，浏览器弹出了 Google 授权页面，我一路点击确认，最后页面显示 “Make sure you downloaded this app”的时候就无限循环没有进度了。</p>
-<p><img src="./image-20260308214015505.png" alt="image-20260308214015505"></p>
-<p>过去，但检查发现本地上网极其顺滑。经过一番排查才意识到：VS Code 的远程插件（如 Gemini/Cloud Code）其核心进程是跑在服务器上的。 当插件尝试完成 OAuth 鉴权回调或连接 Google API 时，它调用的是服务器的网络。而我的服务器处于内网环境，根本连不上外网，导致插件在“最后一步”由于握手失败而卡死。</p>
-<p><strong>深度分析：</strong> 起初我以为是本地 Windows 没翻过去，但检查发现本地上网极其顺滑。经过一番排查才意识到：<strong>VS Code 的远程插件（如 Gemini/Cloud Code）其核心进程是跑在服务器上的。</strong> 当插件尝试完成 OAuth 鉴权回调或连接 Google API 时，它调用的是<strong>服务器的网络</strong>。而我的服务器处于内网环境，根本连不上外网，导致插件在“最后一步”由于握手失败而卡死。</p>
+    <h1 id="vs-code-remote-ssh-配置局域网代理">VS Code Remote-SSH
+配置局域网代理</h1>
+<h3 id="前言">前言</h3>
+<h4 id="案发现场">1. 案发现场</h4>
+<p>最近在远程服务器（Ubuntu Docker 容器）上配置 <strong>Gemini Code
+Assist</strong> 时，遇到了一个非常折磨人的问题： 点击插件的 <strong>Sign
+in</strong>，浏览器弹出了 Google 授权页面，我一路点击确认，最后页面显示
+“Make sure you downloaded this app”的时候就无限循环没有进度了。</p>
+<figure>
+<img src="image-20260308214015505.png" alt="image-20260308214015505" />
+<figcaption aria-hidden="true">image-20260308214015505</figcaption>
+</figure>
+<p>过去，但检查发现本地上网极其顺滑。经过一番排查才意识到：VS Code
+的远程插件（如 Gemini/Cloud Code）其核心进程是跑在服务器上的。
+当插件尝试完成 OAuth 鉴权回调或连接 Google API
+时，它调用的是服务器的网络。而我的服务器处于内网环境，根本连不上外网，导致插件在“最后一步”由于握手失败而卡死。</p>
+<p><strong>深度分析：</strong> 起初我以为是本地 Windows
+没翻过去，但检查发现本地上网极其顺滑。经过一番排查才意识到：<strong>VS
+Code 的远程插件（如 Gemini/Cloud
+Code）其核心进程是跑在服务器上的。</strong> 当插件尝试完成 OAuth
+鉴权回调或连接 Google API
+时，它调用的是<strong>服务器的网络</strong>。而我的服务器处于内网环境，根本连不上外网，导致插件在“最后一步”由于握手失败而卡死。</p>
 <span id="more"></span>
-<h2 id="一、-核心逻辑：谁在访问网络？"><a href="#一、-核心逻辑：谁在访问网络？" class="headerlink" title="一、 核心逻辑：谁在访问网络？"></a>一、 核心逻辑：谁在访问网络？</h2><p>在使用 VS Code Remote-SSH 时，网络请求分为两个维度：</p>
-<ol>
-<li><strong>终端维度</strong>：你在 Terminal 里输入的 <code>curl</code>、<code>wget</code>、<code>pip</code>，它们直接调用服务器网络。</li>
-<li><strong>插件维度</strong>：像 Gemini 这种 AI 插件，其核心进程运行在远程服务器上，因此它也必须通过服务器网络访问 Google。</li>
+<h2 id="一-核心逻辑谁在访问网络">一、 核心逻辑：谁在访问网络？</h2>
+<p>在使用 VS Code Remote-SSH 时，网络请求分为两个维度：</p>
+<ol type="1">
+<li><strong>终端维度</strong>：你在 Terminal 里输入的
+<code>curl</code>、<code>wget</code>、<code>pip</code>，它们直接调用服务器网络。</li>
+<li><strong>插件维度</strong>：像 Gemini 这种 AI
+插件，其核心进程运行在远程服务器上，因此它也必须通过服务器网络访问
+Google。</li>
 </ol>
-<p><strong>解决方案</strong>：将 Windows 电脑作为“网关”，让服务器通过局域网连接 Windows 上的代理软件。</p>
-<h2 id="二、-第一步：Windows-端配置-Clash"><a href="#二、-第一步：Windows-端配置-Clash" class="headerlink" title="二、 第一步：Windows 端配置 (Clash)"></a>二、 第一步：Windows 端配置 (Clash)</h2><ol>
-<li><strong>开启局域网共享</strong>：在 Clash 界面开启 <strong>Allow LAN</strong>。</li>
-<li><strong>确认监听地址</strong>：打开 PowerShell，输入 <code>netstat -ano | findstr :7890</code>。<ul>
+<p><strong>解决方案</strong>：将 Windows
+电脑作为“网关”，让服务器通过局域网连接 Windows 上的代理软件。</p>
+<h2 id="二-第一步windows-端配置-clash">二、 第一步：Windows 端配置
+(Clash)</h2>
+<ol type="1">
+<li><strong>开启局域网共享</strong>：在 Clash 界面开启 <strong>Allow
+LAN</strong>。</li>
+<li><strong>确认监听地址</strong>：打开 PowerShell，输入
+<code>netstat -ano | findstr :7890</code>。
+<ul>
 <li><strong>必须看到</strong>：<code>0.0.0.0:7890</code>（表示接受全网段请求）。</li>
-<li><strong>如果是</strong>：<code>127.0.0.1:7890</code>，请在设置中将 <code>bind-address</code> 改为 <code>*</code>。</li>
-</ul>
-</li>
-<li><strong>获取内网 IP</strong>：在 CMD 输入 <code>ipconfig</code>，记下 IPv4 地址（例如：<code>192.168.1.100</code>）。</li>
+<li><strong>如果是</strong>：<code>127.0.0.1:7890</code>，请在设置中将
+<code>bind-address</code> 改为 <code>*</code>。</li>
+</ul></li>
+<li><strong>获取内网 IP</strong>：在 CMD 输入
+<code>ipconfig</code>，记下 IPv4
+地址（例如：<code>192.168.1.100</code>）。</li>
 </ol>
-<h2 id="三、-第二步：防火墙精准加固-安全第一"><a href="#三、-第二步：防火墙精准加固-安全第一" class="headerlink" title="三、 第二步：防火墙精准加固 (安全第一)"></a>三、 第二步：防火墙精准加固 (安全第一)</h2><ol>
+<h2 id="三-第二步防火墙精准加固-安全第一">三、 第二步：防火墙精准加固
+(安全第一)</h2>
+<ol type="1">
 <li><ul>
-<li><p>好的，这部分内容已经为你进行了深度扩充。重点强调了 <strong>“软件层面开启（Clash）并不等于系统门神（Windows 防火墙）放行”</strong> 的逻辑，这通常是新手最容易卡住的地方。</p>
-<hr>
-<h3 id="三、-第二步：防火墙精准加固-——-破解“看得见连不上”的死局"><a href="#三、-第二步：防火墙精准加固-——-破解“看得见连不上”的死局" class="headerlink" title="三、 第二步：防火墙精准加固 —— 破解“看得见连不上”的死局"></a>三、 第二步：防火墙精准加固 —— 破解“看得见连不上”的死局</h3><p>我在 Clash 里勾选了 <code>Allow LAN</code>，并且 <code>netstat</code> 也显示在监听 <code>0.0.0.0</code> 了，但服务器 <code>curl</code> 依然超时。这是因为 <strong>Windows 防火墙极其严格的</strong>。默认情况下，它会静默拦截所有来自局域网外部、试图进入电脑 7000 端口以上的 TCP 请求。</p>
+<li><p>好的，这部分内容已经为你进行了深度扩充。重点强调了
+<strong>“软件层面开启（Clash）并不等于系统门神（Windows
+防火墙）放行”</strong> 的逻辑，这通常是新手最容易卡住的地方。</p>
+<hr />
+<h3 id="三-第二步防火墙精准加固-破解看得见连不上的死局">三、
+第二步：防火墙精准加固 —— 破解“看得见连不上”的死局</h3>
+<p>我在 Clash 里勾选了 <code>Allow LAN</code>，并且 <code>netstat</code>
+也显示在监听 <code>0.0.0.0</code> 了，但服务器 <code>curl</code>
+依然超时。这是因为 <strong>Windows
+防火墙极其严格的</strong>。默认情况下，它会静默拦截所有来自局域网外部、试图进入电脑
+7000 端口以上的 TCP 请求。</p>
 <p>因此需要设置一个规则打开win防火墙</p>
-<h4 id="具体操作步骤："><a href="#具体操作步骤：" class="headerlink" title="具体操作步骤："></a>具体操作步骤：</h4><ol>
+<h4 id="具体操作步骤">具体操作步骤：</h4>
+<ol type="1">
 <li><p><strong>进入高级设置</strong>：</p>
 <ul>
-<li>在 Windows 搜索框输入 <strong>“高级安全 Windows Defender 防火墙”</strong> 并打开。</li>
-</ul>
-</li>
+<li>在 Windows 搜索框输入 <strong>“高级安全 Windows Defender
+防火墙”</strong> 并打开。</li>
+</ul></li>
 <li><p><strong>创建入站规则 (Inbound Rule)</strong>：</p>
 <ul>
-<li>点击左侧 <strong>“入站规则”</strong>，在右侧点击 <strong>“新建规则…”</strong>。</li>
+<li>点击左侧 <strong>“入站规则”</strong>，在右侧点击
+<strong>“新建规则...”</strong>。</li>
 <li><strong>规则类型</strong>：选择 <strong>“端口”</strong>。</li>
-<li><strong>协议和端口</strong>：选择 <strong>TCP</strong>，在“特定本地端口”填入 Clash 的端口（默认 <code>7890</code>）。</li>
+<li><strong>协议和端口</strong>：选择
+<strong>TCP</strong>，在“特定本地端口”填入 Clash 的端口（默认
+<code>7890</code>）。</li>
 <li><strong>操作</strong>：选择 <strong>“允许连接”</strong>。</li>
 <li><strong>配置文件</strong>：全部勾选（域、专用、公用）。</li>
-<li><strong>名称</strong>：起个好记的名字，如 <code>Clash-Allow-Server</code>。</li>
-</ul>
-</li>
-<li><p><strong>精准加固：设置远程 IP 白名单（核心安全步骤）</strong>：</p>
+<li><strong>名称</strong>：起个好记的名字，如
+<code>Clash-Allow-Server</code>。</li>
+</ul></li>
+<li><p><strong>精准加固：设置远程 IP
+白名单（核心安全步骤）</strong>：</p>
 <ul>
 <li>在列表中双击你刚创建的 <code>Clash-Allow-Server</code>。</li>
 <li>切换到 <strong>“作用域” (Scope)</strong> 选项卡。</li>
-<li>找到 <strong>“远程 IP 地址” (Remote IP address)</strong>。默认是“任何 IP”，这意味着局域网内任何人只要知道你 IP 都能蹭你的代理。</li>
-<li>改选为 <strong>“下列 IP 地址”</strong> -&gt; 点击 <strong>“添加”</strong>。</li>
+<li>找到 <strong>“远程 IP 地址” (Remote IP
+address)</strong>。默认是“任何 IP”，这意味着局域网内任何人只要知道你 IP
+都能蹭你的代理。</li>
+<li>改选为 <strong>“下列 IP 地址”</strong> -&gt; 点击
+<strong>“添加”</strong>。</li>
 <li>填入你 <strong>服务器的内网 IP</strong>。</li>
 </ul>
-<p><img src="./image-20260308214552565.png" alt="image-20260308214552565"></p>
-</li>
+<figure>
+<img src="image-20260308214552565.png" alt="image-20260308214552565" />
+<figcaption aria-hidden="true">image-20260308214552565</figcaption>
+</figure></li>
 </ol>
-<p><img src="./image-20260308214523128.png" alt="image-20260308214523128"></p>
-</li>
-</ul>
-</li>
+<figure>
+<img src="image-20260308214523128.png" alt="image-20260308214523128" />
+<figcaption aria-hidden="true">image-20260308214523128</figcaption>
+</figure></li>
+</ul></li>
 </ol>
-<hr>
-<h2 id="四、-第三步：服务器终端全局代理"><a href="#四、-第三步：服务器终端全局代理" class="headerlink" title="四、 第三步：服务器终端全局代理"></a>四、 第三步：服务器终端全局代理</h2><p>编辑服务器的配置文件，让代理永久生效：</p>
+<hr />
+<h2 id="四-第三步服务器终端全局代理">四、
+第三步：服务器终端全局代理</h2>
+<p>编辑服务器的配置文件，让代理永久生效：</p>
 <p>Bash</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano ~/.bashrc</span><br></pre></td></tr></table></figure>
 <p>在末尾添加：</p>
 <p>Bash</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 代理地址指向 Windows IP</span><br><span class="line">export proxy_addr=&quot;Windows IP:7890&quot;</span><br><span class="line">export http_proxy=&quot;http://$proxy_addr&quot;</span><br><span class="line">export https_proxy=&quot;http://$proxy_addr&quot;</span><br><span class="line"># 排除内网，防止连不上实验室其他机器</span><br><span class="line">export no_proxy=&quot;localhost,127.0.0.1,211.87.0.0/16&quot; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>执行 <code>source ~/.bashrc</code> 生效。</p>
-<h2 id="五、-第四步：VS-Code-插件联网-Gemini-激活"><a href="#五、-第四步：VS-Code-插件联网-Gemini-激活" class="headerlink" title="五、 第四步：VS Code 插件联网 (Gemini 激活)"></a>五、 第四步：VS Code 插件联网 (Gemini 激活)</h2><p>即使终端通了，Gemini 可能还在转圈，因为 VS Code 远程服务端需要独立设置。</p>
-<ol>
+<h2 id="五-第四步vs-code-插件联网-gemini-激活">五、 第四步：VS Code
+插件联网 (Gemini 激活)</h2>
+<p>即使终端通了，Gemini 可能还在转圈，因为 VS Code
+远程服务端需要独立设置。</p>
+<ol type="1">
 <li>打开 VS Code 设置 (<code>Ctrl + ,</code>)。</li>
-<li>搜索 <code>Proxy</code>，在 <code>Http  Proxy</code> 和 <code>Http  Proxy</code> 填入：<code>http://Windows IP:7890</code>。</li>
+<li>搜索 <code>Proxy</code>，在 <code>Http  Proxy</code> 和
+<code>Http  Proxy</code>
+填入：<code>http://Windows IP:7890</code>。</li>
 </ol>
-<p><img src="./image-20260308214739322.png" alt="image-20260308214739322"></p>
-<p>3.重启 VS Code 窗口，点击 Gemini 的 <strong>Sign in</strong>，即可秒开授权页面。</p>
-<hr>
-<h2 id="六、-备忘录：如何回退与修复"><a href="#六、-备忘录：如何回退与修复" class="headerlink" title="六、 备忘录：如何回退与修复"></a>六、 备忘录：如何回退与修复</h2><p>如果以后不需要代理了，或者环境搞乱了，按以下步骤回退：</p>
-<h3 id="1-撤销终端代理"><a href="#1-撤销终端代理" class="headerlink" title="1. 撤销终端代理"></a>1. 撤销终端代理</h3><ul>
-<li>编辑 <code>nano ~/.bashrc</code>，删除添加的 <code>export</code> 代码行。</li>
-<li>执行 <code>unset http_proxy https_proxy</code> 立即清除当前缓存。</li>
+<figure>
+<img src="image-20260308214739322.png" alt="image-20260308214739322" />
+<figcaption aria-hidden="true">image-20260308214739322</figcaption>
+</figure>
+<p>3.重启 VS Code 窗口，点击 Gemini 的 <strong>Sign
+in</strong>，即可秒开授权页面。</p>
+<hr />
+<h2 id="六-备忘录如何回退与修复">六、 备忘录：如何回退与修复</h2>
+<p>如果以后不需要代理了，或者环境搞乱了，按以下步骤回退：</p>
+<h3 id="撤销终端代理">1. 撤销终端代理</h3>
+<ul>
+<li>编辑 <code>nano ~/.bashrc</code>，删除添加的 <code>export</code>
+代码行。</li>
+<li>执行 <code>unset http_proxy https_proxy</code>
+立即清除当前缓存。</li>
 </ul>
-<h3 id="2-撤销-VS-Code-设置"><a href="#2-撤销-VS-Code-设置" class="headerlink" title="2. 撤销 VS Code 设置"></a>2. 撤销 VS Code 设置</h3><ul>
-<li>进入设置的 <strong>远程</strong> 标签页，清空 <code>Http Proxy</code> 框。</li>
+<h3 id="撤销-vs-code-设置">2. 撤销 VS Code 设置</h3>
+<ul>
+<li>进入设置的 <strong>远程</strong> 标签页，清空
+<code>Http Proxy</code> 框。</li>
 </ul>
-<h3 id="3-修复防火墙"><a href="#3-修复防火墙" class="headerlink" title="3. 修复防火墙"></a>3. 修复防火墙</h3><ul>
-<li>打开“高级安全 Windows Defender 防火墙”，找到 <code>Clash-Allow-Server</code> 规则，右键点击“禁用”或“删除”。</li>
+<h3 id="修复防火墙">3. 修复防火墙</h3>
+<ul>
+<li>打开“高级安全 Windows Defender 防火墙”，找到
+<code>Clash-Allow-Server</code> 规则，右键点击“禁用”或“删除”。</li>
 </ul>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>配置远程代理最容易踩的坑是 <strong>127.0.0.1</strong> 和 <strong>0.0.0.0</strong> 的区别，以及 <strong>Windows 防火墙</strong> 的静默拦截。只要确保物理链路通畅（Ping 通）且端口开放（监听 0.0.0.0），Gemini 就能成为你服务器搬砖的最强助力！</p>
-<p><strong>希望这篇博客对你有帮助！如果 Windows IP 变了，记得去 <code>.bashrc</code> 里改一下地址哦。还需要我补充其他细节吗？</strong></p>
+<h2 id="结语">结语</h2>
+<p>配置远程代理最容易踩的坑是 <strong>127.0.0.1</strong> 和
+<strong>0.0.0.0</strong> 的区别，以及 <strong>Windows 防火墙</strong>
+的静默拦截。只要确保物理链路通畅（Ping 通）且端口开放（监听
+0.0.0.0），Gemini 就能成为你服务器搬砖的最强助力！</p>
+<p><strong>希望这篇博客对你有帮助！如果 Windows IP 变了，记得去
+<code>.bashrc</code>
+里改一下地址哦。还需要我补充其他细节吗？</strong></p>
 
     
 
@@ -506,7 +582,13 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#VS-Code-Remote-SSH-%E9%85%8D%E7%BD%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E4%BB%A3%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">VS Code Remote-SSH 配置局域网代理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.0.1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%A1%88%E5%8F%91%E7%8E%B0%E5%9C%BA"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">1. 案发现场</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E6%A0%B8%E5%BF%83%E9%80%BB%E8%BE%91%EF%BC%9A%E8%B0%81%E5%9C%A8%E8%AE%BF%E9%97%AE%E7%BD%91%E7%BB%9C%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">一、 核心逻辑：谁在访问网络？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9AWindows-%E7%AB%AF%E9%85%8D%E7%BD%AE-Clash"><span class="toc-number">1.2.</span> <span class="toc-text">二、 第一步：Windows 端配置 (Clash)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E9%98%B2%E7%81%AB%E5%A2%99%E7%B2%BE%E5%87%86%E5%8A%A0%E5%9B%BA-%E5%AE%89%E5%85%A8%E7%AC%AC%E4%B8%80"><span class="toc-number">1.3.</span> <span class="toc-text">三、 第二步：防火墙精准加固 (安全第一)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E9%98%B2%E7%81%AB%E5%A2%99%E7%B2%BE%E5%87%86%E5%8A%A0%E5%9B%BA-%E2%80%94%E2%80%94-%E7%A0%B4%E8%A7%A3%E2%80%9C%E7%9C%8B%E5%BE%97%E8%A7%81%E8%BF%9E%E4%B8%8D%E4%B8%8A%E2%80%9D%E7%9A%84%E6%AD%BB%E5%B1%80"><span class="toc-number">1.3.1.</span> <span class="toc-text">三、 第二步：防火墙精准加固 —— 破解“看得见连不上”的死局</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">具体操作步骤：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81-%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BB%88%E7%AB%AF%E5%85%A8%E5%B1%80%E4%BB%A3%E7%90%86"><span class="toc-number">1.4.</span> <span class="toc-text">四、 第三步：服务器终端全局代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81-%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9AVS-Code-%E6%8F%92%E4%BB%B6%E8%81%94%E7%BD%91-Gemini-%E6%BF%80%E6%B4%BB"><span class="toc-number">1.5.</span> <span class="toc-text">五、 第四步：VS Code 插件联网 (Gemini 激活)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81-%E5%A4%87%E5%BF%98%E5%BD%95%EF%BC%9A%E5%A6%82%E4%BD%95%E5%9B%9E%E9%80%80%E4%B8%8E%E4%BF%AE%E5%A4%8D"><span class="toc-number">1.6.</span> <span class="toc-text">六、 备忘录：如何回退与修复</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%92%A4%E9%94%80%E7%BB%88%E7%AB%AF%E4%BB%A3%E7%90%86"><span class="toc-number">1.6.1.</span> <span class="toc-text">1. 撤销终端代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%92%A4%E9%94%80-VS-Code-%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.6.2.</span> <span class="toc-text">2. 撤销 VS Code 设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BF%AE%E5%A4%8D%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-number">1.6.3.</span> <span class="toc-text">3. 修复防火墙</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">1.7.</span> <span class="toc-text">结语</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#vs-code-remote-ssh-%E9%85%8D%E7%BD%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E4%BB%A3%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">VS Code Remote-SSH
+配置局域网代理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.0.1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A1%88%E5%8F%91%E7%8E%B0%E5%9C%BA"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">1. 案发现场</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E6%A0%B8%E5%BF%83%E9%80%BB%E8%BE%91%E8%B0%81%E5%9C%A8%E8%AE%BF%E9%97%AE%E7%BD%91%E7%BB%9C"><span class="toc-number">1.1.</span> <span class="toc-text">一、 核心逻辑：谁在访问网络？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E7%AC%AC%E4%B8%80%E6%AD%A5windows-%E7%AB%AF%E9%85%8D%E7%BD%AE-clash"><span class="toc-number">1.2.</span> <span class="toc-text">二、 第一步：Windows 端配置
+(Clash)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-%E7%AC%AC%E4%BA%8C%E6%AD%A5%E9%98%B2%E7%81%AB%E5%A2%99%E7%B2%BE%E5%87%86%E5%8A%A0%E5%9B%BA-%E5%AE%89%E5%85%A8%E7%AC%AC%E4%B8%80"><span class="toc-number">1.3.</span> <span class="toc-text">三、 第二步：防火墙精准加固
+(安全第一)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89-%E7%AC%AC%E4%BA%8C%E6%AD%A5%E9%98%B2%E7%81%AB%E5%A2%99%E7%B2%BE%E5%87%86%E5%8A%A0%E5%9B%BA-%E7%A0%B4%E8%A7%A3%E7%9C%8B%E5%BE%97%E8%A7%81%E8%BF%9E%E4%B8%8D%E4%B8%8A%E7%9A%84%E6%AD%BB%E5%B1%80"><span class="toc-number">1.3.1.</span> <span class="toc-text">三、
+第二步：防火墙精准加固 —— 破解“看得见连不上”的死局</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">具体操作步骤：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B-%E7%AC%AC%E4%B8%89%E6%AD%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BB%88%E7%AB%AF%E5%85%A8%E5%B1%80%E4%BB%A3%E7%90%86"><span class="toc-number">1.4.</span> <span class="toc-text">四、
+第三步：服务器终端全局代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94-%E7%AC%AC%E5%9B%9B%E6%AD%A5vs-code-%E6%8F%92%E4%BB%B6%E8%81%94%E7%BD%91-gemini-%E6%BF%80%E6%B4%BB"><span class="toc-number">1.5.</span> <span class="toc-text">五、 第四步：VS Code
+插件联网 (Gemini 激活)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD-%E5%A4%87%E5%BF%98%E5%BD%95%E5%A6%82%E4%BD%95%E5%9B%9E%E9%80%80%E4%B8%8E%E4%BF%AE%E5%A4%8D"><span class="toc-number">1.6.</span> <span class="toc-text">六、 备忘录：如何回退与修复</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%92%A4%E9%94%80%E7%BB%88%E7%AB%AF%E4%BB%A3%E7%90%86"><span class="toc-number">1.6.1.</span> <span class="toc-text">1. 撤销终端代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%92%A4%E9%94%80-vs-code-%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.6.2.</span> <span class="toc-text">2. 撤销 VS Code 设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E5%A4%8D%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-number">1.6.3.</span> <span class="toc-text">3. 修复防火墙</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">1.7.</span> <span class="toc-text">结语</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
