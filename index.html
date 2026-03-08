@@ -297,6 +297,112 @@
 
 
   
+    <article id="post-Remote-SSH-Proxy" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/TechNotes/Remote-SSH-Proxy/" target="_blank">VS Code Remote-SSH 配置局域网代理</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/TechNotes/Remote-SSH-Proxy/" class="archive-article-date">
+        <time datetime="2026-03-08T13:49:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2026-03-08</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="VS-Code-Remote-SSH-配置局域网代理"><a href="#VS-Code-Remote-SSH-配置局域网代理" class="headerlink" title="VS Code Remote-SSH 配置局域网代理"></a>VS Code Remote-SSH 配置局域网代理</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><h4 id="1-案发现场"><a href="#1-案发现场" class="headerlink" title="1. 案发现场"></a>1. 案发现场</h4><p>最近在远程服务器（Ubuntu Docker 容器）上配置 <strong>Gemini Code Assist</strong> 时，遇到了一个非常折磨人的问题： 点击插件的 <strong>Sign in</strong>，浏览器弹出了 Google 授权页面，我一路点击确认，最后页面显示 “Make sure you downloaded this app”的时候就无限循环没有进度了。</p>
+<p><img src="./image-20260308214015505.png" alt="image-20260308214015505"></p>
+<p>过去，但检查发现本地上网极其顺滑。经过一番排查才意识到：VS Code 的远程插件（如 Gemini/Cloud Code）其核心进程是跑在服务器上的。 当插件尝试完成 OAuth 鉴权回调或连接 Google API 时，它调用的是服务器的网络。而我的服务器处于内网环境，根本连不上外网，导致插件在“最后一步”由于握手失败而卡死。</p>
+<p><strong>深度分析：</strong> 起初我以为是本地 Windows 没翻过去，但检查发现本地上网极其顺滑。经过一番排查才意识到：<strong>VS Code 的远程插件（如 Gemini/Cloud Code）其核心进程是跑在服务器上的。</strong> 当插件尝试完成 OAuth 鉴权回调或连接 Google API 时，它调用的是<strong>服务器的网络</strong>。而我的服务器处于内网环境，根本连不上外网，导致插件在“最后一步”由于握手失败而卡死。</p>
+    
+    <a class="article-more-a" href="/TechNotes/Remote-SSH-Proxy/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日志</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">开发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/TechNotes//" class="article-tag-list-link color5">TechNotes</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/TechNotes/Remote-SSH-Proxy/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Build-A-Ladder" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -6338,6 +6444,10 @@ class="math inline">\(\approx 9\times{10}^{18}\)</span></td>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Clash</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">开发</a>
               </li>
             
             <div class="clearfix"></div>
