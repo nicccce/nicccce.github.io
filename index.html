@@ -325,10 +325,28 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h1 id="VS-Code-Remote-SSH-配置局域网代理"><a href="#VS-Code-Remote-SSH-配置局域网代理" class="headerlink" title="VS Code Remote-SSH 配置局域网代理"></a>VS Code Remote-SSH 配置局域网代理</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><h4 id="1-案发现场"><a href="#1-案发现场" class="headerlink" title="1. 案发现场"></a>1. 案发现场</h4><p>最近在远程服务器（Ubuntu Docker 容器）上配置 <strong>Gemini Code Assist</strong> 时，遇到了一个非常折磨人的问题： 点击插件的 <strong>Sign in</strong>，浏览器弹出了 Google 授权页面，我一路点击确认，最后页面显示 “Make sure you downloaded this app”的时候就无限循环没有进度了。</p>
-<p><img src="image-20260308214015505.png" alt="image-20260308214015505"></p>
-<p>过去，但检查发现本地上网极其顺滑。经过一番排查才意识到：VS Code 的远程插件（如 Gemini/Cloud Code）其核心进程是跑在服务器上的。 当插件尝试完成 OAuth 鉴权回调或连接 Google API 时，它调用的是服务器的网络。而我的服务器处于内网环境，根本连不上外网，导致插件在“最后一步”由于握手失败而卡死。</p>
-<p><strong>深度分析：</strong> 起初我以为是本地 Windows 没翻过去，但检查发现本地上网极其顺滑。经过一番排查才意识到：<strong>VS Code 的远程插件（如 Gemini/Cloud Code）其核心进程是跑在服务器上的。</strong> 当插件尝试完成 OAuth 鉴权回调或连接 Google API 时，它调用的是<strong>服务器的网络</strong>。而我的服务器处于内网环境，根本连不上外网，导致插件在“最后一步”由于握手失败而卡死。</p>
+    <h1 id="vs-code-remote-ssh-配置局域网代理">VS Code Remote-SSH
+配置局域网代理</h1>
+<h3 id="前言">前言</h3>
+<h4 id="案发现场">1. 案发现场</h4>
+<p>最近在远程服务器（Ubuntu Docker 容器）上配置 <strong>Gemini Code
+Assist</strong> 时，遇到了一个非常折磨人的问题： 点击插件的 <strong>Sign
+in</strong>，浏览器弹出了 Google 授权页面，我一路点击确认，最后页面显示
+“Make sure you downloaded this app”的时候就无限循环没有进度了。</p>
+<figure>
+<img src="image-20260308214015505.png" alt="image-20260308214015505" />
+<figcaption aria-hidden="true">image-20260308214015505</figcaption>
+</figure>
+<p>过去，但检查发现本地上网极其顺滑。经过一番排查才意识到：VS Code
+的远程插件（如 Gemini/Cloud Code）其核心进程是跑在服务器上的。
+当插件尝试完成 OAuth 鉴权回调或连接 Google API
+时，它调用的是服务器的网络。而我的服务器处于内网环境，根本连不上外网，导致插件在“最后一步”由于握手失败而卡死。</p>
+<p><strong>深度分析：</strong> 起初我以为是本地 Windows
+没翻过去，但检查发现本地上网极其顺滑。经过一番排查才意识到：<strong>VS
+Code 的远程插件（如 Gemini/Cloud
+Code）其核心进程是跑在服务器上的。</strong> 当插件尝试完成 OAuth
+鉴权回调或连接 Google API
+时，它调用的是<strong>服务器的网络</strong>。而我的服务器处于内网环境，根本连不上外网，导致插件在“最后一步”由于握手失败而卡死。</p>
     
     <a class="article-more-a" href="/TechNotes/Remote-SSH-Proxy/#more">more >></a>
     
