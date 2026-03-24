@@ -296,6 +296,130 @@
 
 
   
+    <article id="post-XOR-Dp-Parttition" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/Algorithm/XOR-Dp-Parttition/" target="_blank">异或 DP 的二进分块优化</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/Algorithm/XOR-Dp-Parttition/" class="archive-article-date">
+        <time datetime="2026-03-24T09:20:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2026-03-24</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="异或-dp-的二进分块优化-meet-in-the-middle">异或 DP
+的二进分块优化 (Meet in the Middle)</h1>
+<p><strong>题目来源：</strong> https://qoj.ac/problem/15322（2025 ICPC
+上海区域赛 I 题）</p>
+<p>不难将题目的DP方程化简为 <span class="math inline">\(dp[i] = \min_{j
+&lt; i} \{ dp[j] + (a_j \oplus a_i) \}\)</span></p>
+<p>数组长度 <span class="math inline">\(N \approx
+10^5\)</span>，但数值上限 <span class="math inline">\(M\)</span>
+不太大（例如 <span class="math inline">\(a_i &lt;
+2^{18}\)</span>）。</p>
+<p>但是不管是往前暴力遍历 <span class="math inline">\(j\)</span>
+还是遍历所有历史值域 <span class="math inline">\(a_j\)</span>
+时间复杂度是 <span class="math inline">\(O(N^2)\)</span> 或者 <span
+class="math inline">\(O(NM)\)</span> ，必然超时。</p>
+<h3 id="核心思想"><strong>核心思想</strong></h3>
+<p>在遍历所有历史值域 <span class="math inline">\(a_j\)</span>
+的基础上<strong>对值域进行按位分块</strong>。</p>
+<p>将 18 位二进制对半劈开：高 9 位、低 9 位。</p>
+<p>在查询和更新的时候各分担一半的复杂度</p>
+<p>每一半的值域只有 <span class="math inline">\(2^9 =
+512\)</span>。把遍历 <span class="math inline">\(O(M)\)</span>
+转化为遍历 <span class="math inline">\(O(\sqrt{M})\)</span>。</p>
+    
+    <a class="article-more-a" href="/Algorithm/XOR-Dp-Parttition/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Algorithm//" class="article-tag-list-link color5">Algorithm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/Algorithm/XOR-Dp-Parttition/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Remote-SSH-Proxy" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -6186,6 +6310,10 @@ cout&lt;&lt;dl.C::x&lt;&lt;endl; //50
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Unity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
             
             <div class="clearfix"></div>
