@@ -6,25 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://nicccce.github.io">
-  <title>浅谈敏感信息处理 | NICCCCE</title>
+  <title>Archives: 2026/5 | NICCCCE</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="浅谈敏感信息处理  “信息安全的核心不是完美的技术，而是有效的管理与人性化的考虑。” —— Bruce Schneier  什么是敏感信息？在项目开源的过程中，不可避免地会碰到敏感信息，例如：  云数据库的账号密码信息MySQL等数据库的用户名和密码。 微信登录涉及的 AppID、AppSecret这些信息用于第三方服务的 OAuth 认证，如果泄露可能导致账号被恶意使用。 API 密钥用于调用第">
-<meta property="og:type" content="article">
-<meta property="og:title" content="浅谈敏感信息处理">
-<meta property="og:url" content="https://nicccce.github.io/TechNotes/About-Sensitive-Data/">
+  <meta name="description" content="NICK&#39;s BLOG">
+<meta property="og:type" content="website">
+<meta property="og:title" content="NICCCCE">
+<meta property="og:url" content="https://nicccce.github.io/archives/2026/05/">
 <meta property="og:site_name" content="NICCCCE">
-<meta property="og:description" content="浅谈敏感信息处理  “信息安全的核心不是完美的技术，而是有效的管理与人性化的考虑。” —— Bruce Schneier  什么是敏感信息？在项目开源的过程中，不可避免地会碰到敏感信息，例如：  云数据库的账号密码信息MySQL等数据库的用户名和密码。 微信登录涉及的 AppID、AppSecret这些信息用于第三方服务的 OAuth 认证，如果泄露可能导致账号被恶意使用。 API 密钥用于调用第">
+<meta property="og:description" content="NICK&#39;s BLOG">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://nicccce.github.io/TechNotes/About-Sensitive-Data/image-20241019152930223.png">
-<meta property="og:image" content="https://nicccce.github.io/TechNotes/About-Sensitive-Data/image-20241019153136968.png">
-<meta property="article:published_time" content="2024-10-19T06:34:42.000Z">
-<meta property="article:modified_time" content="2024-11-20T10:24:08.000Z">
 <meta property="article:author" content="NICK">
-<meta property="article:tag" content="后端">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://nicccce.github.io/TechNotes/About-Sensitive-Data/image-20241019152930223.png">
   
     <link rel="alternative" href="/atom.xml" title="NICCCCE" type="application/atom+xml">
   
@@ -203,296 +197,80 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-About-Sensitive-Data" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
+            
+  
+  
     
-      <header class="article-header">
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2026" class="archive-year">2026</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	
+<a href="/CourseNotes/Reinforcement-Learning-Note/" class="archive-article-date">
+        <time datetime="2026-05-01T12:47:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2026-05-01</time>
+</a>
+
+        </div>
+    	 
   
+    <h1 itemprop="name">
+	
+	  <a class="archive-article-title" href="/CourseNotes/Reinforcement-Learning-Note/" target="_blank">Reinforcement Learning Note</a>
   
-    <h1 class="article-title" itemprop="name">
-      浅谈敏感信息处理
     </h1>
   
 
 
-  
-  
-        
-        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
-              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
-        </span>
-
-<a href="/TechNotes/About-Sensitive-Data/" class="archive-article-date">
-        <time datetime="2024-10-19T06:34:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-10-19</time>
-</a>
-
-  
-  
-    
-<div style="margin-top:10px;">
-  <span class="post-time">
-    <span class="post-meta-item-icon">
-      <!-- fonts.scss -->
-      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
-      <i class="icon-statistics"></i>
-      <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.4k字</span>
-    </span>
-  </span>
-
-  <span class="post-time">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-      <i class="icon-book icon"></i>
-      <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">5分</span>
-    </span>
-  </span>
-</div>
-
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="浅谈敏感信息处理"><a href="#浅谈敏感信息处理" class="headerlink" title="浅谈敏感信息处理"></a>浅谈敏感信息处理</h1><blockquote>
-<p> “<strong>信息安全的核心不是完美的技术，而是有效的管理与人性化的考虑。</strong>” —— <strong>Bruce Schneier</strong></p>
-</blockquote>
-<h2 id="什么是敏感信息？"><a href="#什么是敏感信息？" class="headerlink" title="什么是敏感信息？"></a>什么是敏感信息？</h2><p>在项目开源的过程中，不可避免地会碰到敏感信息，例如：</p>
-<ul>
-<li><strong>云数据库的账号密码信息</strong><br>MySQL等数据库的用户名和密码。</li>
-<li><strong>微信登录涉及的 <code>AppID</code>、<code>AppSecret</code></strong><br>这些信息用于第三方服务的 OAuth 认证，如果泄露可能导致账号被恶意使用。</li>
-<li><strong>API 密钥</strong><br>用于调用第三方服务的 <code>API_KEY</code>，如支付网关、地图服务、邮件发送等。</li>
-<li><strong>SSH 私钥</strong><br>服务器管理中的 SSH 私钥文件，如果泄露会让攻击者获得服务器的完全访问权限。</li>
-<li><strong>JWT Secret</strong><br>这些密钥用于生成和验证 JWT，保护用户身份信息。</li>
-<li><strong>支付信息</strong><br>例如：银行卡号、支付网关的密钥（如支付宝的签名密钥）。</li>
-<li><strong>个人身份信息（PII）</strong><br>例如：身份证号码、护照信息、电话号码、住址、电子邮件地址等。</li>
-<li><strong>密码文件</strong><br>例如：包含用户登录密码或哈希密码的配置文件、<code>.env</code> 文件中明文存储的敏感数据。</li>
-</ul>
-<p>这些敏感信息如果在开源项目中暴露，可能会引发数据泄露、财务损失、甚至法律责任等严重后果，因此在项目中需要妥善处理和保护。</p>
-<span id="more"></span>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>在实际项目中，敏感信息通常会存储在配置文件中，例如 <code>.application.yml</code> 或 <code>.env</code> 文件中。为了防止这些文件中的敏感信息被上传到 Git 仓库，最彻底的解决方案是在 <code>.gitignore</code> 文件中忽略它们的提交。例如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">src/main/resources/application.yml</span><br></pre></td></tr></table></figure>
-<p>或者使用通配符来忽略所有 <code>.yml</code> 文件：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*.yml</span><br></pre></td></tr></table></figure>
-<p>同样，可以忽略环境变量文件：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.env</span><br></pre></td></tr></table></figure>
-<p>虽然这可以有效防止敏感信息的泄露，但这样做会导致开源仓库缺少必要的配置文件，从而让你的合作者在克隆仓库后，发现还需要自己创建一系列的文件。这显然增加了使用和协作的难度，不是最优的解决方案。</p>
-<h3 id="改进方案"><a href="#改进方案" class="headerlink" title="改进方案"></a>改进方案</h3><p>为了解决这个问题，我建议在 <code>.gitignore</code> 中忽略包含敏感信息的配置文件的同时，提供一个示例配置文件。这个示例文件只包含必要的配置字段和注释，供开发者参考。这样既能防止敏感信息泄露，又能让项目在开源时保持完整，降低合作者配置的门槛。</p>
-<p>假设你有一个包含敏感信息的配置文件 <code>config.yml</code>，可以在 <code>.gitignore</code> 文件中添加以下内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/config.yml</span><br></pre></td></tr></table></figure>
-<p>然后，创建一个示例文件 <code>config.yml.example</code>，其中包含必要的配置头和注释。其内容可能如下所示：</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数据库连接信息</span></span><br><span class="line"><span class="attr">dsn:</span> <span class="string">root:root@tcp(127.0.0.1:3306)/dbname?charset=utf8mb4&amp;parseTime=True&amp;loc=Local</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># JWT 密钥</span></span><br><span class="line"><span class="attr">jwtSecret:</span> <span class="string">&quot;your-jwt-secret&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 应用端口</span></span><br><span class="line"><span class="attr">port:</span> <span class="number">3005</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 微信小程序配置</span></span><br><span class="line"><span class="attr">wxAppID:</span></span><br><span class="line"><span class="attr">wxAppSecret:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 文件上传目录</span></span><br><span class="line"><span class="attr">uploadDir:</span></span><br></pre></td></tr></table></figure>
-<p>这样，其他开发者可以很方便地根据示例文件进行配置。为了让使用者更好地理解流程，你还可以在 <code>README</code> 文件中加入相关说明，例如：</p>
-<blockquote>
-<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><ol>
-<li><p>克隆项目代码：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/your-repo/project.git</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>复制示例配置文件并进行必要修改：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> config.yml.example config.yml</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>根据实际情况填写 <code>config.yml</code> 中的相关信息</p>
-</li>
-<li><p>启动项目：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">go build</span><br><span class="line">./project-name</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</blockquote>
-<p>这样既避免了敏感信息的泄露，又为合作者提供了完整的配置指引。</p>
-<h2 id="补救措施"><a href="#补救措施" class="headerlink" title="补救措施"></a>补救措施</h2><p>如果你不慎将敏感信息提交到了仓库中，并且这些信息已经存在于 Git 历史记录中，这时候 亡羊补牢，为时不晚。</p>
-<p>简单地删除文件并重新提交并不能完全解决问题，因为这些敏感信息仍然保留在 Git 的历史记录中。</p>
-<p>以下是修复步骤：</p>
-<h3 id="1-备份敏感文件"><a href="#1-备份敏感文件" class="headerlink" title="1. 备份敏感文件"></a>1. 备份敏感文件</h3><p>首先，备份你需要删除的文件（如果这些文件还需要使用），因为接下来的操作会从本地和远程仓库中彻底删除这些文件。</p>
-<h3 id="2-提交或撤回未提交的修改"><a href="#2-提交或撤回未提交的修改" class="headerlink" title="2. 提交或撤回未提交的修改"></a>2. 提交或撤回未提交的修改</h3><p>如果项目中有未提交的更改，请将其提交到仓库，或撤回这些修改。否则，执行后续步骤时，Git 会报错：<code>Cannot rewrite branches: You have unstaged changes.</code></p>
-<h3 id="3-执行清除命令"><a href="#3-执行清除命令" class="headerlink" title="3. 执行清除命令"></a>3. 执行清除命令</h3><p>使用 <code>git filter-branch</code> 命令清除历史记录中的敏感文件。以下命令会删除特定文件的历史记录：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git filter-branch -f --tree-filter <span class="string">&#x27;rm -f src/main/resources/application.yml&#x27;</span> HEAD</span><br></pre></td></tr></table></figure>
-<p>请将示例中的文件路径替换为你要删除的实际文件路径（相对路径）。</p>
-<p>可能要等待一段时间，结果大概是这样：</p>
-<p><img src="image-20241019152930223.png" alt="image-20241019152930223"></p>
-<h3 id="4-强制推送修改"><a href="#4-强制推送修改" class="headerlink" title="4. 强制推送修改"></a>4. 强制推送修改</h3><p>清除文件后，使用以下命令强制推送修改到远程仓库：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin main --force</span><br></pre></td></tr></table></figure>
-<p>如果你的分支名称不是 <code>main</code>，请将 <code>main</code> 替换为你的实际分支名称。</p>
-<p><img src="image-20241019153136968.png" alt="image-20241019153136968"></p>
-<p><strong>注意</strong>：强制推送会覆盖远程仓库的历史记录，所有与该分支有关的开发者需要重新拉取代码。因此，请提前告知团队成员。</p>
-<h3 id="5-重新创建文件并防护敏感信息"><a href="#5-重新创建文件并防护敏感信息" class="headerlink" title="5. 重新创建文件并防护敏感信息"></a>5. 重新创建文件并防护敏感信息</h3><p>完成上述步骤后，根据前文提供的解决方案，重新创建示例配置文件，并确保敏感信息得到了适当的防护。</p>
-
-    
-
-    
-
-    
-    <div class="declare"> 
-      <ul class="post-copyright">
-        <li>
-          <strong>本文作者：</strong>
-          NICK
-        </li>
-        <li>
-          <strong>本文链接：</strong>
-          <a href="https://nicccce.github.io/TechNotes/About-Sensitive-Data/" title="浅谈敏感信息处理" target="_blank">https://nicccce.github.io/TechNotes/About-Sensitive-Data/</a>
-        </li>
-        
-        <li>
-          <strong>版权声明： </strong>
+        <div class="article-info info-on-right">
           
-          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
-        </li>
-        
-      </ul>
-    </div>
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">后端</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Reinforcement Learning</a>
         		</li>
       		
 		</ul>
 	</div>
 
-    
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/TechNotes//" class="article-tag-list-link color5">TechNotes</a>
+        			<a href="/categories/CourseNotes//" class="article-tag-list-link color2">CourseNotes</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-    
-
-    
-    
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a> -->
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://nicccce.github.io/TechNotes/About-Sensitive-Data/" alt="微信分享二维码"> -->
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-
-    
-    <div class="clearfix"></div>
-  </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-
-<nav id="article-nav">
-  
-    <a href="/ACM/Root-Divide/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          根号分治
-        
-      </div>
-    </a>
   
   
-    <a href="/TechNotes/WebSocket-Note/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">WebSocket笔记</div>
-      <i class="icon-circle-right"></i>
-    </a>
+    </div></section>
   
-</nav>
 
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%85%E8%B0%88%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E5%A4%84%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">浅谈敏感信息处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">什么是敏感信息？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.2.</span> <span class="toc-text">解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B9%E8%BF%9B%E6%96%B9%E6%A1%88"><span class="toc-number">1.2.1.</span> <span class="toc-text">改进方案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2"><span class="toc-number">1.3.</span> <span class="toc-text">部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E6%95%91%E6%8E%AA%E6%96%BD"><span class="toc-number">1.4.</span> <span class="toc-text">补救措施</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%A4%87%E4%BB%BD%E6%95%8F%E6%84%9F%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.1.</span> <span class="toc-text">1. 备份敏感文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%8F%90%E4%BA%A4%E6%88%96%E6%92%A4%E5%9B%9E%E6%9C%AA%E6%8F%90%E4%BA%A4%E7%9A%84%E4%BF%AE%E6%94%B9"><span class="toc-number">1.4.2.</span> <span class="toc-text">2. 提交或撤回未提交的修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%89%A7%E8%A1%8C%E6%B8%85%E9%99%A4%E5%91%BD%E4%BB%A4"><span class="toc-number">1.4.3.</span> <span class="toc-text">3. 执行清除命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%BC%BA%E5%88%B6%E6%8E%A8%E9%80%81%E4%BF%AE%E6%94%B9"><span class="toc-number">1.4.4.</span> <span class="toc-text">4. 强制推送修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E9%87%8D%E6%96%B0%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E5%B9%B6%E9%98%B2%E6%8A%A4%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF"><span class="toc-number">1.4.5.</span> <span class="toc-text">5. 重新创建文件并防护敏感信息</span></a></li></ol></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 
           </div>
@@ -533,8 +311,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
