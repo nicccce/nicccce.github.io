@@ -10,16 +10,16 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="JPAJPA全称Java Persistence API（2019年重新命名为 Jakarta Persistence API ），是Sun官方提出的一种ORM规范。 O:Object R: Relational M:mapping  作用 1.简化持久化操作的开发工作：让开发者从繁琐的 JDBC 和 SQL 代码中解脱出来，直接面向对象持久化操作。 2.Sun希望持久化技术能够统一，实现天下归一">
+  <meta name="description" content="JPA JPA全称Java Persistence API（2019年重新命名为 Jakarta Persistence API ），是Sun官方提出的一种ORM规范。 O:Object R: Relational M:mapping">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JPA笔记">
 <meta property="og:url" content="https://nicccce.github.io/TechNotes/JPA-Note/">
 <meta property="og:site_name" content="NICCCCE">
-<meta property="og:description" content="JPAJPA全称Java Persistence API（2019年重新命名为 Jakarta Persistence API ），是Sun官方提出的一种ORM规范。 O:Object R: Relational M:mapping  作用 1.简化持久化操作的开发工作：让开发者从繁琐的 JDBC 和 SQL 代码中解脱出来，直接面向对象持久化操作。 2.Sun希望持久化技术能够统一，实现天下归一">
+<meta property="og:description" content="JPA JPA全称Java Persistence API（2019年重新命名为 Jakarta Persistence API ），是Sun官方提出的一种ORM规范。 O:Object R: Relational M:mapping">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://nicccce.github.io/TechNotes/JPA-Note/JPA-Note/20160324004308608.png">
 <meta property="article:published_time" content="2024-05-07T17:59:56.000Z">
-<meta property="article:modified_time" content="2024-05-24T18:45:54.000Z">
+<meta property="article:modified_time" content="2026-07-05T07:47:41.075Z">
 <meta property="article:author" content="NICK">
 <meta property="article:tag" content="后端">
 <meta property="article:tag" content="笔记">
@@ -257,32 +257,33 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h2 id="JPA"><a href="#JPA" class="headerlink" title="JPA"></a>JPA</h2><p>JPA全称Java Persistence API（2019年重新命名为 Jakarta Persistence API ），是Sun官方提出的<strong>一种ORM规范。</strong></p>
+    <h2 id="jpa">JPA</h2>
+<p>JPA全称Java Persistence API（2019年重新命名为 Jakarta Persistence API
+），是Sun官方提出的<strong>一种ORM规范。</strong></p>
 <p><strong>O:Object R: Relational M:mapping</strong></p>
+<span id="more"></span>
 <ul>
 <li><p><strong>作用</strong></p>
-<p>1.简化持久化操作的开发工作：让开发者从繁琐的 JDBC 和 SQL 代码中解脱出来，直接面向对象持久化操作。</p>
+<p>1.简化持久化操作的开发工作：让开发者从繁琐的 JDBC 和 SQL
+代码中解脱出来，直接面向对象持久化操作。</p>
 <p>2.Sun希望持久化技术能够统一，实现天下归一：如果你是基于JPA进行持久化你可以随意切换数据库。</p>
 <p>该规范为我们提供了：</p>
 <p>1）<strong>ORM映射元数据</strong>：JPA支持XML和注解两种元数据的形式，元数据描述对象和表之间的映射关系，框架据此将实体对</p>
 <p>象持久化到数据库表中；</p>
-<p>如：<code>@Entity</code> 、 <code>@Table</code> 、<code>@Id</code> 与 <code>@Column</code>等注解。</p>
-<p>2）<strong>JPA 的API</strong>：用来操作实体对象，执行CRUD操作，框架在后台替我们完成所有的事情，开发者从繁琐的JDBC和</p>
+<p>如：<code>@Entity</code> 、 <code>@Table</code> 、<code>@Id</code> 与
+<code>@Column</code>等注解。</p>
+<p>2）<strong>JPA
+的API</strong>：用来操作实体对象，执行CRUD操作，框架在后台替我们完成所有的事情，开发者从繁琐的JDBC和</p>
 <p>SQL代码中解脱出来。</p>
 <p>如：<code>entityManager.merge(T t)；</code></p>
 <p>3）<strong>JPQL查询语言</strong>：通过面向对象而非面向数据库的查询语言查询数据，避免程序的SQL语句紧密耦合。</p>
 <p>如：<code>from Student s where s.name = ?</code></p>
 <blockquote>
-<p>So: JPA仅仅是一种规范，也就是说JPA仅仅定义了一些接口，而接口是需要实现才能工作的。</p>
-</blockquote>
-</li>
-</ul>
-<ul>
+<p>So:
+JPA仅仅是一种规范，也就是说JPA仅仅定义了一些接口，而接口是需要实现才能工作的。</p>
+</blockquote></li>
 <li><p><strong>Hibernate与JPA:</strong></p>
-<p>所以底层需要某种实现，而Hibernate就是实现了JPA接口的ORM框架。</p>
-</li>
-</ul>
-<ul>
+<p>所以底层需要某种实现，而Hibernate就是实现了JPA接口的ORM框架。</p></li>
 <li><p><strong>和mybatis区别：</strong></p>
 <ul>
 <li><p><strong>mybatis</strong>：</p>
@@ -290,21 +291,18 @@
 <p>半自动的ORM框架，</p>
 <p>小巧： mybatis就是jdbc封装</p>
 <p>在国内更流行。</p>
-<p>场景： 在业务比较复杂系统进行使用，</p>
-</li>
+<p>场景： 在业务比较复杂系统进行使用，</p></li>
 <li><p><strong>hibernate</strong>：</p>
 <p>强大、方便、高效、（简单）复杂、绕弯子、全自动</p>
 <p>全自动的ORM框架，</p>
 <p>强大：根据ORM映射生成不同SQL</p>
 <p>在国外更流。</p>
-<p>场景： 在业务相对简单的系统进行使用，随着微服务的流行。</p>
-</li>
+<p>场景： 在业务相对简单的系统进行使用，随着微服务的流行。</p></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<span id="more"></span>
-<h3 id="Jpa示例"><a href="#Jpa示例" class="headerlink" title="Jpa示例"></a>Jpa示例</h3><p>以下内容实际没啥用，只是展示jpa的特色罢了，可以跳过</p>
-<p>1、<strong>添加META-INF\persistence.xml</strong></p>
+<h3 id="jpa示例">Jpa示例</h3>
+<p>以下内容实际没啥用，只是展示jpa的特色罢了，可以跳过</p>
+<p>1、<strong>添加META-INF.xml</strong></p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0” encoding=&quot;</span>UTF-8<span class="string">&quot;?&gt;</span></span></span><br><span class="line"><span class="string"><span class="meta">&lt;persistence xmlns=&quot;</span>http://java.sun.com/xml/ns/persistence<span class="string">&quot; version=&quot;</span>2.0<span class="string">&quot;&gt;</span></span></span><br><span class="line"><span class="string"><span class="meta">&lt;!-- 需要配置persistence-unit节点</span></span></span><br><span class="line"><span class="string"><span class="meta">持久化单元:</span></span></span><br><span class="line"><span class="string"><span class="meta">name:持久化单元名称</span></span></span><br><span class="line"><span class="string"><span class="meta">transaction-type:事务管理的方式</span></span></span><br><span class="line"><span class="string"><span class="meta">JTA:分布式事务管理</span></span></span><br><span class="line"><span class="string"><span class="meta">RESOURCE_LOCAL：本地事务管理</span></span></span><br><span class="line"><span class="string"><span class="meta">--&gt;</span></span></span><br><span class="line"><span class="string"><span class="meta">&lt;persistence‐unit name=&quot;</span>hibernateJPA<span class="string">&quot; transaction‐type=&quot;</span>RESOURCE_LOCAL<span class="string">&quot;&gt;</span></span></span><br><span class="line"><span class="string"><span class="meta">&lt;class&gt;xxx&lt;/class&gt;</span></span></span><br><span class="line"><span class="string"><span class="meta">&lt;!--jpa的实现方式 --&gt;</span></span></span><br><span class="line"><span class="string"><span class="meta">&lt;provider&gt;org.hibernate.jpa.HibernatePersistenceProvider&lt;/provider&gt;</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">&lt;!-- 可选配置：配置jpa实现方的配置信息 --&gt;</span></span></span><br><span class="line"><span class="string"><span class="meta">&lt;properties&gt;</span></span></span><br><span class="line"><span class="string"><span class="meta">&lt;!-- 数据库信息</span></span></span><br><span class="line"><span class="string"><span class="meta">用户名，javax.persistence.jdbc.user</span></span></span><br><span class="line"><span class="string"><span class="meta">密码， javax.persistence.jdbc.password</span></span></span><br><span class="line"><span class="string"><span class="meta">驱动， javax.persistence.jdbc.driver</span></span></span><br><span class="line"><span class="string"><span class="meta">数据库地址 javax.persistence.jdbc.url</span></span></span><br><span class="line"><span class="string"><span class="meta">--&gt;</span></span></span><br><span class="line"><span class="string"><span class="meta">&lt;property name=&quot;</span>javax.persistence.jdbc.user<span class="string">&quot; value=&quot;</span>root<span class="string">&quot;/&gt;</span></span></span><br><span class="line"><span class="string"><span class="meta">&lt;property name=&quot;</span>javax.persistence.jdbc.password<span class="string">&quot; value=&quot;</span>123456<span class="string">&quot;/&gt;</span></span></span><br><span class="line"><span class="string"><span class="meta">&lt;property name=&quot;</span>javax.persistence.jdbc.driver<span class="string">&quot; value=&quot;</span>com.mysql.cj.jdbc.Driver<span class="string">&quot;/&gt;</span></span></span><br><span class="line"><span class="string"><span class="meta">&lt;property name=&quot;</span>javax.persistence.jdbc.url<span class="string">&quot; value=&quot;</span>jdbc:mysql://localhost:3306/springdata_jpa?</span></span><br><span class="line"><span class="meta">serverTimezone=UTC<span class="string">&quot;/&gt;</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">&lt;!-- 配置jpa实现方(hibernate)的配置信息</span></span></span><br><span class="line"><span class="string"><span class="meta">显示sql ： false|true</span></span></span><br><span class="line"><span class="string"><span class="meta">自动创建数据库表 ： hibernate.hbm2ddl.auto</span></span></span><br><span class="line"><span class="string"><span class="meta">create : 程序运行时创建数据库表（如果有表，先删除表再创建）</span></span></span><br><span class="line"><span class="string"><span class="meta">update ：程序运行时创建表（如果有表，不会创建表）</span></span></span><br><span class="line"><span class="string"><span class="meta">none ：不会创建表</span></span></span><br><span class="line"><span class="string"><span class="meta">--&gt;</span></span></span><br><span class="line"><span class="string"><span class="meta">&lt;property name=&quot;</span>hibernate.show_sql<span class="string">&quot; value=&quot;</span>true<span class="string">&quot; /&gt;</span></span></span><br><span class="line"><span class="string"><span class="meta">&lt;property name=&quot;</span>hibernate.hbm2ddl.auto<span class="string">&quot; value=&quot;</span>update<span class="string">&quot; /&gt;</span></span></span><br><span class="line"><span class="string"><span class="meta">&lt;property name=&quot;</span>hibernate.dialect<span class="string">&quot; value=&quot;</span>org.hibernate.dialect.MySQL5InnoDBDialect<span class="string">&quot; /&gt;</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">&lt;/properties&gt;</span></span></span><br><span class="line"><span class="string"><span class="meta">&lt;/persistence‐unit&gt;</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">&lt;/persistence&gt;</span></span></span><br></pre></td></tr></table></figure>
 <p><strong>2、测试代码：</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.xushu.pojo.Customer;</span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.persistence.*;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JpaTest</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> EntityManagerFactory factory;</span><br><span class="line">    EntityManager em;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">//1.加载配置文件，创建entityanagerFactory</span></span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Configuration</span>.buildsessionFactory();</span><br><span class="line">        factory = Persistence.createEntityManagerFactory(<span class="string">&quot;hibernateJPA&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    *查询全部</span></span><br><span class="line"><span class="comment">    *jqpl:from cn.itcast.domain.Customer</span></span><br><span class="line"><span class="comment">    *sql:SELECT *FROM cst customer</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> testR <span class="title function_">HQL</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">//2.开启事务</span></span><br><span class="line">        EntityTransaction tx=em.getTransaction();</span><br><span class="line">        tx.begin();</span><br><span class="line">        <span class="comment">//3.查询全部</span></span><br><span class="line">        String jpql=<span class="string">&quot;select cfrom Customer c&quot;</span>;</span><br><span class="line">        <span class="type">Query</span> <span class="variable">query</span> <span class="operator">=</span> em.createQuery(jpql);<span class="comment">//创建Query查询对象，query对象才是执行jqpl的对象</span></span><br><span class="line">        <span class="comment">//发送查询，并封装结果集</span></span><br><span class="line">        <span class="type">List</span> <span class="variable">list</span> <span class="operator">=</span> query.getResultList();</span><br><span class="line">        <span class="keyword">for</span>(object obj : list)&#123;</span><br><span class="line">            System.out.print(obj);</span><br><span class="line">            <span class="comment">//4.提交事务</span></span><br><span class="line">            tx.commit();</span><br><span class="line">            <span class="comment">//5.释放资源</span></span><br><span class="line">            em.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testR</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">//2.开启事务</span></span><br><span class="line">        EntityTransaction tx=em.getTransaction();</span><br><span class="line">        tx.begin();</span><br><span class="line">        Customer customer=em.getReference(Customer.class，<span class="number">1L</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;===========================&quot;</span>);</span><br><span class="line">        System.out.println(customer);</span><br><span class="line">        <span class="comment">//4.提交事务</span></span><br><span class="line">        tx.commit()</span><br><span class="line">        <span class="comment">//5.释放资源</span></span><br><span class="line">        em.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;                       </span><br></pre></td></tr></table></figure>
@@ -315,498 +313,611 @@
 <li>删除状态：执行remove方法，事物提交之前</li>
 <li>游离状态：游离状态就是提交到数据库后，事务commit后实体的状态，因为事务已经提交了，此时实体的属性任你如何改变，也不会同步到数据库，因为游离是没人管的孩子，不在持久化上下文中。</li>
 </ul>
-<p><img src="JPA-Note/20160324004308608.png" alt="20160324004308608"></p>
+<figure>
+<img src="JPA-Note/20160324004308608.png" alt="20160324004308608" />
+<figcaption aria-hidden="true">20160324004308608</figcaption>
+</figure>
 <p><strong>public void persist(Object entity)</strong></p>
 <p>persist方法可以将实例转换为managed(托管)状态。在调用flush()方法或提交事物后，实例将会被插入到数据库中。</p>
 <p>对不同状态下的实例A，persist会产生以下操作:</p>
-<ol>
-<li><p>如果A是一个new状态的实体，它将会转为managed状态；</p>
-</li>
-<li><p>如果A是一个managed状态的实体，它的状态不会发生任何改变。但是系统仍会在数据库执行INSERT操作；</p>
-</li>
-<li><p>如果A是一个removed(删除)状态的实体，它将会转换为受控状态；</p>
-</li>
-<li><p>如果A是一个detached(分离)状态的实体，该方法会抛出IllegalArgumentException异常，具体异常根据不同的JPA实现有关。</p>
-</li>
+<ol type="1">
+<li><p>如果A是一个new状态的实体，它将会转为managed状态；</p></li>
+<li><p>如果A是一个managed状态的实体，它的状态不会发生任何改变。但是系统仍会在数据库执行INSERT操作；</p></li>
+<li><p>如果A是一个removed(删除)状态的实体，它将会转换为受控状态；</p></li>
+<li><p>如果A是一个detached(分离)状态的实体，该方法会抛出IllegalArgumentException异常，具体异常根据不同的JPA实现有关。</p></li>
 </ol>
 <p><strong>public void merge(Object entity)</strong></p>
 <p>merge方法的主要作用是将用户对一个detached状态实体的修改进行归档，归档后将产生一个新的managed状态对象。</p>
 <p>对不同状态下的实例A，merge会产生以下操作:</p>
-<ol>
-<li><p>如果A是一个detached状态的实体，该方法会将A的修改提交到数据库，并返回一个新的managed状态的实例A2；</p>
-</li>
-<li><p>如果A是一个new状态的实体，该方法会产生一个根据A产生的managed状态实体A2;</p>
-</li>
-<li><p>如果A是一个managed状态的实体，它的状态不会发生任何改变。但是系统仍会在数据库执行UPDATE操作；</p>
-</li>
-<li><p>如果A是一个removed状态的实体，该方法会抛出IllegalArgumentException异常。</p>
-</li>
+<ol type="1">
+<li><p>如果A是一个detached状态的实体，该方法会将A的修改提交到数据库，并返回一个新的managed状态的实例A2；</p></li>
+<li><p>如果A是一个new状态的实体，该方法会产生一个根据A产生的managed状态实体A2;</p></li>
+<li><p>如果A是一个managed状态的实体，它的状态不会发生任何改变。但是系统仍会在数据库执行UPDATE操作；</p></li>
+<li><p>如果A是一个removed状态的实体，该方法会抛出IllegalArgumentException异常。</p></li>
 </ol>
 <p><strong>public void refresh(Object entity)</strong></p>
 <p>refresh方法可以保证当前的实例与数据库中的实例的内容一致。</p>
 <p>对不同状态下的实例A，refresh会产生以下操作:</p>
-<ol>
-<li><p>如果A是一个new状态的实例，不会发生任何操作，但有可能会抛出异常，具体情况根据不同JPA实现有关；</p>
-</li>
-<li><p>如果A是一个managed状态的实例，它的属性将会和数据库中的数据同步；</p>
-</li>
-<li><p>如果A是一个removed状态的实例，该方法将会抛出异常: Entity not managed</p>
-</li>
-<li><p>如果A是一个detached状态的实体，该方法将会抛出异常。</p>
-</li>
+<ol type="1">
+<li><p>如果A是一个new状态的实例，不会发生任何操作，但有可能会抛出异常，具体情况根据不同JPA实现有关；</p></li>
+<li><p>如果A是一个managed状态的实例，它的属性将会和数据库中的数据同步；</p></li>
+<li><p>如果A是一个removed状态的实例，该方法将会抛出异常: Entity not
+managed</p></li>
+<li><p>如果A是一个detached状态的实体，该方法将会抛出异常。</p></li>
 </ol>
 <p><strong>public void remove(Object entity)</strong></p>
 <p>remove方法可以将实体转换为removed状态，并且在调用flush()方法或提交事物后删除数据库中的数据。</p>
 <p>对不同状态下的实例A，remove会产生以下操作:</p>
-<ol>
-<li><p>如果A是一个new状态的实例，A的状态不会发生任何改变，但系统仍会在数据库中执行DELETE语句；</p>
-</li>
-<li><p>如果A是一个managed状态的实例，它的状态会转换为removed；</p>
-</li>
-<li><p>如果A是一个removed状态的实例，不会发生任何操作;</p>
-</li>
-<li><p>如果A是一个detached状态的实体，该方法将会抛出异常。</p>
-</li>
+<ol type="1">
+<li><p>如果A是一个new状态的实例，A的状态不会发生任何改变，但系统仍会在数据库中执行DELETE语句；</p></li>
+<li><p>如果A是一个managed状态的实例，它的状态会转换为removed；</p></li>
+<li><p>如果A是一个removed状态的实例，不会发生任何操作;</p></li>
+<li><p>如果A是一个detached状态的实体，该方法将会抛出异常。</p></li>
 </ol>
-<h3 id="Spring-data-JPA"><a href="#Spring-data-JPA" class="headerlink" title="Spring data JPA"></a><a target="_blank" rel="noopener" href="https://spring.io/projects/spring-data-jpa#overview"><strong>Spring data JPA</strong></a></h3><blockquote>
-<p>Spring Data JPA, part of the larger Spring Data family, makes it easy to easily implement JPA based repositories. This module deals with enhanced support for JPA based data access layers. It makes it easier to build Spring-poweredapplications that use data access technologies.</p>
-<p>Implementing a data access layer of an application has been cumbersome for quite a while. Too much boilerplate codehas to be written to execute simple queries as well as perform pagination, and auditing. Spring Data JPA aims tosignificantly improve the implementation of data access layers by reducing the effort to the amount that’s actuallyneeded. As a developer you write your repository interfaces, including custom finder methods, and Spring will provide theimplementation automatically.</p>
-<p>Spring Data JPA 是更大的 Spring Data 系列的一部分，可以轻松实现基于 JPA 的repositories。该模块处理对基于 JPA 的数据访问层的增强支持。它使构建使用数据访问技术的 Spring 驱动的应用程序变得更加容易。</p>
-<p>实现应用程序的数据访问层已经很麻烦了。必须编写太多样板代码来执行简单的查询以及执行分页和审计。<strong>Spring Data JPA 旨在改进数据访问层的实现以提升开发效率</strong>。作为开发人员，您编写存储库接口，包括自定义 finder 方法，Spring 将自动提供实现。</p>
+<h3 id="spring-data-jpa"><a
+target="_blank" rel="noopener" href="https://spring.io/projects/spring-data-jpa#overview"><strong>Spring
+data JPA</strong></a></h3>
+<blockquote>
+<p>Spring Data JPA, part of the larger Spring Data family, makes it easy
+to easily implement JPA based repositories. This module deals with
+enhanced support for JPA based data access layers. It makes it easier to
+build Spring-poweredapplications that use data access technologies.</p>
+<p>Implementing a data access layer of an application has been
+cumbersome for quite a while. Too much boilerplate codehas to be written
+to execute simple queries as well as perform pagination, and auditing.
+Spring Data JPA aims tosignificantly improve the implementation of data
+access layers by reducing the effort to the amount that’s
+actuallyneeded. As a developer you write your repository interfaces,
+including custom finder methods, and Spring will provide
+theimplementation automatically.</p>
+<p>Spring Data JPA 是更大的 Spring Data 系列的一部分，可以轻松实现基于
+JPA 的repositories。该模块处理对基于 JPA
+的数据访问层的增强支持。它使构建使用数据访问技术的 Spring
+驱动的应用程序变得更加容易。</p>
+<p>实现应用程序的数据访问层已经很麻烦了。必须编写太多样板代码来执行简单的查询以及执行分页和审计。<strong>Spring
+Data JPA
+旨在改进数据访问层的实现以提升开发效率</strong>。作为开发人员，您编写存储库接口，包括自定义
+finder 方法，Spring 将自动提供实现。</p>
 </blockquote>
-<p>spirng data jpa是spring提供的一套<strong>简化JPA开发的框架</strong>，按照约定好的规则进行【方法命名】去写dao层接口，就可以在不写接口实现的情况下，实现对数据库的访问和操作。同时提供了很多除了CRUD之外的功能，如分页、排序、复杂查询等等。</p>
-<h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a><strong>依赖</strong></h3><p>最好在父maven项目中设置spring data统一版本管理依赖: 因为不同的spring data子项目发布时间版本不一样，你自己维护很麻烦， 这样不同的spring data子项目能保证是统一版本.</p>
+<p>spirng data
+jpa是spring提供的一套<strong>简化JPA开发的框架</strong>，按照约定好的规则进行【方法命名】去写dao层接口，就可以在不写接口实现的情况下，实现对数据库的访问和操作。同时提供了很多除了CRUD之外的功能，如分页、排序、复杂查询等等。</p>
+<h3 id="依赖"><strong>依赖</strong></h3>
+<p>最好在父maven项目中设置spring data统一版本管理依赖: 因为不同的spring
+data子项目发布时间版本不一样，你自己维护很麻烦， 这样不同的spring
+data子项目能保证是统一版本.</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--统一管理SpringData子项目的版本--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.data<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-data-bom<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2021.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">     <span class="comment">&lt;!-- 起步依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.data<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-data-jpa<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- hibernate对jpa的支持包 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.hibernate<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hibernate-entitymanager<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.4.32.Final<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- Mysql and MariaDB --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.22<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="CrudRepository"><a href="#CrudRepository" class="headerlink" title="CrudRepository"></a><strong>CrudRepository</strong></h3><p>Spring Data repository 抽象的目标是显着减少为各种持久性存储实现数据访问层所需的样板代码量。</p>
+<h3 id="crudrepository"><strong>CrudRepository</strong></h3>
+<p>Spring Data repository
+抽象的目标是显着减少为各种持久性存储实现数据访问层所需的样板代码量。</p>
 <p>创建实体类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nicccce.pojo;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.*;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span>     <span class="comment">// 作为hibernate 实体类</span></span><br><span class="line"><span class="meta">@Table(name = &quot;tb_customer&quot;)</span>       <span class="comment">// 映射的表明</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Customer</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@GeneratedValue(strategy = GenerationType.IDENTITY)</span></span><br><span class="line">    <span class="meta">@Column(name = &quot;id&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> Long custId; <span class="comment">//客户的主键</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Column(name = &quot;cust_name&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String custName;<span class="comment">//客户名称</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Column(name=&quot;cust_address&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String custAddress;<span class="comment">//客户地址</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Long <span class="title function_">getCustId</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> custId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setCustId</span><span class="params">(Long custId)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.custId = custId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getCustName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> custName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setCustName</span><span class="params">(String custName)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.custName = custName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getCustAddress</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> custAddress;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setCustAddress</span><span class="params">(String custAddress)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.custAddress = custAddress;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Customer&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;custId=&quot;</span> + custId +</span><br><span class="line">                <span class="string">&quot;, custName=&#x27;&quot;</span> + custName + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, custAddress=&#x27;&quot;</span> + custAddress + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;&#125;\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>创建接口</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 创建RepositoryCRUD接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">CustomerRepository</span> <span class="keyword">extends</span> <span class="title class_">CrudRepository</span>&lt;Customer,Long&gt; &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>CrudRepository</strong>：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 用来插入和修改 有主键就是修改 没有就是新增</span></span><br><span class="line"><span class="comment">// 获得插入后自增id， 获得返回值</span></span><br><span class="line">&lt;S <span class="keyword">extends</span> <span class="title class_">T</span>&gt; S <span class="title function_">save</span><span class="params">(S entity)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过集合保存多个实体</span></span><br><span class="line"> &lt;S <span class="keyword">extends</span> <span class="title class_">T</span>&gt; Iterable&lt;S&gt; <span class="title function_">saveAll</span><span class="params">(Iterable&lt;S&gt; entities)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过主键查询实体</span></span><br><span class="line">Optional&lt;T&gt; <span class="title function_">findById</span><span class="params">(ID id)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过主键查询是否存在 返回boolean</span></span><br><span class="line"><span class="type">boolean</span> <span class="title function_">existsById</span><span class="params">(ID id)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查询所有</span></span><br><span class="line">Iterable&lt;T&gt; <span class="title function_">findAll</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过集合的主键 查询多个实体，， 返回集合</span></span><br><span class="line">Iterable&lt;T&gt; <span class="title function_">findAllById</span><span class="params">(Iterable&lt;ID&gt; ids)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查询总数量</span></span><br><span class="line"><span class="type">long</span> <span class="title function_">count</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据id进行删除</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">deleteById</span><span class="params">(ID id)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据实体进行删除</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">delete</span><span class="params">(T entity)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除多个</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">deleteAllById</span><span class="params">(Iterable&lt;? extends ID&gt; ids)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除多个传入集合实体</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">deleteAll</span><span class="params">(Iterable&lt;? extends T&gt; entities)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除所有</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">deleteAll</span><span class="params">()</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>在CrudRepository 之上，有一个PagingAndSortingRepository抽象，它添加了额外的方法来简化对实体的分页和排序访问：</p>
+<p>在CrudRepository
+之上，有一个PagingAndSortingRepository抽象，它添加了额外的方法来简化对实体的分页和排序访问：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//分页</span></span><br><span class="line">Page&lt;Customer&gt; all=findAll(PageRequest.of(<span class="number">0</span>, <span class="number">2</span>));</span><br><span class="line">System.out.println(all.getTotalPages());<span class="comment">//获取总页数</span></span><br><span class="line">   System.out.println(all.getTotalElements());<span class="comment">//获取总数量</span></span><br><span class="line">   System.out.println(all.getContent());<span class="comment">//获取当前页的所有数据</span></span><br><span class="line">      </span><br><span class="line">   <span class="comment">//分页+排序</span></span><br><span class="line">Page&lt;Customer&gt; all = repository.findAll(PageRequest.of(页数, 每页显示的数量,Sort.by(<span class="string">&quot;排序的字段&quot;</span>).descending()));</span><br><span class="line">  </span><br><span class="line"><span class="comment">//排序</span></span><br><span class="line"><span class="type">Sort</span> <span class="variable">sort</span> <span class="operator">=</span> Sort.by(<span class="string">&quot;custId&quot;</span>).descending();</span><br><span class="line">   Iterable&lt;Customer&gt; all = repository.findAll(sort);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 类型安全的方式排序</span></span><br><span class="line">Sort.TypedSort&lt;Customer&gt; sortType = Sort.sort(Customer.class);</span><br><span class="line">   <span class="type">Sort</span> <span class="variable">sort</span> <span class="operator">=</span> sortType.by(Customer::getCustId).descending();</span><br><span class="line">   Iterable&lt;Customer&gt; all = repository.findAll(sort);</span><br><span class="line">       </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="自定义操作"><a href="#自定义操作" class="headerlink" title="自定义操作"></a>自定义操作</h3><h4 id="jpql-原生SQL"><a href="#jpql-原生SQL" class="headerlink" title="jpql | 原生SQL"></a><strong>jpql | 原生SQL</strong></h4><p>a. <code>@Query</code></p>
-<p>i. 查询如果返回单个实体 就用pojo接收 ， 如果是多个需要通过集合</p>
-<p>ii. 参数设置方式</p>
-<ol>
-<li><p>索引 ： ?数字</p>
-</li>
-<li><p>具名： :参数名 结合@Param注解指定参数名字</p>
-</li>
+<h3 id="自定义操作">自定义操作</h3>
+<h4 id="jpql-原生sql"><strong>jpql | 原生SQL</strong></h4>
+<ol type="a">
+<li><p><code>@Query</code></p></li>
+<li><p>查询如果返回单个实体 就用pojo接收 ，
+如果是多个需要通过集合</p></li>
 </ol>
-<p>iii. 增删改：</p>
-<ol>
-<li><p>要加上事务的支持：</p>
-</li>
-<li><p>如果是插入方法：一定只能在hibernate下才支持 （Insert into … select )</p>
-</li>
+<ol start="2" type="i">
+<li>参数设置方式</li>
+</ol>
+<ol type="1">
+<li><p>索引 ： ?数字</p></li>
+<li><p>具名： :参数名 结合@Param注解指定参数名字</p></li>
+</ol>
+<ol start="3" type="i">
+<li>增删改：</li>
+</ol>
+<ol type="1">
+<li><p>要加上事务的支持：</p></li>
+<li><p>如果是插入方法：一定只能在hibernate下才支持 （Insert into ...
+select )</p></li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional</span> <span class="comment">// 通常会放在业务逻辑层上面去声明,增删改操作必须要加，否则会报错</span></span><br><span class="line"><span class="meta">@Modifying</span> <span class="comment">// 通知springdatajpa 是增删改的操作</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nicccce.repositories;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.nicccce.pojo.Customer;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.jpa.repository.Modifying;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.jpa.repository.Query;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.repository.CrudRepository;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.repository.PagingAndSortingRepository;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.repository.query.Param;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.repository.query.QueryByExampleExecutor;</span><br><span class="line"><span class="keyword">import</span> org.springframework.transaction.annotation.Transactional;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">CustomerRepository</span> <span class="keyword">extends</span> <span class="title class_">PagingAndSortingRepository</span>&lt;Customer,Long&gt;&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 增删查改</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查询</span></span><br><span class="line">    <span class="meta">@Query(&quot;FROM Customer where custName=?1 &quot;)</span></span><br><span class="line">    List&lt;Customer&gt; <span class="title function_">findCustomerByCustName1</span><span class="params">(String custName)</span>;</span><br><span class="line">    <span class="comment">//或者通过具名方式查询</span></span><br><span class="line">    <span class="meta">@Query(&quot;FROM Customer where custName=:custName &quot;)</span></span><br><span class="line">    List&lt;Customer&gt; <span class="title function_">findCustomerByCustName2</span><span class="params">(<span class="meta">@Param(&quot;custName&quot;)</span> String custName)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 修改</span></span><br><span class="line">    <span class="meta">@Transactional</span></span><br><span class="line">    <span class="meta">@Modifying</span>   <span class="comment">// 通知springdatajpa 是增删改的操作</span></span><br><span class="line">    <span class="meta">@Query(&quot;UPDATE Customer c set c.custName=:custName where c.custId=:id&quot;)</span></span><br><span class="line">    <span class="type">int</span> <span class="title function_">updateCustomer</span><span class="params">(<span class="meta">@Param(&quot;custName&quot;)</span> String custName, <span class="meta">@Param(&quot;id&quot;)</span>Long id)</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Transactional</span></span><br><span class="line">    <span class="meta">@Modifying</span>   <span class="comment">// 通知springdatajpa 是增删改的操作</span></span><br><span class="line">    <span class="meta">@Query(&quot;DELETE FROM Customer c where c.custId=?1&quot;)</span></span><br><span class="line">    <span class="type">int</span> <span class="title function_">deleteCustomer</span><span class="params">(Long id)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 新增  JPQL</span></span><br><span class="line">    <span class="meta">@Transactional</span></span><br><span class="line">    <span class="meta">@Modifying</span>   <span class="comment">// 通知springdatajpa 是增删改的操作</span></span><br><span class="line">    <span class="meta">@Query(&quot;INSERT INTO Customer (custName) SELECT c.custName FROM Customer c where c.custId=?1&quot;)</span></span><br><span class="line">    <span class="type">int</span> <span class="title function_">insertCustomerBySelect</span><span class="params">(Long id)</span>;<span class="comment">//只能支持插入查到的数据</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">//原生的SQL</span></span><br><span class="line">    <span class="meta">@Query(value=&quot;select * FROM tb_customer where cust_name=:custName &quot;</span></span><br><span class="line"><span class="meta">    ,nativeQuery = true)</span></span><br><span class="line">    List&lt;Customer&gt; <span class="title function_">findCustomerByCustNameBySql</span><span class="params">(<span class="meta">@Param(&quot;custName&quot;)</span> String custName)</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="规定方法名"><a href="#规定方法名" class="headerlink" title="规定方法名"></a><strong>规定方法名</strong></h4><ul>
-<li>支持的查询方法<strong>主题关键字（前缀）</strong><ul>
+<h4 id="规定方法名"><strong>规定方法名</strong></h4>
+<ul>
+<li>支持的查询方法<strong>主题关键字（前缀）</strong>
+<ul>
 <li>决定当前方法作用</li>
 <li>只支持查询和删除</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<div class="table-container">
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
-<th style="text-align:left">Keyword</th>
-<th style="text-align:left">Description</th>
+<tr class="header">
+<th style="text-align: left;">Keyword</th>
+<th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left"><code>find…By</code>, <code>read…By</code>, <code>get…By</code>, <code>query…By</code>, <code>search…By</code>, <code>stream…By</code></td>
-<td style="text-align:left">一般查询方法，通常返回 repository 类型、<code>Collection</code> 或 <code>Streamable</code> 子类型或result wrapper，如 <code>Page</code>、<code>GeoResults</code> 或任何其他store特定的result wrapper。可以作为 <code>findBy…</code>、<code>findMyDomainTypeBy…</code> 或与其他关键字结合使用。</td>
+<tr class="odd">
+<td style="text-align: left;"><code>find…By</code>,
+<code>read…By</code>, <code>get…By</code>, <code>query…By</code>,
+<code>search…By</code>, <code>stream…By</code></td>
+<td style="text-align: left;">一般查询方法，通常返回 repository
+类型、<code>Collection</code> 或 <code>Streamable</code> 子类型或result
+wrapper，如 <code>Page</code>、<code>GeoResults</code>
+或任何其他store特定的result wrapper。可以作为
+<code>findBy…</code>、<code>findMyDomainTypeBy…</code>
+或与其他关键字结合使用。</td>
 </tr>
-<tr>
-<td style="text-align:left"><code>exists…By</code></td>
-<td style="text-align:left">Exists 投影，通常返回一个 <code>boolean</code> 结果。</td>
+<tr class="even">
+<td style="text-align: left;"><code>exists…By</code></td>
+<td style="text-align: left;">Exists 投影，通常返回一个
+<code>boolean</code> 结果。</td>
 </tr>
-<tr>
-<td style="text-align:left"><code>count…By</code></td>
-<td style="text-align:left">返回数字结果的count投影。</td>
+<tr class="odd">
+<td style="text-align: left;"><code>count…By</code></td>
+<td style="text-align: left;">返回数字结果的count投影。</td>
 </tr>
-<tr>
-<td style="text-align:left"><code>delete…By</code>, <code>remove…By</code></td>
-<td style="text-align:left">删除查询方法要么不返回结果（void），要么返回删除数量。</td>
+<tr class="even">
+<td style="text-align: left;"><code>delete…By</code>,
+<code>remove…By</code></td>
+<td
+style="text-align: left;">删除查询方法要么不返回结果（void），要么返回删除数量。</td>
 </tr>
-<tr>
-<td style="text-align:left"><code>…First&lt;number&gt;…</code>, <code>…Top&lt;number&gt;…</code></td>
-<td style="text-align:left">将查询结果限制在第一个 <code>&lt;number&gt;</code> 的结果。这个关键词可以出现在主语中 <code>find</code>（以及其他关键词）和 <code>by</code> 之间的任何地方。</td>
+<tr class="odd">
+<td style="text-align: left;"><code>…First&lt;number&gt;…</code>,
+<code>…Top&lt;number&gt;…</code></td>
+<td style="text-align: left;">将查询结果限制在第一个
+<code>&lt;number&gt;</code> 的结果。这个关键词可以出现在主语中
+<code>find</code>（以及其他关键词）和 <code>by</code>
+之间的任何地方。</td>
 </tr>
-<tr>
-<td style="text-align:left"><code>…Distinct…</code></td>
-<td style="text-align:left">使用 distinct 查询，只返回唯一的结果。请咨询特定store的文档是否支持该功能。这个关键字可以出现在 <code>find</code>（和其他关键字）和 <code>by</code> 之间的任何地方。</td>
+<tr class="even">
+<td style="text-align: left;"><code>…Distinct…</code></td>
+<td style="text-align: left;">使用 distinct
+查询，只返回唯一的结果。请咨询特定store的文档是否支持该功能。这个关键字可以出现在
+<code>find</code>（和其他关键字）和 <code>by</code>
+之间的任何地方。</td>
 </tr>
 </tbody>
 </table>
-</div>
 <ul>
-<li>支持的查询方法<strong>谓词关键字和修饰符</strong><ul>
+<li>支持的查询方法<strong>谓词关键字和修饰符</strong>
+<ul>
 <li>决定查询条件</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<div class="table-container">
 <table>
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 68%" />
+</colgroup>
 <thead>
-<tr>
-<th style="text-align:left">逻辑关键字</th>
-<th style="text-align:left">关键字表达式</th>
+<tr class="header">
+<th style="text-align: left;">逻辑关键字</th>
+<th style="text-align: left;">关键字表达式</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left"><code>AND</code></td>
-<td style="text-align:left"><code>And</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>AND</code></td>
+<td style="text-align: left;"><code>And</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>OR</code></td>
-<td style="text-align:left"><code>Or</code></td>
+<tr class="even">
+<td style="text-align: left;"><code>OR</code></td>
+<td style="text-align: left;"><code>Or</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>AFTER</code></td>
-<td style="text-align:left"><code>After</code>, <code>IsAfter</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>AFTER</code></td>
+<td style="text-align: left;"><code>After</code>,
+<code>IsAfter</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>BEFORE</code></td>
-<td style="text-align:left"><code>Before</code>, <code>IsBefore</code></td>
+<tr class="even">
+<td style="text-align: left;"><code>BEFORE</code></td>
+<td style="text-align: left;"><code>Before</code>,
+<code>IsBefore</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>CONTAINING</code></td>
-<td style="text-align:left"><code>Containing</code>, <code>IsContaining</code>, <code>Contains</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>CONTAINING</code></td>
+<td style="text-align: left;"><code>Containing</code>,
+<code>IsContaining</code>, <code>Contains</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>BETWEEN</code></td>
-<td style="text-align:left"><code>Between</code>, <code>IsBetween</code></td>
+<tr class="even">
+<td style="text-align: left;"><code>BETWEEN</code></td>
+<td style="text-align: left;"><code>Between</code>,
+<code>IsBetween</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>ENDING_WITH</code></td>
-<td style="text-align:left"><code>EndingWith</code>, <code>IsEndingWith</code>, <code>EndsWith</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>ENDING_WITH</code></td>
+<td style="text-align: left;"><code>EndingWith</code>,
+<code>IsEndingWith</code>, <code>EndsWith</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>EXISTS</code></td>
-<td style="text-align:left"><code>Exists</code></td>
+<tr class="even">
+<td style="text-align: left;"><code>EXISTS</code></td>
+<td style="text-align: left;"><code>Exists</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>FALSE</code></td>
-<td style="text-align:left"><code>False</code>, <code>IsFalse</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>FALSE</code></td>
+<td style="text-align: left;"><code>False</code>,
+<code>IsFalse</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>GREATER_THAN</code></td>
-<td style="text-align:left"><code>GreaterThan</code>, <code>IsGreaterThan</code></td>
+<tr class="even">
+<td style="text-align: left;"><code>GREATER_THAN</code></td>
+<td style="text-align: left;"><code>GreaterThan</code>,
+<code>IsGreaterThan</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>GREATER_THAN_EQUALS</code></td>
-<td style="text-align:left"><code>GreaterThanEqual</code>, <code>IsGreaterThanEqual</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>GREATER_THAN_EQUALS</code></td>
+<td style="text-align: left;"><code>GreaterThanEqual</code>,
+<code>IsGreaterThanEqual</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>IN</code></td>
-<td style="text-align:left"><code>In</code>, <code>IsIn</code></td>
+<tr class="even">
+<td style="text-align: left;"><code>IN</code></td>
+<td style="text-align: left;"><code>In</code>, <code>IsIn</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>IS</code></td>
-<td style="text-align:left"><code>Is</code>, <code>Equals</code>, (or no keyword)</td>
+<tr class="odd">
+<td style="text-align: left;"><code>IS</code></td>
+<td style="text-align: left;"><code>Is</code>, <code>Equals</code>, (or
+no keyword)</td>
 </tr>
-<tr>
-<td style="text-align:left"><code>IS_EMPTY</code></td>
-<td style="text-align:left"><code>IsEmpty</code>, <code>Empty</code></td>
+<tr class="even">
+<td style="text-align: left;"><code>IS_EMPTY</code></td>
+<td style="text-align: left;"><code>IsEmpty</code>,
+<code>Empty</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>IS_NOT_EMPTY</code></td>
-<td style="text-align:left"><code>IsNotEmpty</code>, <code>NotEmpty</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>IS_NOT_EMPTY</code></td>
+<td style="text-align: left;"><code>IsNotEmpty</code>,
+<code>NotEmpty</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>IS_NOT_NULL</code></td>
-<td style="text-align:left"><code>NotNull</code>, <code>IsNotNull</code></td>
+<tr class="even">
+<td style="text-align: left;"><code>IS_NOT_NULL</code></td>
+<td style="text-align: left;"><code>NotNull</code>,
+<code>IsNotNull</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>IS_NULL</code></td>
-<td style="text-align:left"><code>Null</code>, <code>IsNull</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>IS_NULL</code></td>
+<td style="text-align: left;"><code>Null</code>,
+<code>IsNull</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>LESS_THAN</code></td>
-<td style="text-align:left"><code>LessThan</code>, <code>IsLessThan</code></td>
+<tr class="even">
+<td style="text-align: left;"><code>LESS_THAN</code></td>
+<td style="text-align: left;"><code>LessThan</code>,
+<code>IsLessThan</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>LESS_THAN_EQUAL</code></td>
-<td style="text-align:left"><code>LessThanEqual</code>, <code>IsLessThanEqual</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>LESS_THAN_EQUAL</code></td>
+<td style="text-align: left;"><code>LessThanEqual</code>,
+<code>IsLessThanEqual</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>LIKE</code></td>
-<td style="text-align:left"><code>Like</code>, <code>IsLike</code></td>
+<tr class="even">
+<td style="text-align: left;"><code>LIKE</code></td>
+<td style="text-align: left;"><code>Like</code>,
+<code>IsLike</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>NEAR</code></td>
-<td style="text-align:left"><code>Near</code>, <code>IsNear</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>NEAR</code></td>
+<td style="text-align: left;"><code>Near</code>,
+<code>IsNear</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>NOT</code></td>
-<td style="text-align:left"><code>Not</code>, <code>IsNot</code></td>
+<tr class="even">
+<td style="text-align: left;"><code>NOT</code></td>
+<td style="text-align: left;"><code>Not</code>, <code>IsNot</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>NOT_IN</code></td>
-<td style="text-align:left"><code>NotIn</code>, <code>IsNotIn</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>NOT_IN</code></td>
+<td style="text-align: left;"><code>NotIn</code>,
+<code>IsNotIn</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>NOT_LIKE</code></td>
-<td style="text-align:left"><code>NotLike</code>, <code>IsNotLike</code></td>
+<tr class="even">
+<td style="text-align: left;"><code>NOT_LIKE</code></td>
+<td style="text-align: left;"><code>NotLike</code>,
+<code>IsNotLike</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>REGEX</code></td>
-<td style="text-align:left"><code>Regex</code>, <code>MatchesRegex</code>, <code>Matches</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>REGEX</code></td>
+<td style="text-align: left;"><code>Regex</code>,
+<code>MatchesRegex</code>, <code>Matches</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>STARTING_WITH</code></td>
-<td style="text-align:left"><code>StartingWith</code>, <code>IsStartingWith</code>, <code>StartsWith</code></td>
+<tr class="even">
+<td style="text-align: left;"><code>STARTING_WITH</code></td>
+<td style="text-align: left;"><code>StartingWith</code>,
+<code>IsStartingWith</code>, <code>StartsWith</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>TRUE</code></td>
-<td style="text-align:left"><code>True</code>, <code>IsTrue</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>TRUE</code></td>
+<td style="text-align: left;"><code>True</code>,
+<code>IsTrue</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>WITHIN</code></td>
-<td style="text-align:left"><code>Within</code>, <code>IsWithin</code></td>
+<tr class="even">
+<td style="text-align: left;"><code>WITHIN</code></td>
+<td style="text-align: left;"><code>Within</code>,
+<code>IsWithin</code></td>
 </tr>
 </tbody>
 </table>
-</div>
 <p><strong>样例：</strong></p>
-<div class="table-container">
 <table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 42%" />
+<col style="width: 42%" />
+</colgroup>
 <thead>
-<tr>
-<th style="text-align:left">Keyword</th>
-<th style="text-align:left">Sample</th>
-<th style="text-align:left">JPQL snippet</th>
+<tr class="header">
+<th style="text-align: left;">Keyword</th>
+<th style="text-align: left;">Sample</th>
+<th style="text-align: left;">JPQL snippet</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left"><code>Distinct</code></td>
-<td style="text-align:left"><code>findDistinctByLastnameAndFirstname</code></td>
-<td style="text-align:left"><code>select distinct … where x.lastname = ?1 and x.firstname = ?2</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>Distinct</code></td>
+<td
+style="text-align: left;"><code>findDistinctByLastnameAndFirstname</code></td>
+<td
+style="text-align: left;"><code>select distinct … where x.lastname = ?1 and x.firstname = ?2</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>And</code></td>
-<td style="text-align:left"><code>findByLastnameAndFirstname</code></td>
-<td style="text-align:left"><code>… where x.lastname = ?1 and x.firstname = ?2</code></td>
+<tr class="even">
+<td style="text-align: left;"><code>And</code></td>
+<td
+style="text-align: left;"><code>findByLastnameAndFirstname</code></td>
+<td
+style="text-align: left;"><code>… where x.lastname = ?1 and x.firstname = ?2</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>Or</code></td>
-<td style="text-align:left"><code>findByLastnameOrFirstname</code></td>
-<td style="text-align:left"><code>… where x.lastname = ?1 or x.firstname = ?2</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>Or</code></td>
+<td
+style="text-align: left;"><code>findByLastnameOrFirstname</code></td>
+<td
+style="text-align: left;"><code>… where x.lastname = ?1 or x.firstname = ?2</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>Is</code>, <code>Equals</code></td>
-<td style="text-align:left"><code>findByFirstname</code>,<code>findByFirstnameIs</code>,<code>findByFirstnameEquals</code></td>
-<td style="text-align:left"><code>… where x.firstname = ?1</code></td>
+<tr class="even">
+<td style="text-align: left;"><code>Is</code>, <code>Equals</code></td>
+<td
+style="text-align: left;"><code>findByFirstname</code>,<code>findByFirstnameIs</code>,<code>findByFirstnameEquals</code></td>
+<td style="text-align: left;"><code>… where x.firstname = ?1</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>Between</code></td>
-<td style="text-align:left"><code>findByStartDateBetween</code></td>
-<td style="text-align:left"><code>… where x.startDate between ?1 and ?2</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>Between</code></td>
+<td style="text-align: left;"><code>findByStartDateBetween</code></td>
+<td
+style="text-align: left;"><code>… where x.startDate between ?1 and ?2</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>LessThan</code></td>
-<td style="text-align:left"><code>findByAgeLessThan</code></td>
-<td style="text-align:left"><code>… where x.age &lt; ?1</code></td>
+<tr class="even">
+<td style="text-align: left;"><code>LessThan</code></td>
+<td style="text-align: left;"><code>findByAgeLessThan</code></td>
+<td style="text-align: left;"><code>… where x.age &lt; ?1</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>LessThanEqual</code></td>
-<td style="text-align:left"><code>findByAgeLessThanEqual</code></td>
-<td style="text-align:left"><code>… where x.age &lt;= ?1</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>LessThanEqual</code></td>
+<td style="text-align: left;"><code>findByAgeLessThanEqual</code></td>
+<td style="text-align: left;"><code>… where x.age &lt;= ?1</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>GreaterThan</code></td>
-<td style="text-align:left"><code>findByAgeGreaterThan</code></td>
-<td style="text-align:left"><code>… where x.age &gt; ?1</code></td>
+<tr class="even">
+<td style="text-align: left;"><code>GreaterThan</code></td>
+<td style="text-align: left;"><code>findByAgeGreaterThan</code></td>
+<td style="text-align: left;"><code>… where x.age &gt; ?1</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>GreaterThanEqual</code></td>
-<td style="text-align:left"><code>findByAgeGreaterThanEqual</code></td>
-<td style="text-align:left"><code>… where x.age &gt;= ?1</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>GreaterThanEqual</code></td>
+<td
+style="text-align: left;"><code>findByAgeGreaterThanEqual</code></td>
+<td style="text-align: left;"><code>… where x.age &gt;= ?1</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>After</code></td>
-<td style="text-align:left"><code>findByStartDateAfter</code></td>
-<td style="text-align:left"><code>… where x.startDate &gt; ?1</code></td>
+<tr class="even">
+<td style="text-align: left;"><code>After</code></td>
+<td style="text-align: left;"><code>findByStartDateAfter</code></td>
+<td
+style="text-align: left;"><code>… where x.startDate &gt; ?1</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>Before</code></td>
-<td style="text-align:left"><code>findByStartDateBefore</code></td>
-<td style="text-align:left"><code>… where x.startDate &lt; ?1</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>Before</code></td>
+<td style="text-align: left;"><code>findByStartDateBefore</code></td>
+<td
+style="text-align: left;"><code>… where x.startDate &lt; ?1</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>IsNull</code>, <code>Null</code></td>
-<td style="text-align:left"><code>findByAge(Is)Null</code></td>
-<td style="text-align:left"><code>… where x.age is null</code></td>
+<tr class="even">
+<td style="text-align: left;"><code>IsNull</code>,
+<code>Null</code></td>
+<td style="text-align: left;"><code>findByAge(Is)Null</code></td>
+<td style="text-align: left;"><code>… where x.age is null</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>IsNotNull</code>, <code>NotNull</code></td>
-<td style="text-align:left"><code>findByAge(Is)NotNull</code></td>
-<td style="text-align:left"><code>… where x.age not null</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>IsNotNull</code>,
+<code>NotNull</code></td>
+<td style="text-align: left;"><code>findByAge(Is)NotNull</code></td>
+<td style="text-align: left;"><code>… where x.age not null</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>Like</code></td>
-<td style="text-align:left"><code>findByFirstnameLike</code></td>
-<td style="text-align:left"><code>… where x.firstname like ?1</code></td>
+<tr class="even">
+<td style="text-align: left;"><code>Like</code></td>
+<td style="text-align: left;"><code>findByFirstnameLike</code></td>
+<td
+style="text-align: left;"><code>… where x.firstname like ?1</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>NotLike</code></td>
-<td style="text-align:left"><code>findByFirstnameNotLike</code></td>
-<td style="text-align:left"><code>… where x.firstname not like ?1</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>NotLike</code></td>
+<td style="text-align: left;"><code>findByFirstnameNotLike</code></td>
+<td
+style="text-align: left;"><code>… where x.firstname not like ?1</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>StartingWith</code></td>
-<td style="text-align:left"><code>findByFirstnameStartingWith</code></td>
-<td style="text-align:left"><code>… where x.firstname like ?1</code> (parameter bound with appended <code>%</code>)</td>
+<tr class="even">
+<td style="text-align: left;"><code>StartingWith</code></td>
+<td
+style="text-align: left;"><code>findByFirstnameStartingWith</code></td>
+<td style="text-align: left;"><code>… where x.firstname like ?1</code>
+(parameter bound with appended <code>%</code>)</td>
 </tr>
-<tr>
-<td style="text-align:left"><code>EndingWith</code></td>
-<td style="text-align:left"><code>findByFirstnameEndingWith</code></td>
-<td style="text-align:left"><code>… where x.firstname like ?1</code> (parameter bound with prepended <code>%</code>)</td>
+<tr class="odd">
+<td style="text-align: left;"><code>EndingWith</code></td>
+<td
+style="text-align: left;"><code>findByFirstnameEndingWith</code></td>
+<td style="text-align: left;"><code>… where x.firstname like ?1</code>
+(parameter bound with prepended <code>%</code>)</td>
 </tr>
-<tr>
-<td style="text-align:left"><code>Containing</code></td>
-<td style="text-align:left"><code>findByFirstnameContaining</code></td>
-<td style="text-align:left"><code>… where x.firstname like ?1</code> (parameter bound wrapped in <code>%</code>)</td>
+<tr class="even">
+<td style="text-align: left;"><code>Containing</code></td>
+<td
+style="text-align: left;"><code>findByFirstnameContaining</code></td>
+<td style="text-align: left;"><code>… where x.firstname like ?1</code>
+(parameter bound wrapped in <code>%</code>)</td>
 </tr>
-<tr>
-<td style="text-align:left"><code>OrderBy</code></td>
-<td style="text-align:left"><code>findByAgeOrderByLastnameDesc</code></td>
-<td style="text-align:left"><code>… where x.age = ?1 order by x.lastname desc</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>OrderBy</code></td>
+<td
+style="text-align: left;"><code>findByAgeOrderByLastnameDesc</code></td>
+<td
+style="text-align: left;"><code>… where x.age = ?1 order by x.lastname desc</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>Not</code></td>
-<td style="text-align:left"><code>findByLastnameNot</code></td>
-<td style="text-align:left"><code>… where x.lastname &lt;&gt; ?1</code></td>
+<tr class="even">
+<td style="text-align: left;"><code>Not</code></td>
+<td style="text-align: left;"><code>findByLastnameNot</code></td>
+<td
+style="text-align: left;"><code>… where x.lastname &lt;&gt; ?1</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>In</code></td>
-<td style="text-align:left"><code>findByAgeIn(Collection&lt;Age&gt; ages)</code></td>
-<td style="text-align:left"><code>… where x.age in ?1</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>In</code></td>
+<td
+style="text-align: left;"><code>findByAgeIn(Collection&lt;Age&gt; ages)</code></td>
+<td style="text-align: left;"><code>… where x.age in ?1</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>NotIn</code></td>
-<td style="text-align:left"><code>findByAgeNotIn(Collection&lt;Age&gt; ages)</code></td>
-<td style="text-align:left"><code>… where x.age not in ?1</code></td>
+<tr class="even">
+<td style="text-align: left;"><code>NotIn</code></td>
+<td
+style="text-align: left;"><code>findByAgeNotIn(Collection&lt;Age&gt; ages)</code></td>
+<td style="text-align: left;"><code>… where x.age not in ?1</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>True</code></td>
-<td style="text-align:left"><code>findByActiveTrue()</code></td>
-<td style="text-align:left"><code>… where x.active = true</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>True</code></td>
+<td style="text-align: left;"><code>findByActiveTrue()</code></td>
+<td style="text-align: left;"><code>… where x.active = true</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>False</code></td>
-<td style="text-align:left"><code>findByActiveFalse()</code></td>
-<td style="text-align:left"><code>… where x.active = false</code></td>
+<tr class="even">
+<td style="text-align: left;"><code>False</code></td>
+<td style="text-align: left;"><code>findByActiveFalse()</code></td>
+<td style="text-align: left;"><code>… where x.active = false</code></td>
 </tr>
-<tr>
-<td style="text-align:left"><code>IgnoreCase</code></td>
-<td style="text-align:left"><code>findByFirstnameIgnoreCase</code></td>
-<td style="text-align:left"><code>… where UPPER(x.firstname) = UPPER(?1)</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>IgnoreCase</code></td>
+<td
+style="text-align: left;"><code>findByFirstnameIgnoreCase</code></td>
+<td
+style="text-align: left;"><code>… where UPPER(x.firstname) = UPPER(?1)</code></td>
 </tr>
 </tbody>
 </table>
-</div>
 <p><strong>实现</strong>：</p>
 <p>1.Repository</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nicccce.repositories;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.nicccce.pojo.Customer;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.jpa.repository.Modifying;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.jpa.repository.Query;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.repository.PagingAndSortingRepository;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.repository.query.Param;</span><br><span class="line"><span class="keyword">import</span> org.springframework.transaction.annotation.Transactional;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">CustomerMethodNameRepository</span> <span class="keyword">extends</span> <span class="title class_">PagingAndSortingRepository</span>&lt;Customer,Long&gt; &#123;</span><br><span class="line"></span><br><span class="line">     List&lt;Customer&gt; <span class="title function_">findByCustName</span><span class="params">(String custName)</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     <span class="type">boolean</span> <span class="title function_">existsByCustName</span><span class="params">(String custName)</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     <span class="meta">@Transactional</span></span><br><span class="line">     <span class="meta">@Modifying</span></span><br><span class="line">     <span class="type">int</span> <span class="title function_">deleteByCustId</span><span class="params">(Long custName)</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     List&lt;Customer&gt; <span class="title function_">findByCustNameLike</span><span class="params">(String custName)</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>2.测试代码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nicccce;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.nicccce.config.SpringDataJPAConfig;</span><br><span class="line"><span class="keyword">import</span> com.nicccce.pojo.Customer;</span><br><span class="line"><span class="keyword">import</span> com.nicccce.repositories.CustomerMethodNameRepository;</span><br><span class="line"><span class="keyword">import</span> com.nicccce.repositories.CustomerRepository;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.ContextConfiguration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringJUnit4ClassRunner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ContextConfiguration(classes = SpringDataJPAConfig.class)</span></span><br><span class="line"><span class="meta">@RunWith(SpringJUnit4ClassRunner.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MethodNameTest</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// jdk动态代理的实例</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    CustomerMethodNameRepository repository;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">void</span> <span class="title function_">test01</span><span class="params">()</span> &#123;</span><br><span class="line">        List&lt;Customer&gt; list = repository.findByCustName(<span class="string">&quot;李四&quot;</span>);</span><br><span class="line">        System.out.println(list);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">void</span> <span class="title function_">test02</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">exists</span> <span class="operator">=</span> repository.existsByCustName(<span class="string">&quot;xxx&quot;</span>);</span><br><span class="line">        System.out.println(exists);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">void</span> <span class="title function_">test03</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">exists</span> <span class="operator">=</span> repository.deleteByCustId(<span class="number">12L</span>);</span><br><span class="line">        System.out.println(exists);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">void</span> <span class="title function_">test04</span><span class="params">()</span> &#123;</span><br><span class="line">        List&lt;Customer&gt; list = repository.findByCustNameLike(<span class="string">&quot;李%&quot;</span>);</span><br><span class="line">        System.out.println(list);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="动态查询"><a href="#动态查询" class="headerlink" title="动态查询"></a>动态查询</h3><h4 id="Query-by-Example"><a href="#Query-by-Example" class="headerlink" title="Query by Example"></a><strong>Query by Example</strong></h4><p>只支持查询（可读性不好）</p>
-<ol>
-<li>不支持嵌套或分组的属性约束，如 firstname = ?0 or (firstname = ?1 and lastname = ?2).</li>
-<li><strong>只支持字符串</strong> start/contains/ends/regex 匹配和其他属性类型的精确匹配。</li>
+<h3 id="动态查询">动态查询</h3>
+<h4 id="query-by-example"><strong>Query by Example</strong></h4>
+<p>只支持查询（可读性不好）</p>
+<ol type="1">
+<li>不支持嵌套或分组的属性约束，如 firstname = ?0 or (firstname = ?1 and
+lastname = ?2).</li>
+<li><strong>只支持字符串</strong> start/contains/ends/regex
+匹配和其他属性类型的精确匹配。</li>
 </ol>
 <p><strong>实现</strong></p>
 <p>1.将Repository继承QueryByExampleExecutor</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">CustomerQBERepository</span> <span class="keyword">extends</span> <span class="title class_">PagingAndSortingRepository</span>&lt;Customer,Long&gt;, QueryByExampleExecutor&lt;Customer&gt; &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>2.测试代码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nicccce;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.nicccce.config.SpringDataJPAConfig;</span><br><span class="line"><span class="keyword">import</span> com.nicccce.pojo.Customer;</span><br><span class="line"><span class="keyword">import</span> com.nicccce.repositories.CustomerQBERepository;</span><br><span class="line"><span class="keyword">import</span> com.nicccce.repositories.CustomerRepository;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.domain.Example;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.domain.ExampleMatcher;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.ContextConfiguration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringJUnit4ClassRunner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@ContextConfiguration(classes = SpringDataJPAConfig.class)</span></span><br><span class="line"><span class="meta">@RunWith(SpringJUnit4ClassRunner.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">QBETest</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// jdk动态代理的实例</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    CustomerQBERepository repository;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 简单实例  客户名称  客户地址动态查询</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">void</span> <span class="title function_">test01</span><span class="params">()</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 查询条件</span></span><br><span class="line">        Customer customer=<span class="keyword">new</span> <span class="title class_">Customer</span>();</span><br><span class="line">        customer.setCustName(<span class="string">&quot;丁真&quot;</span>);</span><br><span class="line">        customer.setCustAddress(<span class="string">&quot;LITANGG&quot;</span>);<span class="comment">//这里是手动构建的，实际应该是前端传来的对象</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 通过Example构建查询条件</span></span><br><span class="line">        Example&lt;Customer&gt; example = Example.of(customer);</span><br><span class="line"></span><br><span class="line">        List&lt;Customer&gt; list = (List&lt;Customer&gt;) repository.findAll(example);</span><br><span class="line">        System.out.println(list);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  通过匹配器 进行条件的限制</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">void</span> <span class="title function_">test02</span><span class="params">()</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 查询条件</span></span><br><span class="line">        Customer customer=<span class="keyword">new</span> <span class="title class_">Customer</span>();</span><br><span class="line">        customer.setCustName(<span class="string">&quot;庶&quot;</span>);</span><br><span class="line">        customer.setCustAddress(<span class="string">&quot;JING&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 通过匹配器 对条件行为进行设置</span></span><br><span class="line">        <span class="type">ExampleMatcher</span> <span class="variable">matcher</span> <span class="operator">=</span> ExampleMatcher.matching()</span><br><span class="line">			<span class="comment">//.withIgnorePaths(&quot;custName&quot;)       // 设置忽略的属性</span></span><br><span class="line">            <span class="comment">//.withIgnoreCase(&quot;custAddress&quot;)      // 设置忽略大小写</span></span><br><span class="line">            <span class="comment">//.withStringMatcher(ExampleMatcher.StringMatcher.ENDING);    // 对所有条件字符串进行了结尾匹配</span></span><br><span class="line">            <span class="comment">//.STARTING是开头匹配（默认就是完全相同）</span></span><br><span class="line">            .withMatcher(<span class="string">&quot;custAddress&quot;</span>,m -&gt; m.endsWith().ignoreCase());</span><br><span class="line">        	<span class="comment">// 针对单个条件进行限制, 会使withIgnoreCase失效，需要单独设置，传入一个函数，比如这里对某个条件字符串进行了字符串结尾匹配和忽略大小写</span></span><br><span class="line">            <span class="comment">//.withMatcher(&quot;custAddress&quot;, ExampleMatcher.GenericPropertyMatchers.endsWith().ignoreCase());</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 通过Example构建查询条件</span></span><br><span class="line">        Example&lt;Customer&gt; example = Example.of(customer,matcher);</span><br><span class="line"></span><br><span class="line">        List&lt;Customer&gt; list = (List&lt;Customer&gt;) repository.findAll(example);</span><br><span class="line">        System.out.println(list);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="Specifications"><a href="#Specifications" class="headerlink" title="Specifications"></a><strong>Specifications</strong></h4><p>使用<strong>Query by Example</strong>只能针对字符串进行条件设置，那如果希望对所有类型支持，可以使用Specifications</p>
+<h4 id="specifications"><strong>Specifications</strong></h4>
+<p>使用<strong>Query by
+Example</strong>只能针对字符串进行条件设置，那如果希望对所有类型支持，可以使用Specifications</p>
 <p><strong>实现</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nicccce.repositories;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.nicccce.pojo.Customer;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.jpa.repository.JpaSpecificationExecutor;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.jpa.repository.Modifying;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.jpa.repository.Query;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.repository.PagingAndSortingRepository;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.repository.query.Param;</span><br><span class="line"><span class="keyword">import</span> org.springframework.transaction.annotation.Transactional;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">CustomerSpecificationsRepository</span></span><br><span class="line">        <span class="keyword">extends</span> <span class="title class_">PagingAndSortingRepository</span>&lt;Customer,Long&gt;,</span><br><span class="line">        JpaSpecificationExecutor&lt;Customer&gt; &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nicccce;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.nicccce.config.SpringDataJPAConfig;</span><br><span class="line"><span class="keyword">import</span> com.nicccce.pojo.Customer;</span><br><span class="line"><span class="keyword">import</span> com.nicccce.repositories.CustomerRepository;</span><br><span class="line"><span class="keyword">import</span> com.nicccce.repositories.CustomerSpecificationsRepository;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.jpa.domain.Specification;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.ContextConfiguration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringJUnit4ClassRunner;</span><br><span class="line"><span class="keyword">import</span> org.springframework.util.StringUtils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.persistence.EntityManager;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.criteria.*;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ContextConfiguration(classes = SpringDataJPAConfig.class)</span></span><br><span class="line"><span class="meta">@RunWith(SpringJUnit4ClassRunner.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpecificationTest</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    CustomerSpecificationsRepository repository;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 查询客户范围 (in)</span></span><br><span class="line"><span class="comment">     * id  &gt;大于</span></span><br><span class="line"><span class="comment">     * 地址  精确</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">void</span> <span class="title function_">testR3</span><span class="params">()</span>&#123;</span><br><span class="line"></span><br><span class="line">        List&lt;Customer&gt; customer = repository.findAll(<span class="keyword">new</span> <span class="title class_">Specification</span>&lt;Customer&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> Predicate <span class="title function_">toPredicate</span><span class="params">(Root&lt;Customer&gt; root, CriteriaQuery&lt;?&gt; query, CriteriaBuilder cb)</span> &#123;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// root 理解为from Customer  , 获取列</span></span><br><span class="line">                <span class="comment">// CriteriaBuilder where 设置各种条件  (&gt; &lt; in ..)</span></span><br><span class="line">                <span class="comment">// query  组合（order by , where)</span></span><br><span class="line">                Path&lt;Long&gt; custId = root.get(<span class="string">&quot;custId&quot;</span>);</span><br><span class="line">                Path&lt;String&gt; custName = root.get(<span class="string">&quot;custName&quot;</span>);</span><br><span class="line">                Path&lt;String&gt; custAddress = root.get(<span class="string">&quot;custAddress&quot;</span>);</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 参数1 ：为哪个字段设置条件   参数2：值</span></span><br><span class="line">                <span class="type">Predicate</span> <span class="variable">custAddressP</span> <span class="operator">=</span> cb.equal(custAddress, <span class="string">&quot;LITANGG&quot;</span>);</span><br><span class="line">                <span class="type">Predicate</span> <span class="variable">custIdP</span> <span class="operator">=</span> cb.greaterThan(custId, <span class="number">0L</span>);</span><br><span class="line">                CriteriaBuilder.In&lt;String&gt; in = cb.in(custName);</span><br><span class="line">                in.value(<span class="string">&quot;丁真&quot;</span>).value(<span class="string">&quot;王五&quot;</span>);<span class="comment">//设置范围</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                <span class="type">Predicate</span> <span class="variable">and</span> <span class="operator">=</span> cb.and(custAddressP, custIdP,in);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> and;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        System.out.println(customer);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 实现动态查询并排序</span></span><br><span class="line"><span class="comment">     * 查询客户范围 (in)</span></span><br><span class="line"><span class="comment">     * id  &gt;大于</span></span><br><span class="line"><span class="comment">     * 地址  精确</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">void</span> <span class="title function_">testR5</span><span class="params">()</span>&#123;</span><br><span class="line"></span><br><span class="line">        Customer params=<span class="keyword">new</span> <span class="title class_">Customer</span>();</span><br><span class="line">        <span class="comment">//params.setCustAddress(&quot;LITANGG&quot;);</span></span><br><span class="line">        params.setCustId(<span class="number">0L</span>);</span><br><span class="line">        params.setCustName(<span class="string">&quot;丁真,王五&quot;</span>);</span><br><span class="line"></span><br><span class="line">        List&lt;Customer&gt; customer = repository.findAll(<span class="keyword">new</span> <span class="title class_">Specification</span>&lt;Customer&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> Predicate <span class="title function_">toPredicate</span><span class="params">(Root&lt;Customer&gt; root, CriteriaQuery&lt;?&gt; query, CriteriaBuilder cb)</span> &#123;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// root 理解为from Customer  , 获取列</span></span><br><span class="line">                <span class="comment">// CriteriaBuilder where 设置各种条件  (&gt; &lt; in ..)</span></span><br><span class="line">                <span class="comment">// query  组合（order by , where)</span></span><br><span class="line">                Path&lt;Long&gt; custId = root.get(<span class="string">&quot;custId&quot;</span>);</span><br><span class="line">                Path&lt;String&gt; custName = root.get(<span class="string">&quot;custName&quot;</span>);</span><br><span class="line">                Path&lt;String&gt; custAddress = root.get(<span class="string">&quot;custAddress&quot;</span>);</span><br><span class="line"></span><br><span class="line">                </span><br><span class="line">                List&lt;Predicate&gt; list=<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">                <span class="keyword">if</span>(!StringUtils.isEmpty(params.getCustAddress())) &#123;</span><br><span class="line">                    list.add(cb.equal(custAddress, <span class="string">&quot;LITANGG&quot;</span>)) ;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(params.getCustId()&gt;-<span class="number">1</span>)&#123;</span><br><span class="line">                    list.add(cb.greaterThan(custId, <span class="number">0L</span>));</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(!StringUtils.isEmpty(params.getCustName())) &#123;</span><br><span class="line">                    CriteriaBuilder.In&lt;String&gt; in = cb.in(custName);</span><br><span class="line">                    in.value(<span class="string">&quot;丁真&quot;</span>).value(<span class="string">&quot;王五&quot;</span>);</span><br><span class="line">                    list.add(in);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                <span class="type">Predicate</span> <span class="variable">and</span> <span class="operator">=</span> cb.and(list.toArray(<span class="keyword">new</span> <span class="title class_">Predicate</span>[list.size()]));</span><br><span class="line"></span><br><span class="line">                <span class="type">Order</span> <span class="variable">desc</span> <span class="operator">=</span> cb.desc(custId);</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> query.where(and).orderBy(desc).getRestriction();<span class="comment">//用query组合排序和条件</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        System.out.println(customer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="Querydsl"><a href="#Querydsl" class="headerlink" title="Querydsl"></a><strong>Querydsl</strong></h4><p><a href="[Querydsl Reference Guide](https://querydsl.com/static/querydsl/4.1.3/reference/html_single/">QueryDsl文档</a>)</p>
+<h4 id="querydsl"><strong>Querydsl</strong></h4>
+<p><a
+href="%5BQuerydsl%20Reference%20Guide%5D(https://querydsl.com/static/querydsl/4.1.3/reference/html_single/)">QueryDsl文档</a></p>
 <p>QueryDSL是基于ORM框架或SQL平台上的<strong>一个通用查询框架</strong>。借助QueryDSL可以在任何支持的ORM框架或SQL平台上<strong>以通用API方式构建查询</strong>。</p>
-<p>JPA是QueryDSL的主要集成技术，是JPQL和Criteria查询的代替方法。目前QueryDSL支持的平台包括JPA,JDO,SQL,Mongodb 等等。。。</p>
+<p>JPA是QueryDSL的主要集成技术，是JPQL和Criteria查询的代替方法。目前QueryDSL支持的平台包括JPA,JDO,SQL,Mongodb
+等等。。。</p>
 <p>Querydsl扩展能让我们以链式方式代码编写查询方法。该扩展需要一个接口QueryDslPredicateExecutor，它定义了很多查询方法。</p>
 <p>接口继承<code>QuerydslPredicateExecutor</code>接口，就可以使用该接口提供的各种方法了</p>
 <p><strong>引入依赖</strong></p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--query dsl--&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.querydsl<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>querydsl-jpa<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.4.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">   <span class="comment">&lt;!--query dsl end--&gt;</span></span><br></pre></td></tr></table></figure>
 <p><strong>添加maven插件</strong></p>
-<p>这个插件是为了让程序自动生成query type(查询实体，命名方式为：”Q”+对应实体名)。</p>
-<p>添加在pom中，执行mvn compile（见前前文maven生命周期），然后在Files-&gt;Project Structure中将target中生成的generated-sources/queries文件夹从Excluded改成Sources即可。</p>
+<p>这个插件是为了让程序自动生成query
+type(查询实体，命名方式为："Q"+对应实体名)。</p>
+<p>添加在pom中，执行mvn
+compile（见前前文maven生命周期），然后在Files-&gt;Project
+Structure中将target中生成的generated-sources/queries文件夹从Excluded改成Sources即可。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--该插件可以生成querysdl需要的查询对象，执行mvn compile即可（见前前文maven生命周期）--&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.mysema.maven<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>apt-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                       <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.querydsl<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                       <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>querydsl-apt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                       <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.4.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                       <span class="tag">&lt;<span class="name">phase</span>&gt;</span>generate-sources<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">                       <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                           <span class="tag">&lt;<span class="name">goal</span>&gt;</span>process<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                       <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">                       <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                           <span class="tag">&lt;<span class="name">outputDirectory</span>&gt;</span>target/generated-sources/queries<span class="tag">&lt;/<span class="name">outputDirectory</span>&gt;</span></span><br><span class="line">                           <span class="tag">&lt;<span class="name">processor</span>&gt;</span>com.querydsl.apt.jpa.JPAAnnotationProcessor<span class="tag">&lt;/<span class="name">processor</span>&gt;</span></span><br><span class="line">                           <span class="tag">&lt;<span class="name">logOnlyOnError</span>&gt;</span>true<span class="tag">&lt;/<span class="name">logOnlyOnError</span>&gt;</span></span><br><span class="line">                       <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p><strong>实现</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nicccce.repositories;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.nicccce.pojo.Customer;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.jpa.repository.Modifying;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.querydsl.QuerydslPredicateExecutor;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.repository.PagingAndSortingRepository;</span><br><span class="line"><span class="keyword">import</span> org.springframework.transaction.annotation.Transactional;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">CustomerQueryDSLRepository</span> <span class="keyword">extends</span></span><br><span class="line">        <span class="title class_">PagingAndSortingRepository</span>&lt;Customer,Long&gt;	<span class="comment">//这个不可少，去了会报错</span></span><br><span class="line">          , QuerydslPredicateExecutor&lt;Customer&gt; &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <ul>
-<li>等于 EQ : equal    <code>.eq</code></li>
+<li>等于 EQ : equal <code>.eq</code></li>
 <li>不等于 NE : not equal <code>.ne</code></li>
-<li>小于 LT : less than  <code>.lt</code></li>
+<li>小于 LT : less than <code>.lt</code></li>
 <li>大于 GT : greater than <code>.gt</code></li>
 <li>小于等于 LE : less than or equal <code>.loe</code></li>
 <li>大于等于 GE : greater than or equal <code>.goe</code></li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nicccce;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.querydsl.core.Tuple;</span><br><span class="line"><span class="keyword">import</span> com.querydsl.core.types.dsl.BooleanExpression;</span><br><span class="line"><span class="keyword">import</span> com.querydsl.jpa.impl.JPAQuery;</span><br><span class="line"><span class="keyword">import</span> com.querydsl.jpa.impl.JPAQueryFactory;</span><br><span class="line"><span class="keyword">import</span> com.nicccce.config.SpringDataJPAConfig;</span><br><span class="line"><span class="keyword">import</span> com.nicccce.pojo.Customer;</span><br><span class="line"><span class="keyword">import</span> com.nicccce.pojo.QCustomer;</span><br><span class="line"><span class="keyword">import</span> com.nicccce.repositories.CustomerMethodNameRepository;</span><br><span class="line"><span class="keyword">import</span> com.nicccce.repositories.CustomerQueryDSLRepository;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.ContextConfiguration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringJUnit4ClassRunner;</span><br><span class="line"><span class="keyword">import</span> org.springframework.util.StringUtils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.persistence.EntityManager;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.PersistenceContext;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ContextConfiguration(classes = SpringDataJPAConfig.class)</span></span><br><span class="line"><span class="meta">@RunWith(SpringJUnit4ClassRunner.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">QueryDSLTest</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// jdk动态代理的实例</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    CustomerQueryDSLRepository repository;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">void</span> <span class="title function_">test01</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">QCustomer</span> <span class="variable">customer</span> <span class="operator">=</span> QCustomer.customer;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 通过Id查找</span></span><br><span class="line">        <span class="type">BooleanExpression</span> <span class="variable">eq</span> <span class="operator">=</span> customer.custId.eq(<span class="number">1L</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(repository.findOne(eq));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 查询客户名称范围 (in)</span></span><br><span class="line"><span class="comment">     * id  &gt;大于</span></span><br><span class="line"><span class="comment">     * 地址  精确</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">void</span> <span class="title function_">test02</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">QCustomer</span> <span class="variable">customer</span> <span class="operator">=</span> QCustomer.customer;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 通过Id查找</span></span><br><span class="line">        <span class="type">BooleanExpression</span> <span class="variable">and</span> <span class="operator">=</span> customer.custName.in(<span class="string">&quot;丁真&quot;</span>, <span class="string">&quot;王五&quot;</span>)</span><br><span class="line">                .and(customer.custId.gt(<span class="number">0L</span>))</span><br><span class="line">                .and(customer.custAddress.eq(<span class="string">&quot;LITANGG&quot;</span>));</span><br><span class="line"></span><br><span class="line">        System.out.println(repository.findOne(and));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 动态查询</span></span><br><span class="line"><span class="comment">     * 查询客户名称范围 (in)</span></span><br><span class="line"><span class="comment">     * id  &gt;大于</span></span><br><span class="line"><span class="comment">     * 地址  精确</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">void</span> <span class="title function_">test03</span><span class="params">()</span> &#123;</span><br><span class="line">		<span class="comment">//初始化模拟从前端传入的对象</span></span><br><span class="line">        Customer params=<span class="keyword">new</span> <span class="title class_">Customer</span>();</span><br><span class="line">        params.setCustAddress(<span class="string">&quot;LITANGG&quot;</span>);</span><br><span class="line">        params.setCustId(<span class="number">0L</span>);</span><br><span class="line">        params.setCustName(<span class="string">&quot;丁真,王五&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="type">QCustomer</span> <span class="variable">customer</span> <span class="operator">=</span> QCustomer.customer;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 初始条件 类似于1=1 永远都成立的条件</span></span><br><span class="line">        <span class="type">BooleanExpression</span> <span class="variable">expression</span> <span class="operator">=</span> customer.isNotNull().or(customer.isNull());</span><br><span class="line"></span><br><span class="line">        expression=params.getCustId()&gt;-<span class="number">1</span>?</span><br><span class="line">                expression.and(customer.custId.gt(params.getCustId())):expression;</span><br><span class="line">        </span><br><span class="line">        expression=!StringUtils.isEmpty( params.getCustName())?</span><br><span class="line">                expression.and(customer.custName.in(params.getCustName().split(<span class="string">&quot;,&quot;</span>))):expression;</span><br><span class="line">        </span><br><span class="line">        expression=!StringUtils.isEmpty( params.getCustAddress())?</span><br><span class="line">                expression.and(customer.custAddress.eq(params.getCustAddress())):expression;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        System.out.println(repository.findAll(expression));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用@Autowired会存在线程安全问题，这样一个线程会绑定一个 </span></span><br><span class="line">    <span class="meta">@PersistenceContext</span></span><br><span class="line">    EntityManager em;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 自定义列查询、分组</span></span><br><span class="line"><span class="comment">     * 需要使用原生态的方式（Specification)</span></span><br><span class="line"><span class="comment">     * 通过Repository进行查询， 列、表都是固定</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">void</span> <span class="title function_">test04</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">JPAQueryFactory</span> <span class="variable">factory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JPAQueryFactory</span>(em);</span><br><span class="line"></span><br><span class="line">        <span class="type">QCustomer</span> <span class="variable">customer</span> <span class="operator">=</span> QCustomer.customer;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 构建基于QueryDSL的查询 ，Tuple是帮我们自定义的类</span></span><br><span class="line">        JPAQuery&lt;Tuple&gt; tupleJPAQuery = factory.select(customer.custId, customer.custName)</span><br><span class="line">                .from(customer)</span><br><span class="line">                .where(customer.custId.eq(<span class="number">1L</span>))</span><br><span class="line">                .orderBy(customer.custId.desc());<span class="comment">//id降序</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 执行查询</span></span><br><span class="line">        List&lt;Tuple&gt; fetch = tupleJPAQuery.fetch();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 处理返回数据</span></span><br><span class="line">        <span class="keyword">for</span> (Tuple tuple : fetch) &#123;</span><br><span class="line">            System.out.println(tuple.get(customer.custId));</span><br><span class="line">            System.out.println(tuple.get(customer.custName));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">void</span> <span class="title function_">test05</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">JPAQueryFactory</span> <span class="variable">factory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JPAQueryFactory</span>(em);</span><br><span class="line">        <span class="type">QCustomer</span> <span class="variable">customer</span> <span class="operator">=</span> QCustomer.customer;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 构建基于QueryDSL的 查询求和</span></span><br><span class="line">        JPAQuery&lt;Long&gt; longJPAQuery = factory.select(</span><br><span class="line">                        customer.custId.sum())</span><br><span class="line">                .from(customer)</span><br><span class="line">                <span class="comment">//.where(customer.custId.eq(1L))</span></span><br><span class="line">                .orderBy(customer.custId.desc());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 执行查询</span></span><br><span class="line">        List&lt;Long&gt; fetch = longJPAQuery.fetch();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 处理返回数据</span></span><br><span class="line">        <span class="keyword">for</span> (Long sum : fetch) &#123;</span><br><span class="line">            System.out.println(sum);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h3><p>Spring Data JPA 本身对于多表关联的操作没有扩展，我们用的都是hibernate实现的操作和注解，详情可以参阅<a target="_blank" rel="noopener" href="https://docs.jboss.org/hibernate/orm/5.5/userguide/html_single/Hibernate_User_Guide.html#associations">hibernate关于Associations的<strong>官方文档</strong></a></p>
-<h4 id="一对一"><a href="#一对一" class="headerlink" title="一对一"></a>一对一</h4><p>创建Account表与Customer关联</p>
+<h3 id="多表查询">多表查询</h3>
+<p>Spring Data JPA
+本身对于多表关联的操作没有扩展，我们用的都是hibernate实现的操作和注解，详情可以参阅<a
+target="_blank" rel="noopener" href="https://docs.jboss.org/hibernate/orm/5.5/userguide/html_single/Hibernate_User_Guide.html#associations">hibernate关于Associations的<strong>官方文档</strong></a></p>
+<h4 id="一对一">一对一</h4>
+<p>创建Account表与Customer关联</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/***</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 一对一</span></span><br><span class="line"><span class="comment"> * 一个客户对一个账户</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table(name=&quot;tb_account&quot;)</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Account</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@GeneratedValue(strategy = GenerationType.IDENTITY)</span></span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@OneToOne</span></span><br><span class="line">    <span class="meta">@JoinColumn(name=&quot;customer_id&quot;)</span><span class="comment">//关联的列</span></span><br><span class="line">    <span class="keyword">private</span> Customer customer;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>Customer表添加外键</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table(name = &quot;tb_customer&quot;)</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@EntityListeners(AuditingEntityListener.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Customer</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@GeneratedValue(strategy = GenerationType.IDENTITY)</span></span><br><span class="line">    <span class="meta">@Column(name = &quot;id&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> Long custId; <span class="comment">//客户的主键</span></span><br><span class="line">    <span class="meta">@Column(name = &quot;cust_name&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String custName;<span class="comment">//客户名称</span></span><br><span class="line">    <span class="meta">@Column(name=&quot;cust_address&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String custAddress;<span class="comment">//客户地址</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 单向关联  一对一</span></span><br><span class="line">    <span class="meta">@OneToOne(mappedBy = &quot;customer&quot;,</span></span><br><span class="line"><span class="meta">            cascade = CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval=true)</span></span><br><span class="line">    <span class="comment">// 设置外键的字段名</span></span><br><span class="line">    <span class="meta">@JoinColumn(name=&quot;account_id&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> Account account;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p><strong><code>cascade</code></strong> 设置关联操作</p>
 <ul>
-<li>ALL               所有持久化操作（比如删除的话，会同时删除Account表内容）</li>
-<li>PERSIST       只有插入才会执行关联操作</li>
-<li>MERGE        只有修改才会执行关联操作</li>
-<li>REMOVE      只有删除才会执行关联操作</li>
-</ul>
-</li>
+<li>ALL 所有持久化操作（比如删除的话，会同时删除Account表内容）</li>
+<li>PERSIST 只有插入才会执行关联操作</li>
+<li>MERGE 只有修改才会执行关联操作</li>
+<li>REMOVE 只有删除才会执行关联操作</li>
+</ul></li>
 <li><p><strong><code>fetch</code></strong> 设置是否懒加载</p>
 <ul>
 <li>EAGER 立即加载（默认）</li>
-<li>LAZY 懒加载（ 直到用到对象才会进行查询，因为不是所有的关联对象 都需要用到，这样可以提高效率）<ul>
-<li>懒加载时，方法前需要加入<code>@Transactional(readOnly = True)</code>注解配置事务，</li>
-<li>因为当通过repository调用完查询方法，session就会立即关闭， 一旦session你就不能查询，</li>
-<li>加了事务后， 就能让session直到事务方法执行完毕后才会关闭。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong><code>orphanRemoval</code></strong>  关联移除（通常在修改的时候会用到）</p>
+<li>LAZY 懒加载（ 直到用到对象才会进行查询，因为不是所有的关联对象
+都需要用到，这样可以提高效率）
 <ul>
-<li>一旦把关联的数据设置null ，或者修改为其他的关联数据， 如果想删除关联数据， 就可以设置为true</li>
-</ul>
-</li>
-<li><p><strong><code>optional</code></strong>  限制关联的对象不能为null</p>
+<li>懒加载时，方法前需要加入<code>@Transactional(readOnly = True)</code>注解配置事务，</li>
+<li>因为当通过repository调用完查询方法，session就会立即关闭，
+一旦session你就不能查询，</li>
+<li>加了事务后， 就能让session直到事务方法执行完毕后才会关闭。</li>
+</ul></li>
+</ul></li>
+<li><p><strong><code>orphanRemoval</code></strong>
+关联移除（通常在修改的时候会用到）</p>
+<ul>
+<li>一旦把关联的数据设置null ，或者修改为其他的关联数据，
+如果想删除关联数据， 就可以设置为true</li>
+</ul></li>
+<li><p><strong><code>optional</code></strong>
+限制关联的对象不能为null</p>
 <ul>
 <li>true 可以为null(默认)</li>
 <li>false 不能为null</li>
-</ul>
-</li>
-<li><p><strong><code>mappedBy</code></strong>  将外键约束执行另一方维护（否则双方同时加了外键依赖后，要删除时一个都删不掉）</p>
+</ul></li>
+<li><p><strong><code>mappedBy</code></strong>
+将外键约束执行另一方维护（否则双方同时加了外键依赖后，要删除时一个都删不掉）</p>
 <ul>
-<li><p>删除Customer时，会把Account的外键值设置成null</p>
-</li>
-<li><p>(通常在双向关联关系中，会放弃一方的外键约束）</p>
-</li>
+<li><p>删除Customer时，会把Account的外键值设置成null</p></li>
+<li><p>(通常在双向关联关系中，会放弃一方的外键约束）</p></li>
 <li><p>值 = 另一方关联属性名</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//传入设置双向关系后的数据</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testC</span><span class="params">()</span>&#123;</span><br><span class="line">       <span class="comment">// 初始化数据</span></span><br><span class="line">       <span class="type">Account</span> <span class="variable">account</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Account</span>();</span><br><span class="line">       account.setUsername(<span class="string">&quot;xushu&quot;</span>);</span><br><span class="line">    </span><br><span class="line">       <span class="type">Customer</span> <span class="variable">customer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Customer</span>();</span><br><span class="line">       customer.setCustName(<span class="string">&quot;丁真&quot;</span>);</span><br><span class="line">       customer.setAccount(account);</span><br><span class="line">    </span><br><span class="line">       account.setCustomer(customer);</span><br><span class="line">    </span><br><span class="line">       repository.save(customer);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//传入设置双向关系后的数据</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testC</span><span class="params">()</span>&#123;</span><br><span class="line">       <span class="comment">// 初始化数据</span></span><br><span class="line">       <span class="type">Account</span> <span class="variable">account</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Account</span>();</span><br><span class="line">       account.setUsername(<span class="string">&quot;xushu&quot;</span>);</span><br><span class="line">    </span><br><span class="line">       <span class="type">Customer</span> <span class="variable">customer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Customer</span>();</span><br><span class="line">       customer.setCustName(<span class="string">&quot;丁真&quot;</span>);</span><br><span class="line">       customer.setAccount(account);</span><br><span class="line">    </span><br><span class="line">       account.setCustomer(customer);</span><br><span class="line">    </span><br><span class="line">       repository.save(customer);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h4 id="一对多"><a href="#一对多" class="headerlink" title="一对多"></a>一对多</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/liyiming2017/article/details/90218062">Spring Data JPA OneToMany级联，多方删除修改新增详解</a></p>
+<h4 id="一对多">一对多</h4>
+<p><a
+target="_blank" rel="noopener" href="https://blog.csdn.net/liyiming2017/article/details/90218062">Spring
+Data JPA OneToMany级联，多方删除修改新增详解</a></p>
 <p>创建Message类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table(name=&quot;tb_message&quot;)</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Message</span> &#123;</span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@GeneratedValue(strategy = GenerationType.IDENTITY)</span></span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String info;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Message</span><span class="params">(String info)</span> &#123;<span class="built_in">this</span>.info = info;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Message</span><span class="params">(String info, Customer customer)</span> &#123;<span class="built_in">this</span>.info = info;<span class="built_in">this</span>.customer = customer;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 一定要有、否则查询就会有问题</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Message</span><span class="params">()</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 多对一</span></span><br><span class="line">    <span class="keyword">private</span> Customer customer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>在Customer类中设置关联关系：</p>
@@ -818,8 +929,12 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 多对一</span></span><br><span class="line"><span class="meta">@ManyToOne(cascade = &#123;CascadeType.ALL,CascadeType.REMOVE&#125;)</span></span><br><span class="line"><span class="meta">@JoinColumn(name=&quot;customer_id&quot;)</span><span class="comment">//可以不声明，因为Customer中已经声明过了</span></span><br><span class="line"><span class="keyword">private</span> Customer customer;</span><br></pre></td></tr></table></figure>
 <p>操作：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ManyToOneTest</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    MessageRepository repository;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 插入</span></span><br><span class="line">    <span class="comment">// 当插入&quot;多&quot;的数据的时候，使用多对一的关联关系是更加合理</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testC</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">Customer</span> <span class="variable">customer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Customer</span>();</span><br><span class="line">        customer.setCustName(<span class="string">&quot;司马懿&quot;</span>);</span><br><span class="line"></span><br><span class="line">        List&lt;Message&gt; list=<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        list.add(<span class="keyword">new</span> <span class="title class_">Message</span>(<span class="string">&quot;你好&quot;</span>,customer));</span><br><span class="line">        list.add(<span class="keyword">new</span> <span class="title class_">Message</span>(<span class="string">&quot;在吗？&quot;</span>,customer));</span><br><span class="line"></span><br><span class="line">        repository.saveAll(list);<span class="comment">//insert之后无需update</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 根据客户id查询对应的所有信息</span></span><br><span class="line">    <span class="comment">// 通过“一”进行条件查询， 在一对多中实现是更合理的</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testR</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">Customer</span> <span class="variable">customer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Customer</span>();</span><br><span class="line">        customer.setCustId(<span class="number">1L</span>);</span><br><span class="line"></span><br><span class="line">        List&lt;Message&gt; messages = repository.findByCustomer(customer);<span class="comment">//只会看里面的id来找</span></span><br><span class="line">        <span class="comment">// 隐式调用toString()</span></span><br><span class="line">        System.out.println(messages);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//删除信息</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testD</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">Customer</span> <span class="variable">customer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Customer</span>();</span><br><span class="line">        customer.setCustId(<span class="number">1L</span>);</span><br><span class="line"></span><br><span class="line">        List&lt;Message&gt; messages = repository.findByCustomer(customer);</span><br><span class="line"></span><br><span class="line">        repository.deleteAll(messages);<span class="comment">//当Message都被删除后，对应的Customer内也会被删除</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="多对多"><a href="#多对多" class="headerlink" title="多对多"></a>多对多</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhouzhiwengang/article/details/108505595">Spring-Data-JPA 定义实体类关系:多对多(增删改查)_jpa 多对多 中间实体更新操作</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lin-bunny/p/11647798.html">spring jpa ManyToMany 理解和使用</a></p>
+<h4 id="多对多">多对多</h4>
+<p><a
+target="_blank" rel="noopener" href="https://blog.csdn.net/zhouzhiwengang/article/details/108505595">Spring-Data-JPA
+定义实体类关系:多对多(增删改查)_jpa 多对多 中间实体更新操作</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lin-bunny/p/11647798.html">spring
+jpa ManyToMany 理解和使用</a></p>
 <p>创建Role类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table(name=&quot;tb_role&quot;)</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Role</span> &#123;</span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@GeneratedValue(strategy = GenerationType.IDENTITY)</span></span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Column(name=&quot;role_name&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String rName;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Role</span><span class="params">(String rName)</span> &#123;<span class="built_in">this</span>.rName = rName;&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Role</span><span class="params">(Long id, String rName)</span> &#123;<span class="built_in">this</span>.id = id;<span class="built_in">this</span>.rName = rName;&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Role</span><span class="params">()</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ManyToMany(cascade = CascadeType.ALL)</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;Role&gt; roles;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>在Customer中设置关系</p>
@@ -828,40 +943,48 @@
 <ul>
 <li><p>插入</p>
 <ul>
-<li><p>如果保存的关联数据  希望使用已有的 ，就需要从数据库中查出来（为持久状态）。不能通过设置id的方式来获取，否则会提示游离状态不能持久化</p>
-</li>
-<li><p>如果一个业务方法有多个持久化操作， 记得加上<code>@Transactional</code> ，否则不能共用一个session，导致查出来的又变回游离状态</p>
-</li>
-<li><p>在单元测试中用到了<code>@Transactional</code> , 如果有增删改的操作一定要加<code>@Commit</code></p>
-</li>
-<li><p>单元测试会认为你的事务方法<code>@Transactional</code>，  只是测试而已， 它不会为你提交事务，  需要单独加上 <code>@Commit</code></p>
-</li>
+<li><p>如果保存的关联数据 希望使用已有的
+，就需要从数据库中查出来（为持久状态）。不能通过设置id的方式来获取，否则会提示游离状态不能持久化</p></li>
+<li><p>如果一个业务方法有多个持久化操作，
+记得加上<code>@Transactional</code>
+，否则不能共用一个session，导致查出来的又变回游离状态</p></li>
+<li><p>在单元测试中用到了<code>@Transactional</code> ,
+如果有增删改的操作一定要加<code>@Commit</code></p></li>
+<li><p>单元测试会认为你的事务方法<code>@Transactional</code>，
+只是测试而已， 它不会为你提交事务， 需要单独加上
+<code>@Commit</code></p></li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 保存</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"><span class="meta">@Commit</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testC</span><span class="params">()</span> &#123;</span><br><span class="line">  </span><br><span class="line">    List&lt;Role&gt; roles=<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    roles.add(roleRepository.findById(<span class="number">9L</span>).get());</span><br><span class="line">    roles.add(roleRepository.findById(<span class="number">10L</span>).get());</span><br><span class="line">  </span><br><span class="line">    <span class="type">Customer</span> <span class="variable">customer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Customer</span>();</span><br><span class="line">    customer.setCustName(<span class="string">&quot;诸葛&quot;</span>);</span><br><span class="line">    customer.setRoles(roles);</span><br><span class="line">  </span><br><span class="line">    repository.save(customer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 保存</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"><span class="meta">@Commit</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testC</span><span class="params">()</span> &#123;</span><br><span class="line">  </span><br><span class="line">    List&lt;Role&gt; roles=<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    roles.add(roleRepository.findById(<span class="number">9L</span>).get());</span><br><span class="line">    roles.add(roleRepository.findById(<span class="number">10L</span>).get());</span><br><span class="line">  </span><br><span class="line">    <span class="type">Customer</span> <span class="variable">customer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Customer</span>();</span><br><span class="line">    customer.setCustName(<span class="string">&quot;诸葛&quot;</span>);</span><br><span class="line">    customer.setRoles(roles);</span><br><span class="line">  </span><br><span class="line">    repository.save(customer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>查询</p>
 <ul>
 <li>注意是懒加载，需要设置事务</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="meta">@Transactional(readOnly = true)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testR</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(repository.findById(<span class="number">1L</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="meta">@Transactional(readOnly = true)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testR</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(repository.findById(<span class="number">1L</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>删除</p>
 <ul>
 <li>注意加上<code>@Transactional</code>，<code>@Commit</code>。</li>
-<li>多对多其实不适合删除， 因为经常出现数据出现可能除了和当前这端关联还会关联另一端，此时删除就会： ConstraintViolationException。</li>
+<li>多对多其实不适合删除，
+因为经常出现数据出现可能除了和当前这端关联还会关联另一端，此时删除就会：
+ConstraintViolationException。</li>
 <li>要删除， 要保证没有额外其他另一端数据关联，或者先把关系给删除。</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//删除</span></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="meta">@Transactional</span></span><br><span class="line">   <span class="meta">@Commit</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testD</span><span class="params">()</span> &#123;</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">       Optional&lt;Customer&gt; customer = repository.findById(<span class="number">14L</span>);</span><br><span class="line">  </span><br><span class="line">       repository.delete(customer.get());</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//删除</span></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="meta">@Transactional</span></span><br><span class="line">   <span class="meta">@Commit</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testD</span><span class="params">()</span> &#123;</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">       Optional&lt;Customer&gt; customer = repository.findById(<span class="number">14L</span>);</span><br><span class="line">  </span><br><span class="line">       repository.delete(customer.get());</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h3 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h3><p>属于hibernate的功能，用于防并发修改</p>
+<h3 id="乐观锁">乐观锁</h3>
+<p>属于hibernate的功能，用于防并发修改</p>
 <p>在实体类里加入一行</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="meta">@Version</span> Long version;</span><br></pre></td></tr></table></figure>
 <p>通过对比版本号，放置并发修改导致的错乱</p>
-<h3 id="审计"><a href="#审计" class="headerlink" title="审计"></a><strong>审计</strong></h3><p>一般设置数据库会设置数据的创建时间、修改时间等字段，在插入和修改时设置，作为日志来记录，相对比较繁琐。</p>
+<h3 id="审计"><strong>审计</strong></h3>
+<p>一般设置数据库会设置数据的创建时间、修改时间等字段，在插入和修改时设置，作为日志来记录，相对比较繁琐。</p>
 <p>而Spring Data JPA能够帮助实现这个功能，叫做审计功能</p>
 <p><strong>实现</strong></p>
-<p>首先申明实体类，需要在类上加上注解<code>@EntityListeners(AuditingEntityListener.class)</code>，其次在application启动类中加上注解EnableJpaAuditing，同时在需要的字段上加上@CreatedDate、@CreatedBy、@LastModifiedDate、@LastModifiedBy等注解。</p>
+<p>首先申明实体类，需要在类上加上注解<code>@EntityListeners(AuditingEntityListener.class)</code>，其次在application启动类中加上注解EnableJpaAuditing，同时在需要的字段上加上@CreatedDate、<span
+class="citation" data-cites="CreatedBy">@CreatedBy</span>、<span
+class="citation"
+data-cites="LastModifiedDate">@LastModifiedDate</span>、<span
+class="citation"
+data-cites="LastModifiedBy等注解">@LastModifiedBy等注解</span>。</p>
 <p>这个时候，在jpa.save方法被调用的时候，时间字段会自动设置并插入数据库，但是CreatedBy和LastModifiedBy并没有赋值，因为需要</p>
 <p>实现AuditorAware接口来返回你需要插入的值。</p>
 <p><strong>1.编写AuditorAware</strong></p>
@@ -1035,7 +1158,8 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JPA"><span class="toc-number">1.</span> <span class="toc-text">JPA</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Jpa%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.1.</span> <span class="toc-text">Jpa示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-data-JPA"><span class="toc-number">1.2.</span> <span class="toc-text">Spring data JPA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96"><span class="toc-number">1.3.</span> <span class="toc-text">依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CrudRepository"><span class="toc-number">1.4.</span> <span class="toc-text">CrudRepository</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%93%8D%E4%BD%9C"><span class="toc-number">1.5.</span> <span class="toc-text">自定义操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#jpql-%E5%8E%9F%E7%94%9FSQL"><span class="toc-number">1.5.1.</span> <span class="toc-text">jpql | 原生SQL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%84%E5%AE%9A%E6%96%B9%E6%B3%95%E5%90%8D"><span class="toc-number">1.5.2.</span> <span class="toc-text">规定方法名</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.6.</span> <span class="toc-text">动态查询</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Query-by-Example"><span class="toc-number">1.6.1.</span> <span class="toc-text">Query by Example</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Specifications"><span class="toc-number">1.6.2.</span> <span class="toc-text">Specifications</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Querydsl"><span class="toc-number">1.6.3.</span> <span class="toc-text">Querydsl</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.7.</span> <span class="toc-text">多表查询</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E5%AF%B9%E4%B8%80"><span class="toc-number">1.7.1.</span> <span class="toc-text">一对一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E5%AF%B9%E5%A4%9A"><span class="toc-number">1.7.2.</span> <span class="toc-text">一对多</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E5%AF%B9%E5%A4%9A"><span class="toc-number">1.7.3.</span> <span class="toc-text">多对多</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%90%E8%A7%82%E9%94%81"><span class="toc-number">1.8.</span> <span class="toc-text">乐观锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A1%E8%AE%A1"><span class="toc-number">1.9.</span> <span class="toc-text">审计</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#jpa"><span class="toc-number">1.</span> <span class="toc-text">JPA</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#jpa%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.1.</span> <span class="toc-text">Jpa示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spring-data-jpa"><span class="toc-number">1.2.</span> <span class="toc-text">Spring
+data JPA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96"><span class="toc-number">1.3.</span> <span class="toc-text">依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#crudrepository"><span class="toc-number">1.4.</span> <span class="toc-text">CrudRepository</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%93%8D%E4%BD%9C"><span class="toc-number">1.5.</span> <span class="toc-text">自定义操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#jpql-%E5%8E%9F%E7%94%9Fsql"><span class="toc-number">1.5.1.</span> <span class="toc-text">jpql | 原生SQL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%84%E5%AE%9A%E6%96%B9%E6%B3%95%E5%90%8D"><span class="toc-number">1.5.2.</span> <span class="toc-text">规定方法名</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.6.</span> <span class="toc-text">动态查询</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#query-by-example"><span class="toc-number">1.6.1.</span> <span class="toc-text">Query by Example</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#specifications"><span class="toc-number">1.6.2.</span> <span class="toc-text">Specifications</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#querydsl"><span class="toc-number">1.6.3.</span> <span class="toc-text">Querydsl</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.7.</span> <span class="toc-text">多表查询</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E5%AF%B9%E4%B8%80"><span class="toc-number">1.7.1.</span> <span class="toc-text">一对一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E5%AF%B9%E5%A4%9A"><span class="toc-number">1.7.2.</span> <span class="toc-text">一对多</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E5%AF%B9%E5%A4%9A"><span class="toc-number">1.7.3.</span> <span class="toc-text">多对多</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%90%E8%A7%82%E9%94%81"><span class="toc-number">1.8.</span> <span class="toc-text">乐观锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A1%E8%AE%A1"><span class="toc-number">1.9.</span> <span class="toc-text">审计</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>

@@ -10,22 +10,20 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="后端深邃难觅迹文件上传文件上传，是指将本地图片、视频、音频等文件上传到服务器，供其他用户浏览或下载的过程。 文件上传在项目中应用非常广泛，我们经常发微博、发微信朋友圈都用到了文件上传功能。 前端在前端程序中要完成哪些代码： 123456&lt;form action&#x3D;&quot;&#x2F;upload&quot; method&#x3D;&quot;post&quot; enctype&#x3D;&quot;multipar">
+  <meta name="description" content="后端深邃难觅迹 文件上传 文件上传，是指将本地图片、视频、音频等文件上传到服务器，供其他用户浏览或下载的过程。 文件上传在项目中应用非常广泛，我们经常发微博、发微信朋友圈都用到了文件上传功能。 前端 在前端程序中要完成哪些代码：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="文件上传&amp;阿里云oss对象存储">
 <meta property="og:url" content="https://nicccce.github.io/TechNotes/Back-End-4/">
 <meta property="og:site_name" content="NICCCCE">
-<meta property="og:description" content="后端深邃难觅迹文件上传文件上传，是指将本地图片、视频、音频等文件上传到服务器，供其他用户浏览或下载的过程。 文件上传在项目中应用非常广泛，我们经常发微博、发微信朋友圈都用到了文件上传功能。 前端在前端程序中要完成哪些代码： 123456&lt;form action&#x3D;&quot;&#x2F;upload&quot; method&#x3D;&quot;post&quot; enctype&#x3D;&quot;multipar">
+<meta property="og:description" content="后端深邃难觅迹 文件上传 文件上传，是指将本地图片、视频、音频等文件上传到服务器，供其他用户浏览或下载的过程。 文件上传在项目中应用非常广泛，我们经常发微博、发微信朋友圈都用到了文件上传功能。 前端 在前端程序中要完成哪些代码：">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="e:\%E6%9C%80%E6%96%B0%E7%89%88JavaWeb%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B\%E8%B5%84%E6%96%99\day11-SpringBootWeb%E6%A1%88%E4%BE%8B\day11-SpringBootWeb%E6%A1%88%E4%BE%8B\%E8%AE%B2%E4%B9%89\assets\image-20230103202630793.png">
 <meta property="article:published_time" content="2024-04-02T09:11:44.000Z">
-<meta property="article:modified_time" content="2025-07-01T07:05:59.397Z">
+<meta property="article:modified_time" content="2026-07-05T07:47:41.046Z">
 <meta property="article:author" content="NICK">
 <meta property="article:tag" content="后端">
 <meta property="article:tag" content="SpringBoot">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="e:\%E6%9C%80%E6%96%B0%E7%89%88JavaWeb%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B\%E8%B5%84%E6%96%99\day11-SpringBootWeb%E6%A1%88%E4%BE%8B\day11-SpringBootWeb%E6%A1%88%E4%BE%8B\%E8%AE%B2%E4%B9%89\assets\image-20230103202630793.png">
   
     <link rel="alternative" href="/atom.xml" title="NICCCCE" type="application/atom+xml">
   
@@ -257,70 +255,71 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h1 id="后端深邃难觅迹"><a href="#后端深邃难觅迹" class="headerlink" title="后端深邃难觅迹"></a>后端深邃难觅迹</h1><h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><p>文件上传，是指将本地图片、视频、音频等文件上传到服务器，供其他用户浏览或下载的过程。</p>
+    <h1 id="后端深邃难觅迹">后端深邃难觅迹</h1>
+<h2 id="文件上传">文件上传</h2>
+<p>文件上传，是指将本地图片、视频、音频等文件上传到服务器，供其他用户浏览或下载的过程。</p>
 <p>文件上传在项目中应用非常广泛，我们经常发微博、发微信朋友圈都用到了文件上传功能。</p>
-<h3 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h3><p>在前端程序中要完成哪些代码：</p>
+<h3 id="前端">前端</h3>
+<p>在前端程序中要完成哪些代码：</p>
+<span id="more"></span>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;/upload&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span></span><br><span class="line">	姓名: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    年龄: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;age&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    头像: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;image&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;提交&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>上传文件的原始form表单，要求表单必须具备以下三点（上传文件页面三要素）：</p>
 <ul>
 <li><p>表单必须有file域，用于选择要上传的文件</p>
 <blockquote>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;image&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-</blockquote>
-</li>
+</blockquote></li>
 <li><p>表单提交方式必须为POST</p>
 <blockquote>
 <p>通常上传的文件会比较大，所以需要使用 POST 提交方式</p>
-</blockquote>
-</li>
+</blockquote></li>
 <li><p>表单的编码类型enctype必须要设置为：multipart/form-data</p>
 <blockquote>
 <p>普通默认的编码格式是不适合传输大型的二进制数据的，所以在文件上传时，表单的编码格式必须设置为multipart/form-data</p>
-</blockquote>
-</li>
+</blockquote></li>
 </ul>
 <p>删除form表单中enctype属性值，会是什么情况？</p>
 <p>此时表单的编码格式为默认值，提交后仅仅提交了该文件的名字</p>
-<h3 id="后端"><a href="#后端" class="headerlink" title="后端"></a>后端</h3><ul>
-<li><p>首先在服务端定义这么一个controller，用来进行文件上传，然后在controller当中定义一个方法来处理<code>/upload</code> 请求</p>
-</li>
-<li><p>在定义的方法中接收提交过来的数据 （方法中的形参名和请求参数的名字保持一致）</p>
+<h3 id="后端">后端</h3>
 <ul>
-<li>用户名：String  name</li>
-<li>年龄： Integer  age</li>
-<li>文件： MultipartFile  image</li>
+<li><p>首先在服务端定义这么一个controller，用来进行文件上传，然后在controller当中定义一个方法来处理<code>/upload</code>
+请求</p></li>
+<li><p>在定义的方法中接收提交过来的数据
+（方法中的形参名和请求参数的名字保持一致）</p>
+<ul>
+<li>用户名：String name</li>
+<li>年龄： Integer age</li>
+<li>文件： MultipartFile image</li>
 </ul>
 <blockquote>
 <p>Spring中提供了一个API：MultipartFile，使用这个API就可以来接收到上传的文件</p>
-</blockquote>
-</li>
+</blockquote></li>
 </ul>
 <blockquote>
 <p>问题：如果表单项的名字和方法中形参名不一致，该怎么办？</p>
 <ul>
-<li>~~~javascript<br>public Result upload(String username,<pre><code>                 Integer age, 
-                 MultipartFile file) //file形参名和请求参数名image不一致
-</code></pre><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">解决：使用@RequestParam注解进行参数绑定</span><br><span class="line"></span><br><span class="line">- ~~~java</span><br><span class="line">  public Result upload(String username,</span><br><span class="line">                       Integer age, </span><br><span class="line">                       @RequestParam(&quot;image&quot;) MultipartFile file)</span><br></pre></td></tr></table></figure>
-</li>
+<li>~~~javascript public Result upload(String username, Integer age,
+MultipartFile file) //file形参名和请求参数名image不一致
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">解决：使用@RequestParam注解进行参数绑定</span><br><span class="line"></span><br><span class="line">- ~~~java</span><br><span class="line">  public Result upload(String username,</span><br><span class="line">                       Integer age, </span><br><span class="line">                       @RequestParam(&quot;image&quot;) MultipartFile file)</span><br></pre></td></tr></table></figure></li>
 </ul>
 </blockquote>
 <p><strong>UploadController代码：</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UploadController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping(&quot;/upload&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> Result <span class="title function_">upload</span><span class="params">(String username, Integer age, MultipartFile image)</span>  &#123;</span><br><span class="line">        log.info(<span class="string">&quot;文件上传：&#123;&#125;,&#123;&#125;,&#123;&#125;&quot;</span>,username,age,image);</span><br><span class="line">        <span class="keyword">return</span> Result.success();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<h4 id="本地存储"><a href="#本地存储" class="headerlink" title="本地存储"></a>本地存储</h4><p>前面我们已分析了文件上传功能前端和后端的基础代码实现，文件上传时在服务端会产生一个临时文件，请求响应完成之后，这个临时文件被自动删除，并没有进行保存。下面呢，我们就需要完成将上传的文件保存在服务器的本地磁盘上。</p>
+<h4 id="本地存储">本地存储</h4>
+<p>前面我们已分析了文件上传功能前端和后端的基础代码实现，文件上传时在服务端会产生一个临时文件，请求响应完成之后，这个临时文件被自动删除，并没有进行保存。下面呢，我们就需要完成将上传的文件保存在服务器的本地磁盘上。</p>
 <p>代码实现：</p>
-<ol>
+<ol type="1">
 <li>在服务器本地磁盘上创建images目录，用来存储上传的文件（例：E盘创建images目录）</li>
 <li>使用MultipartFile类提供的API方法，把临时文件转存到本地磁盘目录下</li>
 </ol>
 <blockquote>
-<p>MultipartFile 常见方法： </p>
+<p>MultipartFile 常见方法：</p>
 <ul>
-<li>String  getOriginalFilename();  //获取原始文件名</li>
-<li>void  transferTo(File dest);     //将接收的文件转存到磁盘文件中</li>
-<li>long  getSize();     //获取文件的大小，单位：字节</li>
-<li>byte[]  getBytes();    //获取文件内容的字节数组</li>
-<li>InputStream  getInputStream();    //获取接收到的文件内容的输入流</li>
+<li>String getOriginalFilename(); //获取原始文件名</li>
+<li>void transferTo(File dest); //将接收的文件转存到磁盘文件中</li>
+<li>long getSize(); //获取文件的大小，单位：字节</li>
+<li>byte[] getBytes(); //获取文件内容的字节数组</li>
+<li>InputStream getInputStream(); //获取接收到的文件内容的输入流</li>
 </ul>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UploadController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping(&quot;/upload&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> Result <span class="title function_">upload</span><span class="params">(String username, Integer age, MultipartFile image)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        log.info(<span class="string">&quot;文件上传：&#123;&#125;,&#123;&#125;,&#123;&#125;&quot;</span>,username,age,image);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取原始文件名</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">originalFilename</span> <span class="operator">=</span> image.getOriginalFilename();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//将文件存储在服务器的磁盘目录</span></span><br><span class="line">        image.transferTo(<span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;E:/images/&quot;</span>+originalFilename));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> Result.success();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -342,12 +341,17 @@
 <li>自己搭建存储服务器，如：fastDFS 、MinIO</li>
 <li>使用现成的云服务，如：阿里云，腾讯云，华为云</li>
 </ul>
-<h4 id="阿里云OSS"><a href="#阿里云OSS" class="headerlink" title="阿里云OSS"></a>阿里云OSS</h4><p><strong>准备</strong></p>
-<p>阿里云是阿里巴巴集团旗下全球领先的云计算公司，也是国内最大的云服务提供商 。</p>
-<p>阿里云对象存储OSS（Object Storage Service），是一款海量、安全、低成本、高可靠的云存储服务。使用OSS，您可以通过网络随时存储和调用包括文本、图片、音频和视频等在内的各种文件。</p>
-<p>在我们使用了阿里云OSS对象存储服务之后，我们的项目当中如果涉及到文件上传这样的业务，在前端进行文件上传并请求到服务端时，在服务器本地磁盘当中就不需要再来存储文件了。我们直接将接收到的文件上传到oss，由 oss帮我们存储和管理，同时阿里云的oss存储服务还保障了我们所存储内容的安全可靠。</p>
+<h4 id="阿里云oss">阿里云OSS</h4>
+<p><strong>准备</strong></p>
+<p>阿里云是阿里巴巴集团旗下全球领先的云计算公司，也是国内最大的云服务提供商
+。</p>
+<p>阿里云对象存储OSS（Object Storage
+Service），是一款海量、安全、低成本、高可靠的云存储服务。使用OSS，您可以通过网络随时存储和调用包括文本、图片、音频和视频等在内的各种文件。</p>
+<p>在我们使用了阿里云OSS对象存储服务之后，我们的项目当中如果涉及到文件上传这样的业务，在前端进行文件上传并请求到服务端时，在服务器本地磁盘当中就不需要再来存储文件了。我们直接将接收到的文件上传到oss，由
+oss帮我们存储和管理，同时阿里云的oss存储服务还保障了我们所存储内容的安全可靠。</p>
 <blockquote>
-<p>SDK：Software Development Kit 的缩写，软件开发工具包，包括辅助软件开发的依赖（jar包）、代码示例等，都可以叫做SDK。</p>
+<p>SDK：Software Development Kit
+的缩写，软件开发工具包，包括辅助软件开发的依赖（jar包）、代码示例等，都可以叫做SDK。</p>
 <p>简单说，sdk中包含了我们使用第三方云服务时所需要的依赖，以及一些示例代码。我们可以参照sdk所提供的示例代码就可以完成入门程序。</p>
 </blockquote>
 <p>第三方服务使用的通用思路，我们做一个简单介绍之后，接下来我们就来介绍一下我们当前要使用的阿里云oss对象存储服务具体的使用步骤。</p>
@@ -355,28 +359,26 @@
 <p>Bucket：存储空间是用户用于存储对象（Object，就是文件）的容器，所有的对象都必须隶属于某个存储空间。</p>
 </blockquote>
 <p>下面我们根据之前介绍的使用步骤，完成准备工作：</p>
-<ol>
-<li>注册阿里云账户（注册完成后需要实名认证）</li>
-<li><p>注册完账号之后，就可以登录阿里云 </p>
-</li>
-<li><p>通过控制台找到对象存储OSS服务 </p>
-</li>
+<ol type="1">
+<li><p>注册阿里云账户（注册完成后需要实名认证）</p></li>
+<li><p>注册完账号之后，就可以登录阿里云</p></li>
+<li><p>通过控制台找到对象存储OSS服务</p></li>
 </ol>
 <blockquote>
-<p>如果是第一次访问，还需要开通对象存储服务OSS </p>
+<p>如果是第一次访问，还需要开通对象存储服务OSS</p>
 </blockquote>
-<ol>
-<li><p>开通OSS服务之后，就可以进入到阿里云对象存储的控制台 </p>
-</li>
-<li><p>点击左侧的 “Bucket列表”，创建一个Bucket</p>
-</li>
+<ol start="4" type="1">
+<li><p>开通OSS服务之后，就可以进入到阿里云对象存储的控制台</p></li>
+<li><p>点击左侧的 "Bucket列表"，创建一个Bucket</p></li>
 </ol>
 <blockquote>
-<p>大家可以参照”资料\04. 阿里云oss\”中提供的文档，开通阿里云OSS服务。</p>
+<p>大家可以参照"资料\04. 阿里云oss"中提供的文档，开通阿里云OSS服务。</p>
 </blockquote>
 <p><strong>入门</strong></p>
-<p>阿里云oss 对象存储服务的准备工作我们已经完成了，接下来我们就来完成第二步操作：参照官方所提供的sdk示例来编写入门程序。</p>
-<p>首先我们需要来打开阿里云OSS的官方文档，在官方文档中找到 SDK 的示例代码：</p>
+<p>阿里云oss
+对象存储服务的准备工作我们已经完成了，接下来我们就来完成第二步操作：参照官方所提供的sdk示例来编写入门程序。</p>
+<p>首先我们需要来打开阿里云OSS的官方文档，在官方文档中找到 SDK
+的示例代码：</p>
 <p>参照官方提供的SDK，改造一下，即可实现文件上传功能：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.aliyun.oss.ClientException;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.OSS;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.OSSClientBuilder;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.OSSException;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.model.PutObjectRequest;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.model.PutObjectResult;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AliOssTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="comment">// Endpoint以华东1（杭州）为例，其它Region请按实际情况填写。</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">endpoint</span> <span class="operator">=</span> <span class="string">&quot;oss-cn-shanghai.aliyuncs.com&quot;</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 阿里云账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM用户进行API访问或日常运维，请登录RAM控制台创建RAM用户。</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">accessKeyId</span> <span class="operator">=</span> <span class="string">&quot;*******&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">accessKeySecret</span> <span class="operator">=</span> <span class="string">&quot;*******&quot;</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 填写Bucket名称，例如examplebucket。</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">bucketName</span> <span class="operator">=</span> <span class="string">&quot;web-framework01&quot;</span>;</span><br><span class="line">        <span class="comment">// 填写Object完整路径，完整路径中不能包含Bucket名称，例如exampledir/exampleobject.txt。</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">objectName</span> <span class="operator">=</span> <span class="string">&quot;1.jpg&quot;</span>;</span><br><span class="line">        <span class="comment">// 填写本地文件的完整路径，例如D:\\localpath\\examplefile.txt。</span></span><br><span class="line">        <span class="comment">// 如果未指定本地路径，则默认从示例程序所属项目对应本地路径中上传文件流。</span></span><br><span class="line">        String filePath= <span class="string">&quot;C:\\Users\\Administrator\\Pictures\\1.jpg&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建OSSClient实例。</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(filePath);</span><br><span class="line">            <span class="comment">// 创建PutObjectRequest对象。</span></span><br><span class="line">            <span class="type">PutObjectRequest</span> <span class="variable">putObjectRequest</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PutObjectRequest</span>(bucketName, objectName, inputStream);</span><br><span class="line">            <span class="comment">// 设置该属性可以返回response。如果不设置，则返回的response为空。</span></span><br><span class="line">            putObjectRequest.setProcess(<span class="string">&quot;true&quot;</span>);</span><br><span class="line">            <span class="comment">// 创建PutObject请求。</span></span><br><span class="line">            <span class="type">PutObjectResult</span> <span class="variable">result</span> <span class="operator">=</span> ossClient.putObject(putObjectRequest);</span><br><span class="line">            <span class="comment">// 如果上传成功，则返回200。</span></span><br><span class="line">            System.out.println(result.getResponse().getStatusCode());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (OSSException oe) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Caught an OSSException, which means your request made it to OSS, &quot;</span></span><br><span class="line">                    + <span class="string">&quot;but was rejected with an error response for some reason.&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;Error Message:&quot;</span> + oe.getErrorMessage());</span><br><span class="line">            System.out.println(<span class="string">&quot;Error Code:&quot;</span> + oe.getErrorCode());</span><br><span class="line">            System.out.println(<span class="string">&quot;Request ID:&quot;</span> + oe.getRequestId());</span><br><span class="line">            System.out.println(<span class="string">&quot;Host ID:&quot;</span> + oe.getHostId());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClientException ce) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Caught an ClientException, which means the client encountered &quot;</span></span><br><span class="line">                    + <span class="string">&quot;a serious internal problem while trying to communicate with OSS, &quot;</span></span><br><span class="line">                    + <span class="string">&quot;such as not being able to access the network.&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;Error Message:&quot;</span> + ce.getMessage());</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (ossClient != <span class="literal">null</span>) &#123;</span><br><span class="line">                ossClient.shutdown();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -394,48 +396,96 @@
 <p>阿里云oss对象存储服务的准备工作以及入门程序我们都已经完成了，接下来我们就需要在案例当中集成oss对象存储服务，来存储和管理案例中上传的图片。</p>
 <blockquote>
 <p>在新增员工的时候，上传员工的图像，而之所以需要上传员工的图像，是因为将来我们需要在系统页面当中访问并展示员工的图像。而要想完成这个操作，需要做两件事：</p>
-<ol>
+<ol type="1">
 <li>需要上传员工的图像，并把图像保存起来（存储到阿里云OSS）</li>
-<li>访问员工图像（通过图像在阿里云OSS的存储地址访问图像）<ul>
+<li>访问员工图像（通过图像在阿里云OSS的存储地址访问图像）
+<ul>
 <li>OSS中的每一个文件都会分配一个访问的url，通过这个url就可以访问到存储在阿里云上的图片。所以需要把url返回给前端，这样前端就可以通过url获取到图像。</li>
-</ul>
-</li>
+</ul></li>
 </ol>
 </blockquote>
 <p>我们参照接口文档来开发文件上传功能：</p>
 <ul>
 <li><p>基本信息</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">请求路径：/upload</span><br><span class="line"></span><br><span class="line">请求方式：POST</span><br><span class="line"></span><br><span class="line">接口描述：上传图片接口</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">请求路径：/upload</span><br><span class="line"></span><br><span class="line">请求方式：POST</span><br><span class="line"></span><br><span class="line">接口描述：上传图片接口</span><br></pre></td></tr></table></figure></li>
 <li><p>请求参数</p>
 <p>参数格式：multipart/form-data</p>
 <p>参数说明：</p>
-<p>| 参数名称 | 参数类型 | 是否必须 | 示例 | 备注 |<br>| ———— | ———— | ———— | —— | —— |<br>| image    | file     | 是       |      |      |</p>
-</li>
+<table>
+<thead>
+<tr class="header">
+<th>参数名称</th>
+<th>参数类型</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>image</td>
+<td>file</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></li>
 <li><p>响应数据</p>
 <p>参数格式：application/json</p>
 <p>参数说明：</p>
-<p>| 参数名 | 类型   | 是否必须 | 备注                           |<br>| ——— | ——— | ———— | ——————————————— |<br>| code   | number | 必须     | 响应码，1 代表成功，0 代表失败 |<br>| msg    | string | 非必须   | 提示信息                       |<br>| data   | object | 非必须   | 返回的数据，上传图片的访问路径 |</p>
+<table>
+<thead>
+<tr class="header">
+<th>参数名</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>code</td>
+<td>number</td>
+<td>必须</td>
+<td>响应码，1 代表成功，0 代表失败</td>
+</tr>
+<tr class="even">
+<td>msg</td>
+<td>string</td>
+<td>非必须</td>
+<td>提示信息</td>
+</tr>
+<tr class="odd">
+<td>data</td>
+<td>object</td>
+<td>非必须</td>
+<td>返回的数据，上传图片的访问路径</td>
+</tr>
+</tbody>
+</table>
 <p>响应数据样例：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;success&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://web-framework.oss-cn-hangzhou.aliyuncs.com/2022-09-02-00-27-0400.jpg&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;success&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://web-framework.oss-cn-hangzhou.aliyuncs.com/2022-09-02-00-27-0400.jpg&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <p>引入阿里云OSS上传文件工具类（由官方的示例代码改造而来）</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.aliyun.oss.OSS;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.OSSClientBuilder;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.multipart.MultipartFile;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.util.UUID;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AliOSSUtils</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">String</span> <span class="variable">endpoint</span> <span class="operator">=</span> <span class="string">&quot;https://oss-cn-shanghai.aliyuncs.com&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">String</span> <span class="variable">accessKeyId</span> <span class="operator">=</span> <span class="string">&quot;LTAI5t9MZK8iq5T2Av5GLDxX&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">String</span> <span class="variable">accessKeySecret</span> <span class="operator">=</span> <span class="string">&quot;C0IrHzKZGKqU8S7YQcevcotD3Zd5Tc&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">String</span> <span class="variable">bucketName</span> <span class="operator">=</span> <span class="string">&quot;web-framework01&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 实现上传图片到OSS</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">upload</span><span class="params">(MultipartFile multipartFile)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="comment">// 获取上传的文件的输入流</span></span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> multipartFile.getInputStream();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 避免文件覆盖</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">originalFilename</span> <span class="operator">=</span> multipartFile.getOriginalFilename();</span><br><span class="line">        <span class="type">String</span> <span class="variable">fileName</span> <span class="operator">=</span> UUID.randomUUID().toString() + originalFilename.substring(originalFilename.lastIndexOf(<span class="string">&quot;.&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//上传文件到 OSS</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line">        ossClient.putObject(bucketName, fileName, inputStream);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//文件访问路径</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> endpoint.split(<span class="string">&quot;//&quot;</span>)[<span class="number">0</span>] + <span class="string">&quot;//&quot;</span> + bucketName + <span class="string">&quot;.&quot;</span> + endpoint.split(<span class="string">&quot;//&quot;</span>)[<span class="number">1</span>] + <span class="string">&quot;/&quot;</span> + fileName;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 关闭ossClient</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">        <span class="keyword">return</span> url;<span class="comment">// 把上传到oss的路径返回</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>修改UploadController代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.nicccce.pojo.Result;</span><br><span class="line"><span class="keyword">import</span> com.nicccce.utils.AliOSSUtils;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.PostMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.multipart.MultipartFile;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UploadController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> AliOSSUtils aliOSSUtils;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping(&quot;/upload&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> Result <span class="title function_">upload</span><span class="params">(MultipartFile image)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="comment">//调用阿里云OSS工具类，将上传上来的文件存入阿里云</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> aliOSSUtils.upload(image);</span><br><span class="line">        <span class="comment">//将图片上传完成后的url返回，用于浏览器回显展示</span></span><br><span class="line">        <span class="keyword">return</span> Result.success(url);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>员工管理的增删改查功能我们已开发完成，但在我们所开发的程序中还一些小问题，下面我们就来分析一下当前案例中存在的问题以及如何优化解决。</p>
-<h3 id="参数配置化"><a href="#参数配置化" class="headerlink" title="参数配置化"></a>参数配置化</h3><p>在我们之前编写的程序中进行文件上传时，需要调用AliOSSUtils工具类，将文件上传到阿里云OSS对象存储服务当中。而在调用工具类进行文件上传时，需要一些参数：</p>
+<h2 id="配置文件">配置文件</h2>
+<p>员工管理的增删改查功能我们已开发完成，但在我们所开发的程序中还一些小问题，下面我们就来分析一下当前案例中存在的问题以及如何优化解决。</p>
+<h3 id="参数配置化">参数配置化</h3>
+<p>在我们之前编写的程序中进行文件上传时，需要调用AliOSSUtils工具类，将文件上传到阿里云OSS对象存储服务当中。而在调用工具类进行文件上传时，需要一些参数：</p>
 <ul>
-<li>endpoint       //阿里云OSS域名</li>
-<li>accessKeyID    //用户身份ID</li>
-<li>accessKeySecret   //用户密钥</li>
-<li>bucketName      //存储空间的名字</li>
+<li>endpoint //阿里云OSS域名</li>
+<li>accessKeyID //用户身份ID</li>
+<li>accessKeySecret //用户密钥</li>
+<li>bucketName //存储空间的名字</li>
 </ul>
 <p>关于以上的这些阿里云相关配置信息，我们是直接写死在java代码中了(硬编码)，如果我们在做项目时每涉及到一个第三方技术服务，就将其参数硬编码，那么在Java程序中会存在两个问题：</p>
-<ol>
+<ol type="1">
 <li>如果这些参数发生变化了，就必须在源程序代码中改动这些参数，然后需要重新进行代码的编译，将Java代码编译成class字节码文件再重新运行程序。（比较繁琐）</li>
-<li>如果我们开发的是一个真实的企业级项目， Java类可能会有很多，如果将这些参数分散的定义在各个Java类当中，我们要修改一个参数值，我们就需要在众多的Java代码当中来定位到对应的位置，再来修改参数，修改完毕之后再重新编译再运行。（参数配置过于分散，是不方便集中的管理和维护）</li>
+<li>如果我们开发的是一个真实的企业级项目，
+Java类可能会有很多，如果将这些参数分散的定义在各个Java类当中，我们要修改一个参数值，我们就需要在众多的Java代码当中来定位到对应的位置，再来修改参数，修改完毕之后再重新编译再运行。（参数配置过于分散，是不方便集中的管理和维护）</li>
 </ol>
 <p>为了解决以上分析的问题，我们可以将参数配置在配置文件中。如下：</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#自定义的阿里云OSS配置信息</span></span><br><span class="line"><span class="attr">aliyun.oss.endpoint</span>=<span class="string">https://oss-cn-hangzhou.aliyuncs.com</span></span><br><span class="line"><span class="attr">aliyun.oss.accessKeyId</span>=<span class="string">LTAI4GCH1vX6DKqJWxd6nEuW</span></span><br><span class="line"><span class="attr">aliyun.oss.accessKeySecret</span>=<span class="string">yBshYweHOpqDuhCArrVHwIiBKpyqSL</span></span><br><span class="line"><span class="attr">aliyun.oss.bucketName</span>=<span class="string">web-tlias</span></span><br></pre></td></tr></table></figure>
@@ -445,20 +495,22 @@
 <p>而此时如果直接调用AliOSSUtils类当中的upload方法进行文件上传时，这4项参数全部为null，原因是因为并没有给它赋值。</p>
 <p>此时我们是不是需要将配置文件当中所配置的属性值读取出来，并分别赋值给AliOSSUtils工具类当中的各个属性呢？那应该怎么做呢？</p>
 </blockquote>
-<p>因为application.properties是springboot项目默认的配置文件，所以springboot程序在启动时会默认读取application.properties配置文件，而我们可以使用一个现成的注解：@Value，获取配置文件中的数据。</p>
-<p>@Value 注解通常用于外部配置的属性注入，具体用法为： @Value(“${配置文件中的key}”)</p>
+<p>因为application.properties是springboot项目默认的配置文件，所以springboot程序在启动时会默认读取application.properties配置文件，而我们可以使用一个现成的注解：<span
+class="citation"
+data-cites="Value">@Value</span>，获取配置文件中的数据。</p>
+<p><span class="citation" data-cites="Value">@Value</span>
+注解通常用于外部配置的属性注入，具体用法为： <span class="citation"
+data-cites="Value">@Value</span>("${配置文件中的key}")</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AliOSSUtils</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;aliyun.oss.endpoint&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String endpoint;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;aliyun.oss.accessKeyId&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String accessKeyId;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;aliyun.oss.accessKeySecret&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String accessKeySecret;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;aliyun.oss.bucketName&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String bucketName;</span><br><span class="line"> 	</span><br><span class="line"> 	<span class="comment">//省略其他代码...</span></span><br><span class="line"> &#125;   </span><br></pre></td></tr></table></figure>
-<h3 id="yml配置文件"><a href="#yml配置文件" class="headerlink" title="yml配置文件"></a>yml配置文件</h3><p>前面我们一直使用springboot项目创建完毕后自带的application.properties进行属性的配置，那其实呢，在springboot项目当中是支持多种配置方式的，除了支持properties配置文件以外，还支持另外一种类型的配置文件，就是我们接下来要讲解的yml格式的配置文件。</p>
+<h3 id="yml配置文件">yml配置文件</h3>
+<p>前面我们一直使用springboot项目创建完毕后自带的application.properties进行属性的配置，那其实呢，在springboot项目当中是支持多种配置方式的，除了支持properties配置文件以外，还支持另外一种类型的配置文件，就是我们接下来要讲解的yml格式的配置文件。</p>
 <ul>
 <li><p>application.properties</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server.port</span>=<span class="string">8080</span></span><br><span class="line"><span class="attr">server.address</span>=<span class="string">127.0.0.1</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>application.yml </p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8080</span></span><br><span class="line">  <span class="attr">address:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>application.yaml </p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8080</span></span><br><span class="line">  <span class="attr">address:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server.port</span>=<span class="string">8080</span></span><br><span class="line"><span class="attr">server.address</span>=<span class="string">127.0.0.1</span></span><br></pre></td></tr></table></figure></li>
+<li><p>application.yml</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8080</span></span><br><span class="line">  <span class="attr">address:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br></pre></td></tr></table></figure></li>
+<li><p>application.yaml</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8080</span></span><br><span class="line">  <span class="attr">address:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <blockquote>
 <p>yml 格式的配置文件，后缀名有两种：</p>
@@ -482,7 +534,7 @@
 <li><code>#</code>表示注释，从这个字符一直到行尾，都会被解析器忽略</li>
 </ul>
 <p>yml文件中常见的数据格式：</p>
-<ol>
+<ol type="1">
 <li>定义对象或Map集合</li>
 <li>定义数组、list或set集合</li>
 </ol>
@@ -491,28 +543,33 @@
 <p>数组/List/Set集合</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">hobby:</span> </span><br><span class="line">  <span class="bullet">-</span> <span class="string">java</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">game</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">sport</span></span><br></pre></td></tr></table></figure>
 <p>熟悉完了yml文件的基本语法后，我们修改下之前案例中使用的配置文件，变更为application.yml配置方式：</p>
-<ol>
+<ol type="1">
 <li>修改application.properties名字为：<code>_application.properties</code>（名字随便更换，只要加载不到即可）</li>
 <li>创建新的配置文件： <code>application.yml</code></li>
 </ol>
 <p>原有application.properties文件：</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring.datasource.driver-class-name</span>=<span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line"><span class="attr">spring.datasource.url</span>=<span class="string">jdbc:mysql://localhost:3306/tlias</span></span><br><span class="line"><span class="attr">spring.datasource.username</span>=<span class="string">root</span></span><br><span class="line"><span class="attr">spring.datasource.password</span>=<span class="string">1234</span></span><br><span class="line"><span class="attr">spring.servlet.multipart.max-file-size</span>=<span class="string">10MB</span></span><br><span class="line"><span class="attr">spring.servlet.multipart.max-request-size</span>=<span class="string">100MB</span></span><br><span class="line"></span><br><span class="line"><span class="attr">mybatis.configuration.log-impl</span>=<span class="string">org.apache.ibatis.logging.stdout.stdoutImpl</span></span><br><span class="line"><span class="attr">mybatis.configuration.map-underscore-to-camel-case</span>=<span class="string">true</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">#自定义的阿里云oss配置信息</span></span><br><span class="line"><span class="attr">aliyun.oss.endpoint</span>=<span class="string">https://oss-cn-hangzhou.aliyuncs.com</span></span><br><span class="line"><span class="attr">aliyun.oss.accessKeyId</span>=<span class="string">LTAI4GCHlvX6DKqJwxd6nEuw</span></span><br><span class="line"><span class="attr">aliyun.oss.accessKeySecret</span>=<span class="string">yBshYweHOpqDuhCArrVHwIiBKpygSL</span></span><br><span class="line"><span class="attr">aliyun.oss.bucketName</span>=<span class="string">web-framework</span></span><br></pre></td></tr></table></figure>
-<p><img src="E:\最新版JavaWeb开发教程\资料\day11-SpringBootWeb案例\day11-SpringBootWeb案例\讲义\assets\image-20230103202630793.png" alt="image-20230103202630793"></p>
+<figure>
+<img
+src="E:\最新版JavaWeb开发教程\资料\day11-SpringBootWeb案例\day11-SpringBootWeb案例\讲义\assets\image-20230103202630793.png"
+alt="image-20230103202630793" />
+<figcaption aria-hidden="true">image-20230103202630793</figcaption>
+</figure>
 <p>新建的application.yml文件：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:mysql://localhost:3306/tlias</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">1234</span></span><br><span class="line">  <span class="attr">servlet:</span></span><br><span class="line">    <span class="attr">multipart:</span></span><br><span class="line">      <span class="attr">max-file-size:</span> <span class="string">10MB</span></span><br><span class="line">      <span class="attr">max-request-size:</span> <span class="string">100MB</span></span><br><span class="line">      </span><br><span class="line"><span class="attr">mybatis:</span></span><br><span class="line">  <span class="attr">configuration:</span></span><br><span class="line">    <span class="attr">log-impl:</span> <span class="string">org.apache.ibatis.logging.stdout.StdOutImpl</span></span><br><span class="line">    <span class="attr">map-underscore-to-camel-case:</span> <span class="literal">true</span></span><br><span class="line">	</span><br><span class="line"><span class="attr">aliyun:</span></span><br><span class="line">  <span class="attr">oss:</span></span><br><span class="line">    <span class="attr">endpoint:</span> <span class="string">https://oss-cn-hangzhou.aliyuncs.com</span></span><br><span class="line">    <span class="attr">accessKeyId:</span> <span class="string">LTAI4GCH1vX6DKqJWxd6nEuW</span></span><br><span class="line">    <span class="attr">accessKeySecret:</span> <span class="string">yBshYweHOpqDuhCArrVHwIiBKpyqSL</span></span><br><span class="line">    <span class="attr">bucketName:</span> <span class="string">web-397</span></span><br></pre></td></tr></table></figure>
-<h3 id="ConfigurationProperties"><a href="#ConfigurationProperties" class="headerlink" title="@ConfigurationProperties"></a>@ConfigurationProperties</h3><p>我们在application.properties或者application.yml中配置了阿里云OSS的四项参数之后，如果java程序中需要这四项参数数据，我们直接通过@Value注解来进行注入。这种方式本身没有什么问题问题，但是如果说需要注入的属性较多(例：需要20多个参数数据)，我们写起来就会比较繁琐。</p>
+<h3 id="configurationproperties"><span class="citation"
+data-cites="ConfigurationProperties">@ConfigurationProperties</span></h3>
+<p>我们在application.properties或者application.yml中配置了阿里云OSS的四项参数之后，如果java程序中需要这四项参数数据，我们直接通过@Value注解来进行注入。这种方式本身没有什么问题问题，但是如果说需要注入的属性较多(例：需要20多个参数数据)，我们写起来就会比较繁琐。</p>
 <p>在Spring中给我们提供了一种简化方式，可以直接将配置文件中配置项的值自动的注入到对象的属性中。</p>
 <p>Spring提供的简化方式套路：</p>
-<ol>
+<ol type="1">
 <li><p>需要创建一个实现类，且实体类中的属性名和配置文件当中key的名字必须要一致</p>
 <blockquote>
-<p>比如：配置文件当中叫endpoints，实体类当中的属性也得叫endpoints，另外实体类当中的属性还需要提供 getter / setter方法</p>
-</blockquote>
-</li>
-<li><p>需要将实体类交给Spring的IOC容器管理，成为IOC容器当中的bean对象</p>
-</li>
-<li><p>在实体类上添加<code>@ConfigurationProperties</code>注解，并通过perfect属性来指定配置参数项的前缀</p>
-</li>
+<p>比如：配置文件当中叫endpoints，实体类当中的属性也得叫endpoints，另外实体类当中的属性还需要提供
+getter / setter方法</p>
+</blockquote></li>
+<li><p>需要将实体类交给Spring的IOC容器管理，成为IOC容器当中的bean对象</p></li>
+<li><p>在实体类上添加<code>@ConfigurationProperties</code>注解，并通过perfect属性来指定配置参数项的前缀</p></li>
 </ol>
 <p>实体类：AliOSSProperties</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*阿里云OSS相关配置*/</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Component</span>	<span class="comment">//需要被注入</span></span><br><span class="line"><span class="meta">@ConfigurationProperties(prefix = &quot;aliyun.oss&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AliOSSProperties</span> &#123;</span><br><span class="line">    <span class="comment">//区域</span></span><br><span class="line">    <span class="keyword">private</span> String endpoint;</span><br><span class="line">    <span class="comment">//身份ID</span></span><br><span class="line">    <span class="keyword">private</span> String accessKeyId ;</span><br><span class="line">    <span class="comment">//身份密钥</span></span><br><span class="line">    <span class="keyword">private</span> String accessKeySecret ;</span><br><span class="line">    <span class="comment">//存储空间</span></span><br><span class="line">    <span class="keyword">private</span> String bucketName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -520,17 +577,24 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.aliyun.oss.OSS;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.OSSClientBuilder;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.multipart.MultipartFile;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.util.UUID;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span> <span class="comment">//当前类对象由Spring创建和管理</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AliOSSUtils</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//注入配置参数实体类对象</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> AliOSSProperties aliOSSProperties;</span><br><span class="line">   </span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 实现上传图片到OSS</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">upload</span><span class="params">(MultipartFile multipartFile)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="comment">// 获取上传的文件的输入流</span></span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> multipartFile.getInputStream();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 避免文件覆盖</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">originalFilename</span> <span class="operator">=</span> multipartFile.getOriginalFilename();</span><br><span class="line">        <span class="type">String</span> <span class="variable">fileName</span> <span class="operator">=</span> UUID.randomUUID().toString() + originalFilename.substring(originalFilename.lastIndexOf(<span class="string">&quot;.&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//上传文件到 OSS</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(aliOSSProperties.getEndpoint(),</span><br><span class="line">                aliOSSProperties.getAccessKeyId(), aliOSSProperties.getAccessKeySecret());</span><br><span class="line">        ossClient.putObject(aliOSSProperties.getBucketName(), fileName, inputStream);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//文件访问路径</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span>aliOSSProperties.getEndpoint().split(<span class="string">&quot;//&quot;</span>)[<span class="number">0</span>] + <span class="string">&quot;//&quot;</span> + aliOSSProperties.getBucketName() + <span class="string">&quot;.&quot;</span> + aliOSSProperties.getEndpoint().split(<span class="string">&quot;//&quot;</span>)[<span class="number">1</span>] + <span class="string">&quot;/&quot;</span> + fileName;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 关闭ossClient</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">        <span class="keyword">return</span> url;<span class="comment">// 把上传到oss的路径返回</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>这个警告提示是告知我们还需要引入一个依赖：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-configuration-processor<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>当我们在pom.xml文件当中配置了这项依赖之后，我们重新启动服务，大家就会看到在properties或者是yml配置文件当中，就会提示阿里云 OSS 相关的配置项。所以这项依赖它的作用就是会自动的识别被<code>@Configuration Properties</code>注解标识的bean对象。</p>
-<p>@ConfigurationProperties注解我们已经介绍完了，接下来我们就来区分一下@ConfigurationProperties注解以及我们前面所介绍的另外一个@Value注解：</p>
+<p>当我们在pom.xml文件当中配置了这项依赖之后，我们重新启动服务，大家就会看到在properties或者是yml配置文件当中，就会提示阿里云
+OSS
+相关的配置项。所以这项依赖它的作用就是会自动的识别被<code>@Configuration Properties</code>注解标识的bean对象。</p>
+<p><span class="citation"
+data-cites="ConfigurationProperties注解我们已经介绍完了">@ConfigurationProperties注解我们已经介绍完了</span>，接下来我们就来区分一下@ConfigurationProperties注解以及我们前面所介绍的另外一个<span
+class="citation" data-cites="Value注解">@Value注解</span>：</p>
 <p>相同点：都是用来注入外部配置的属性的。</p>
 <p>不同点：</p>
 <ul>
-<li><p>@Value注解只能一个一个的进行外部属性的注入。</p>
-</li>
-<li><p>@ConfigurationProperties可以批量的将外部的属性配置注入到bean对象的属性中。</p>
-</li>
+<li><p><span class="citation"
+data-cites="Value注解只能一个一个的进行外部属性的注入">@Value注解只能一个一个的进行外部属性的注入</span>。</p></li>
+<li><p><span class="citation"
+data-cites="ConfigurationProperties可以批量的将外部的属性配置注入到bean对象的属性中">@ConfigurationProperties可以批量的将外部的属性配置注入到bean对象的属性中</span>。</p></li>
 </ul>
-<p>如果要注入的属性非常的多，并且还想做到复用，就可以定义这么一个bean对象。通过 configuration properties 批量的将外部的属性配置直接注入到 bin 对象的属性当中。在其他的类当中，我要想获取到注入进来的属性，我直接注入 bin 对象，然后调用 get 方法，就可以获取到对应的属性值了</p>
+<p>如果要注入的属性非常的多，并且还想做到复用，就可以定义这么一个bean对象。通过
+configuration properties 批量的将外部的属性配置直接注入到 bin
+对象的属性当中。在其他的类当中，我要想获取到注入进来的属性，我直接注入
+bin 对象，然后调用 get 方法，就可以获取到对应的属性值了</p>
 
     
 
@@ -695,7 +759,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%8E%E7%AB%AF%E6%B7%B1%E9%82%83%E9%9A%BE%E8%A7%85%E8%BF%B9"><span class="toc-number">1.</span> <span class="toc-text">后端深邃难觅迹</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">1.1.</span> <span class="toc-text">文件上传</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF"><span class="toc-number">1.1.1.</span> <span class="toc-text">前端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E7%AB%AF"><span class="toc-number">1.1.2.</span> <span class="toc-text">后端</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">本地存储</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%98%BF%E9%87%8C%E4%BA%91OSS"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">阿里云OSS</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.</span> <span class="toc-text">配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E5%8C%96"><span class="toc-number">1.2.1.</span> <span class="toc-text">参数配置化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#yml%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.2.</span> <span class="toc-text">yml配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConfigurationProperties"><span class="toc-number">1.2.3.</span> <span class="toc-text">@ConfigurationProperties</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%8E%E7%AB%AF%E6%B7%B1%E9%82%83%E9%9A%BE%E8%A7%85%E8%BF%B9"><span class="toc-number">1.</span> <span class="toc-text">后端深邃难觅迹</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">1.1.</span> <span class="toc-text">文件上传</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF"><span class="toc-number">1.1.1.</span> <span class="toc-text">前端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E7%AB%AF"><span class="toc-number">1.1.2.</span> <span class="toc-text">后端</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">本地存储</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%98%BF%E9%87%8C%E4%BA%91oss"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">阿里云OSS</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.</span> <span class="toc-text">配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E5%8C%96"><span class="toc-number">1.2.1.</span> <span class="toc-text">参数配置化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#yml%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.2.</span> <span class="toc-text">yml配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#configurationproperties"><span class="toc-number">1.2.3.</span> <span class="toc-text">@ConfigurationProperties</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
