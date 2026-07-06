@@ -10,15 +10,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="Chapter 1: Introduction to Reinforcement Learning 1.1 What Is Reinforcement Learning? Reinforcement Learning (RL) is a mathematical framework for learning-based decision making. The central idea">
+  <meta name="description" content="Chapter 1: Introduction to Reinforcement Learning 1.1 What Is Reinforcement Learning? Reinforcement Learning (RL) is a mathematical framework for learning-based decision making. Its central idea">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Reinforcement Learning Note">
 <meta property="og:url" content="https://nicccce.github.io/CourseNotes/Reinforcement-Learning-Note/">
 <meta property="og:site_name" content="NICCCCE">
-<meta property="og:description" content="Chapter 1: Introduction to Reinforcement Learning 1.1 What Is Reinforcement Learning? Reinforcement Learning (RL) is a mathematical framework for learning-based decision making. The central idea">
+<meta property="og:description" content="Chapter 1: Introduction to Reinforcement Learning 1.1 What Is Reinforcement Learning? Reinforcement Learning (RL) is a mathematical framework for learning-based decision making. Its central idea">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-05-01T12:47:30.000Z">
-<meta property="article:modified_time" content="2026-07-06T18:30:52.153Z">
+<meta property="article:modified_time" content="2026-07-06T18:41:21.327Z">
 <meta property="article:author" content="NICK">
 <meta property="article:tag" content="笔记">
 <meta property="article:tag" content="Reinforcement Learning">
@@ -234,7 +234,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">9.6k字</span>
+      <span class="post-count">9.8k字</span>
     </span>
   </span>
 
@@ -259,8 +259,8 @@ Introduction to Reinforcement Learning</h1>
 <h2 id="what-is-reinforcement-learning">1.1 What Is Reinforcement
 Learning?</h2>
 <p>Reinforcement Learning (RL) is a mathematical framework for
-<strong>learning-based decision making</strong>.</p>
-<p>The central idea is simple:</p>
+<strong>learning-based decision making</strong>. Its central idea
+is:</p>
 <ul>
 <li>An agent interacts with an environment.</li>
 <li>The agent chooses actions.</li>
@@ -268,11 +268,10 @@ Learning?</h2>
 <li>The agent learns from experience to choose better actions in the
 future.</li>
 </ul>
-<p>In other words, reinforcement learning is about learning how to make
-decisions and control behavior through trial and error.</p>
-<p>Unlike many other machine learning settings, the learner is not just
-given a fixed dataset. Instead, the learner actively influences what
-data it will see next.</p>
+<p>In other words, RL studies how an agent improves behavior through
+trial and error. Unlike many machine learning settings, the learner is
+not given a fixed dataset: its actions influence the data it will see
+next.</p>
 <h2 id="the-agent-environment-loop">1.2 The Agent-Environment Loop</h2>
 <p>A typical RL problem contains the following components:</p>
 <ul>
@@ -285,13 +284,13 @@ from the environment.</li>
 <li><strong>Reward</strong>: a scalar feedback signal that tells the
 agent how good or bad the outcome was.</li>
 </ul>
-<p>The loop can be summarized as:</p>
+<p>The interaction loop is:</p>
 <ol type="1">
 <li>The agent observes the current situation.</li>
 <li>The agent selects an action.</li>
 <li>The environment changes as a consequence of the action.</li>
 <li>The agent receives a new observation and a reward.</li>
-<li>The agent updates its behavior based on experience.</li>
+<li>The agent updates its behavior.</li>
 </ol>
 <p>The goal is to learn a policy that chooses actions to maximize
 long-term reward.</p>
@@ -320,7 +319,7 @@ may produce larger rewards later.</p></li>
 <p>This makes RL a decision-making problem rather than just a prediction
 problem.</p>
 <h2 id="examples-of-rl-problems">1.4 Examples of RL Problems</h2>
-<p>RL can be applied whenever an agent must choose actions based on
+<p>RL applies whenever an agent must make repeated decisions from
 feedback.</p>
 <h3 id="robotics">Robotics</h3>
 <p>For a robot:</p>
@@ -363,18 +362,14 @@ functions.</p>
 to place components to optimize performance, power, or area.</p>
 <h2 id="why-reinforcement-learning-matters">1.5 Why Reinforcement
 Learning Matters</h2>
-<p>A major reason to study RL is that it combines two powerful
-ideas:</p>
-<ul>
-<li><strong>Learning from data</strong></li>
-<li><strong>Optimization through search or trial and error</strong></li>
-</ul>
-<p>Data-driven AI is good at learning patterns from examples. However,
-if a system only imitates data, it may not discover solutions that are
-better than the examples it has seen.</p>
-<p>RL adds an optimization objective. It allows an agent to search for
-behavior that achieves a goal, even if that behavior was not explicitly
-demonstrated by humans.</p>
+<p>A major reason to study RL is that it combines <strong>learning from
+data</strong> with <strong>optimization through search or trial and
+error</strong>.</p>
+<p>Data-driven AI is good at learning patterns from examples, but
+imitation alone may not discover behavior better than the
+demonstrations. RL adds an objective and lets an agent search for
+goal-achieving behavior, even when humans did not explicitly demonstrate
+it.</p>
 <p>This is why RL is especially interesting for tasks where:</p>
 <ul>
 <li>The correct answer is not known in advance.</li>
@@ -384,21 +379,13 @@ demonstrated by humans.</p>
 </ul>
 <h2 id="learning-and-search">1.6 Learning and Search</h2>
 <p>The lecture connects reinforcement learning to a broader view of
-intelligence:</p>
-<ul>
-<li><strong>Learning</strong> uses data to extract patterns.</li>
-<li><strong>Search</strong> uses computation to extract decisions or
-inferences.</li>
-<li><strong>Optimization</strong> uses computation to improve decisions
-according to an objective.</li>
-</ul>
-<p>Deep reinforcement learning combines these ideas:</p>
-<ul>
-<li><strong>Deep learning</strong> provides scalable function
-approximation for complex data.</li>
-<li><strong>Reinforcement learning</strong> provides an optimization
-framework for decision making.</li>
-</ul>
+intelligence: <strong>learning</strong> extracts patterns from data,
+<strong>search</strong> uses computation to find decisions, and
+<strong>optimization</strong> improves decisions according to an
+objective.</p>
+<p>Deep reinforcement learning combines two of these ingredients: deep
+learning supplies scalable function approximation, while RL supplies the
+objective for sequential decision making.</p>
 <p>This combination makes it possible to learn policies from
 high-dimensional observations such as images, language, and sensor
 streams.</p>
@@ -808,7 +795,7 @@ underlying state.</p>
 <h2 id="the-rl-objective">3.2 The RL Objective</h2>
 <p>The objective of reinforcement learning is to find a policy <span
 class="math inline">\(\pi_\theta(a_t \mid s_t)\)</span> that maximizes
-the expected sum of rewards over a trajectory:</p>
+expected return. For a finite horizon, this is often written as:</p>
 <p><span class="math display">\[
 \arg\max_\theta \mathbb{E}_{\tau \sim p_\theta(\tau)} \left[
 \sum_{t=1}^H r(s_t, a_t) \right]
@@ -822,17 +809,19 @@ class="math inline">\(\pi_\theta\)</span> is:</p>
 p_\theta(\tau) = p(s_1) \prod_{t=1}^H \pi_\theta(a_t \mid s_t) p(s_{t+1}
 \mid s_t, a_t)
 \]</span></p>
-<p>For infinite horizon (<span class="math inline">\(H \to
-\infty\)</span>), the objective is written using the stationary
-state-action distribution <span class="math inline">\(d^{\pi_\theta}(s,
-a)\)</span>:</p>
+<p>If future rewards should count less than immediate rewards, insert a
+discount such as <span class="math inline">\(\gamma^{t-1}\)</span>
+inside the sum. For infinite horizon (<span class="math inline">\(H \to
+\infty\)</span>), the same idea is often written using the stationary or
+discounted state-action distribution <span
+class="math inline">\(d^{\pi_\theta}(s, a)\)</span>:</p>
 <p><span class="math display">\[
 \arg\max_\theta \mathbb{E}_{(s, a) \sim d^{\pi_\theta}} [r(s, a)]
 \]</span></p>
 <h2 id="anatomy-of-an-rl-algorithm">3.3 Anatomy of an RL Algorithm</h2>
 <p>A reinforcement learning algorithm consists of three main components
 in a loop:</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">       ┌────────────── Generate Samples ──────────────┐</span><br><span class="line">       │             (run policy in env)              │</span><br><span class="line">       ▼                                              │</span><br><span class="line">Fit a Model / ──────────────────────────────► Improve Policy</span><br><span class="line">Estimate Return                             (update theta)</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Generate samples</span><br><span class="line">      -&gt; estimate returns / fit a model</span><br><span class="line">      -&gt; improve the policy</span><br><span class="line">      -&gt; generate better samples</span><br></pre></td></tr></table></figure>
 <ol type="1">
 <li><strong>Generate Samples</strong>: The agent interacts with the
 environment using its current policy <span
@@ -847,7 +836,8 @@ more likely.</li>
 </ol>
 <h2 id="value-functions-and-q-functions">3.4 Value Functions and
 Q-Functions</h2>
-<p>To manage expectations over future rewards, we define: -
+<p>Because actions matter mainly through their future consequences, RL
+algorithms usually estimate returns with two related functions: -
 <strong>Q-function</strong> <span class="math inline">\(Q^\pi(s_t,
 a_t)\)</span>: The expected return starting from state <span
 class="math inline">\(s_t\)</span>, taking action <span
@@ -866,7 +856,9 @@ from state <span class="math inline">\(s_t\)</span> and following policy
 <p><span class="math display">\[
 V^\pi(s_t) = \mathbb{E}_{a_t \sim \pi} [Q^\pi(s_t, a_t)]
 \]</span></p>
-<p>These functions satisfy the Bellman Expectation Equations:</p>
+<p>The key relation is the Bellman expectation equation, which
+decomposes "future return" into immediate reward plus discounted future
+value:</p>
 <p><span class="math display">\[
 Q^\pi(s_t, a_t) = r(s_t, a_t) + \gamma \mathbb{E}_{s_{t+1} \sim p}
 [V^\pi(s_{t+1})]
@@ -997,10 +989,11 @@ policy</td>
 <hr />
 <h1 id="chapter-4-policy-gradients">Chapter 4: Policy Gradients</h1>
 <h2 id="the-likelihood-ratio-trick">4.1 The Likelihood Ratio Trick</h2>
-<p>The objective function is <span class="math inline">\(J(\theta) =
-\mathbb{E}_{\tau \sim p_\theta(\tau)} [r(\tau)] = \int p_\theta(\tau)
-r(\tau) d\tau\)</span>. Differentiating with respect to <span
-class="math inline">\(\theta\)</span>:</p>
+<p>Policy gradient methods differentiate the expected return <span
+class="math inline">\(J(\theta) = \mathbb{E}_{\tau \sim p_\theta(\tau)}
+[r(\tau)] = \int p_\theta(\tau) r(\tau) d\tau\)</span>. The difficulty
+is that <span class="math inline">\(\theta\)</span> changes the
+trajectory distribution itself. Differentiating gives:</p>
 <p><span class="math display">\[
 \nabla_\theta J(\theta) = \int \nabla_\theta p_\theta(\tau) r(\tau)
 d\tau
@@ -1014,8 +1007,8 @@ we write:</p>
 p_\theta(\tau) r(\tau) d\tau = \mathbb{E}_{\tau \sim p_\theta(\tau)}
 [\nabla_\theta \log p_\theta(\tau) r(\tau)]
 \]</span></p>
-<p>Since the transition dynamics do not depend on <span
-class="math inline">\(\theta\)</span>, their gradients are zero:</p>
+<p>The trajectory probability contains both the policy and the
+environment dynamics:</p>
 <p><span class="math display">\[
 \log p_\theta(\tau) = \log p(s_1) + \sum_{t=1}^H \left( \log
 \pi_\theta(a_t \mid s_t) + \log p(s_{t+1} \mid s_t, a_t) \right)
@@ -1024,8 +1017,10 @@ class="math inline">\(\theta\)</span>, their gradients are zero:</p>
 \nabla_\theta \log p_\theta(\tau) = \sum_{t=1}^H \nabla_\theta \log
 \pi_\theta(a_t \mid s_t)
 \]</span></p>
-<p>Thus, the policy gradient is model-free and does not require knowing
-the transition probabilities:</p>
+<p>If the environment dynamics do not depend on <span
+class="math inline">\(\theta\)</span>, their gradient drops out. Thus,
+the policy gradient is model-free and does not require knowing the
+transition probabilities:</p>
 <p><span class="math display">\[
 \nabla_\theta J(\theta) = \mathbb{E}_{\tau \sim p_\theta(\tau)} \left[
 \sum_{t=1}^H \nabla_\theta \log \pi_\theta(a_t \mid s_t) \left(
@@ -1076,9 +1071,9 @@ b(s_t)] = b(s_t) \int \pi_\theta(a_t \mid s_t) \frac{\nabla_\theta
 \nabla_\theta (1) = 0
 \]</span></p>
 <p>Subtracting a baseline reduces variance without adding bias. A common
-choice is the average return of the trajectories: <span
-class="math inline">\(b(s_t) = \frac{1}{N} \sum_{i=1}^N
-R(\tau^{(i)})\)</span>.</p>
+simple choice is the average return of the sampled trajectories; in
+actor-critic methods, the baseline is usually a learned value function
+<span class="math inline">\(V_\phi(s_t)\)</span>.</p>
 <p>The resulting policy gradient estimator is:</p>
 <p><span class="math display">\[
 \nabla_\theta J(\theta) \approx \frac{1}{N} \sum_{i=1}^N \sum_{t=1}^H
@@ -1091,12 +1086,14 @@ R(\tau^{(i)})\)</span>.</p>
 we implement policy gradients using a surrogate loss. For a discrete
 action distribution, the loss is defined as:</p>
 <p><span class="math display">\[
-\mathcal{L}(    heta) = - \frac{1}{N} \sum_{i=1}^N \sum_{t=1}^H \log
+\mathcal{L}(\theta) = - \frac{1}{N} \sum_{i=1}^N \sum_{t=1}^H \log
 \pi_\theta(a_t^{(i)} \mid s_t^{(i)}) A_t^{(i)}
 \]</span></p>
 <p>where <span class="math inline">\(A_t^{(i)} = \left(\sum_{t&#39;=t}^H
-r_t&#39;\right) - b_t\)</span> acts as the advantage weights.
-Backpropagating through this loss yields the exact policy gradient.</p>
+r_{t&#39;}^{(i)}\right) - b_t\)</span> acts as the advantage weight.
+During backpropagation, <span class="math inline">\(A_t^{(i)}\)</span>
+is treated as a fixed coefficient; the gradient flows through <span
+class="math inline">\(\log \pi_\theta\)</span>.</p>
 <h2 id="key-takeaways-3">4.5 Key Takeaways</h2>
 <ul>
 <li>Policy gradients optimize policies directly by increasing the
@@ -1330,17 +1327,18 @@ p(s&#39; \mid s, a) V_k(s&#39;) \right)
 <h2 id="fitted-value-iteration-and-q-learning">6.2 Fitted Value
 Iteration and Q-Learning</h2>
 <p>For continuous or high-dimensional states, we approximate value
-functions using neural networks. If we do not know the transition
-dynamics <span class="math inline">\(p(s&#39; \mid s, a)\)</span>, we
-cannot compute the <span class="math inline">\(\max_a\)</span> operator
-over state values. Instead, we must use Q-values, which evaluate actions
-directly without modeling transitions:</p>
+functions using neural networks. Without a known transition model <span
+class="math inline">\(p(s&#39; \mid s, a)\)</span>, we cannot evaluate
+every candidate action by explicitly rolling out the next state.
+Q-values avoid this by learning the value of state-action pairs directly
+from sampled transitions:</p>
 <p><span class="math display">\[
 Q(s, a) \leftarrow r(s, a) + \gamma \max_{a&#39;} Q(s&#39;, a&#39;)
 \]</span></p>
 <p>In <strong>Fitted Q-Iteration (FQI)</strong>, we fit a Q-network
-<span class="math inline">\(Q_\phi(s, a)\)</span> to targets <span
-class="math inline">\(y_i\)</span> using transitions from a dataset:</p>
+<span class="math inline">\(Q_\phi(s, a)\)</span> to bootstrapped
+targets <span class="math inline">\(y_i\)</span> using transitions from
+a dataset:</p>
 <p><span class="math display">\[
 y_i = r_i + \gamma \max_{a&#39;} Q_\phi(s&#39;_i, a&#39;), \quad
 \mathcal{L}(\phi) = \frac{1}{2} \sum_i \left\| Q_\phi(s_i, a_i) - y_i
@@ -1396,11 +1394,12 @@ to estimate values for every individual action.</p>
 <h2 id="continuous-q-learning-ddpg">6.5 Continuous Q-learning
 (DDPG)</h2>
 <p>In continuous action spaces, calculating <span
-class="math inline">\(\max_a Q(s, a)\)</span> is computationally
-expensive. <strong>DDPG</strong> (Deep Deterministic Policy Gradient)
-addresses this by training a deterministic policy network <span
-class="math inline">\(\mu_\theta(s)\)</span> that acts as an approximate
-maximizer:</p>
+class="math inline">\(\max_a Q(s, a)\)</span> is difficult because we
+cannot enumerate actions. <strong>DDPG</strong> (Deep Deterministic
+Policy Gradient) addresses this by training a deterministic policy
+network <span class="math inline">\(\mu_\theta(s)\)</span> that acts as
+an approximate maximizer, while the critic estimates <span
+class="math inline">\(Q_\phi(s,a)\)</span>:</p>
 <p><span class="math display">\[
 \theta \leftarrow \theta + \alpha \nabla_\theta J(\theta), \quad
 \nabla_\theta J(\theta) \approx \frac{1}{N} \sum_i \nabla_a Q_\phi(s_i,
@@ -1460,15 +1459,13 @@ spaces</td>
 <h1 id="chapter-7-advanced-policy-gradients">Chapter 7: Advanced Policy
 Gradients</h1>
 <h2 id="the-step-size-problem">7.1 The Step Size Problem</h2>
-<p>In supervised learning, a bad gradient step temporarily increases the
-training loss, which can be corrected in subsequent iterations. In
-reinforcement learning, a bad policy update can cause the policy to
-collect low-quality data. Since the policy determines the data
-distribution, this drop in performance can be irreversible, leading to
-policy collapse.</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Bad Step ──► Lower Quality Policy ──► Poor Data Collection ──► Further Collapse</span><br></pre></td></tr></table></figure>
-<p>To prevent this, we must constrain the policy update so the new
-policy remains close to the old policy.</p>
+<p>In supervised learning, a bad gradient step usually only increases
+the training loss. In reinforcement learning, a bad policy update also
+changes the future data distribution: the policy may start collecting
+low-quality data, making recovery harder.</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Bad step -&gt; lower-quality policy -&gt; poor data collection -&gt; further collapse</span><br></pre></td></tr></table></figure>
+<p>Trust-region methods constrain the update so the new policy remains
+close to the old policy.</p>
 <h2 id="natural-policy-gradient">7.2 Natural Policy Gradient</h2>
 <p>Standard gradient updates change parameters in Euclidean space.
 However, a small parameter change <span
@@ -1508,10 +1505,10 @@ s)}{\pi_{\theta_{\text{old}}}(a \mid s)} A_{\theta_{\text{old}}}(s, a)
 \right] \quad \text{subject to} \quad \mathbb{E}
 [\text{KL}(\pi_{\theta_{\text{old}}} \parallel \pi_\theta)] \le \epsilon
 \]</span></p>
-<p>The conjugate gradient method solves the linear system <span
-class="math inline">\(F x = \nabla_\theta J(\theta)\)</span> in <span
-class="math inline">\(O(n)\)</span> time without explicitly building the
-full matrix <span class="math inline">\(F\)</span>.</p>
+<p>The conjugate gradient method approximately solves <span
+class="math inline">\(F x = \nabla_\theta J(\theta)\)</span> using
+matrix-vector products, avoiding explicit construction or inversion of
+the full matrix <span class="math inline">\(F\)</span>.</p>
 <h2 id="proximal-policy-optimization-ppo">7.4 Proximal Policy
 Optimization (PPO)</h2>
 <p>TRPO remains mathematically complex and hard to parallelize.
@@ -1595,11 +1592,12 @@ Variational Inference and Control as Inference</h1>
 Probabilistic Graphical Models for Decision Making</h2>
 <p>Control and planning can be formulated as probabilistic inference on
 a graphical model. We define binary "optimality" variables <span
-class="math inline">\(O_t\)</span>:</p>
+class="math inline">\(O_t\)</span> whose likelihood increases with
+reward:</p>
 <p><span class="math display">\[
-p(O_t = 1 \mid s_t, a_t) = \exp(r(s_t, a_t))
+p(O_t = 1 \mid s_t, a_t) \propto \exp(r(s_t, a_t))
 \]</span></p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s1 ──► s2 ──► s3</span><br><span class="line">│      │      │</span><br><span class="line">▼      ▼      ▼</span><br><span class="line">O1     O2     O3</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s1 -&gt; s2 -&gt; s3</span><br><span class="line">|     |     |</span><br><span class="line">v     v     v</span><br><span class="line">O1    O2    O3</span><br></pre></td></tr></table></figure>
 <p>Assuming a uniform action prior <span class="math inline">\(p(a_t
 \mid s_t)\)</span>, the probability of a trajectory <span
 class="math inline">\(\tau\)</span> conditioned on being optimal (<span
@@ -1613,16 +1611,16 @@ posterior distribution <span class="math inline">\(p(a_t \mid s_t,
 O_{t:H}=1)\)</span>.</p>
 <h2 id="variational-inference-and-elbo">8.2 Variational Inference and
 ELBO</h2>
-<p>If we try to perform standard probabilistic inference on <span
-class="math inline">\(p(\tau \mid O_{1:H}=1)\)</span>, the resulting
-policy assumes the transition dynamics can be manipulated to achieve
-goals. This leads to the <strong>optimism problem</strong>, where the
-agent expects lucky transitions in stochastic environments. To resolve
-this, we use <strong>Variational Inference</strong> to find a
-policy-driven trajectory distribution <span
-class="math inline">\(q(\tau) = p(s_1) \prod_t q(a_t \mid s_t) p(s_{t+1}
-\mid s_t, a_t)\)</span> that is close to the optimal posterior. We
-maximize the Evidence Lower Bound (ELBO):</p>
+<p>If we perform standard inference on <span
+class="math inline">\(p(\tau \mid O_{1:H}=1)\)</span>, the posterior may
+put probability mass on trajectories with unusually lucky transitions.
+This is the <strong>optimism problem</strong>: the agent behaves as if
+it could choose favorable stochastic outcomes.</p>
+<p>Variational inference avoids this by searching over policy-driven
+trajectory distributions <span class="math inline">\(q(\tau) = p(s_1)
+\prod_t q(a_t \mid s_t) p(s_{t+1} \mid s_t, a_t)\)</span>, where the
+policy controls actions but not environment randomness. We maximize the
+Evidence Lower Bound (ELBO):</p>
 <p><span class="math display">\[
 \log p(O_{1:H}=1) \ge \mathbb{E}_{\tau \sim q(\tau)} [\log p(O_{1:H}=1,
 \tau) - \log q(\tau)]
@@ -1643,8 +1641,9 @@ J(\pi) = \sum_{t=1}^H \mathbb{E}_{(s_t, a_t) \sim \pi} [r(s_t, a_t) +
 \alpha \mathcal{H}(\pi(\cdot \mid s_t))]
 \]</span></p>
 <p>The hyperparameter <span class="math inline">\(\alpha\)</span>
-controls the tradeoff between maximizing reward and maximizing policy
-entropy.</p>
+controls the tradeoff between reward seeking and entropy. Higher entropy
+keeps multiple actions plausible, which helps exploration and prevents
+premature collapse to a deterministic policy.</p>
 <p><strong>Soft Actor-Critic (SAC)</strong> implements this framework
 using: - <strong>Soft Q-critic</strong>: Updates Q-values using soft
 Bellman targets:</p>
@@ -1694,8 +1693,8 @@ optimal</td>
 </tr>
 <tr class="even">
 <td>Optimism Problem</td>
-<td>The fallacy of assuming transition dynamics can be manipulated to
-favor outcomes</td>
+<td>The fallacy of acting as if favorable stochastic transitions can be
+chosen</td>
 </tr>
 <tr class="odd">
 <td>ELBO</td>
@@ -1720,12 +1719,11 @@ id="chapter-9-reinforcement-learning-from-human-feedback-rlhf-llm-rl">Chapter
 9: Reinforcement Learning from Human Feedback (RLHF) &amp; LLM RL</h1>
 <h2 id="llm-finetuning-and-rl">9.1 LLM Finetuning and RL</h2>
 <p>Large Language Models (LLMs) are pre-trained on massive text datasets
-to predict the next token. While this gives them world knowledge, it
-does not make them helpful assistants. Instruction tuning via Supervised
-Fine-Tuning (SFT) helps, but collecting high-quality demonstrations for
-complex tasks is labor-intensive. Reinforcement learning allows LLMs to
-learn from preference feedback or automated verifiers, refining their
-outputs beyond the distribution of SFT training data.</p>
+to predict the next token. This gives them broad linguistic and factual
+knowledge, but not necessarily assistant-like behavior. Instruction
+tuning via Supervised Fine-Tuning (SFT) helps, while preference
+optimization or RL can further refine outputs using human preferences or
+automated verifiers.</p>
 <h2 id="preference-modeling-bradley-terry">9.2 Preference Modeling
 (Bradley-Terry)</h2>
 <p>Human feedback is often collected as preferences between pairs of
@@ -1769,24 +1767,25 @@ completions for each prompt and uses their relative rewards as
 advantages, reducing GPU memory footprint during training.</p>
 <h2 id="direct-preference-optimization-dpo">9.4 Direct Preference
 Optimization (DPO)</h2>
-<p>PPO is computationally expensive and unstable because it requires
-maintaining four large models in memory (Actor, Critic, Reference,
-Reward). <strong>DPO</strong> bypasses the reward model and
-reinforcement learning phases entirely. By showing that the
-Bradley-Terry preference objective has an analytical solution under the
-KL penalty, DPO optimizes the LLM directly on preference pairs:</p>
+<p>PPO-style RLHF is computationally expensive because training may
+involve an actor, critic, reference model, and reward model.
+<strong>DPO</strong> avoids explicitly training a reward model and
+running an RL loop. Under the Bradley-Terry preference model with a KL
+regularizer, the preference objective can be rewritten as a direct
+supervised-style loss on preference pairs:</p>
 <p><span class="math display">\[
 \mathcal{L}_{\text{DPO}}(\theta) = - \mathbb{E}_{(x, y_w, y_l) \sim
 \mathcal{D}} \left[ \log \sigma \left( \beta \log \frac{\pi_\theta(y_w
 \mid x)}{\pi_{\text{SFT}}(y_w \mid x)} - \beta \log \frac{\pi_\theta(y_l
 \mid x)}{\pi_{\text{SFT}}(y_l \mid x)} \right) \right]
 \]</span></p>
-<p>This formulation matches the SFT loss interface, making preference
-optimization as simple and stable as supervised learning.</p>
+<p>This formulation uses the same basic interface as SFT: prompts,
+chosen responses, rejected responses, and log-probabilities under the
+current and reference policies.</p>
 <h2 id="key-takeaways-8">9.5 Key Takeaways</h2>
 <ul>
-<li>RL aligns LLMs with human preferences, bypassing the limits of
-imitation learning.</li>
+<li>Preference optimization helps align LLMs with human preferences
+beyond pure imitation learning.</li>
 <li>The Bradley-Terry model maps pairwise preferences to scalar
 rewards.</li>
 <li>Standard RLHF uses PPO with a reference KL penalty to prevent reward
@@ -1838,17 +1837,17 @@ on preference data</td>
 <h1 id="chapter-10-model-based-reinforcement-learning">Chapter 10:
 Model-Based Reinforcement Learning</h1>
 <h2 id="learning-dynamics-models">10.1 Learning Dynamics Models</h2>
-<p>Model-based RL learns a transition model of the environment: <span
-class="math inline">\(s_{t+1} = f_\theta(s_t, a_t)\)</span> or <span
-class="math inline">\(p_\theta(s_{t+1} \mid s_t, a_t)\)</span>. Once
-learned, the agent can use it as a simulator. The primary advantage is
-sample efficiency: learning a transition model is a supervised learning
-task, which requires fewer interactions than learning a policy
-model-free. However, model errors accumulate over time. If a policy runs
-for a long horizon in a learned model, small single-step errors
-compound, leading to state distributions that differ from the training
-data.</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Step 1 (Small Error) ──► Step 2 (Accumulated Error) ──► Step H (Invalid Predictions)</span><br></pre></td></tr></table></figure>
+<p>Model-based RL learns a transition model of the environment, either
+deterministic <span class="math inline">\(s_{t+1} = f_\theta(s_t,
+a_t)\)</span> or probabilistic <span
+class="math inline">\(p_\theta(s_{t+1} \mid s_t, a_t)\)</span>. The
+agent can then use the model for planning or simulated training.</p>
+<p>The main advantage is sample efficiency: fitting a dynamics model is
+a supervised learning problem, so it can reuse each real transition many
+times. The main risk is model bias. Small one-step prediction errors can
+compound over long rollouts and push simulated states away from the real
+data distribution.</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Step 1 (small error) -&gt; Step 2 (accumulated error) -&gt; Step H (invalid predictions)</span><br></pre></td></tr></table></figure>
 <h2 id="model-predictive-control-mpc-planning">10.2 Model Predictive
 Control (MPC) &amp; Planning</h2>
 <p>Instead of training a policy, we can use the dynamics model to plan
@@ -1950,15 +1949,14 @@ Reinforcement Learning</h1>
 <p>In standard RL, the agent collects new data using its updated policy.
 In <strong>Offline RL</strong>, the agent learns from a static dataset
 <span class="math inline">\(\mathcal{D}\)</span> without environment
-interaction. The core challenge is <strong>distributional
-shift</strong>. If the learned policy chooses an action <span
-class="math inline">\(a&#39;\)</span> not represented in the dataset,
-the Q-function cannot evaluate it accurately. Q-learning propagates
-values using the maximum operator: <span
-class="math inline">\(\max_{a&#39;} Q(s&#39;, a&#39;)\)</span>. Since
-out-of-distribution (OOD) actions are not regularized during training,
-their estimated values can be arbitrarily high, causing severe
-overestimation bias.</p>
+interaction.</p>
+<p>The core challenge is <strong>distributional shift</strong>. If the
+learned policy chooses an action <span
+class="math inline">\(a&#39;\)</span> rarely represented in the dataset,
+the Q-function must extrapolate. Q-learning then propagates values
+through <span class="math inline">\(\max_{a&#39;} Q(s&#39;,
+a&#39;)\)</span>, so overestimated out-of-distribution (OOD) actions can
+be repeatedly selected and amplified.</p>
 <h2 id="policy-constraint-methods">11.2 Policy Constraint Methods</h2>
 <p>Policy constraint methods prevent the policy <span
 class="math inline">\(\pi_\theta\)</span> from choosing
@@ -1975,11 +1973,13 @@ during policy updates:</li>
 \pi_\beta(\cdot \mid s))
 \]</span></p>
 <p>This requires estimating the behavior policy <span
-class="math inline">\(\pi_\beta\)</span> from the dataset. 2.
-<strong>Implicit Constraints</strong>: Update policies without
+class="math inline">\(\pi_\beta\)</span> from the dataset.</p>
+<ol start="2" type="1">
+<li><strong>Implicit Constraints</strong>: Update policies without
 estimating <span class="math inline">\(\pi_\beta\)</span> by using
 weighted likelihood maximization. For example, <strong>AWAC</strong>
-(Advantage Weighted Actor-Critic) updates the policy using:</p>
+(Advantage Weighted Actor-Critic) updates the policy using:</li>
+</ol>
 <p><span class="math display">\[
 \theta \leftarrow \arg\max_\theta \mathbb{E}_{(s, a) \sim \mathcal{D}}
 \left[ \log \pi_\theta(a \mid s) \exp \left( \frac{1}{\beta} A(s, a)
@@ -2002,20 +2002,27 @@ represented in the dataset:</li>
 \mathbb{E}_{(s, a, r, s&#39;) \sim \mathcal{D}} \left[ (Q(s, a) -
 \mathcal{T}Q(s, a))^2 \right]
 \]</span></p>
-<p>This guarantees that the learned Q-values underestimate the true
-values, ensuring safety. 2. <strong>IQL (Implicit Q-Learning)</strong>:
-Bypasses out-of-distribution actions entirely by updating the value
-function using expectile regression. IQL learns <span
+<p>This encourages conservative Q-values, especially for actions not
+well supported by the dataset. It reduces overestimation, though the
+strength of the guarantee depends on assumptions and implementation
+details.</p>
+<ol start="2" type="1">
+<li><strong>IQL (Implicit Q-Learning)</strong>: Bypasses
+out-of-distribution actions entirely by updating the value function
+using expectile regression. IQL learns <span
 class="math inline">\(V(s)\)</span> to approximate the upper value
-statistics in the dataset:</p>
+statistics in the dataset:</li>
+</ol>
 <p><span class="math display">\[
 \mathcal{L}(V) = \mathbb{E}_{(s, a) \sim \mathcal{D}} [L_2^\tau
 (Q_{\psi^-}(s, a) - V_\psi(s))]
 \]</span></p>
 <p>where <span class="math inline">\(L_2^\tau(u) = |\tau - \mathbb{I}(u
-&lt; 0)| u^2\)</span> is the expectile loss. Setting <span
-class="math inline">\(\tau \in [0.7, 0.9]\)</span> allows estimating the
-value of the best actions without querying OOD actions.</p>
+&lt; 0)| u^2\)</span> is the expectile loss. Expectiles are asymmetric
+squared-loss statistics, not the same as quantiles. Setting <span
+class="math inline">\(\tau \in [0.7, 0.9]\)</span> makes <span
+class="math inline">\(V(s)\)</span> track high-value in-dataset actions
+without explicitly maximizing over OOD actions.</p>
 <h2 id="key-takeaways-10">11.4 Key Takeaways</h2>
 <ul>
 <li>Offline RL learns from static data without environment
@@ -2052,7 +2059,7 @@ generated the training dataset</td>
 </tr>
 <tr class="odd">
 <td>Expectile Regression</td>
-<td>An asymmetric loss regression used to estimate specific quantiles of
+<td>An asymmetric squared-loss regression used to estimate expectiles of
 a distribution</td>
 </tr>
 <tr class="even">
@@ -2077,10 +2084,10 @@ rewards. - <strong>Exploration</strong>: Choosing unfamiliar actions to
 discover better strategies.</p>
 <p>In <strong>Multi-Armed Bandits</strong> (one-step MDPs), we evaluate
 exploration using <strong>regret</strong>, the difference between the
-optimal expected reward and the collected reward. Optimal exploration
-strategies include: 1. <strong>Upper Confidence Bound (UCB)</strong>:
-Follows the principle of <em>optimism under uncertainty</em>. It chooses
-actions using an uncertainty bonus:</p>
+optimal expected reward and the collected reward. Two classic
+exploration strategies are: 1. <strong>Upper Confidence Bound
+(UCB)</strong>: Follows the principle of <em>optimism under
+uncertainty</em>. It chooses actions using an uncertainty bonus:</p>
 <p><span class="math display">\[
 a_t = \arg\max_a \left( \hat{\mu}_a(t) + c \sqrt{\frac{\log t}{N_a(t)}}
 \right)
@@ -2093,19 +2100,22 @@ sample.</li>
 </ol>
 <h2 id="count-based-exploration-pseudo-counts">12.2 Count-Based
 Exploration &amp; Pseudo-Counts</h2>
-<p>In tabular MDPs, we can apply UCB by adding an exploration bonus to
-rewards: <span class="math inline">\(r^i(s, a) = r(s, a) +
-\frac{\beta}{\sqrt{N(s)}}\)</span>. For continuous state spaces, we
-rarely visit the same state twice, making direct counting impossible.
-<strong>Pseudo-counts</strong> resolve this by estimating state
-densities using generative models:</p>
+<p>In tabular MDPs, we can apply UCB-like optimism by adding an
+exploration bonus to rewards: <span class="math inline">\(r^i(s, a) =
+r(s, a) + \frac{\beta}{\sqrt{N(s)}}\)</span>. For continuous state
+spaces, we rarely visit the same state twice, making direct counting
+impossible. <strong>Pseudo-counts</strong> resolve this by estimating
+state densities using generative models:</p>
 <p><span class="math display">\[
 N(s) \approx \frac{p(s)(1 - p&#39;(s))}{p&#39;(s) - p(s)}
 \]</span></p>
 <p>where <span class="math inline">\(p(s)\)</span> is the density model
 before observing <span class="math inline">\(s\)</span>, and <span
 class="math inline">\(p&#39;(s)\)</span> is the model after updating it
-with <span class="math inline">\(s\)</span>.</p>
+with <span class="math inline">\(s\)</span>. If observing <span
+class="math inline">\(s\)</span> greatly increases its modeled density,
+the state is treated as rare and receives a larger exploration
+bonus.</p>
 <h2 id="novelty-search-random-network-distillation">12.3 Novelty Search
 (Random Network Distillation)</h2>
 <p>Density estimation is difficult in high-dimensional spaces.
@@ -2141,7 +2151,7 @@ class="math inline">\(z\)</span> from the visited states, encouraging
 skills to visit distinct regions of the state space.</p>
 <h2 id="key-takeaways-11">12.5 Key Takeaways</h2>
 <ul>
-<li>Bandit theory provides optimal exploration foundations like UCB and
+<li>Bandit theory provides classic exploration tools like UCB and
 Thompson Sampling.</li>
 <li>Pseudo-counts extend count-based exploration to continuous state
 spaces using density models.</li>
@@ -2193,11 +2203,14 @@ another</td>
 <h1 id="chapter-13-reinforcement-learning-theory">Chapter 13:
 Reinforcement Learning Theory</h1>
 <h2 id="sample-complexity">13.1 Sample Complexity</h2>
-<p>RL theory analyzes how many samples are needed to learn a policy with
-expected return within <span class="math inline">\(\epsilon\)</span> of
-the optimal policy (PAC-learning bounds). We first analyze the tabular
-<strong>Bellman Optimality Operator</strong> <span
-class="math inline">\(\mathcal{T}^*\)</span>:</p>
+<p>RL theory asks how many samples are needed to learn a policy whose
+expected return is within <span class="math inline">\(\epsilon\)</span>
+of optimal. These are usually called PAC-style sample complexity
+bounds.</p>
+<p>Before sample bounds, we need the basic stability property of dynamic
+programming. In tabular MDPs, the <strong>Bellman Optimality
+Operator</strong> <span class="math inline">\(\mathcal{T}^*\)</span>
+is:</p>
 <p><span class="math display">\[
 (\mathcal{T}^* V)(s) = \max_a \left( r(s, a) + \gamma \sum_{s&#39;}
 p(s&#39; \mid s, a) V(s&#39;) \right)
@@ -2217,6 +2230,9 @@ bounded by:</p>
 \left\| V_k - V^* \right\|_\infty \le \gamma^k \left\| V_0 - V^*
 \right\|_\infty
 \]</span></p>
+<p>Sample complexity results combine this contraction property with
+concentration inequalities that bound how far empirical transition
+estimates are from the true dynamics.</p>
 <h2 id="error-bounds-simulation-lemma">13.2 Error Bounds &amp;
 Simulation Lemma</h2>
 <p>When learning transition models, we bound how dynamics errors
@@ -2285,13 +2301,12 @@ occurring is less than the sum of their individual probabilities</td>
 <h1 id="chapter-14-multi-task-and-meta-reinforcement-learning">Chapter
 14: Multi-Task and Meta-Reinforcement Learning</h1>
 <h2 id="multi-task-rl">14.1 Multi-Task RL</h2>
-<p>Multi-task RL aims to learn a single policy <span
-class="math inline">\(\pi(a \mid s, z)\)</span> that can solve multiple
-tasks, where <span class="math inline">\(z\)</span> is a task context
-(e.g., language commands or target goals). While multi-task learning can
-improve sample efficiency via shared representations, optimization can
-be difficult due to <strong>gradient interference</strong> (where
-updates for one task degrade performance on another).</p>
+<p>Multi-task RL learns a single policy <span
+class="math inline">\(\pi(a \mid s, z)\)</span> for many tasks, where
+<span class="math inline">\(z\)</span> is a task context such as a
+language command or goal. Shared representations can improve sample
+efficiency, but optimization is harder when gradients from one task hurt
+performance on another (<strong>gradient interference</strong>).</p>
 <h3 id="hindsight-experience-replay-her">Hindsight Experience Replay
 (HER)</h3>
 <p>For goal-conditioned RL, rewards are often sparse.
@@ -2303,9 +2318,10 @@ a goal <span class="math inline">\(g&#39;\)</span> that the agent
 training examples.</p>
 <h2 id="meta-reinforcement-learning">14.2 Meta-Reinforcement
 Learning</h2>
-<p>Meta-RL aims to "learn to learn." The goal is to train a policy that
-can adapt to a new task using only a few trial transitions:</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Trial Transitions ──► Adaptation Phase ──► Optimal Policy for New Task</span><br></pre></td></tr></table></figure>
+<p>Meta-RL aims to "learn to learn." Instead of only solving the
+training tasks, it trains across a task distribution so the agent can
+adapt to a new task using only a few trial transitions:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Trial transitions -&gt; adaptation phase -&gt; policy for the new task</span><br></pre></td></tr></table></figure>
 <ol type="1">
 <li><strong>Recurrent Meta-RL (<span
 class="math inline">\(RL^2\)</span>)</strong>: The policy is represented
