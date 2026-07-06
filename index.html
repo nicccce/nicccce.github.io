@@ -325,7 +325,530 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <h1 id="chapter-1-introduction-to-reinforcement-learning">Chapter 1:
+Introduction to Reinforcement Learning</h1>
+<h2 id="what-is-reinforcement-learning">1.1 What Is Reinforcement
+Learning?</h2>
+<p>Reinforcement Learning (RL) is a mathematical framework for
+<strong>learning-based decision making</strong>.</p>
+<p>The central idea is simple:</p>
+<ul>
+<li>An agent interacts with an environment.</li>
+<li>The agent chooses actions.</li>
+<li>The environment returns observations and rewards.</li>
+<li>The agent learns from experience to choose better actions in the
+future.</li>
+</ul>
+<p>In other words, reinforcement learning is about learning how to make
+decisions and control behavior through trial and error.</p>
+<p>Unlike many other machine learning settings, the learner is not just
+given a fixed dataset. Instead, the learner actively influences what
+data it will see next.</p>
+<h2 id="the-agent-environment-loop">1.2 The Agent-Environment Loop</h2>
+<p>A typical RL problem contains the following components:</p>
+<ul>
+<li><strong>Agent</strong>: the learner or decision maker.</li>
+<li><strong>Environment</strong>: the world the agent interacts
+with.</li>
+<li><strong>Action</strong>: a decision made by the agent.</li>
+<li><strong>Observation / State</strong>: information the agent receives
+from the environment.</li>
+<li><strong>Reward</strong>: a scalar feedback signal that tells the
+agent how good or bad the outcome was.</li>
+</ul>
+<p>The loop can be summarized as:</p>
+<ol type="1">
+<li>The agent observes the current situation.</li>
+<li>The agent selects an action.</li>
+<li>The environment changes as a consequence of the action.</li>
+<li>The agent receives a new observation and a reward.</li>
+<li>The agent updates its behavior based on experience.</li>
+</ol>
+<p>The goal is to learn a policy that chooses actions to maximize
+long-term reward.</p>
+<h2 id="how-rl-differs-from-supervised-learning">1.3 How RL Differs from
+Supervised Learning</h2>
+<p>In supervised learning, the training data usually consists of
+input-output pairs:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">input -&gt; correct label</span><br></pre></td></tr></table></figure>
+<p>The learner is told what the correct answer should be.</p>
+<p>In reinforcement learning, the situation is different:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">state -&gt; action -&gt; consequence -&gt; reward</span><br></pre></td></tr></table></figure>
+<p>The agent is not directly told the correct action. It only receives
+feedback through rewards.</p>
+<p>Important differences include:</p>
+<ul>
+<li><p><strong>Data is not i.i.d.</strong> Previous actions affect
+future observations.</p></li>
+<li><p><strong>There is no fixed ground truth label.</strong> The agent
+may only know whether an outcome was good or bad.</p></li>
+<li><p><strong>Actions change the data distribution.</strong> The
+agent's own behavior determines what experience it collects.</p></li>
+<li><p><strong>The goal is long-term performance.</strong> A locally
+good action may lead to poor future outcomes, while a costly action now
+may produce larger rewards later.</p></li>
+</ul>
+<p>This makes RL a decision-making problem rather than just a prediction
+problem.</p>
+<h2 id="examples-of-rl-problems">1.4 Examples of RL Problems</h2>
+<p>RL can be applied whenever an agent must choose actions based on
+feedback.</p>
+<h3 id="robotics">Robotics</h3>
+<p>For a robot:</p>
+<ul>
+<li>Actions may be motor torques or currents.</li>
+<li>Observations may be camera images, joint angles, or sensor
+readings.</li>
+<li>Rewards may measure task success, speed, stability, or energy
+efficiency.</li>
+</ul>
+<p>Examples include locomotion, navigation, manipulation, and complex
+physical control tasks.</p>
+<h3 id="games">Games</h3>
+<p>For a game-playing agent:</p>
+<ul>
+<li>Actions are legal moves or controller inputs.</li>
+<li>Observations are board states, pixels, or game states.</li>
+<li>Rewards may be win/loss signals or game scores.</li>
+</ul>
+<p>AlphaGo's famous "Move 37" is an example of RL discovering a strategy
+that surprised human experts.</p>
+<h3 id="business-and-operations">Business and Operations</h3>
+<p>For inventory or purchasing decisions:</p>
+<ul>
+<li>Actions are what to buy, sell, or allocate.</li>
+<li>Observations are inventory levels, prices, and demand.</li>
+<li>Rewards are profit or cost reduction.</li>
+</ul>
+<h3 id="language-models">Language Models</h3>
+<p>RL can also be used to improve language models through feedback. In
+reinforcement learning from human feedback (RLHF), a model is optimized
+according to preference-based reward signals rather than only next-token
+prediction.</p>
+<h3 id="image-generation">Image Generation</h3>
+<p>RL can optimize generative models toward desired objectives, such as
+human preference, aesthetic quality, or task-specific reward
+functions.</p>
+<h3 id="chip-design">Chip Design</h3>
+<p>RL has been used for chip floorplanning, where the agent learns how
+to place components to optimize performance, power, or area.</p>
+<h2 id="why-reinforcement-learning-matters">1.5 Why Reinforcement
+Learning Matters</h2>
+<p>A major reason to study RL is that it combines two powerful
+ideas:</p>
+<ul>
+<li><strong>Learning from data</strong></li>
+<li><strong>Optimization through search or trial and error</strong></li>
+</ul>
+<p>Data-driven AI is good at learning patterns from examples. However,
+if a system only imitates data, it may not discover solutions that are
+better than the examples it has seen.</p>
+<p>RL adds an optimization objective. It allows an agent to search for
+behavior that achieves a goal, even if that behavior was not explicitly
+demonstrated by humans.</p>
+<p>This is why RL is especially interesting for tasks where:</p>
+<ul>
+<li>The correct answer is not known in advance.</li>
+<li>The agent must interact with the world.</li>
+<li>Success depends on sequences of decisions.</li>
+<li>New and unexpected strategies may be valuable.</li>
+</ul>
+<h2 id="learning-and-search">1.6 Learning and Search</h2>
+<p>The lecture connects reinforcement learning to a broader view of
+intelligence:</p>
+<ul>
+<li><strong>Learning</strong> uses data to extract patterns.</li>
+<li><strong>Search</strong> uses computation to extract decisions or
+inferences.</li>
+<li><strong>Optimization</strong> uses computation to improve decisions
+according to an objective.</li>
+</ul>
+<p>Deep reinforcement learning combines these ideas:</p>
+<ul>
+<li><strong>Deep learning</strong> provides scalable function
+approximation for complex data.</li>
+<li><strong>Reinforcement learning</strong> provides an optimization
+framework for decision making.</li>
+</ul>
+<p>This combination makes it possible to learn policies from
+high-dimensional observations such as images, language, and sensor
+streams.</p>
+<h2 id="why-deep-reinforcement-learning">1.7 Why Deep Reinforcement
+Learning?</h2>
+<p>Deep reinforcement learning is useful because real-world decision
+problems often involve rich and complex inputs.</p>
+<p>Examples:</p>
+<ul>
+<li>A robot must interpret camera images and proprioceptive
+signals.</li>
+<li>A self-driving car must react to road scenes.</li>
+<li>A language model must generate useful responses.</li>
+<li>A game agent may need to act directly from pixels.</li>
+</ul>
+<p>Deep networks can represent complex policies and value functions,
+while RL defines the objective for improving behavior.</p>
+<p>Thus:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Deep Learning = scalable learning from large, complex data</span><br><span class="line">Reinforcement Learning = optimization for sequential decision making</span><br><span class="line">Deep Reinforcement Learning = scalable learning for goal-directed behavior</span><br></pre></td></tr></table></figure>
+<h2 id="key-takeaways">1.8 Key Takeaways</h2>
+<ul>
+<li>Reinforcement learning is a framework for learning how to act.</li>
+<li>The agent learns by interacting with an environment and receiving
+rewards.</li>
+<li>RL differs from supervised learning because the data depends on the
+agent's own actions.</li>
+<li>The goal is not just prediction, but long-term decision
+quality.</li>
+<li>RL is useful for games, robotics, operations, language models, image
+generation, chip design, and many other domains.</li>
+<li>Deep RL combines the representation power of deep learning with the
+optimization perspective of reinforcement learning.</li>
+<li>RL is important because it can discover new solutions rather than
+only imitate existing data.</li>
+</ul>
+<h2 id="vocabulary">1.9 Vocabulary</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Agent</td>
+<td>The learner or decision maker</td>
+</tr>
+<tr class="even">
+<td>Environment</td>
+<td>The system the agent interacts with</td>
+</tr>
+<tr class="odd">
+<td>Action</td>
+<td>A choice made by the agent</td>
+</tr>
+<tr class="even">
+<td>Observation</td>
+<td>Information received from the environment</td>
+</tr>
+<tr class="odd">
+<td>State</td>
+<td>A representation of the current situation</td>
+</tr>
+<tr class="even">
+<td>Reward</td>
+<td>Feedback signal used to evaluate behavior</td>
+</tr>
+<tr class="odd">
+<td>Policy</td>
+<td>A rule or model for choosing actions</td>
+</tr>
+<tr class="even">
+<td>Trajectory</td>
+<td>A sequence of states, actions, and rewards</td>
+</tr>
+<tr class="odd">
+<td>Deep RL</td>
+<td>Reinforcement learning with deep neural networks</td>
+</tr>
+</tbody>
+</table>
+<h1 id="chapter-2-supervised-learning-of-behaviors">Chapter 2:
+Supervised Learning of Behaviors</h1>
+<h2 id="from-supervised-learning-to-imitation-learning">2.1 From
+Supervised Learning to Imitation Learning</h2>
+<p>Supervised learning estimates a conditional model from labeled
+examples:</p>
+<p><span class="math display">\[
+x \to y
+\]</span></p>
+<p>For behavior learning, the same idea can be used to learn actions
+from demonstrations:</p>
+<p><span class="math display">\[
+\text{observation} \to \text{action}
+\]</span></p>
+<p>This is called <strong>imitation learning</strong>. Instead of
+designing a reward function and solving an RL problem, we collect
+demonstrations from an expert and train a policy to imitate the expert's
+actions.</p>
+<p>The simplest form of imitation learning is <strong>behavioral
+cloning</strong>.</p>
+<h2 id="sequential-decision-making-setup">2.2 Sequential Decision-Making
+Setup</h2>
+<p>In a sequential environment, the agent repeatedly receives
+observations and chooses actions.</p>
+<p>A trajectory can be written as:</p>
+<p><span class="math display">\[
+\tau = (o_1, a_1, o_2, a_2, \ldots, o_H, a_H)
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><code>o_t</code> is the observation at time <code>t</code>.</li>
+<li><code>a_t</code> is the action at time <code>t</code>.</li>
+<li><code>H</code> is the horizon, or trajectory length.</li>
+</ul>
+<p>In the partially observed case, the policy uses observations:</p>
+<p><span class="math display">\[
+\pi_\theta(a_t \mid o_t)
+\]</span></p>
+<p>In the fully observed case, the observation is the state:</p>
+<p><span class="math display">\[
+o_t = s_t
+\]</span></p>
+<p><span class="math display">\[
+\pi_\theta(a_t \mid s_t)
+\]</span></p>
+<p>The environment dynamics are usually written as:</p>
+<p><span class="math display">\[
+p(s_{t+1} \mid s_t, a_t)
+\]</span></p>
+<p>This expresses the Markov property: the next state depends on the
+current state and action, not directly on the full past history.</p>
+<h2 id="demonstration-trajectories">2.3 Demonstration Trajectories</h2>
+<p>A demonstration trajectory is an example of expert behavior.</p>
+<p>For imitation learning, the dataset has the form:</p>
+<p><span class="math display">\[
+\mathcal{D} = \left\{(o_1^{(i)}, a_1^{(i)}, \ldots, o_H^{(i)},
+a_H^{(i)})\right\}_{i=1}^{N}
+\]</span></p>
+<p>Each trajectory is produced by an expert policy, often denoted
+<code>pi*</code>.</p>
+<p>The goal is to learn a policy <code>pi_theta</code> that chooses
+actions similar to the expert:</p>
+<p><span class="math display">\[
+\pi_\theta(a_t \mid o_t) \approx \pi^*(a_t \mid o_t)
+\]</span></p>
+<h2 id="behavioral-cloning">2.4 Behavioral Cloning</h2>
+<p>Behavioral cloning treats imitation learning as ordinary supervised
+learning.</p>
+<p>The algorithm is:</p>
+<ol type="1">
+<li>Collect demonstrations from an expert.</li>
+<li>Create a dataset of observation-action pairs.</li>
+<li>Train a policy network by maximum likelihood.</li>
+</ol>
+<p>The training objective is:</p>
+<p><span class="math display">\[
+\arg\max_{\theta} \sum_{i=1}^{N} \sum_{t=1}^{H}
+\log \pi_\theta(a_t^{(i)} \mid o_t^{(i)})
+\]</span></p>
+<p>Equivalently, we minimize the negative log-likelihood of the expert
+actions.</p>
+<p>For discrete actions, such as game controls or language tokens, the
+model usually outputs logits over actions.</p>
+<p>For continuous actions, such as steering angle or robot torque, the
+model often outputs distribution parameters, such as the mean and
+variance of a Gaussian.</p>
+<h2 id="why-behavioral-cloning-is-attractive">2.5 Why Behavioral Cloning
+Is Attractive</h2>
+<p>Behavioral cloning is simple and scalable.</p>
+<p>It can use the same tools as supervised learning:</p>
+<ul>
+<li>neural network encoders such as ResNet or ViT,</li>
+<li>cross-entropy loss for discrete actions,</li>
+<li>Gaussian likelihood or regression loss for continuous actions,</li>
+<li>large demonstration datasets.</li>
+</ul>
+<p>It has been used successfully in systems such as autonomous driving,
+where the policy maps camera observations to control actions.</p>
+<p>However, its simplicity hides an important problem: the data
+distribution during training is not necessarily the same as the data
+distribution during deployment.</p>
+<h2 id="distributional-shift">2.6 Distributional Shift</h2>
+<p>In supervised learning, we usually assume that training and test
+examples are drawn from the same distribution.</p>
+<p>Behavioral cloning violates this assumption.</p>
+<p>During training, observations come from expert trajectories:</p>
+<p><span class="math display">\[
+o_t \sim p_{\text{data}}(o_t)
+\]</span></p>
+<p>During deployment, observations come from the learned policy's own
+behavior:</p>
+<p><span class="math display">\[
+o_t \sim p_{\pi_\theta}(o_t)
+\]</span></p>
+<p>If the learned policy makes a small mistake, the environment may move
+to states that the expert demonstrations rarely visited. The policy is
+then asked to act on unfamiliar inputs, which can cause more
+mistakes.</p>
+<p>This feedback loop is the key reason behavioral cloning is harder
+than ordinary supervised learning.</p>
+<h2 id="error-compounding-over-time">2.7 Error Compounding Over
+Time</h2>
+<p>Consider the fully observed case for simplicity.</p>
+<p>Define a cost for taking a wrong action:</p>
+<p><span class="math display">\[
+c(s_t, a_t) =
+\begin{cases}
+0, &amp; a_t = \pi^*(s_t) \\
+1, &amp; \text{otherwise}
+\end{cases}
+\]</span></p>
+<p>The expected cost at a state is the probability of making a
+mistake:</p>
+<p><span class="math display">\[
+\mathbb{E}_{a_t \sim \pi_\theta(a_t \mid s_t)}
+\left[c(s_t, a_t)\right]
+= \pi_\theta(a_t \ne \pi^*(s_t) \mid s_t)
+\]</span></p>
+<p>The total expected number of mistakes over a horizon <code>H</code>
+is:</p>
+<p><span class="math display">\[
+\sum_{t=1}^{H}
+\mathbb{E}_{s_t \sim p_{\pi_\theta},\, a_t \sim \pi_\theta}
+\left[c(s_t, a_t)\right]
+\]</span></p>
+<p>Suppose the learned policy has small error on the training
+distribution:</p>
+<p><span class="math display">\[
+\mathbb{E}_{s_t \sim p_{\text{train}}}
+\left[\pi_\theta(a_t \ne \pi^*(s_t) \mid s_t)\right]
+\le \epsilon
+\]</span></p>
+<p>This does not guarantee small rollout error. After the policy makes
+mistakes, the state distribution can drift away from
+<code>p_train</code>.</p>
+<p>In the worst case, the total error can scale as:</p>
+<p><span class="math display">\[
+O(\epsilon H^2)
+\]</span></p>
+<p>This quadratic dependence on the horizon is much worse than the
+linear behavior we would hope for if each time step were
+independent:</p>
+<p><span class="math display">\[
+O(\epsilon H)
+\]</span></p>
+<h2 id="why-the-worst-case-can-be-pessimistic">2.8 Why the Worst Case
+Can Be Pessimistic</h2>
+<p>The quadratic bound above is a worst-case analysis.</p>
+<p>In many real systems, the environment may be forgiving:</p>
+<ul>
+<li>small mistakes can be corrected later,</li>
+<li>nearby states may require similar actions,</li>
+<li>the policy may generalize beyond the exact training
+distribution,</li>
+<li>demonstrations may contain recovery behavior.</li>
+</ul>
+<p>This creates a useful paradox: imitation learning can work better
+when the dataset includes some mistakes and recoveries, because the
+learner sees how to return from off-expert states.</p>
+<p>Still, the theory explains why behavioral cloning is fragile for
+long-horizon control tasks.</p>
+<h2 id="dagger-dataset-aggregation">2.9 DAgger: Dataset Aggregation</h2>
+<p>DAgger, short for <strong>Dataset Aggregation</strong>, is designed
+to reduce distributional shift.</p>
+<p>The central idea is:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Train on states visited by the learned policy, not only states visited by the expert.</span><br></pre></td></tr></table></figure>
+<p>The algorithm is:</p>
+<ol type="1">
+<li>Train an initial policy <code>pi_theta</code> on expert
+demonstrations.</li>
+<li>Run <code>pi_theta</code> to collect states or observations from its
+own rollout distribution.</li>
+<li>Ask the expert to label those visited states with the correct
+actions.</li>
+<li>Aggregate the new labeled data into the dataset.</li>
+<li>Retrain the policy and repeat.</li>
+</ol>
+<p>In notation:</p>
+<p><span class="math display">\[
+\mathcal{D} \leftarrow \mathcal{D} \cup \mathcal{D}_{\pi}
+\]</span></p>
+<p>where <code>D_pi</code> contains states visited by the learned
+policy, labeled by the expert.</p>
+<p>DAgger tries to make the training distribution match the deployment
+distribution:</p>
+<p><span class="math display">\[
+p_{\text{data}}(o_t) \approx p_{\pi_\theta}(o_t)
+\]</span></p>
+<p>This directly targets the main failure mode of behavioral
+cloning.</p>
+<h2 id="practical-ways-to-improve-behavioral-cloning">2.10 Practical
+Ways to Improve Behavioral Cloning</h2>
+<p>Besides DAgger, several practical choices can make behavioral cloning
+more reliable:</p>
+<ul>
+<li>Use larger and more diverse demonstration datasets.</li>
+<li>Include recovery demonstrations from imperfect states.</li>
+<li>Add data augmentation when observations are high-dimensional.</li>
+<li>Use powerful models that make fewer single-step mistakes.</li>
+<li>Use multi-task data so the policy learns more robust
+representations.</li>
+<li>Combine imitation learning with reinforcement learning when reward
+feedback is available.</li>
+</ul>
+<p>The key is to reduce the mismatch between training inputs and
+deployment inputs.</p>
+<h2 id="key-takeaways-1">2.11 Key Takeaways</h2>
+<ul>
+<li>Behavioral cloning learns a policy by supervised learning on expert
+demonstrations.</li>
+<li>The standard objective is maximum likelihood of expert actions.</li>
+<li>Behavioral cloning is easy to implement but can suffer from
+distributional shift.</li>
+<li>Small errors can compound because actions affect future
+observations.</li>
+<li>Worst-case imitation error can grow quadratically with the
+horizon.</li>
+<li>DAgger reduces distributional shift by collecting expert labels on
+states visited by the learned policy.</li>
+<li>Recovery behavior and diverse data are often crucial for
+long-horizon tasks.</li>
+</ul>
+<h2 id="vocabulary-1">2.12 Vocabulary</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Imitation Learning</td>
+<td>Learning behavior from expert demonstrations</td>
+</tr>
+<tr class="even">
+<td>Behavioral Cloning</td>
+<td>Supervised learning of a policy from observation-action pairs</td>
+</tr>
+<tr class="odd">
+<td>Demonstration</td>
+<td>A trajectory generated by an expert</td>
+</tr>
+<tr class="even">
+<td>Expert Policy</td>
+<td>The policy that provides desired actions, often written
+<code>pi*</code></td>
+</tr>
+<tr class="odd">
+<td>Horizon</td>
+<td>The length of a trajectory</td>
+</tr>
+<tr class="even">
+<td>Maximum Likelihood</td>
+<td>Training objective that maximizes probability of demonstrated
+actions</td>
+</tr>
+<tr class="odd">
+<td>Distributional Shift</td>
+<td>Mismatch between training distribution and deployment
+distribution</td>
+</tr>
+<tr class="even">
+<td>Compounding Error</td>
+<td>Error growth caused by mistakes affecting future states</td>
+</tr>
+<tr class="odd">
+<td>DAgger</td>
+<td>Dataset Aggregation, an imitation learning method that labels states
+visited by the learned policy</td>
+</tr>
+</tbody>
+</table>
 
     
 
