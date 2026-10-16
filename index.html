@@ -296,6 +296,119 @@
 
 
   
+    <article id="post-Offline-Deletion-Linear-Basis" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/Algorithm/Offline-Deletion-Linear-Basis/" target="_blank">时间线段树维护可增删线性基</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/Algorithm/Offline-Deletion-Linear-Basis/" class="archive-article-date">
+        <time datetime="2026-10-16T10:06:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2026-10-16</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>普通异或线性基很适合处理不断加入元素的问题：插入一个数，再查询最大异或和、判断某个数能否被表示，都只需要扫描一遍二进制位。但如果操作中还包含删除，事情就没有这么直接了。</p>
+<p>线性基保存的是原集合能够张成的异或空间，并没有保留每个原始元素的完整信息。一个数插入时被消成了零，只能说明它在当时可以由其他数表示；等到其他数被删除，它仍然可能成为必需的基向量。</p>
+<p>如果题目允许离线，可以先求出每个元素的存活时间，再用时间线段树组织这些区间。DFS 时维护一份可回滚线性基，进入结点就插入，退出结点就撤销。这样便能在每个询问时刻得到当前集合的线性基。</p>
+    
+    <a class="article-more-a" href="/Algorithm/Offline-Deletion-Linear-Basis/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">线性基</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">线段树</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">离线算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Algorithm//" class="article-tag-list-link color5">Algorithm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/Algorithm/Offline-Deletion-Linear-Basis/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-ACM-templates" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -436,9 +549,16 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h1 id="k-循环与置换环"><span
-class="math inline">\(k\)</span>-循环与置换环</h1>
-
+    <h1 id="k-循环与置换环"><a href="#k-循环与置换环" class="headerlink" title="$k$-循环与置换环"></a>$k$-循环与置换环</h1><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p><strong>$k$-循环</strong>：对一个序列中的连续k个元素进行循环位移</p>
+<p>例如对于以下序列，他存在一个对于下标（1索引）$2-4$ 能够执行一个三循环操作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[3, 1, 2, 5, 4] -&gt; [3, 5, 1, 2, 4]</span><br></pre></td></tr></table></figure>
+<p><strong>置换环</strong>：Permutation Cycles，对于一个排列，将索引连向他的值，创建一条有向边，会形成若干个闭环，称之为置换环</p>
+<p>假设我们有一个的排列</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">索引 i：[1, 2, 3, 4, 5]</span><br><span class="line">排列 p：[3, 1, 2, 5, 4]</span><br></pre></td></tr></table></figure>
+<p>这个排列就可以唯一分解为两个置换环：$(1, 3, 2)$ 和 $(4, 5)$。</p>
+    
+    <a class="article-more-a" href="/TechNotes/k-cyclic-shift/#more">more >></a>
+    
     
 
     
@@ -5132,6 +5252,18 @@ FATAL。fatal等级最高</p>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">learning note</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">线性基</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">线段树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">离线算法</a>
               </li>
             
             <div class="clearfix"></div>
