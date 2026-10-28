@@ -17,6 +17,14 @@
 <meta property="og:site_name" content="NICCCCE">
 <meta property="og:description" content="给树按深度奇偶染成红黑两色，最直接的作用是把每条边的两个端点分到不同集合。但在构造题和通信题里，这个划分还能承担更多任务：让两类点使用互补的值域、交替保存区间的左右边界，或者用两个端点颜色的异同表示一条边是否属于答案。 本文从 Invisible Edges 和 Magically Marked Matching Master 出发，串联 IOI 2020 Stations 及四道相关题。重点是解">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://nicccce.github.io/Algorithm/Alternating-Coloring-on-Graphs-and-Trees/forest-original.svg">
+<meta property="og:image" content="https://nicccce.github.io/Algorithm/Alternating-Coloring-on-Graphs-and-Trees/forest-renumbered.svg">
+<meta property="og:image" content="https://nicccce.github.io/Algorithm/Alternating-Coloring-on-Graphs-and-Trees/matching-path.svg">
+<meta property="og:image" content="https://nicccce.github.io/Algorithm/Alternating-Coloring-on-Graphs-and-Trees/matching-contracted.svg">
+<meta property="og:image" content="https://nicccce.github.io/Algorithm/Alternating-Coloring-on-Graphs-and-Trees/stations-route.svg">
+<meta property="og:image" content="https://nicccce.github.io/Algorithm/Alternating-Coloring-on-Graphs-and-Trees/directed-bipartite.svg">
+<meta property="og:image" content="https://nicccce.github.io/Algorithm/Alternating-Coloring-on-Graphs-and-Trees/label-buckets.svg">
+<meta property="og:image" content="https://nicccce.github.io/Algorithm/Alternating-Coloring-on-Graphs-and-Trees/xor-constraints.svg">
 <meta property="article:published_time" content="2026-10-27T16:00:00.000Z">
 <meta property="article:modified_time" content="2026-10-28T02:17:37.035Z">
 <meta property="article:author" content="NICK">
@@ -26,6 +34,7 @@
 <meta property="article:tag" content="通信题">
 <meta property="article:tag" content="二分图">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nicccce.github.io/Algorithm/Alternating-Coloring-on-Graphs-and-Trees/forest-original.svg">
   
     <link rel="alternative" href="/atom.xml" title="NICCCCE" type="application/atom+xml">
   
@@ -237,7 +246,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">669字</span>
+      <span class="post-count">9.2k字</span>
     </span>
   </span>
 
@@ -246,7 +255,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">2分</span>
+      <span class="post-count">34分</span>
     </span>
   </span>
 </div>
@@ -258,48 +267,111 @@
   <div class="article-entry" itemprop="articleBody">
     
     <p>给树按深度奇偶染成红黑两色，最直接的作用是把每条边的两个端点分到不同集合。但在构造题和通信题里，这个划分还能承担更多任务：让两类点使用互补的值域、交替保存区间的左右边界，或者用两个端点颜色的异同表示一条边是否属于答案。</p>
-<p>本文从 <strong>Invisible Edges</strong> 和 <strong>Magically Marked Matching Master</strong> 出发，串联 IOI 2020 <strong>Stations</strong> 及四道相关题。重点是解释颜色如何承载信息，以及接收方怎样只用题目允许的信息把答案恢复出来。</p>
-<span id="more"></span>
-<h2 id="先区分两种红黑染色"><a href="#先区分两种红黑染色" class="headerlink" title="先区分两种红黑染色"></a>先区分两种红黑染色</h2><p>设每个点有一个颜色位 $c_u\in\{0,1\}$。</p>
-<p><strong>按层交替染色</strong>要求每条树边 $(u,v)$ 都满足</p>
-<script type="math/tex; mode=display">
-c_u\oplus c_v=1.</script><p>取根的颜色为 $0$，就有 $c_u=\operatorname{depth}(u)\bmod 2$。这使两个颜色集合内部都没有边，适合给两侧安排不同的编号规则或行为。</p>
-<p><strong>按边标记决定是否变色</strong>则先给每条边一个二进制标记 $w_{uv}$，再要求</p>
-<script type="math/tex; mode=display">
-c_u\oplus c_v=w_{uv}.</script><p>沿着树从根传播即可：标记为 $0$ 时保持颜色，标记为 $1$ 时翻转颜色。普通二分染色是所有边标记均为 $1$ 的特例。</p>
-<p>这两种用法需要分清。Invisible Edges 的红黑版使用前者；Matching Master 使用后者，只有选入最大匹配的边才会让颜色翻转。</p>
-<h2 id="Invisible-Edges-用点权恢复整片森林"><a href="#Invisible-Edges-用点权恢复整片森林" class="headerlink" title="Invisible Edges 用点权恢复整片森林"></a>Invisible Edges 用点权恢复整片森林</h2><p>题目按提供的比赛题面记为 <strong>2026 成都站 I. Invisible Edges</strong>。这一节依据该题面推导。</p>
-<p>第一轮，VegiCat 知道一片 $n$ 个点的森林，要给每个点赋一个 $[1,2n]$ 内的整数。随后点被任意重编号，点权随点一起移动。第二轮，VegiDog 只知道 $n$ 和新编号下的点权数组 $b$，需要恢复全部边。</p>
+<p>本文从 <strong>Invisible Edges</strong> 和 <strong>Magically Marked
+Matching Master</strong> 出发，串联 IOI 2020 <strong>Stations</strong>
+及四道相关题。重点是解释颜色如何承载信息，以及接收方怎样只用题目允许的信息把答案恢复出来。</p>
+<!--more-->
+<h2 id="先区分两种红黑染色">先区分两种红黑染色</h2>
+<p>设每个点有一个颜色位 <span
+class="math inline">\(c_u\in\{0,1\}\)</span>。</p>
+<p><strong>按层交替染色</strong>要求每条树边 <span
+class="math inline">\((u,v)\)</span> 都满足</p>
+<p><span class="math display">\[
+c_u\oplus c_v=1.
+\]</span></p>
+<p>取根的颜色为 <span class="math inline">\(0\)</span>，就有 <span
+class="math inline">\(c_u=\operatorname{depth}(u)\bmod
+2\)</span>。这使两个颜色集合内部都没有边，适合给两侧安排不同的编号规则或行为。</p>
+<p><strong>按边标记决定是否变色</strong>则先给每条边一个二进制标记 <span
+class="math inline">\(w_{uv}\)</span>，再要求</p>
+<p><span class="math display">\[
+c_u\oplus c_v=w_{uv}.
+\]</span></p>
+<p>沿着树从根传播即可：标记为 <span class="math inline">\(0\)</span>
+时保持颜色，标记为 <span class="math inline">\(1\)</span>
+时翻转颜色。普通二分染色是所有边标记均为 <span
+class="math inline">\(1\)</span> 的特例。</p>
+<p>这两种用法需要分清。Invisible Edges 的红黑版使用前者；Matching Master
+使用后者，只有选入最大匹配的边才会让颜色翻转。</p>
+<h2 id="invisible-edges-用点权恢复整片森林">Invisible Edges
+用点权恢复整片森林</h2>
+<p>题目按提供的比赛题面记为 <strong>2026 成都站 I. Invisible
+Edges</strong>。这一节依据该题面推导。</p>
+<p>第一轮，VegiCat 知道一片 <span class="math inline">\(n\)</span>
+个点的森林，要给每个点赋一个 <span class="math inline">\([1,2n]\)</span>
+内的整数。随后点被任意重编号，点权随点一起移动。第二轮，VegiDog 只知道
+<span class="math inline">\(n\)</span> 和新编号下的点权数组 <span
+class="math inline">\(b\)</span>，需要恢复全部边。</p>
 <p>这里丢失了原编号，也没有边列表，所以直接把“原父亲编号”写进点权并没有意义。需要先构造一种能由点权恢复的顺序，再用这个顺序里的编号表示父亲。</p>
-<h3 id="先建立全局多源-BFS-序"><a href="#先建立全局多源-BFS-序" class="headerlink" title="先建立全局多源 BFS 序"></a>先建立全局多源 BFS 序</h3><p>每个连通块任选一个根，<strong>先把所有根放进同一个队列，再开始 BFS</strong>。根之间的顺序、同一个点的孩子访问顺序都可以任意选择。</p>
-<p>设得到的访问序列为 $v_1,v_2,\ldots,v_n$，$p_i$ 表示 $v_i$ 的父亲在这个序列中的下标；根的 $p_i=0$。于是</p>
-<script type="math/tex; mode=display">
-0\le p_i<i,
+<h3 id="先建立全局多源-bfs-序">先建立全局多源 BFS 序</h3>
+<p>每个连通块任选一个根，<strong>先把所有根放进同一个队列，再开始
+BFS</strong>。根之间的顺序、同一个点的孩子访问顺序都可以任意选择。</p>
+<p>设得到的访问序列为 <span
+class="math inline">\(v_1,v_2,\ldots,v_n\)</span>，<span
+class="math inline">\(p_i\)</span> 表示 <span
+class="math inline">\(v_i\)</span> 的父亲在这个序列中的下标；根的 <span
+class="math inline">\(p_i=0\)</span>。于是</p>
+<p><span class="math display">\[
+0\le p_i&lt;i,
 \qquad
-p_1\le p_2\le\cdots\le p_n.</script><p>第一个性质来自父亲先于孩子访问。第二个性质来自队列顺序：所有根先出现，之后孩子按照父亲出队的先后顺序成批入队，因而父亲下标只会增加。</p>
-<p>这一步对森林尤其重要。假设有两条独立的边 $(1,2)$、$(3,4)$，逐棵树 BFS 后拼成 $1,2,3,4$，父亲下标就是</p>
-<script type="math/tex; mode=display">
-0,1,0,3.</script><p>中间从 $1$ 降回了 $0$。如果直接使用后面的 $i+p_i$，会得到 $1,3,3,7$，出现重复值，排序也无法恢复原顺序。必须先找齐各连通块的根，再执行多源 BFS。</p>
-<h3 id="按层红黑染色与互补值域"><a href="#按层红黑染色与互补值域" class="headerlink" title="按层红黑染色与互补值域"></a>按层红黑染色与互补值域</h3><p>把偶数层染红，奇数层染黑，所有根都在红色的第 $0$ 层。设红点有 $R$ 个、黑点有 $B$ 个，满足 $R+B=n$。</p>
-<p>从同一份全局 BFS 序中分别抽出红点序列 $r_1,\ldots,r_R$ 和黑点序列 $h_1,\ldots,h_B$。这里用 $h$ 表示黑点，避免与接收方的点权数组 $b$ 混淆。</p>
-<p>红点的父亲是黑点或虚拟的 $0$ 号父亲；黑点的父亲一定是红点。由于每种颜色的孩子仍按父亲的出队顺序出现，<strong>父亲在异色序列中的下标也是单调不降的</strong>。</p>
-<p>记这两个下标序列为 $q_i$、$t_j$：</p>
-<script type="math/tex; mode=display">
+p_1\le p_2\le\cdots\le p_n.
+\]</span></p>
+<p>第一个性质来自父亲先于孩子访问。第二个性质来自队列顺序：所有根先出现，之后孩子按照父亲出队的先后顺序成批入队，因而父亲下标只会增加。</p>
+<p>这一步对森林尤其重要。假设有两条独立的边 <span
+class="math inline">\((1,2)\)</span>、<span
+class="math inline">\((3,4)\)</span>，逐棵树 BFS 后拼成 <span
+class="math inline">\(1,2,3,4\)</span>，父亲下标就是</p>
+<p><span class="math display">\[
+0,1,0,3.
+\]</span></p>
+<p>中间从 <span class="math inline">\(1\)</span> 降回了 <span
+class="math inline">\(0\)</span>。如果直接使用后面的 <span
+class="math inline">\(i+p_i\)</span>，会得到 <span
+class="math inline">\(1,3,3,7\)</span>，出现重复值，排序也无法恢复原顺序。必须先找齐各连通块的根，再执行多源
+BFS。</p>
+<h3 id="按层红黑染色与互补值域">按层红黑染色与互补值域</h3>
+<p>把偶数层染红，奇数层染黑，所有根都在红色的第 <span
+class="math inline">\(0\)</span> 层。设红点有 <span
+class="math inline">\(R\)</span> 个、黑点有 <span
+class="math inline">\(B\)</span> 个，满足 <span
+class="math inline">\(R+B=n\)</span>。</p>
+<p>从同一份全局 BFS 序中分别抽出红点序列 <span
+class="math inline">\(r_1,\ldots,r_R\)</span> 和黑点序列 <span
+class="math inline">\(h_1,\ldots,h_B\)</span>。这里用 <span
+class="math inline">\(h\)</span> 表示黑点，避免与接收方的点权数组 <span
+class="math inline">\(b\)</span> 混淆。</p>
+<p>红点的父亲是黑点或虚拟的 <span class="math inline">\(0\)</span>
+号父亲；黑点的父亲一定是红点。由于每种颜色的孩子仍按父亲的出队顺序出现，<strong>父亲在异色序列中的下标也是单调不降的</strong>。</p>
+<p>记这两个下标序列为 <span class="math inline">\(q_i\)</span>、<span
+class="math inline">\(t_j\)</span>：</p>
+<p><span class="math display">\[
 0\le q_1\le\cdots\le q_R\le B,
 \qquad
-1\le t_1\le\cdots\le t_B\le R.</script><p>当 $B=0$ 时，第二个序列为空。</p>
+1\le t_1\le\cdots\le t_B\le R.
+\]</span></p>
+<p>当 <span class="math inline">\(B=0\)</span> 时，第二个序列为空。</p>
 <p>给红点赋值</p>
-<script type="math/tex; mode=display">
-\boxed{a(r_i)=i+q_i.}</script><p>因为 $i$ 严格递增、$q_i$ 单调不降，红点权值严格递增，并且</p>
-<script type="math/tex; mode=display">
-1\le a(r_i)\le R+B=n.</script><p>再给黑点赋值</p>
-<script type="math/tex; mode=display">
-\boxed{a(h_j)=n+j+t_j-1.}</script><p>黑点权值也严格递增，且位于 $[n+1,2n-1]$。减去 $1$ 是因为黑点一定有父亲，父亲下标从 $1$ 开始，不需要表示 $0$。</p>
+<p><span class="math display">\[
+\boxed{a(r_i)=i+q_i.}
+\]</span></p>
+<p>因为 <span class="math inline">\(i\)</span> 严格递增、<span
+class="math inline">\(q_i\)</span> 单调不降，红点权值严格递增，并且</p>
+<p><span class="math display">\[
+1\le a(r_i)\le R+B=n.
+\]</span></p>
+<p>再给黑点赋值</p>
+<p><span class="math display">\[
+\boxed{a(h_j)=n+j+t_j-1.}
+\]</span></p>
+<p>黑点权值也严格递增，且位于 <span
+class="math inline">\([n+1,2n-1]\)</span>。减去 <span
+class="math inline">\(1\)</span> 是因为黑点一定有父亲，父亲下标从 <span
+class="math inline">\(1\)</span> 开始，不需要表示 <span
+class="math inline">\(0\)</span>。</p>
 <p>值域能够放下这两类信息，依赖于以下数量关系：</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>颜色</th>
 <th>使用的值域</th>
 <th>点数</th>
@@ -307,57 +379,89 @@ p_1\le p_2\le\cdots\le p_n.</script><p>第一个性质来自父亲先于孩子�
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>红色</td>
-<td>$[1,n]$</td>
-<td>$R$</td>
-<td>$n-R=B$</td>
+<td><span class="math inline">\([1,n]\)</span></td>
+<td><span class="math inline">\(R\)</span></td>
+<td><span class="math inline">\(n-R=B\)</span></td>
 </tr>
-<tr>
+<tr class="even">
 <td>黑色</td>
-<td>$[n+1,2n]$</td>
-<td>$B$</td>
-<td>$n-B=R$</td>
+<td><span class="math inline">\([n+1,2n]\)</span></td>
+<td><span class="math inline">\(B\)</span></td>
+<td><span class="math inline">\(n-B=R\)</span></td>
 </tr>
 </tbody>
 </table>
-</div>
 <p>放下本色点之后，剩余空间正好对应异色父亲的数量。这里“剩余空间”是有序位置之间可插入的空位数量，不是要求每个点分别拥有一段独立空间。</p>
-<h3 id="红黑版的解码"><a href="#红黑版的解码" class="headerlink" title="红黑版的解码"></a>红黑版的解码</h3><p>VegiDog 按点权是否大于 $n$ 分出两种颜色，再在各颜色内部按权值排序。严格递增性保证两个序列都被准确恢复，只是其中存储的是新编号。</p>
-<p>记排序后的点为 $r’_i$、$h’_j$。对于红点，计算</p>
-<script type="math/tex; mode=display">
-q_i=b_{r'_i}-i.</script><p>若 $q_i=0$，它是根；否则连边 $(r’_i,h’_{q_i})$。</p>
+<h3 id="红黑版的解码">红黑版的解码</h3>
+<p>VegiDog 按点权是否大于 <span class="math inline">\(n\)</span>
+分出两种颜色，再在各颜色内部按权值排序。严格递增性保证两个序列都被准确恢复，只是其中存储的是新编号。</p>
+<p>记排序后的点为 <span class="math inline">\(r&#39;_i\)</span>、<span
+class="math inline">\(h&#39;_j\)</span>。对于红点，计算</p>
+<p><span class="math display">\[
+q_i=b_{r&#39;_i}-i.
+\]</span></p>
+<p>若 <span class="math inline">\(q_i=0\)</span>，它是根；否则连边 <span
+class="math inline">\((r&#39;_i,h&#39;_{q_i})\)</span>。</p>
 <p>对于黑点，计算</p>
-<script type="math/tex; mode=display">
-t_j=b_{h'_j}-n-j+1,</script><p>连边 $(h’_j,r’_{t_j})$。每个非根点恰好输出一条父边，所有边都被恢复，且不会重复。</p>
-<h3 id="全局版直接使用排名加父亲下标"><a href="#全局版直接使用排名加父亲下标" class="headerlink" title="全局版直接使用排名加父亲下标"></a>全局版直接使用排名加父亲下标</h3><p>红黑版先分别维护两种颜色的顺序。既然全局多源 BFS 的父亲下标本来就单调不降，也可以直接令</p>
-<script type="math/tex; mode=display">
-\boxed{a(v_i)=i+p_i.}</script><p>因为</p>
-<script type="math/tex; mode=display">
-a(v_{i+1})-a(v_i)=1+p_{i+1}-p_i\ge1,</script><p>所有点权严格递增。同时 $0\le p_i&lt;i$，所以</p>
-<script type="math/tex; mode=display">
-1\le a(v_i)\le2i-1\le2n-1.</script><p>接收方将所有点按权值排序成 $u_1,\ldots,u_n$，再计算</p>
-<script type="math/tex; mode=display">
-p_i=b_{u_i}-i.</script><p>若 $p_i&gt;0$，就输出 $(u_i,u_{p_i})$。重编号只改变每个位置对应的实际点号，不改变由点权确定的排序，也不改变恢复出来的父亲下标。</p>
+<p><span class="math display">\[
+t_j=b_{h&#39;_j}-n-j+1,
+\]</span></p>
+<p>连边 <span
+class="math inline">\((h&#39;_j,r&#39;_{t_j})\)</span>。每个非根点恰好输出一条父边，所有边都被恢复，且不会重复。</p>
+<h3 id="全局版直接使用排名加父亲下标">全局版直接使用排名加父亲下标</h3>
+<p>红黑版先分别维护两种颜色的顺序。既然全局多源 BFS
+的父亲下标本来就单调不降，也可以直接令</p>
+<p><span class="math display">\[
+\boxed{a(v_i)=i+p_i.}
+\]</span></p>
+<p>因为</p>
+<p><span class="math display">\[
+a(v_{i+1})-a(v_i)=1+p_{i+1}-p_i\ge1,
+\]</span></p>
+<p>所有点权严格递增。同时 <span class="math inline">\(0\le
+p_i&lt;i\)</span>，所以</p>
+<p><span class="math display">\[
+1\le a(v_i)\le2i-1\le2n-1.
+\]</span></p>
+<p>接收方将所有点按权值排序成 <span
+class="math inline">\(u_1,\ldots,u_n\)</span>，再计算</p>
+<p><span class="math display">\[
+p_i=b_{u_i}-i.
+\]</span></p>
+<p>若 <span class="math inline">\(p_i&gt;0\)</span>，就输出 <span
+class="math inline">\((u_i,u_{p_i})\)</span>。重编号只改变每个位置对应的实际点号，不改变由点权确定的排序，也不改变恢复出来的父亲下标。</p>
 <p>这两个版本共享“排名加单调偏移”的编码原理，但它们给出的具体点权通常不同。全局版不需要显式区分深度奇偶，更适合实现。</p>
-<h3 id="一个包含两个连通块的例子"><a href="#一个包含两个连通块的例子" class="headerlink" title="一个包含两个连通块的例子"></a>一个包含两个连通块的例子</h3><p>取如下森林，以 $1,2$ 为根：</p>
-
-<p>图中箭头表示选定根后的父子关系，标签里的 $a$ 是全局版点权。红黑表示深度奇偶；全局版虽然不需要显式使用颜色，仍可以借助颜色看清相邻层的关系。</p>
-<p>多源 BFS 序为 $1,2,3,4,5,6$。两种编码分别是：</p>
-<div class="table-container">
-<table>
+<h3 id="一个包含两个连通块的例子">一个包含两个连通块的例子</h3>
+<p>取如下森林，以 <span class="math inline">\(1,2\)</span> 为根：</p>
+<img src="/Algorithm/Alternating-Coloring-on-Graphs-and-Trees/forest-original.svg" class="" title="原森林的深度红黑染色与全局版点权">
+<p>图中箭头表示选定根后的父子关系，标签里的 <span
+class="math inline">\(a\)</span>
+是全局版点权。红黑表示深度奇偶；全局版虽然不需要显式使用颜色，仍可以借助颜色看清相邻层的关系。</p>
+<p>多源 BFS 序为 <span
+class="math inline">\(1,2,3,4,5,6\)</span>。两种编码分别是：</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>原点号</th>
 <th>深度颜色</th>
-<th>全局排名 $i$</th>
-<th>全局父亲下标 $p_i$</th>
+<th>全局排名 <span class="math inline">\(i\)</span></th>
+<th>全局父亲下标 <span class="math inline">\(p_i\)</span></th>
 <th>全局版点权</th>
 <th>红黑版点权</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>红</td>
 <td>1</td>
@@ -365,7 +469,7 @@ p_i=b_{u_i}-i.</script><p>若 $p_i&gt;0$，就输出 $(u_i,u_{p_i})$。重编号
 <td>1</td>
 <td>1</td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
 <td>红</td>
 <td>2</td>
@@ -373,7 +477,7 @@ p_i=b_{u_i}-i.</script><p>若 $p_i&gt;0$，就输出 $(u_i,u_{p_i})$。重编号
 <td>2</td>
 <td>2</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
 <td>黑</td>
 <td>3</td>
@@ -381,7 +485,7 @@ p_i=b_{u_i}-i.</script><p>若 $p_i&gt;0$，就输出 $(u_i,u_{p_i})$。重编号
 <td>4</td>
 <td>7</td>
 </tr>
-<tr>
+<tr class="even">
 <td>4</td>
 <td>黑</td>
 <td>4</td>
@@ -389,7 +493,7 @@ p_i=b_{u_i}-i.</script><p>若 $p_i&gt;0$，就输出 $(u_i,u_{p_i})$。重编号
 <td>5</td>
 <td>8</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5</td>
 <td>黑</td>
 <td>5</td>
@@ -397,7 +501,7 @@ p_i=b_{u_i}-i.</script><p>若 $p_i&gt;0$，就输出 $(u_i,u_{p_i})$。重编号
 <td>7</td>
 <td>10</td>
 </tr>
-<tr>
+<tr class="even">
 <td>6</td>
 <td>红</td>
 <td>6</td>
@@ -407,60 +511,71 @@ p_i=b_{u_i}-i.</script><p>若 $p_i&gt;0$，就输出 $(u_i,u_{p_i})$。重编号
 </tr>
 </tbody>
 </table>
-</div>
 <p>例如，全局版经过重编号后收到</p>
-<script type="math/tex; mode=display">
-b=[2,5,9,1,7,4].</script><p>按权值排序得到的新点号是 $[4,1,6,2,5,3]$。权值减排名依然是 $[0,0,1,1,2,3]$，从而恢复边</p>
-<script type="math/tex; mode=display">
-(6,4),\ (2,4),\ (5,1),\ (3,6).</script><p>把每一步展开，可以看到接收方完全没有用到原点号：</p>
-<div class="table-container">
+<p><span class="math display">\[
+b=[2,5,9,1,7,4].
+\]</span></p>
+<p>按权值排序得到的新点号是 <span
+class="math inline">\([4,1,6,2,5,3]\)</span>。权值减排名依然是 <span
+class="math inline">\([0,0,1,1,2,3]\)</span>，从而恢复边</p>
+<p><span class="math display">\[
+(6,4),\ (2,4),\ (5,1),\ (3,6).
+\]</span></p>
+<p>把每一步展开，可以看到接收方完全没有用到原点号：</p>
 <table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
 <thead>
-<tr>
-<th>排名 $i$</th>
-<th>收到的新点号 $u_i$</th>
-<th>点权 $b_{u_i}$</th>
+<tr class="header">
+<th>排名 <span class="math inline">\(i\)</span></th>
+<th>收到的新点号 <span class="math inline">\(u_i\)</span></th>
+<th>点权 <span class="math inline">\(b_{u_i}\)</span></th>
 <th>相减得到的父亲排名</th>
 <th>恢复出的父亲新点号</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>4</td>
 <td>1</td>
 <td>0</td>
 <td>无，是根</td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
 <td>1</td>
 <td>2</td>
 <td>0</td>
 <td>无，是根</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
 <td>6</td>
 <td>4</td>
 <td>1</td>
 <td>排序表第 1 个点，即 4</td>
 </tr>
-<tr>
+<tr class="even">
 <td>4</td>
 <td>2</td>
 <td>5</td>
 <td>1</td>
 <td>排序表第 1 个点，即 4</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5</td>
 <td>5</td>
 <td>7</td>
 <td>2</td>
 <td>排序表第 2 个点，即 1</td>
 </tr>
-<tr>
+<tr class="even">
 <td>6</td>
 <td>3</td>
 <td>9</td>
@@ -469,48 +584,121 @@ b=[2,5,9,1,7,4].</script><p>按权值排序得到的新点号是 $[4,1,6,2,5,3]$
 </tr>
 </tbody>
 </table>
-</div>
-<p>例如收到的新 $3$ 号点带着权值 $9$，排序后处于第 $6$ 位，于是父亲排名为 $9-6=3$。排序表第 $3$ 个点是新 $6$ 号点，所以恢复出边 $(3,6)$。相减的结果是<strong>排序下标</strong>，不能直接当成新点号。</p>
-
+<p>例如收到的新 <span class="math inline">\(3\)</span> 号点带着权值
+<span class="math inline">\(9\)</span>，排序后处于第 <span
+class="math inline">\(6\)</span> 位，于是父亲排名为 <span
+class="math inline">\(9-6=3\)</span>。排序表第 <span
+class="math inline">\(3\)</span> 个点是新 <span
+class="math inline">\(6\)</span> 号点，所以恢复出边 <span
+class="math inline">\((3,6)\)</span>。相减的结果是<strong>排序下标</strong>，不能直接当成新点号。</p>
+<img src="/Algorithm/Alternating-Coloring-on-Graphs-and-Trees/forest-renumbered.svg" class="" title="重编号后由点权恢复出的森林">
 <p>图的结构与原森林完全相同，点权也随对应顶点保留下来，变化的只有外部点号。</p>
-<h3 id="隔板解释"><a href="#隔板解释" class="headerlink" title="隔板解释"></a>隔板解释</h3><p>在 $[1,2n]$ 中把选中的 $n$ 个点权位置记作 <code>V</code>，其余位置记作 <code>|</code>。第 $i$ 个 <code>V</code> 位于 $a(v_i)$，它前面共有</p>
-<script type="math/tex; mode=display">
-a(v_i)-i=p_i</script><p>个隔板。所以“减去自己的排名”，恰好就是数出前面的空位。</p>
-<p>上例选中的位置是 $1,2,4,5,7,9$，在长度为 $12$ 的位置序列中写成 <code>V V | V V | V | V | | |</code>。第 $6$ 个 <code>V</code> 位于位置 $9$，它前面有 $3$ 个隔板，所以父亲是 BFS 序中的第 $3$ 个点。尾部的隔板不会被任何点使用，它们只是没有用完的值域空间。</p>
-<p>对于任意单调序列 $0\le p_1\le\cdots\le p_n\le K$，$i+p_i$ 都能把它编码成 $[1,n+K]$ 中的严格递增序列。本题再利用 $p_i&lt;i$ 表示父亲一定在前面。</p>
-<p>这里的 <code>V</code> 和 <code>|</code> 是值域位置的两种角色，不是原树的深度红黑色；也不是任意选择 $n$ 个位置都能得到合法森林。合法性来自编码前已经建立好的 BFS 父亲序列。</p>
-<h3 id="一个点权为什么能同时保存顺序和父亲"><a href="#一个点权为什么能同时保存顺序和父亲" class="headerlink" title="一个点权为什么能同时保存顺序和父亲"></a>一个点权为什么能同时保存顺序和父亲</h3><p>直接看 $a(v_i)=i+p_i$，似乎只是把两个未知数加在一起，无法分别恢复。但这两个量并不是独立的：父亲下标的单调性保证点权严格递增，因此<strong>排序先恢复 $i$，减法才恢复 $p_i$</strong>。</p>
+<h3 id="隔板解释">隔板解释</h3>
+<p>在 <span class="math inline">\([1,2n]\)</span> 中把选中的 <span
+class="math inline">\(n\)</span> 个点权位置记作
+<code>V</code>，其余位置记作 <code>|</code>。第 <span
+class="math inline">\(i\)</span> 个 <code>V</code> 位于 <span
+class="math inline">\(a(v_i)\)</span>，它前面共有</p>
+<p><span class="math display">\[
+a(v_i)-i=p_i
+\]</span></p>
+<p>个隔板。所以“减去自己的排名”，恰好就是数出前面的空位。</p>
+<p>上例选中的位置是 <span
+class="math inline">\(1,2,4,5,7,9\)</span>，在长度为 <span
+class="math inline">\(12\)</span> 的位置序列中写成
+<code>V V | V V | V | V | | |</code>。第 <span
+class="math inline">\(6\)</span> 个 <code>V</code> 位于位置 <span
+class="math inline">\(9\)</span>，它前面有 <span
+class="math inline">\(3\)</span> 个隔板，所以父亲是 BFS 序中的第 <span
+class="math inline">\(3\)</span>
+个点。尾部的隔板不会被任何点使用，它们只是没有用完的值域空间。</p>
+<p>对于任意单调序列 <span class="math inline">\(0\le p_1\le\cdots\le
+p_n\le K\)</span>，<span class="math inline">\(i+p_i\)</span>
+都能把它编码成 <span class="math inline">\([1,n+K]\)</span>
+中的严格递增序列。本题再利用 <span
+class="math inline">\(p_i&lt;i\)</span> 表示父亲一定在前面。</p>
+<p>这里的 <code>V</code> 和 <code>|</code>
+是值域位置的两种角色，不是原树的深度红黑色；也不是任意选择 <span
+class="math inline">\(n\)</span>
+个位置都能得到合法森林。合法性来自编码前已经建立好的 BFS 父亲序列。</p>
+<h3
+id="一个点权为什么能同时保存顺序和父亲">一个点权为什么能同时保存顺序和父亲</h3>
+<p>直接看 <span
+class="math inline">\(a(v_i)=i+p_i\)</span>，似乎只是把两个未知数加在一起，无法分别恢复。但这两个量并不是独立的：父亲下标的单调性保证点权严格递增，因此<strong>排序先恢复
+<span class="math inline">\(i\)</span>，减法才恢复 <span
+class="math inline">\(p_i\)</span></strong>。</p>
 <p>可以把解码拆成三个层次理解：</p>
-<ol>
+<ol type="1">
 <li>点权互异，使接收方能把每个收到的点放进一个确定的排序位置。</li>
 <li>排序位置给出协议中的内部编号，这个编号不受外部重标号影响。</li>
 <li>点权减内部编号得到父亲的内部编号，再用排序后的点表换回新图点号。</li>
 </ol>
 <p>编码方可以任意选择根和孩子访问顺序。接收方不需要猜出这些选择，因为它们已经体现在点权的相对大小中。双方真正共享的是排序和减法的规则。</p>
-<p>根也不需要单独传输：排在第 $i$ 位的点若恰好满足 $a(v_i)=i$，就能识别为根。根的数量设为 $c$，边数自然就是 $n-c$。极端情况下所有点都是孤立点，点权依次为 $1,2,\ldots,n$，减去排名全部得到 $0$，接收方就输出空边集。</p>
-<p>若使用普通排序，解码需要 $O(n\log n)$ 时间；利用点权范围只有 $2n$ 且互异，也可以按值域扫描，在 $O(n)$ 时间恢复顺序。虽然题面允许重复点权，这个协议主动选择互异点权，以保证顺序能够被唯一识别。</p>
-<h2 id="Matching-Master-把最大匹配写成点颜色"><a href="#Matching-Master-把最大匹配写成点颜色" class="headerlink" title="Matching Master 把最大匹配写成点颜色"></a>Matching Master 把最大匹配写成点颜色</h2><p><strong>Magically Marked Matching Master</strong> 是 2025 ICPC EC-Final 的 K 题，比赛实际在 2026 年 2 月举行。第一轮知道整棵树，只能发送 $n-1$ 个二进制位；第二轮点号保持不变，边以未知顺序逐条出现，必须立即输出 <code>take</code> 或 <code>ignore</code>，最终选中一组最大匹配。<a target="_blank" rel="noopener" href="https://qoj.ac/problem/16338/statement/en">题面</a></p>
-<h3 id="发送边的答案为什么不够"><a href="#发送边的答案为什么不够" class="headerlink" title="发送边的答案为什么不够"></a>发送边的答案为什么不够</h3><p>先离线求出最大匹配 $M$，每条边记一个“选或不选”的二进制位，数量恰好是 $n-1$。但如果直接按照输入边序发送，第二轮就无法知道当前边对应哪一位。</p>
+<p>根也不需要单独传输：排在第 <span class="math inline">\(i\)</span>
+位的点若恰好满足 <span
+class="math inline">\(a(v_i)=i\)</span>，就能识别为根。根的数量设为
+<span class="math inline">\(c\)</span>，边数自然就是 <span
+class="math inline">\(n-c\)</span>。极端情况下所有点都是孤立点，点权依次为
+<span class="math inline">\(1,2,\ldots,n\)</span>，减去排名全部得到
+<span class="math inline">\(0\)</span>，接收方就输出空边集。</p>
+<p>若使用普通排序，解码需要 <span class="math inline">\(O(n\log
+n)\)</span> 时间；利用点权范围只有 <span
+class="math inline">\(2n\)</span> 且互异，也可以按值域扫描，在 <span
+class="math inline">\(O(n)\)</span>
+时间恢复顺序。虽然题面允许重复点权，这个协议主动选择互异点权，以保证顺序能够被唯一识别。</p>
+<h2 id="matching-master-把最大匹配写成点颜色">Matching Master
+把最大匹配写成点颜色</h2>
+<p><strong>Magically Marked Matching Master</strong> 是 2025 ICPC
+EC-Final 的 K 题，比赛实际在 2026 年 2
+月举行。第一轮知道整棵树，只能发送 <span
+class="math inline">\(n-1\)</span>
+个二进制位；第二轮点号保持不变，边以未知顺序逐条出现，必须立即输出
+<code>take</code> 或 <code>ignore</code>，最终选中一组最大匹配。<a
+target="_blank" rel="noopener" href="https://qoj.ac/problem/16338/statement/en">题面</a></p>
+<h3 id="发送边的答案为什么不够">发送边的答案为什么不够</h3>
+<p>先离线求出最大匹配 <span
+class="math inline">\(M\)</span>，每条边记一个“选或不选”的二进制位，数量恰好是
+<span
+class="math inline">\(n-1\)</span>。但如果直接按照输入边序发送，第二轮就无法知道当前边对应哪一位。</p>
 <p>本题保留的是<strong>点的编号</strong>。因此应当把信息挂在点上，让当前边的两个端点成为解码地址。</p>
 <p>定义</p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 w_{uv}=[(u,v)\in M],
 \qquad
-c_u\oplus c_v=w_{uv}.</script><p>固定 $c_1=0$，从根遍历整棵树，令</p>
-<script type="math/tex; mode=display">
-c_v=c_u\oplus w_{uv}.</script><p>由于树上路径唯一，每个点都能得到唯一颜色，不会遇到相互冲突的要求。发送</p>
-<script type="math/tex; mode=display">
-c_2c_3\cdots c_n</script><p>恰好占 $n-1$ 位。接收方补上约定的 $c_1=0$，收到边 $(u,v)$ 后，只需判断 $c_u\ne c_v$。<a target="_blank" rel="noopener" href="https://sua.ac/wiki/en/2025-icpc-ecfinal/tutorial-sketch-zh.pdf">官方题解</a>采用的正是这一构造，并将其解释为用割集表示匹配。</p>
-<h3 id="正确性与出边顺序无关"><a href="#正确性与出边顺序无关" class="headerlink" title="正确性与出边顺序无关"></a>正确性与出边顺序无关</h3><p>对每条树边，颜色不同当且仅当它属于预先选定的 $M$。所以第二轮最终选出的边集恰好等于 $M$。</p>
+c_u\oplus c_v=w_{uv}.
+\]</span></p>
+<p>固定 <span
+class="math inline">\(c_1=0\)</span>，从根遍历整棵树，令</p>
+<p><span class="math display">\[
+c_v=c_u\oplus w_{uv}.
+\]</span></p>
+<p>由于树上路径唯一，每个点都能得到唯一颜色，不会遇到相互冲突的要求。发送</p>
+<p><span class="math display">\[
+c_2c_3\cdots c_n
+\]</span></p>
+<p>恰好占 <span class="math inline">\(n-1\)</span> 位。接收方补上约定的
+<span class="math inline">\(c_1=0\)</span>，收到边 <span
+class="math inline">\((u,v)\)</span> 后，只需判断 <span
+class="math inline">\(c_u\ne c_v\)</span>。<a
+target="_blank" rel="noopener" href="https://sua.ac/wiki/en/2025-icpc-ecfinal/tutorial-sketch-zh.pdf">官方题解</a>采用的正是这一构造，并将其解释为用割集表示匹配。</p>
+<h3 id="正确性与出边顺序无关">正确性与出边顺序无关</h3>
+<p>对每条树边，颜色不同当且仅当它属于预先选定的 <span
+class="math inline">\(M\)</span>。所以第二轮最终选出的边集恰好等于 <span
+class="math inline">\(M\)</span>。</p>
 <p>这同时保证了匹配的合法性和最大性。即使边的顺序由对手决定，策略也成立；题目的均匀随机顺序没有参与正确性证明。</p>
-<p>例如，在路径 $1-2-3-4-5$ 上选择 $M=\{(1,2),(3,4)\}$，颜色为：</p>
-
-<p>红色表示颜色位 $0$，黑色表示颜色位 $1$；粗边是选中的匹配边。固定点 $1$ 为 $0$，发送点 $2,3,4,5$ 的颜色，就得到提示串 <code>1100</code>。</p>
+<p>例如，在路径 <span class="math inline">\(1-2-3-4-5\)</span> 上选择
+<span class="math inline">\(M=\{(1,2),(3,4)\}\)</span>，颜色为：</p>
+<img src="/Algorithm/Alternating-Coloring-on-Graphs-and-Trees/matching-path.svg" class="" title="匹配边两端异色，非匹配边两端同色">
+<p>红色表示颜色位 <span class="math inline">\(0\)</span>，黑色表示颜色位
+<span class="math inline">\(1\)</span>；粗边是选中的匹配边。固定点 <span
+class="math inline">\(1\)</span> 为 <span
+class="math inline">\(0\)</span>，发送点 <span
+class="math inline">\(2,3,4,5\)</span> 的颜色，就得到提示串
+<code>1100</code>。</p>
 <p>假设第二轮按下面的次序出边：</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>当前出现的边</th>
 <th>两端颜色</th>
 <th>异或值</th>
@@ -518,175 +706,293 @@ c_2c_3\cdots c_n</script><p>恰好占 $n-1$ 位。接收方补上约定的 $c_1=
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>$(2,3)$</td>
-<td>$1,1$</td>
+<tr class="odd">
+<td><span class="math inline">\((2,3)\)</span></td>
+<td><span class="math inline">\(1,1\)</span></td>
 <td>0</td>
 <td>忽略</td>
 </tr>
-<tr>
-<td>$(4,5)$</td>
-<td>$0,0$</td>
+<tr class="even">
+<td><span class="math inline">\((4,5)\)</span></td>
+<td><span class="math inline">\(0,0\)</span></td>
 <td>0</td>
 <td>忽略</td>
 </tr>
-<tr>
-<td>$(3,4)$</td>
-<td>$1,0$</td>
+<tr class="odd">
+<td><span class="math inline">\((3,4)\)</span></td>
+<td><span class="math inline">\(1,0\)</span></td>
 <td>1</td>
 <td>选中</td>
 </tr>
-<tr>
-<td>$(1,2)$</td>
-<td>$0,1$</td>
+<tr class="even">
+<td><span class="math inline">\((1,2)\)</span></td>
+<td><span class="math inline">\(0,1\)</span></td>
 <td>1</td>
 <td>选中</td>
 </tr>
 </tbody>
 </table>
-</div>
 <p>第一条出现的边虽然两端都还没有被匹配，仍然应该忽略。提示串已经选定了一个全局最优答案，在线阶段只负责识别当前边是否属于它，不需要根据“目前看起来能否选”重新贪心。</p>
 <p>如果误用普通的深度奇偶染色，每条树边都会异色，接收方将选中所有边，通常连匹配都不是。这里的交替发生在<strong>匹配边上</strong>。</p>
-<h3 id="收缩以后仍然是按层交替"><a href="#收缩以后仍然是按层交替" class="headerlink" title="收缩以后仍然是按层交替"></a>收缩以后仍然是按层交替</h3><p>把所有非匹配边收缩。同一收缩块内颜色不变，剩下的边都是匹配边，收缩后的图仍然是一棵树。</p>
+<h3 id="收缩以后仍然是按层交替">收缩以后仍然是按层交替</h3>
+<p>把所有非匹配边收缩。同一收缩块内颜色不变，剩下的边都是匹配边，收缩后的图仍然是一棵树。</p>
 <p>在这棵树上做普通二分染色，再把颜色复制回原点，就得到了相同的构造。因此，“只在指定边上翻转颜色”可以理解为“先收缩要求同色的边，再交替染色”。</p>
-<p>在上面的路径中，非匹配边 $(2,3)$、$(4,5)$ 分别收缩成一个点：</p>
-
-<p>原来的五个点变成三个块 $\{1\}$、$\{2,3\}$、$\{4,5\}$。块间的两条边分别对应 $(1,2)$、$(3,4)$，跨一条就翻转一次颜色。一个块可以包含多个原点，因此接收方并不要求点颜色互异，只要求每条出现的边两端颜色能给出正确的二进制标记。</p>
-<h3 id="如何求树的最大匹配"><a href="#如何求树的最大匹配" class="headerlink" title="如何求树的最大匹配"></a>如何求树的最大匹配</h3><p>可以使用树形 DP，也可以使用叶子贪心：取叶子 $v$ 及其唯一邻点 $u$，选中 $(u,v)$，删掉这两个点后继续。</p>
-<p>交换论证如下：若某组最大匹配没有 $(u,v)$，则 $v$ 未匹配。如果 $u$ 也未匹配，就可以加入这条边，与最大性矛盾；否则把 $u$ 原来的匹配边换成 $(u,v)$，匹配大小不变。因而总有一组最大匹配包含这条叶子边。</p>
-<p>这里一定要区分“最大匹配”与“极大匹配”。例如路径 $1-2-3-4$ 中，先取中间边 $(2,3)$ 后已经无法继续添加边，得到的是一组极大匹配，但只有一条边；取两端的 $(1,2)$ 和 $(3,4)$ 才是大小为 $2$ 的最大匹配。叶子贪心正确，是因为每一步都有上面的交换论证，而不是因为它最终不能再添加边。</p>
-<h3 id="提示串真正保存的是一个可按点号查询的答案"><a href="#提示串真正保存的是一个可按点号查询的答案" class="headerlink" title="提示串真正保存的是一个可按点号查询的答案"></a>提示串真正保存的是一个可按点号查询的答案</h3><p>发送的 $n-1$ 位与 $n-1$ 条边数量相同，但它们的对应方式已经改变：第 $i$ 个发送位属于固定编号的点 $i+1$。因此边顺序再怎样变化，端点编号依然能准确取出需要的两个颜色位。</p>
-<p>被省略的根色没有带来信息损失。假设把所有颜色一起翻转，任何边两端的异或都保持不变，选出的匹配也完全相同。约定根色为 $0$，只是从这两个等价的表示中固定选择一个。</p>
-<p>这也是本题能够做到在线立即决策的原因：第二轮既不需要恢复整棵树，也不需要知道还有哪些边尚未出现，只需读取当前两个端点的颜色。预处理可以在线性时间内完成；对每条出现的边，判断需要 $O(1)$ 时间。</p>
-<h2 id="IOI-2020-Stations-交替保存子树边界"><a href="#IOI-2020-Stations-交替保存子树边界" class="headerlink" title="IOI 2020 Stations 交替保存子树边界"></a>IOI 2020 Stations 交替保存子树边界</h2><p>这道题也分两次运行。第一轮知道整棵树，要给点分配互异标签；第二轮只给当前点标签 $s$、目标点标签 $t$ 和当前点所有邻点的标签，要求指出通向目标的下一个邻点。两轮之间不能保留内存中的树结构。<a target="_blank" rel="noopener" href="https://ioinformatics.org/files/ioi2020problem6.pdf">官方题面</a></p>
-<p>它与 Invisible Edges 的区别是：接收方可以看到当前点的邻点，但看不到整棵树；也不必恢复整棵树，只需完成一次局部路由。</p>
-<h3 id="一种颜色保存进入位置-另一种保存退出位置"><a href="#一种颜色保存进入位置-另一种保存退出位置" class="headerlink" title="一种颜色保存进入位置 另一种保存退出位置"></a>一种颜色保存进入位置 另一种保存退出位置</h3><p>普通 DFS 会为每个子树建立一个连续区间。若每个点都能保存区间左右端点，路由很容易：目标在哪个孩子的区间内，就走向哪个孩子；都不在则走向父亲。</p>
+<p>在上面的路径中，非匹配边 <span
+class="math inline">\((2,3)\)</span>、<span
+class="math inline">\((4,5)\)</span> 分别收缩成一个点：</p>
+<img src="/Algorithm/Alternating-Coloring-on-Graphs-and-Trees/matching-contracted.svg" class="" title="收缩非匹配边后的三个颜色块">
+<p>原来的五个点变成三个块 <span
+class="math inline">\(\{1\}\)</span>、<span
+class="math inline">\(\{2,3\}\)</span>、<span
+class="math inline">\(\{4,5\}\)</span>。块间的两条边分别对应 <span
+class="math inline">\((1,2)\)</span>、<span
+class="math inline">\((3,4)\)</span>，跨一条就翻转一次颜色。一个块可以包含多个原点，因此接收方并不要求点颜色互异，只要求每条出现的边两端颜色能给出正确的二进制标记。</p>
+<h3 id="如何求树的最大匹配">如何求树的最大匹配</h3>
+<p>可以使用树形 DP，也可以使用叶子贪心：取叶子 <span
+class="math inline">\(v\)</span> 及其唯一邻点 <span
+class="math inline">\(u\)</span>，选中 <span
+class="math inline">\((u,v)\)</span>，删掉这两个点后继续。</p>
+<p>交换论证如下：若某组最大匹配没有 <span
+class="math inline">\((u,v)\)</span>，则 <span
+class="math inline">\(v\)</span> 未匹配。如果 <span
+class="math inline">\(u\)</span>
+也未匹配，就可以加入这条边，与最大性矛盾；否则把 <span
+class="math inline">\(u\)</span> 原来的匹配边换成 <span
+class="math inline">\((u,v)\)</span>，匹配大小不变。因而总有一组最大匹配包含这条叶子边。</p>
+<p>这里一定要区分“最大匹配”与“极大匹配”。例如路径 <span
+class="math inline">\(1-2-3-4\)</span> 中，先取中间边 <span
+class="math inline">\((2,3)\)</span>
+后已经无法继续添加边，得到的是一组极大匹配，但只有一条边；取两端的 <span
+class="math inline">\((1,2)\)</span> 和 <span
+class="math inline">\((3,4)\)</span> 才是大小为 <span
+class="math inline">\(2\)</span>
+的最大匹配。叶子贪心正确，是因为每一步都有上面的交换论证，而不是因为它最终不能再添加边。</p>
+<h3
+id="提示串真正保存的是一个可按点号查询的答案">提示串真正保存的是一个可按点号查询的答案</h3>
+<p>发送的 <span class="math inline">\(n-1\)</span> 位与 <span
+class="math inline">\(n-1\)</span>
+条边数量相同，但它们的对应方式已经改变：第 <span
+class="math inline">\(i\)</span> 个发送位属于固定编号的点 <span
+class="math inline">\(i+1\)</span>。因此边顺序再怎样变化，端点编号依然能准确取出需要的两个颜色位。</p>
+<p>被省略的根色没有带来信息损失。假设把所有颜色一起翻转，任何边两端的异或都保持不变，选出的匹配也完全相同。约定根色为
+<span
+class="math inline">\(0\)</span>，只是从这两个等价的表示中固定选择一个。</p>
+<p>这也是本题能够做到在线立即决策的原因：第二轮既不需要恢复整棵树，也不需要知道还有哪些边尚未出现，只需读取当前两个端点的颜色。预处理可以在线性时间内完成；对每条出现的边，判断需要
+<span class="math inline">\(O(1)\)</span> 时间。</p>
+<h2 id="ioi-2020-stations-交替保存子树边界">IOI 2020 Stations
+交替保存子树边界</h2>
+<p>这道题也分两次运行。第一轮知道整棵树，要给点分配互异标签；第二轮只给当前点标签
+<span class="math inline">\(s\)</span>、目标点标签 <span
+class="math inline">\(t\)</span>
+和当前点所有邻点的标签，要求指出通向目标的下一个邻点。两轮之间不能保留内存中的树结构。<a
+target="_blank" rel="noopener" href="https://ioinformatics.org/files/ioi2020problem6.pdf">官方题面</a></p>
+<p>它与 Invisible Edges
+的区别是：接收方可以看到当前点的邻点，但看不到整棵树；也不必恢复整棵树，只需完成一次局部路由。</p>
+<h3 id="一种颜色保存进入位置-另一种保存退出位置">一种颜色保存进入位置
+另一种保存退出位置</h3>
+<p>普通 DFS
+会为每个子树建立一个连续区间。若每个点都能保存区间左右端点，路由很容易：目标在哪个孩子的区间内，就走向哪个孩子；都不在则走向父亲。</p>
 <p>为了只用一个小标签，按照深度奇偶选择不同端点：</p>
 <ul>
 <li>偶数层点在进入 DFS 时编号。</li>
 <li>奇数层点在离开 DFS 时编号。</li>
 <li>只有真正给点编号时，计数器才增加一次。</li>
 </ul>
-<p>于是标签恰好是 $0,1,\ldots,n-1$。这等价于从完整 DFS 进入、退出时间戳中交替选取一种，再按大小离散化，也是<a target="_blank" rel="noopener" href="https://ioi2020.sg/wp-content/uploads/sites/4/2020/09/stations-solutions-ISC.pdf">官方题解</a>的满分构造。</p>
+<p>于是标签恰好是 <span
+class="math inline">\(0,1,\ldots,n-1\)</span>。这等价于从完整 DFS
+进入、退出时间戳中交替选取一种，再按大小离散化，也是<a
+target="_blank" rel="noopener" href="https://ioi2020.sg/wp-content/uploads/sites/4/2020/09/stations-solutions-ISC.pdf">官方题解</a>的满分构造。</p>
 <p>可以直接推导出三个性质：</p>
-<ol>
+<ol type="1">
 <li>任意子树中的标签仍构成连续区间，因为整个子树的编号事件连续发生。</li>
 <li>偶数层点的标签小于它的所有邻点；非根偶数层点的父亲标签是邻点中的最大值。</li>
 <li>奇数层点的标签大于它的所有邻点；其父亲标签是邻点中的最小值。</li>
 </ol>
 <p>第二条中，孩子是奇数层，在子树结束时才编号；父亲也是奇数层，要等当前点所在子树完成后才编号，所以父亲比所有孩子都大。第三条则由对称的进入顺序得到。</p>
-<p>接收方虽然不知道深度，但比较 $s$ 与任意一个邻点，就能识别当前点是哪种类型。</p>
-<h3 id="偶数层点用孩子的右端点划分区间"><a href="#偶数层点用孩子的右端点划分区间" class="headerlink" title="偶数层点用孩子的右端点划分区间"></a>偶数层点用孩子的右端点划分区间</h3><p>假设当前点标签为 $s$，其孩子标签依次是 $d_1&lt;d_2&lt;\cdots&lt;d_k$。它们都是各自子树的最后一个标签，所以孩子子树恰好对应</p>
-<script type="math/tex; mode=display">
-(s,d_1],\ (d_1,d_2],\ \ldots,\ (d_{k-1},d_k].</script><p>目标标签落在哪个区间，就走向那个区间的右端点。如果目标不在当前子树内，就走向父亲；父亲是邻点中的最大标签。</p>
-<p>因此，在排好序的所有邻点标签中寻找第一个不小于 $t$ 的值即可；若 $t&lt;s$ 或 $t$ 大于所有邻点，则返回最大邻点。若当前点是根，目标必在根的子树内，自然不会需要一个不存在的父亲。</p>
-<h3 id="奇数层点用孩子的左端点划分区间"><a href="#奇数层点用孩子的左端点划分区间" class="headerlink" title="奇数层点用孩子的左端点划分区间"></a>奇数层点用孩子的左端点划分区间</h3><p>奇数层点在离开时编号，标签为 $s$；孩子在进入时编号，标签依次为 $d_1&lt;\cdots&lt;d_k$。孩子子树对应</p>
-<script type="math/tex; mode=display">
-[d_1,d_2),\ [d_2,d_3),\ \ldots,\ [d_k,s).</script><p>目标在这些区间中时，返回不大于 $t$ 的最大孩子标签。目标在子树外时返回父亲，即最小邻点标签。</p>
+<p>接收方虽然不知道深度，但比较 <span class="math inline">\(s\)</span>
+与任意一个邻点，就能识别当前点是哪种类型。</p>
+<h3
+id="偶数层点用孩子的右端点划分区间">偶数层点用孩子的右端点划分区间</h3>
+<p>假设当前点标签为 <span
+class="math inline">\(s\)</span>，其孩子标签依次是 <span
+class="math inline">\(d_1&lt;d_2&lt;\cdots&lt;d_k\)</span>。它们都是各自子树的最后一个标签，所以孩子子树恰好对应</p>
+<p><span class="math display">\[
+(s,d_1],\ (d_1,d_2],\ \ldots,\ (d_{k-1},d_k].
+\]</span></p>
+<p>目标标签落在哪个区间，就走向那个区间的右端点。如果目标不在当前子树内，就走向父亲；父亲是邻点中的最大标签。</p>
+<p>因此，在排好序的所有邻点标签中寻找第一个不小于 <span
+class="math inline">\(t\)</span> 的值即可；若 <span
+class="math inline">\(t&lt;s\)</span> 或 <span
+class="math inline">\(t\)</span>
+大于所有邻点，则返回最大邻点。若当前点是根，目标必在根的子树内，自然不会需要一个不存在的父亲。</p>
+<h3
+id="奇数层点用孩子的左端点划分区间">奇数层点用孩子的左端点划分区间</h3>
+<p>奇数层点在离开时编号，标签为 <span
+class="math inline">\(s\)</span>；孩子在进入时编号，标签依次为 <span
+class="math inline">\(d_1&lt;\cdots&lt;d_k\)</span>。孩子子树对应</p>
+<p><span class="math display">\[
+[d_1,d_2),\ [d_2,d_3),\ \ldots,\ [d_k,s).
+\]</span></p>
+<p>目标在这些区间中时，返回不大于 <span class="math inline">\(t\)</span>
+的最大孩子标签。目标在子树外时返回父亲，即最小邻点标签。</p>
 <p>两个方向完全对称：偶数层使用后继，奇数层使用前驱，超出范围时回到父亲。</p>
-<h3 id="用六个点跟踪一次跨子树路由"><a href="#用六个点跟踪一次跨子树路由" class="headerlink" title="用六个点跟踪一次跨子树路由"></a>用六个点跟踪一次跨子树路由</h3><p>取下面这棵树，以 $A$ 为根，DFS 先访问左子树 $B$，再访问右子树 $E$。图中红点在进入时编号，黑点在退出时编号；字母只是为了讲解方便，接收方真正看到的是数字标签。</p>
-
+<h3 id="用六个点跟踪一次跨子树路由">用六个点跟踪一次跨子树路由</h3>
+<p>取下面这棵树，以 <span class="math inline">\(A\)</span> 为根，DFS
+先访问左子树 <span class="math inline">\(B\)</span>，再访问右子树 <span
+class="math inline">\(E\)</span>。图中红点在进入时编号，黑点在退出时编号；字母只是为了讲解方便，接收方真正看到的是数字标签。</p>
+<img src="/Algorithm/Alternating-Coloring-on-Graphs-and-Trees/stations-route.svg" class="" title="Stations 的交替编号以及从 D 到 F 的路由">
 <p>只有给点分配标签的事件才会消耗一个编号，因此过程是：</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>编号事件</th>
 <th>分配的标签</th>
 <th>为什么此时编号</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>进入 $A$</td>
+<tr class="odd">
+<td>进入 <span class="math inline">\(A\)</span></td>
 <td>0</td>
-<td>$A$ 在偶数层</td>
+<td><span class="math inline">\(A\)</span> 在偶数层</td>
 </tr>
-<tr>
-<td>进入 $C$</td>
+<tr class="even">
+<td>进入 <span class="math inline">\(C\)</span></td>
 <td>1</td>
-<td>进入 $B$ 时没有编号，继续进入偶数层的 $C$</td>
+<td>进入 <span class="math inline">\(B\)</span>
+时没有编号，继续进入偶数层的 <span class="math inline">\(C\)</span></td>
 </tr>
-<tr>
-<td>进入 $D$</td>
+<tr class="odd">
+<td>进入 <span class="math inline">\(D\)</span></td>
 <td>2</td>
-<td>$C$ 处理结束后访问下一个偶数层孩子</td>
+<td><span class="math inline">\(C\)</span>
+处理结束后访问下一个偶数层孩子</td>
 </tr>
-<tr>
-<td>退出 $B$</td>
+<tr class="even">
+<td>退出 <span class="math inline">\(B\)</span></td>
 <td>3</td>
-<td>$B$ 在奇数层，等两个孩子处理完再编号</td>
+<td><span class="math inline">\(B\)</span>
+在奇数层，等两个孩子处理完再编号</td>
 </tr>
-<tr>
-<td>进入 $F$</td>
+<tr class="odd">
+<td>进入 <span class="math inline">\(F\)</span></td>
 <td>4</td>
-<td>进入 $E$ 时没有编号，继续进入偶数层的 $F$</td>
+<td>进入 <span class="math inline">\(E\)</span>
+时没有编号，继续进入偶数层的 <span class="math inline">\(F\)</span></td>
 </tr>
-<tr>
-<td>退出 $E$</td>
+<tr class="even">
+<td>退出 <span class="math inline">\(E\)</span></td>
 <td>5</td>
-<td>$E$ 在奇数层，最后编号</td>
+<td><span class="math inline">\(E\)</span> 在奇数层，最后编号</td>
 </tr>
 </tbody>
 </table>
-</div>
-<p>因此 $B$ 子树的标签为 $\{1,2,3\}$，对应根 $A$ 看到的区间 $(0,3]$；$E$ 子树的标签为 $\{4,5\}$，对应区间 $(3,5]$。孩子根的标签 $3,5$ 正好就是两个区间的右边界。</p>
-<p>现在让数据从 $D$ 发往 $F$，也就是从标签 $2$ 发往标签 $4$。图中粗边表示这次路由经过的边，实际行进方向依次为 $D\to B\to A\to E\to F$。</p>
-<div class="table-container">
+<p>因此 <span class="math inline">\(B\)</span> 子树的标签为 <span
+class="math inline">\(\{1,2,3\}\)</span>，对应根 <span
+class="math inline">\(A\)</span> 看到的区间 <span
+class="math inline">\((0,3]\)</span>；<span
+class="math inline">\(E\)</span> 子树的标签为 <span
+class="math inline">\(\{4,5\}\)</span>，对应区间 <span
+class="math inline">\((3,5]\)</span>。孩子根的标签 <span
+class="math inline">\(3,5\)</span> 正好就是两个区间的右边界。</p>
+<p>现在让数据从 <span class="math inline">\(D\)</span> 发往 <span
+class="math inline">\(F\)</span>，也就是从标签 <span
+class="math inline">\(2\)</span> 发往标签 <span
+class="math inline">\(4\)</span>。图中粗边表示这次路由经过的边，实际行进方向依次为
+<span class="math inline">\(D\to B\to A\to E\to F\)</span>。</p>
 <table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
 <thead>
-<tr>
-<th>当前标签 $s$</th>
+<tr class="header">
+<th>当前标签 <span class="math inline">\(s\)</span></th>
 <th>邻点标签</th>
 <th>只用这些数能作出的判断</th>
 <th>返回的下一跳</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>2</td>
-<td>$\{3\}$</td>
-<td>当前点比邻点小，但目标 $4$ 超出邻点范围，应向父亲走</td>
+<td><span class="math inline">\(\{3\}\)</span></td>
+<td>当前点比邻点小，但目标 <span class="math inline">\(4\)</span>
+超出邻点范围，应向父亲走</td>
 <td>3</td>
 </tr>
-<tr>
+<tr class="even">
 <td>3</td>
-<td>$\{0,1,2\}$</td>
-<td>当前点比所有邻点大，目标 $4&gt;3$，在当前子树外</td>
+<td><span class="math inline">\(\{0,1,2\}\)</span></td>
+<td>当前点比所有邻点大，目标 <span
+class="math inline">\(4&gt;3\)</span>，在当前子树外</td>
 <td>最小邻点 0</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>0</td>
-<td>$\{3,5\}$</td>
-<td>当前点比邻点小，$4\in(3,5]$</td>
+<td><span class="math inline">\(\{3,5\}\)</span></td>
+<td>当前点比邻点小，<span class="math inline">\(4\in(3,5]\)</span></td>
 <td>后继 5</td>
 </tr>
-<tr>
+<tr class="even">
 <td>5</td>
-<td>$\{0,4\}$</td>
-<td>当前点比邻点大，$4\in[4,5)$</td>
+<td><span class="math inline">\(\{0,4\}\)</span></td>
+<td>当前点比邻点大，<span class="math inline">\(4\in[4,5)\)</span></td>
 <td>前驱 4</td>
 </tr>
 </tbody>
 </table>
-</div>
-<p>到达标签 $4$ 时已找到目标，不再调用路由判断。每一步都只使用当前点、目标点和邻点的标签，没有保存整条路径，也没有借助上一跳的信息。</p>
-<p>这里最关键的是<strong>邻点之间的空隙也有确定含义</strong>。根并不直接看到标签 $4$，但两个邻点标签 $3,5$ 已经告诉它：位于这个区间的目标应交给标签 $5$ 的孩子。交替保留左右边界，让一个点及其邻居共同提供了本来需要两个端点才能描述的子树区间。</p>
-<p>标签预处理是 $O(n)$；邻点标签按大小排列后，一次路由只需寻找前驱或后继。</p>
-<h2 id="CF-1991E-Coloring-Game-用二分结构应对在线选色"><a href="#CF-1991E-Coloring-Game-用二分结构应对在线选色" class="headerlink" title="CF 1991E Coloring Game 用二分结构应对在线选色"></a>CF 1991E Coloring Game 用二分结构应对在线选色</h2><p>给一张连通无向图，每轮 Alice 提供三种颜色中的两种，Bob 选择一个未染色点，使用其中一种颜色。最终出现同色相邻点则 Alice 获胜，否则 Bob 获胜。程序可以选择扮演哪一方。<a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1991/E">题面</a></p>
-<p>如果图不是二分图，扮演 Alice，每轮固定提供颜色 $1,2$。Bob 无论怎样选点，都无法完成合法的二染色，所以必然出现冲突。这也给出了二分图判定的用途。<a target="_blank" rel="noopener" href="https://codeforces.com/blog/entry/132021">比赛题解提示</a></p>
-<p>如果图是二分图，扮演 Bob，先求出两侧 $L,R$。给 $L$ 预留颜色 $1$，给 $R$ 预留颜色 $2$：</p>
+<p>到达标签 <span class="math inline">\(4\)</span>
+时已找到目标，不再调用路由判断。每一步都只使用当前点、目标点和邻点的标签，没有保存整条路径，也没有借助上一跳的信息。</p>
+<p>这里最关键的是<strong>邻点之间的空隙也有确定含义</strong>。根并不直接看到标签
+<span class="math inline">\(4\)</span>，但两个邻点标签 <span
+class="math inline">\(3,5\)</span>
+已经告诉它：位于这个区间的目标应交给标签 <span
+class="math inline">\(5\)</span>
+的孩子。交替保留左右边界，让一个点及其邻居共同提供了本来需要两个端点才能描述的子树区间。</p>
+<p>标签预处理是 <span
+class="math inline">\(O(n)\)</span>；邻点标签按大小排列后，一次路由只需寻找前驱或后继。</p>
+<h2 id="cf-1991e-coloring-game-用二分结构应对在线选色">CF 1991E Coloring
+Game 用二分结构应对在线选色</h2>
+<p>给一张连通无向图，每轮 Alice 提供三种颜色中的两种，Bob
+选择一个未染色点，使用其中一种颜色。最终出现同色相邻点则 Alice
+获胜，否则 Bob 获胜。程序可以选择扮演哪一方。<a
+target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1991/E">题面</a></p>
+<p>如果图不是二分图，扮演 Alice，每轮固定提供颜色 <span
+class="math inline">\(1,2\)</span>。Bob
+无论怎样选点，都无法完成合法的二染色，所以必然出现冲突。这也给出了二分图判定的用途。<a
+target="_blank" rel="noopener" href="https://codeforces.com/blog/entry/132021">比赛题解提示</a></p>
+<p>如果图是二分图，扮演 Bob，先求出两侧 <span
+class="math inline">\(L,R\)</span>。给 <span
+class="math inline">\(L\)</span> 预留颜色 <span
+class="math inline">\(1\)</span>，给 <span
+class="math inline">\(R\)</span> 预留颜色 <span
+class="math inline">\(2\)</span>：</p>
 <ul>
-<li>若 $L$ 尚有点且本轮提供 $1$，就从 $L$ 取一点染 $1$。</li>
-<li>否则，若 $R$ 尚有点且本轮提供 $2$，就从 $R$ 取一点染 $2$。</li>
-<li>如果两条都不满足，则某一侧已经用完；在剩余侧使用其专属颜色或颜色 $3$。</li>
+<li>若 <span class="math inline">\(L\)</span> 尚有点且本轮提供 <span
+class="math inline">\(1\)</span>，就从 <span
+class="math inline">\(L\)</span> 取一点染 <span
+class="math inline">\(1\)</span>。</li>
+<li>否则，若 <span class="math inline">\(R\)</span> 尚有点且本轮提供
+<span class="math inline">\(2\)</span>，就从 <span
+class="math inline">\(R\)</span> 取一点染 <span
+class="math inline">\(2\)</span>。</li>
+<li>如果两条都不满足，则某一侧已经用完；在剩余侧使用其专属颜色或颜色
+<span class="math inline">\(3\)</span>。</li>
 </ul>
-<p>为什么最后一步安全？当两侧都有点时，提供的两个颜色中至少有一个是 $1$ 或 $2$，前两条必能执行。因此颜色 $3$ 只会在一侧已经耗尽之后启用，并且此后始终只出现在另一侧。每种颜色始终只属于一个独立集，相邻点就不会同色。</p>
-<p>例如路径 $v_1-v_2-v_3-v_4$ 的两侧为 $L=\{v_1,v_3\}$、$R=\{v_2,v_4\}$。下面是一段合法应对过程：</p>
-<div class="table-container">
+<p>为什么最后一步安全？当两侧都有点时，提供的两个颜色中至少有一个是
+<span class="math inline">\(1\)</span> 或 <span
+class="math inline">\(2\)</span>，前两条必能执行。因此颜色 <span
+class="math inline">\(3\)</span>
+只会在一侧已经耗尽之后启用，并且此后始终只出现在另一侧。每种颜色始终只属于一个独立集，相邻点就不会同色。</p>
+<p>例如路径 <span class="math inline">\(v_1-v_2-v_3-v_4\)</span>
+的两侧为 <span class="math inline">\(L=\{v_1,v_3\}\)</span>、<span
+class="math inline">\(R=\{v_2,v_4\}\)</span>。下面是一段合法应对过程：</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>轮次</th>
 <th>Alice 提供的颜色</th>
 <th>Bob 的选择</th>
@@ -694,146 +1000,316 @@ c_2c_3\cdots c_n</script><p>恰好占 $n-1$ 位。接收方补上约定的 $c_1=
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
-<td>$1,3$</td>
-<td>给 $v_1\in L$ 染 1</td>
+<td><span class="math inline">\(1,3\)</span></td>
+<td>给 <span class="math inline">\(v_1\in L\)</span> 染 1</td>
 <td>两侧都有未染点</td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
-<td>$1,2$</td>
-<td>给 $v_3\in L$ 染 1</td>
-<td>$L$ 已全部染完</td>
+<td><span class="math inline">\(1,2\)</span></td>
+<td>给 <span class="math inline">\(v_3\in L\)</span> 染 1</td>
+<td><span class="math inline">\(L\)</span> 已全部染完</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
-<td>$1,3$</td>
-<td>给 $v_2\in R$ 染 3</td>
-<td>$R$ 不能使用邻侧的颜色 1</td>
+<td><span class="math inline">\(1,3\)</span></td>
+<td>给 <span class="math inline">\(v_2\in R\)</span> 染 3</td>
+<td><span class="math inline">\(R\)</span> 不能使用邻侧的颜色 1</td>
 </tr>
-<tr>
+<tr class="even">
 <td>4</td>
-<td>$1,2$</td>
-<td>给 $v_4\in R$ 染 2</td>
+<td><span class="math inline">\(1,2\)</span></td>
+<td>给 <span class="math inline">\(v_4\in R\)</span> 染 2</td>
 <td>全部完成</td>
 </tr>
 </tbody>
 </table>
-</div>
-<p>最终沿路径的颜色依次为 $1,3,1,2$，每条边两端都不同。第三轮正是备用颜色 $3$ 的作用：它补上了“对手不提供剩余侧专属颜色”时的缺口。</p>
+<p>最终沿路径的颜色依次为 <span
+class="math inline">\(1,3,1,2\)</span>，每条边两端都不同。第三轮正是备用颜色
+<span class="math inline">\(3\)</span>
+的作用：它补上了“对手不提供剩余侧专属颜色”时的缺口。</p>
 <p>图的红黑划分与游戏最终使用的三种颜色是两个层次。前者提前确定点属于哪个独立集，后者随着对手给出的选择逐步填写；只要同一种游戏颜色不跨越两侧，就不会冲突。</p>
-<p>这里的红黑染色用于提前分配职责：尽管对手在线决定可用颜色，边的两端仍被安排在互不冲突的颜色集合中。预处理和全部交互合计 $O(n+m)$。</p>
-<h2 id="CF-1144F-Graph-Without-Long-Directed-Paths-用颜色决定方向"><a href="#CF-1144F-Graph-Without-Long-Directed-Paths-用颜色决定方向" class="headerlink" title="CF 1144F Graph Without Long Directed Paths 用颜色决定方向"></a>CF 1144F Graph Without Long Directed Paths 用颜色决定方向</h2><p>给连通无向图的每条边定向，要求不存在长度至少为 $2$ 的有向路径。<a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1144/F">题面</a></p>
-<p>如果一个点同时有入边 $x\to u$ 和出边 $u\to y$，就出现了长度为 $2$ 的路径。图没有重边，每条边只选一个方向，因此这里的 $x,y$ 是不同点。</p>
+<p>这里的红黑染色用于提前分配职责：尽管对手在线决定可用颜色，边的两端仍被安排在互不冲突的颜色集合中。预处理和全部交互合计
+<span class="math inline">\(O(n+m)\)</span>。</p>
+<h2 id="cf-1144f-graph-without-long-directed-paths-用颜色决定方向">CF
+1144F Graph Without Long Directed Paths 用颜色决定方向</h2>
+<p>给连通无向图的每条边定向，要求不存在长度至少为 <span
+class="math inline">\(2\)</span> 的有向路径。<a
+target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1144/F">题面</a></p>
+<p>如果一个点同时有入边 <span class="math inline">\(x\to u\)</span>
+和出边 <span class="math inline">\(u\to y\)</span>，就出现了长度为 <span
+class="math inline">\(2\)</span>
+的路径。图没有重边，每条边只选一个方向，因此这里的 <span
+class="math inline">\(x,y\)</span> 是不同点。</p>
 <p>所以每个非孤立点必须只负责一种方向：要么所有边都向外，要么所有边都向内。每条边连接一个纯出点和一个纯入点，这两类点给出了二分图划分。</p>
-<p>反过来，若图可以二分染色，把所有边从红点指向黑点即可。走过一条边后到达黑点，就没有出边可以继续走。因此有解当且仅当原图为二分图，构造复杂度为 $O(n+m)$。</p>
-<p>例如四边形 $A-B-C-D-A$ 可以把 $\{A,C\}$ 染红，$\{B,D\}$ 染黑，再如下定向：</p>
-
+<p>反过来，若图可以二分染色，把所有边从红点指向黑点即可。走过一条边后到达黑点，就没有出边可以继续走。因此有解当且仅当原图为二分图，构造复杂度为
+<span class="math inline">\(O(n+m)\)</span>。</p>
+<p>例如四边形 <span class="math inline">\(A-B-C-D-A\)</span> 可以把
+<span class="math inline">\(\{A,C\}\)</span> 染红，<span
+class="math inline">\(\{B,D\}\)</span> 染黑，再如下定向：</p>
+<img src="/Algorithm/Alternating-Coloring-on-Graphs-and-Trees/directed-bipartite.svg" class="" title="四边形所有边从红色一侧指向黑色一侧">
 <p>底层无向图仍然有一个环，但任意有向行走都只能从左侧到右侧，走一步就停止。因此这道题要求的性质比“有向无环”更强：即使一条定向后的三点链没有环，只要能够连续走两步，也不合法。</p>
 <p>这题把“禁止连续两步”转化成了点的两种互斥角色，是交替染色用于构造的直接例子。</p>
-<h2 id="CF-1605D-Treelabeling-用最高位分组分配编号"><a href="#CF-1605D-Treelabeling-用最高位分组分配编号" class="headerlink" title="CF 1605D Treelabeling 用最高位分组分配编号"></a>CF 1605D Treelabeling 用最高位分组分配编号</h2><p>要把树的点重新编号为 $1,\ldots,n$ 的一个排列。游戏中，先手先任选起点，之后双方交替沿树边移动；从标签 $x$ 移到标签 $y$ 还必须满足 $x\oplus y\le\min(x,y)$。目标是最大化先手能获胜的起点数。<a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1605/D">题面</a></p>
-<p>一个能达到上界 $n$ 的构造是让所有边都不允许移动。这样先手选定任何起点后，对手都无路可走。</p>
-<h3 id="用最高位刻画能否移动"><a href="#用最高位刻画能否移动" class="headerlink" title="用最高位刻画能否移动"></a>用最高位刻画能否移动</h3><p>记 $\operatorname{msb}(x)$ 为最高的非零二进制位下标。若 $x,y$ 的最高位不同，设 $x$ 的最高位更高，则</p>
-<script type="math/tex; mode=display">
-x\oplus y\ge2^{\operatorname{msb}(x)}>y=\min(x,y).</script><p>若最高位相同且等于 $h$，异或后第 $h$ 位被消掉，得到</p>
-<script type="math/tex; mode=display">
-x\oplus y<2^h\le\min(x,y).</script><p>所以只要让每条边两端标签的最高位不同，就能禁用所有移动。</p>
-<h3 id="整个最高位组交给同一侧"><a href="#整个最高位组交给同一侧" class="headerlink" title="整个最高位组交给同一侧"></a>整个最高位组交给同一侧</h3><p>先对树二分染色，设较小一侧有 $k\le\lfloor n/2\rfloor$ 个点。编号按最高位分组：</p>
-<script type="math/tex; mode=display">
-G_h=[2^h,2^{h+1}-1]\cap[1,n].</script><p>除最高的那一组可能不完整外，每组大小都是 $2^h$。把 $k$ 写成二进制，若第 $h$ 位为 $1$，就把整组 $G_h$ 分给较小侧；其余编号全部分给另一侧。<a target="_blank" rel="noopener" href="https://codeforces.com/blog/entry/96866">官方题解及实现</a></p>
-<p>这一步为什么不会选中不完整的组？若 $k$ 的第 $h$ 位为 $1$，则 $2^h\le k$，进而</p>
-<script type="math/tex; mode=display">
-2^{h+1}-1\le2k-1<n.</script><p>因此被选中的 $G_h$ 都是完整组，总大小恰好为 $k$。</p>
-<p>例如 $n=13$，较小侧大小为 $5=1+4$，就把 $G_0=\{1\}$ 与 $G_2=\{4,5,6,7\}$ 分给这一侧，剩余编号分给另一侧：</p>
-
-<p>较小侧得到 $\{1,4,5,6,7\}$，较大侧得到 $\{2,3,8,9,10,11,12,13\}$。每种最高位只出现在一侧，所以任何跨边都连接不同最高位的编号，无须逐条检查边。</p>
-<p>这里不能只按数值大小把前 $5$ 个数分给较小侧。这样最高位相同的 $4,5,6,7$ 就会被拆到两侧；如果某条边被分配了 $4$ 和 $6$，便有 $4\oplus6=2\le4$，仍然可以移动。整组分配才保证一个最高位不会跨越两侧。</p>
-<p>例如本构造中跨侧取 $5$ 与 $3$，有 $5\oplus3=6&gt;3$；取 $7$ 与 $8$，有 $7\oplus8=15&gt;7$。无论组内怎样排列，这种最高位不同的关系都会保留。</p>
-<p>组内编号可以任意分配。实现只需一次染色和一次编号分组，复杂度为 $O(n)$。与 Invisible Edges 相比，这里利用的是二进制组大小的可拼合性；二者都先划分图上的两侧，再检查数值资源能否准确分配。</p>
-<h2 id="CF-1615D-X-or-mas-Tree-用异或势能处理路径约束"><a href="#CF-1615D-X-or-mas-Tree-用异或势能处理路径约束" class="headerlink" title="CF 1615D X(or)-mas Tree 用异或势能处理路径约束"></a>CF 1615D X(or)-mas Tree 用异或势能处理路径约束</h2><p>树上部分边权已知，其他边权待补。每条额外约束给出两个点 $u,v$，以及它们路径上所有边权异或结果的 <code>popcount</code> 奇偶性。需要判断是否有解，并构造未知边权。<a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1615/D">题面</a></p>
-<p>这里的奇偶性指二进制中 $1$ 的个数，而不是整数本身的奇偶性。记</p>
-<script type="math/tex; mode=display">
-\pi(x)=\operatorname{popcount}(x)\bmod2.</script><p>由于每一位都按异或相加，有 $\pi(x\oplus y)=\pi(x)\oplus\pi(y)$。令 $d_v$ 表示从某个固定树根到 $v$ 的路径上，所有边权的 $\pi$ 值的异或和，则 $u,v$ 的公共路径部分会抵消，得到</p>
-<script type="math/tex; mode=display">
-\boxed{d_u\oplus d_v=p_{uv}.}</script><p>于是建立一张辅助约束图：每条已知权值为 $w$ 的树边加入约束 $d_u\oplus d_v=\pi(w)$；每条题目额外给出的路径条件加入约束 $d_u\oplus d_v=p$。</p>
-<p>对辅助图的每个连通块任取起点赋值 $0$，沿约束传播。约束值为 $0$ 就同色，为 $1$ 就异色；遇到已染色点时检查是否冲突。</p>
-<p>如果无冲突，保留所有原本已知的边权。对未知树边 $(u,v)$，直接填写</p>
-<script type="math/tex; mode=display">
-w_{uv}=d_u\oplus d_v\in\{0,1\}.</script><p>填好之后，每条树边都满足 $\pi(w_{uv})=d_u\oplus d_v$，任何路径上的中间点值两两抵消，所以所有路径条件同时成立。时间和空间复杂度都是 $O(n+m)$。</p>
-<h3 id="一个从路径条件补出边权的例子"><a href="#一个从路径条件补出边权的例子" class="headerlink" title="一个从路径条件补出边权的例子"></a>一个从路径条件补出边权的例子</h3><p>考虑路径 $1-2-3-4$，其中边 $(1,2)$ 的权值为 $3$，边 $(3,4)$ 的权值为 $1$，中间边待补。额外知道从 $1$ 到 $3$ 的路径异或结果有奇数个二进制 $1$。</p>
-<p>固定 $d_1=0$。因为 $3$ 的二进制是 <code>11</code>，有 $\pi(3)=0$，所以 $d_2=0$。路径条件要求 $d_1\oplus d_3=1$，得到 $d_3=1$；最后由已知边权 $1$ 推出 $d_4=d_3\oplus1=0$。</p>
-
-<p>图中的实线是原树边，虚线表示额外的路径条件。红色对应 $d=0$，黑色对应 $d=1$。中间边直接补成 $d_2\oplus d_3=1$ 即可。</p>
-<p>再回到原题验算：从 $1$ 到 $3$ 的路径异或为 $3\oplus1=2$，二进制是 <code>10</code>，确实只有一个 $1$。已知边权 $3$ 保持原样；只有未知边可以选择用 $0$ 或 $1$ 来实现所需奇偶性。</p>
-<p>如果再额外要求从 $1$ 到 $4$ 的路径奇偶性为 $1$，就会与已经推出的 $d_1=d_4=0$ 冲突，说明这一组条件无解。</p>
-<p>注意原始结构虽然是树，<strong>加入额外条件后的约束图可以有环</strong>，因此仍要检查冲突。这正好说明 Matching Master 的“沿树随便传播都不会冲突”为什么依赖无环结构。</p>
-<h2 id="从交替染色到边与点之间的可逆变换"><a href="#从交替染色到边与点之间的可逆变换" class="headerlink" title="从交替染色到边与点之间的可逆变换"></a>从交替染色到边与点之间的可逆变换</h2><p>Matching Master 和 X(or)-mas Tree 共享同一个方程：</p>
-<script type="math/tex; mode=display">
-w_{uv}=c_u\oplus c_v.</script><p>沿一条路径对边标记求异或，中间点的颜色都出现两次，只剩下路径两端：</p>
-<script type="math/tex; mode=display">
-\bigoplus_{e\in\operatorname{path}(u,v)}w_e=c_u\oplus c_v.</script><p>因此，点颜色可以看成从根出发累计得到的异或势能，边标记则是两个端点势能的差。</p>
-<h3 id="树上任意边集合都能表示为一个割"><a href="#树上任意边集合都能表示为一个割" class="headerlink" title="树上任意边集合都能表示为一个割"></a>树上任意边集合都能表示为一个割</h3><p>对于一棵树，任选边集合 $F$，把属于 $F$ 的边标为 $1$，其他边标为 $0$，总能通过根到点的传播得到颜色。</p>
-<p>令 $S=\{u:c_u=1\}$，恰好跨越 $S$ 与其补集的树边就是 $F$，即</p>
-<script type="math/tex; mode=display">
-F=\delta(S).</script><p>所以 Matching Master 的匹配只是一个特定的边集合。同样的方法也可以编码需要被识别的路径边、删除边或其他预先选定的树边子集。</p>
-<p>把所有颜色整体取反，不会改变任意边两端的异或值。固定根色后，剩下 $n-1$ 个点位与 $n-1$ 个边位构成一一对应。这说明为什么恰好能用 $n-1$ 位表示<strong>任意树边二进制标记</strong>，但并不能据此断言“最大匹配提示本身至少需要 $n-1$ 位”：后一个问题限制了待传信息的种类，需要单独证明下界。</p>
-<h3 id="有环时必须满足环上的一致性"><a href="#有环时必须满足环上的一致性" class="headerlink" title="有环时必须满足环上的一致性"></a>有环时必须满足环上的一致性</h3><p>如果图中存在环 $C$，则沿环把所有方程异或，左侧的每个点颜色都出现两次，得到必要条件</p>
-<script type="math/tex; mode=display">
-\boxed{\bigoplus_{e\in C}w_e=0.}</script><p>这个条件也是充分的：先沿生成森林传播颜色；每条非树边与生成树路径组成一个环，环条件保证它的端点颜色满足要求。</p>
-<p>例如三角形中只把一条边标为 $1$，另外两条标为 $0$，环异或为 $1$，不可能找到对应点颜色。若所有边都要求异色，也就是所有 $w_e=1$，环条件恰好变成“每个环长度为偶数”，于是回到了普通的二分图判定。</p>
-<h2 id="七道题分别在颜色里保存了什么"><a href="#七道题分别在颜色里保存了什么" class="headerlink" title="七道题分别在颜色里保存了什么"></a>七道题分别在颜色里保存了什么</h2><div class="table-container">
+<h2 id="cf-1605d-treelabeling-用最高位分组分配编号">CF 1605D
+Treelabeling 用最高位分组分配编号</h2>
+<p>要把树的点重新编号为 <span class="math inline">\(1,\ldots,n\)</span>
+的一个排列。游戏中，先手先任选起点，之后双方交替沿树边移动；从标签 <span
+class="math inline">\(x\)</span> 移到标签 <span
+class="math inline">\(y\)</span> 还必须满足 <span
+class="math inline">\(x\oplus
+y\le\min(x,y)\)</span>。目标是最大化先手能获胜的起点数。<a
+target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1605/D">题面</a></p>
+<p>一个能达到上界 <span class="math inline">\(n\)</span>
+的构造是让所有边都不允许移动。这样先手选定任何起点后，对手都无路可走。</p>
+<h3 id="用最高位刻画能否移动">用最高位刻画能否移动</h3>
+<p>记 <span class="math inline">\(\operatorname{msb}(x)\)</span>
+为最高的非零二进制位下标。若 <span class="math inline">\(x,y\)</span>
+的最高位不同，设 <span class="math inline">\(x\)</span>
+的最高位更高，则</p>
+<p><span class="math display">\[
+x\oplus y\ge2^{\operatorname{msb}(x)}&gt;y=\min(x,y).
+\]</span></p>
+<p>若最高位相同且等于 <span class="math inline">\(h\)</span>，异或后第
+<span class="math inline">\(h\)</span> 位被消掉，得到</p>
+<p><span class="math display">\[
+x\oplus y&lt;2^h\le\min(x,y).
+\]</span></p>
+<p>所以只要让每条边两端标签的最高位不同，就能禁用所有移动。</p>
+<h3 id="整个最高位组交给同一侧">整个最高位组交给同一侧</h3>
+<p>先对树二分染色，设较小一侧有 <span class="math inline">\(k\le\lfloor
+n/2\rfloor\)</span> 个点。编号按最高位分组：</p>
+<p><span class="math display">\[
+G_h=[2^h,2^{h+1}-1]\cap[1,n].
+\]</span></p>
+<p>除最高的那一组可能不完整外，每组大小都是 <span
+class="math inline">\(2^h\)</span>。把 <span
+class="math inline">\(k\)</span> 写成二进制，若第 <span
+class="math inline">\(h\)</span> 位为 <span
+class="math inline">\(1\)</span>，就把整组 <span
+class="math inline">\(G_h\)</span>
+分给较小侧；其余编号全部分给另一侧。<a
+target="_blank" rel="noopener" href="https://codeforces.com/blog/entry/96866">官方题解及实现</a></p>
+<p>这一步为什么不会选中不完整的组？若 <span
+class="math inline">\(k\)</span> 的第 <span
+class="math inline">\(h\)</span> 位为 <span
+class="math inline">\(1\)</span>，则 <span class="math inline">\(2^h\le
+k\)</span>，进而</p>
+<p><span class="math display">\[
+2^{h+1}-1\le2k-1&lt;n.
+\]</span></p>
+<p>因此被选中的 <span class="math inline">\(G_h\)</span>
+都是完整组，总大小恰好为 <span class="math inline">\(k\)</span>。</p>
+<p>例如 <span class="math inline">\(n=13\)</span>，较小侧大小为 <span
+class="math inline">\(5=1+4\)</span>，就把 <span
+class="math inline">\(G_0=\{1\}\)</span> 与 <span
+class="math inline">\(G_2=\{4,5,6,7\}\)</span>
+分给这一侧，剩余编号分给另一侧：</p>
+<img src="/Algorithm/Alternating-Coloring-on-Graphs-and-Trees/label-buckets.svg" class="" title="按最高位整组分配编号，使较小侧恰好获得五个编号">
+<p>较小侧得到 <span
+class="math inline">\(\{1,4,5,6,7\}\)</span>，较大侧得到 <span
+class="math inline">\(\{2,3,8,9,10,11,12,13\}\)</span>。每种最高位只出现在一侧，所以任何跨边都连接不同最高位的编号，无须逐条检查边。</p>
+<p>这里不能只按数值大小把前 <span class="math inline">\(5\)</span>
+个数分给较小侧。这样最高位相同的 <span
+class="math inline">\(4,5,6,7\)</span>
+就会被拆到两侧；如果某条边被分配了 <span
+class="math inline">\(4\)</span> 和 <span
+class="math inline">\(6\)</span>，便有 <span
+class="math inline">\(4\oplus6=2\le4\)</span>，仍然可以移动。整组分配才保证一个最高位不会跨越两侧。</p>
+<p>例如本构造中跨侧取 <span class="math inline">\(5\)</span> 与 <span
+class="math inline">\(3\)</span>，有 <span
+class="math inline">\(5\oplus3=6&gt;3\)</span>；取 <span
+class="math inline">\(7\)</span> 与 <span
+class="math inline">\(8\)</span>，有 <span
+class="math inline">\(7\oplus8=15&gt;7\)</span>。无论组内怎样排列，这种最高位不同的关系都会保留。</p>
+<p>组内编号可以任意分配。实现只需一次染色和一次编号分组，复杂度为 <span
+class="math inline">\(O(n)\)</span>。与 Invisible Edges
+相比，这里利用的是二进制组大小的可拼合性；二者都先划分图上的两侧，再检查数值资源能否准确分配。</p>
+<h2 id="cf-1615d-xor-mas-tree-用异或势能处理路径约束">CF 1615D X(or)-mas
+Tree 用异或势能处理路径约束</h2>
+<p>树上部分边权已知，其他边权待补。每条额外约束给出两个点 <span
+class="math inline">\(u,v\)</span>，以及它们路径上所有边权异或结果的
+<code>popcount</code> 奇偶性。需要判断是否有解，并构造未知边权。<a
+target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1615/D">题面</a></p>
+<p>这里的奇偶性指二进制中 <span class="math inline">\(1\)</span>
+的个数，而不是整数本身的奇偶性。记</p>
+<p><span class="math display">\[
+\pi(x)=\operatorname{popcount}(x)\bmod2.
+\]</span></p>
+<p>由于每一位都按异或相加，有 <span class="math inline">\(\pi(x\oplus
+y)=\pi(x)\oplus\pi(y)\)</span>。令 <span
+class="math inline">\(d_v\)</span> 表示从某个固定树根到 <span
+class="math inline">\(v\)</span> 的路径上，所有边权的 <span
+class="math inline">\(\pi\)</span> 值的异或和，则 <span
+class="math inline">\(u,v\)</span> 的公共路径部分会抵消，得到</p>
+<p><span class="math display">\[
+\boxed{d_u\oplus d_v=p_{uv}.}
+\]</span></p>
+<p>于是建立一张辅助约束图：每条已知权值为 <span
+class="math inline">\(w\)</span> 的树边加入约束 <span
+class="math inline">\(d_u\oplus
+d_v=\pi(w)\)</span>；每条题目额外给出的路径条件加入约束 <span
+class="math inline">\(d_u\oplus d_v=p\)</span>。</p>
+<p>对辅助图的每个连通块任取起点赋值 <span
+class="math inline">\(0\)</span>，沿约束传播。约束值为 <span
+class="math inline">\(0\)</span> 就同色，为 <span
+class="math inline">\(1\)</span>
+就异色；遇到已染色点时检查是否冲突。</p>
+<p>如果无冲突，保留所有原本已知的边权。对未知树边 <span
+class="math inline">\((u,v)\)</span>，直接填写</p>
+<p><span class="math display">\[
+w_{uv}=d_u\oplus d_v\in\{0,1\}.
+\]</span></p>
+<p>填好之后，每条树边都满足 <span
+class="math inline">\(\pi(w_{uv})=d_u\oplus
+d_v\)</span>，任何路径上的中间点值两两抵消，所以所有路径条件同时成立。时间和空间复杂度都是
+<span class="math inline">\(O(n+m)\)</span>。</p>
+<h3 id="一个从路径条件补出边权的例子">一个从路径条件补出边权的例子</h3>
+<p>考虑路径 <span class="math inline">\(1-2-3-4\)</span>，其中边 <span
+class="math inline">\((1,2)\)</span> 的权值为 <span
+class="math inline">\(3\)</span>，边 <span
+class="math inline">\((3,4)\)</span> 的权值为 <span
+class="math inline">\(1\)</span>，中间边待补。额外知道从 <span
+class="math inline">\(1\)</span> 到 <span
+class="math inline">\(3\)</span> 的路径异或结果有奇数个二进制 <span
+class="math inline">\(1\)</span>。</p>
+<p>固定 <span class="math inline">\(d_1=0\)</span>。因为 <span
+class="math inline">\(3\)</span> 的二进制是 <code>11</code>，有 <span
+class="math inline">\(\pi(3)=0\)</span>，所以 <span
+class="math inline">\(d_2=0\)</span>。路径条件要求 <span
+class="math inline">\(d_1\oplus d_3=1\)</span>，得到 <span
+class="math inline">\(d_3=1\)</span>；最后由已知边权 <span
+class="math inline">\(1\)</span> 推出 <span
+class="math inline">\(d_4=d_3\oplus1=0\)</span>。</p>
+<img src="/Algorithm/Alternating-Coloring-on-Graphs-and-Trees/xor-constraints.svg" class="" title="用额外路径条件确定点势能，再补出未知边权">
+<p>图中的实线是原树边，虚线表示额外的路径条件。红色对应 <span
+class="math inline">\(d=0\)</span>，黑色对应 <span
+class="math inline">\(d=1\)</span>。中间边直接补成 <span
+class="math inline">\(d_2\oplus d_3=1\)</span> 即可。</p>
+<p>再回到原题验算：从 <span class="math inline">\(1\)</span> 到 <span
+class="math inline">\(3\)</span> 的路径异或为 <span
+class="math inline">\(3\oplus1=2\)</span>，二进制是
+<code>10</code>，确实只有一个 <span
+class="math inline">\(1\)</span>。已知边权 <span
+class="math inline">\(3\)</span> 保持原样；只有未知边可以选择用 <span
+class="math inline">\(0\)</span> 或 <span
+class="math inline">\(1\)</span> 来实现所需奇偶性。</p>
+<p>如果再额外要求从 <span class="math inline">\(1\)</span> 到 <span
+class="math inline">\(4\)</span> 的路径奇偶性为 <span
+class="math inline">\(1\)</span>，就会与已经推出的 <span
+class="math inline">\(d_1=d_4=0\)</span> 冲突，说明这一组条件无解。</p>
+<p>注意原始结构虽然是树，<strong>加入额外条件后的约束图可以有环</strong>，因此仍要检查冲突。这正好说明
+Matching Master 的“沿树随便传播都不会冲突”为什么依赖无环结构。</p>
+<h2
+id="从交替染色到边与点之间的可逆变换">从交替染色到边与点之间的可逆变换</h2>
+<p>Matching Master 和 X(or)-mas Tree 共享同一个方程：</p>
+<p><span class="math display">\[
+w_{uv}=c_u\oplus c_v.
+\]</span></p>
+<p>沿一条路径对边标记求异或，中间点的颜色都出现两次，只剩下路径两端：</p>
+<p><span class="math display">\[
+\bigoplus_{e\in\operatorname{path}(u,v)}w_e=c_u\oplus c_v.
+\]</span></p>
+<p>因此，点颜色可以看成从根出发累计得到的异或势能，边标记则是两个端点势能的差。</p>
+<h3
+id="树上任意边集合都能表示为一个割">树上任意边集合都能表示为一个割</h3>
+<p>对于一棵树，任选边集合 <span class="math inline">\(F\)</span>，把属于
+<span class="math inline">\(F\)</span> 的边标为 <span
+class="math inline">\(1\)</span>，其他边标为 <span
+class="math inline">\(0\)</span>，总能通过根到点的传播得到颜色。</p>
+<p>令 <span class="math inline">\(S=\{u:c_u=1\}\)</span>，恰好跨越 <span
+class="math inline">\(S\)</span> 与其补集的树边就是 <span
+class="math inline">\(F\)</span>，即</p>
+<p><span class="math display">\[
+F=\delta(S).
+\]</span></p>
+<p>所以 Matching Master
+的匹配只是一个特定的边集合。同样的方法也可以编码需要被识别的路径边、删除边或其他预先选定的树边子集。</p>
+<p>把所有颜色整体取反，不会改变任意边两端的异或值。固定根色后，剩下
+<span class="math inline">\(n-1\)</span> 个点位与 <span
+class="math inline">\(n-1\)</span>
+个边位构成一一对应。这说明为什么恰好能用 <span
+class="math inline">\(n-1\)</span>
+位表示<strong>任意树边二进制标记</strong>，但并不能据此断言“最大匹配提示本身至少需要
+<span class="math inline">\(n-1\)</span>
+位”：后一个问题限制了待传信息的种类，需要单独证明下界。</p>
+<h3 id="有环时必须满足环上的一致性">有环时必须满足环上的一致性</h3>
+<p>如果图中存在环 <span
+class="math inline">\(C\)</span>，则沿环把所有方程异或，左侧的每个点颜色都出现两次，得到必要条件</p>
+<p><span class="math display">\[
+\boxed{\bigoplus_{e\in C}w_e=0.}
+\]</span></p>
+<p>这个条件也是充分的：先沿生成森林传播颜色；每条非树边与生成树路径组成一个环，环条件保证它的端点颜色满足要求。</p>
+<p>例如三角形中只把一条边标为 <span
+class="math inline">\(1\)</span>，另外两条标为 <span
+class="math inline">\(0\)</span>，环异或为 <span
+class="math inline">\(1\)</span>，不可能找到对应点颜色。若所有边都要求异色，也就是所有
+<span
+class="math inline">\(w_e=1\)</span>，环条件恰好变成“每个环长度为偶数”，于是回到了普通的二分图判定。</p>
+<h2 id="七道题分别在颜色里保存了什么">七道题分别在颜色里保存了什么</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>题目</th>
 <th>颜色或二分结构的作用</th>
 <th>接收或构造时的关键关系</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Invisible Edges</td>
 <td>两侧使用互补值域</td>
 <td>点权减去同色排名，得到异色父亲下标</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Matching Master</td>
 <td>只有目标匹配边两端异色</td>
 <td>端点颜色异或等于边是否被选中</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>IOI 2020 Stations</td>
 <td>交替记录子树的左右端点</td>
 <td>偶层取后继，奇层取前驱</td>
 </tr>
-<tr>
+<tr class="even">
 <td>CF 1991E Coloring Game</td>
 <td>两侧预留不同颜色</td>
 <td>同一种最终颜色只出现在一个独立集</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>CF 1144F Graph Without Long Directed Paths</td>
 <td>两侧分别只出、只入</td>
 <td>所有边统一从一侧指向另一侧</td>
 </tr>
-<tr>
+<tr class="even">
 <td>CF 1605D Treelabeling</td>
 <td>将整个最高位组分给一侧</td>
 <td>每条边两端的最高位不同</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>CF 1615D X(or)-mas Tree</td>
 <td>颜色表示根路径异或势能</td>
 <td>路径条件化为两个端点的异或方程</td>
 </tr>
 </tbody>
 </table>
-</div>
 <p>遇到新的构造或通信题时，可以沿着这些关系检查三个问题。</p>
-<p>首先，<strong>两轮之间究竟保留了什么</strong>？Matching Master 保留点号，适合按点号发送颜色位；Invisible Edges 连点号都会变化，必须让标签本身恢复顺序；Stations 则允许接收方看到邻点标签，可以把信息分散保存在一个点及其邻居之间。</p>
+<p>首先，<strong>两轮之间究竟保留了什么</strong>？Matching Master
+保留点号，适合按点号发送颜色位；Invisible Edges
+连点号都会变化，必须让标签本身恢复顺序；Stations
+则允许接收方看到邻点标签，可以把信息分散保存在一个点及其邻居之间。</p>
 <p>其次，<strong>需要恢复的是哪一种关系</strong>？若只是判断一条已给出的边是否属于答案，可以尝试端点异或；若连边本身都未知，需要编码父亲或其他地址；若只要求知道下一步，子树区间往往已经足够。</p>
-<p>最后，<strong>如何证明标签装得下且解得出</strong>？二分染色只提供结构，数值范围、位数和单调性还需要分别核算。Invisible Edges 使用 $R+B=n$ 与排名偏移，Matching Master 固定一个根色，Stations 只保留 $n$ 个编号事件，Treelabeling 则用二进制组大小拼出较小侧。</p>
+<p>最后，<strong>如何证明标签装得下且解得出</strong>？二分染色只提供结构，数值范围、位数和单调性还需要分别核算。Invisible
+Edges 使用 <span class="math inline">\(R+B=n\)</span>
+与排名偏移，Matching Master 固定一个根色，Stations 只保留 <span
+class="math inline">\(n\)</span> 个编号事件，Treelabeling
+则用二进制组大小拼出较小侧。</p>
 <p>交替染色的作用由这些不变量决定。先说清每种颜色负责保存什么，再证明接收方能从局部关系恢复目标信息，构造就有了可以检查的依据。</p>
 
     
@@ -1007,7 +1483,15 @@ F=\delta(S).</script><p>所以 Matching Master 的匹配只是一个特定的边
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%88%E5%8C%BA%E5%88%86%E4%B8%A4%E7%A7%8D%E7%BA%A2%E9%BB%91%E6%9F%93%E8%89%B2"><span class="toc-number">1.</span> <span class="toc-text">先区分两种红黑染色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Invisible-Edges-%E7%94%A8%E7%82%B9%E6%9D%83%E6%81%A2%E5%A4%8D%E6%95%B4%E7%89%87%E6%A3%AE%E6%9E%97"><span class="toc-number">2.</span> <span class="toc-text">Invisible Edges 用点权恢复整片森林</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%88%E5%BB%BA%E7%AB%8B%E5%85%A8%E5%B1%80%E5%A4%9A%E6%BA%90-BFS-%E5%BA%8F"><span class="toc-number">2.1.</span> <span class="toc-text">先建立全局多源 BFS 序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E5%B1%82%E7%BA%A2%E9%BB%91%E6%9F%93%E8%89%B2%E4%B8%8E%E4%BA%92%E8%A1%A5%E5%80%BC%E5%9F%9F"><span class="toc-number">2.2.</span> <span class="toc-text">按层红黑染色与互补值域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%A2%E9%BB%91%E7%89%88%E7%9A%84%E8%A7%A3%E7%A0%81"><span class="toc-number">2.3.</span> <span class="toc-text">红黑版的解码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E7%89%88%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8%E6%8E%92%E5%90%8D%E5%8A%A0%E7%88%B6%E4%BA%B2%E4%B8%8B%E6%A0%87"><span class="toc-number">2.4.</span> <span class="toc-text">全局版直接使用排名加父亲下标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E5%8C%85%E5%90%AB%E4%B8%A4%E4%B8%AA%E8%BF%9E%E9%80%9A%E5%9D%97%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-number">2.5.</span> <span class="toc-text">一个包含两个连通块的例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%94%E6%9D%BF%E8%A7%A3%E9%87%8A"><span class="toc-number">2.6.</span> <span class="toc-text">隔板解释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E7%82%B9%E6%9D%83%E4%B8%BA%E4%BB%80%E4%B9%88%E8%83%BD%E5%90%8C%E6%97%B6%E4%BF%9D%E5%AD%98%E9%A1%BA%E5%BA%8F%E5%92%8C%E7%88%B6%E4%BA%B2"><span class="toc-number">2.7.</span> <span class="toc-text">一个点权为什么能同时保存顺序和父亲</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Matching-Master-%E6%8A%8A%E6%9C%80%E5%A4%A7%E5%8C%B9%E9%85%8D%E5%86%99%E6%88%90%E7%82%B9%E9%A2%9C%E8%89%B2"><span class="toc-number">3.</span> <span class="toc-text">Matching Master 把最大匹配写成点颜色</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E8%BE%B9%E7%9A%84%E7%AD%94%E6%A1%88%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E5%A4%9F"><span class="toc-number">3.1.</span> <span class="toc-text">发送边的答案为什么不够</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E7%A1%AE%E6%80%A7%E4%B8%8E%E5%87%BA%E8%BE%B9%E9%A1%BA%E5%BA%8F%E6%97%A0%E5%85%B3"><span class="toc-number">3.2.</span> <span class="toc-text">正确性与出边顺序无关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B6%E7%BC%A9%E4%BB%A5%E5%90%8E%E4%BB%8D%E7%84%B6%E6%98%AF%E6%8C%89%E5%B1%82%E4%BA%A4%E6%9B%BF"><span class="toc-number">3.3.</span> <span class="toc-text">收缩以后仍然是按层交替</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%B1%82%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E5%8C%B9%E9%85%8D"><span class="toc-number">3.4.</span> <span class="toc-text">如何求树的最大匹配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E7%A4%BA%E4%B8%B2%E7%9C%9F%E6%AD%A3%E4%BF%9D%E5%AD%98%E7%9A%84%E6%98%AF%E4%B8%80%E4%B8%AA%E5%8F%AF%E6%8C%89%E7%82%B9%E5%8F%B7%E6%9F%A5%E8%AF%A2%E7%9A%84%E7%AD%94%E6%A1%88"><span class="toc-number">3.5.</span> <span class="toc-text">提示串真正保存的是一个可按点号查询的答案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IOI-2020-Stations-%E4%BA%A4%E6%9B%BF%E4%BF%9D%E5%AD%98%E5%AD%90%E6%A0%91%E8%BE%B9%E7%95%8C"><span class="toc-number">4.</span> <span class="toc-text">IOI 2020 Stations 交替保存子树边界</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E7%A7%8D%E9%A2%9C%E8%89%B2%E4%BF%9D%E5%AD%98%E8%BF%9B%E5%85%A5%E4%BD%8D%E7%BD%AE-%E5%8F%A6%E4%B8%80%E7%A7%8D%E4%BF%9D%E5%AD%98%E9%80%80%E5%87%BA%E4%BD%8D%E7%BD%AE"><span class="toc-number">4.1.</span> <span class="toc-text">一种颜色保存进入位置 另一种保存退出位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%B6%E6%95%B0%E5%B1%82%E7%82%B9%E7%94%A8%E5%AD%A9%E5%AD%90%E7%9A%84%E5%8F%B3%E7%AB%AF%E7%82%B9%E5%88%92%E5%88%86%E5%8C%BA%E9%97%B4"><span class="toc-number">4.2.</span> <span class="toc-text">偶数层点用孩子的右端点划分区间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A5%87%E6%95%B0%E5%B1%82%E7%82%B9%E7%94%A8%E5%AD%A9%E5%AD%90%E7%9A%84%E5%B7%A6%E7%AB%AF%E7%82%B9%E5%88%92%E5%88%86%E5%8C%BA%E9%97%B4"><span class="toc-number">4.3.</span> <span class="toc-text">奇数层点用孩子的左端点划分区间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E5%85%AD%E4%B8%AA%E7%82%B9%E8%B7%9F%E8%B8%AA%E4%B8%80%E6%AC%A1%E8%B7%A8%E5%AD%90%E6%A0%91%E8%B7%AF%E7%94%B1"><span class="toc-number">4.4.</span> <span class="toc-text">用六个点跟踪一次跨子树路由</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CF-1991E-Coloring-Game-%E7%94%A8%E4%BA%8C%E5%88%86%E7%BB%93%E6%9E%84%E5%BA%94%E5%AF%B9%E5%9C%A8%E7%BA%BF%E9%80%89%E8%89%B2"><span class="toc-number">5.</span> <span class="toc-text">CF 1991E Coloring Game 用二分结构应对在线选色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CF-1144F-Graph-Without-Long-Directed-Paths-%E7%94%A8%E9%A2%9C%E8%89%B2%E5%86%B3%E5%AE%9A%E6%96%B9%E5%90%91"><span class="toc-number">6.</span> <span class="toc-text">CF 1144F Graph Without Long Directed Paths 用颜色决定方向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CF-1605D-Treelabeling-%E7%94%A8%E6%9C%80%E9%AB%98%E4%BD%8D%E5%88%86%E7%BB%84%E5%88%86%E9%85%8D%E7%BC%96%E5%8F%B7"><span class="toc-number">7.</span> <span class="toc-text">CF 1605D Treelabeling 用最高位分组分配编号</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%9C%80%E9%AB%98%E4%BD%8D%E5%88%BB%E7%94%BB%E8%83%BD%E5%90%A6%E7%A7%BB%E5%8A%A8"><span class="toc-number">7.1.</span> <span class="toc-text">用最高位刻画能否移动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E4%B8%AA%E6%9C%80%E9%AB%98%E4%BD%8D%E7%BB%84%E4%BA%A4%E7%BB%99%E5%90%8C%E4%B8%80%E4%BE%A7"><span class="toc-number">7.2.</span> <span class="toc-text">整个最高位组交给同一侧</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CF-1615D-X-or-mas-Tree-%E7%94%A8%E5%BC%82%E6%88%96%E5%8A%BF%E8%83%BD%E5%A4%84%E7%90%86%E8%B7%AF%E5%BE%84%E7%BA%A6%E6%9D%9F"><span class="toc-number">8.</span> <span class="toc-text">CF 1615D X(or)-mas Tree 用异或势能处理路径约束</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E4%BB%8E%E8%B7%AF%E5%BE%84%E6%9D%A1%E4%BB%B6%E8%A1%A5%E5%87%BA%E8%BE%B9%E6%9D%83%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-number">8.1.</span> <span class="toc-text">一个从路径条件补出边权的例子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E4%BA%A4%E6%9B%BF%E6%9F%93%E8%89%B2%E5%88%B0%E8%BE%B9%E4%B8%8E%E7%82%B9%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8F%AF%E9%80%86%E5%8F%98%E6%8D%A2"><span class="toc-number">9.</span> <span class="toc-text">从交替染色到边与点之间的可逆变换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%91%E4%B8%8A%E4%BB%BB%E6%84%8F%E8%BE%B9%E9%9B%86%E5%90%88%E9%83%BD%E8%83%BD%E8%A1%A8%E7%A4%BA%E4%B8%BA%E4%B8%80%E4%B8%AA%E5%89%B2"><span class="toc-number">9.1.</span> <span class="toc-text">树上任意边集合都能表示为一个割</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E7%8E%AF%E6%97%B6%E5%BF%85%E9%A1%BB%E6%BB%A1%E8%B6%B3%E7%8E%AF%E4%B8%8A%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-number">9.2.</span> <span class="toc-text">有环时必须满足环上的一致性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E9%81%93%E9%A2%98%E5%88%86%E5%88%AB%E5%9C%A8%E9%A2%9C%E8%89%B2%E9%87%8C%E4%BF%9D%E5%AD%98%E4%BA%86%E4%BB%80%E4%B9%88"><span class="toc-number">10.</span> <span class="toc-text">七道题分别在颜色里保存了什么</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%88%E5%8C%BA%E5%88%86%E4%B8%A4%E7%A7%8D%E7%BA%A2%E9%BB%91%E6%9F%93%E8%89%B2"><span class="toc-number">1.</span> <span class="toc-text">先区分两种红黑染色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#invisible-edges-%E7%94%A8%E7%82%B9%E6%9D%83%E6%81%A2%E5%A4%8D%E6%95%B4%E7%89%87%E6%A3%AE%E6%9E%97"><span class="toc-number">2.</span> <span class="toc-text">Invisible Edges
+用点权恢复整片森林</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%88%E5%BB%BA%E7%AB%8B%E5%85%A8%E5%B1%80%E5%A4%9A%E6%BA%90-bfs-%E5%BA%8F"><span class="toc-number">2.1.</span> <span class="toc-text">先建立全局多源 BFS 序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E5%B1%82%E7%BA%A2%E9%BB%91%E6%9F%93%E8%89%B2%E4%B8%8E%E4%BA%92%E8%A1%A5%E5%80%BC%E5%9F%9F"><span class="toc-number">2.2.</span> <span class="toc-text">按层红黑染色与互补值域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%A2%E9%BB%91%E7%89%88%E7%9A%84%E8%A7%A3%E7%A0%81"><span class="toc-number">2.3.</span> <span class="toc-text">红黑版的解码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E7%89%88%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8%E6%8E%92%E5%90%8D%E5%8A%A0%E7%88%B6%E4%BA%B2%E4%B8%8B%E6%A0%87"><span class="toc-number">2.4.</span> <span class="toc-text">全局版直接使用排名加父亲下标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E5%8C%85%E5%90%AB%E4%B8%A4%E4%B8%AA%E8%BF%9E%E9%80%9A%E5%9D%97%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-number">2.5.</span> <span class="toc-text">一个包含两个连通块的例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%94%E6%9D%BF%E8%A7%A3%E9%87%8A"><span class="toc-number">2.6.</span> <span class="toc-text">隔板解释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E7%82%B9%E6%9D%83%E4%B8%BA%E4%BB%80%E4%B9%88%E8%83%BD%E5%90%8C%E6%97%B6%E4%BF%9D%E5%AD%98%E9%A1%BA%E5%BA%8F%E5%92%8C%E7%88%B6%E4%BA%B2"><span class="toc-number">2.7.</span> <span class="toc-text">一个点权为什么能同时保存顺序和父亲</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#matching-master-%E6%8A%8A%E6%9C%80%E5%A4%A7%E5%8C%B9%E9%85%8D%E5%86%99%E6%88%90%E7%82%B9%E9%A2%9C%E8%89%B2"><span class="toc-number">3.</span> <span class="toc-text">Matching Master
+把最大匹配写成点颜色</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E8%BE%B9%E7%9A%84%E7%AD%94%E6%A1%88%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E5%A4%9F"><span class="toc-number">3.1.</span> <span class="toc-text">发送边的答案为什么不够</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E7%A1%AE%E6%80%A7%E4%B8%8E%E5%87%BA%E8%BE%B9%E9%A1%BA%E5%BA%8F%E6%97%A0%E5%85%B3"><span class="toc-number">3.2.</span> <span class="toc-text">正确性与出边顺序无关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B6%E7%BC%A9%E4%BB%A5%E5%90%8E%E4%BB%8D%E7%84%B6%E6%98%AF%E6%8C%89%E5%B1%82%E4%BA%A4%E6%9B%BF"><span class="toc-number">3.3.</span> <span class="toc-text">收缩以后仍然是按层交替</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%B1%82%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E5%8C%B9%E9%85%8D"><span class="toc-number">3.4.</span> <span class="toc-text">如何求树的最大匹配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E7%A4%BA%E4%B8%B2%E7%9C%9F%E6%AD%A3%E4%BF%9D%E5%AD%98%E7%9A%84%E6%98%AF%E4%B8%80%E4%B8%AA%E5%8F%AF%E6%8C%89%E7%82%B9%E5%8F%B7%E6%9F%A5%E8%AF%A2%E7%9A%84%E7%AD%94%E6%A1%88"><span class="toc-number">3.5.</span> <span class="toc-text">提示串真正保存的是一个可按点号查询的答案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ioi-2020-stations-%E4%BA%A4%E6%9B%BF%E4%BF%9D%E5%AD%98%E5%AD%90%E6%A0%91%E8%BE%B9%E7%95%8C"><span class="toc-number">4.</span> <span class="toc-text">IOI 2020 Stations
+交替保存子树边界</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E7%A7%8D%E9%A2%9C%E8%89%B2%E4%BF%9D%E5%AD%98%E8%BF%9B%E5%85%A5%E4%BD%8D%E7%BD%AE-%E5%8F%A6%E4%B8%80%E7%A7%8D%E4%BF%9D%E5%AD%98%E9%80%80%E5%87%BA%E4%BD%8D%E7%BD%AE"><span class="toc-number">4.1.</span> <span class="toc-text">一种颜色保存进入位置
+另一种保存退出位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%B6%E6%95%B0%E5%B1%82%E7%82%B9%E7%94%A8%E5%AD%A9%E5%AD%90%E7%9A%84%E5%8F%B3%E7%AB%AF%E7%82%B9%E5%88%92%E5%88%86%E5%8C%BA%E9%97%B4"><span class="toc-number">4.2.</span> <span class="toc-text">偶数层点用孩子的右端点划分区间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A5%87%E6%95%B0%E5%B1%82%E7%82%B9%E7%94%A8%E5%AD%A9%E5%AD%90%E7%9A%84%E5%B7%A6%E7%AB%AF%E7%82%B9%E5%88%92%E5%88%86%E5%8C%BA%E9%97%B4"><span class="toc-number">4.3.</span> <span class="toc-text">奇数层点用孩子的左端点划分区间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E5%85%AD%E4%B8%AA%E7%82%B9%E8%B7%9F%E8%B8%AA%E4%B8%80%E6%AC%A1%E8%B7%A8%E5%AD%90%E6%A0%91%E8%B7%AF%E7%94%B1"><span class="toc-number">4.4.</span> <span class="toc-text">用六个点跟踪一次跨子树路由</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cf-1991e-coloring-game-%E7%94%A8%E4%BA%8C%E5%88%86%E7%BB%93%E6%9E%84%E5%BA%94%E5%AF%B9%E5%9C%A8%E7%BA%BF%E9%80%89%E8%89%B2"><span class="toc-number">5.</span> <span class="toc-text">CF 1991E Coloring
+Game 用二分结构应对在线选色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cf-1144f-graph-without-long-directed-paths-%E7%94%A8%E9%A2%9C%E8%89%B2%E5%86%B3%E5%AE%9A%E6%96%B9%E5%90%91"><span class="toc-number">6.</span> <span class="toc-text">CF
+1144F Graph Without Long Directed Paths 用颜色决定方向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cf-1605d-treelabeling-%E7%94%A8%E6%9C%80%E9%AB%98%E4%BD%8D%E5%88%86%E7%BB%84%E5%88%86%E9%85%8D%E7%BC%96%E5%8F%B7"><span class="toc-number">7.</span> <span class="toc-text">CF 1605D
+Treelabeling 用最高位分组分配编号</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%9C%80%E9%AB%98%E4%BD%8D%E5%88%BB%E7%94%BB%E8%83%BD%E5%90%A6%E7%A7%BB%E5%8A%A8"><span class="toc-number">7.1.</span> <span class="toc-text">用最高位刻画能否移动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E4%B8%AA%E6%9C%80%E9%AB%98%E4%BD%8D%E7%BB%84%E4%BA%A4%E7%BB%99%E5%90%8C%E4%B8%80%E4%BE%A7"><span class="toc-number">7.2.</span> <span class="toc-text">整个最高位组交给同一侧</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cf-1615d-xor-mas-tree-%E7%94%A8%E5%BC%82%E6%88%96%E5%8A%BF%E8%83%BD%E5%A4%84%E7%90%86%E8%B7%AF%E5%BE%84%E7%BA%A6%E6%9D%9F"><span class="toc-number">8.</span> <span class="toc-text">CF 1615D X(or)-mas
+Tree 用异或势能处理路径约束</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E4%BB%8E%E8%B7%AF%E5%BE%84%E6%9D%A1%E4%BB%B6%E8%A1%A5%E5%87%BA%E8%BE%B9%E6%9D%83%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-number">8.1.</span> <span class="toc-text">一个从路径条件补出边权的例子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E4%BA%A4%E6%9B%BF%E6%9F%93%E8%89%B2%E5%88%B0%E8%BE%B9%E4%B8%8E%E7%82%B9%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8F%AF%E9%80%86%E5%8F%98%E6%8D%A2"><span class="toc-number">9.</span> <span class="toc-text">从交替染色到边与点之间的可逆变换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%91%E4%B8%8A%E4%BB%BB%E6%84%8F%E8%BE%B9%E9%9B%86%E5%90%88%E9%83%BD%E8%83%BD%E8%A1%A8%E7%A4%BA%E4%B8%BA%E4%B8%80%E4%B8%AA%E5%89%B2"><span class="toc-number">9.1.</span> <span class="toc-text">树上任意边集合都能表示为一个割</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E7%8E%AF%E6%97%B6%E5%BF%85%E9%A1%BB%E6%BB%A1%E8%B6%B3%E7%8E%AF%E4%B8%8A%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-number">9.2.</span> <span class="toc-text">有环时必须满足环上的一致性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E9%81%93%E9%A2%98%E5%88%86%E5%88%AB%E5%9C%A8%E9%A2%9C%E8%89%B2%E9%87%8C%E4%BF%9D%E5%AD%98%E4%BA%86%E4%BB%80%E4%B9%88"><span class="toc-number">10.</span> <span class="toc-text">七道题分别在颜色里保存了什么</span></a></li></ol>
                     </div>
                 </span>
             </div>
