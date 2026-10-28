@@ -1,0 +1,10 @@
+flowchart TB
+    A["原点 1<br/>a = 1"] --> C["原点 3<br/>a = 4"]
+    A --> D["原点 4<br/>a = 5"]
+    B["原点 2<br/>a = 2"] --> E["原点 5<br/>a = 7"]
+    C --> F["原点 6<br/>a = 9"]
+    class A,B,F red;
+    class C,D,E black;
+
+classDef red fill:#fff1f2,stroke:#c33f54,stroke-width:2px,color:#861c31;
+classDef black fill:#263445,stroke:#152231,stroke-width:2px,color:#ffffff;

@@ -1,0 +1,10 @@
+flowchart LR
+    G0["G0：编号 1<br/>大小 1"] --> L["较小侧：5 个点<br/>1 + 4 = 5"]
+    G2["G2：编号 4 到 7<br/>大小 4"] --> L
+    G1["G1：编号 2 到 3<br/>大小 2"] --> R["较大侧：8 个点<br/>2 + 6 = 8"]
+    G3["G3：编号 8 到 13<br/>大小 6"] --> R
+    class G0,G2,L red;
+    class G1,G3,R black;
+
+classDef red fill:#fff1f2,stroke:#c33f54,stroke-width:2px,color:#861c31;
+classDef black fill:#263445,stroke:#152231,stroke-width:2px,color:#ffffff;

@@ -1,0 +1,11 @@
+flowchart LR
+    A["点 1<br/>d = 0"] ---|"已知 w = 3"| B["点 2<br/>d = 0"]
+    B ---|"未知边补为 w = 1"| C["点 3<br/>d = 1"]
+    C ---|"已知 w = 1"| D["点 4<br/>d = 0"]
+    A -.->|"路径条件 p = 1"| C
+    class A,B,D red;
+    class C black;
+    linkStyle 1 stroke:#d87b18,stroke-width:4px;
+
+classDef red fill:#fff1f2,stroke:#c33f54,stroke-width:2px,color:#861c31;
+classDef black fill:#263445,stroke:#152231,stroke-width:2px,color:#ffffff;

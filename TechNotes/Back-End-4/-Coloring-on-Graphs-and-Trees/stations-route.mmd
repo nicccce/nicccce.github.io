@@ -1,0 +1,12 @@
+flowchart TB
+    A["A：标签 0<br/>进入时编号"] --- B["B：标签 3<br/>退出时编号"]
+    A --- E["E：标签 5<br/>退出时编号"]
+    B --- C["C：标签 1<br/>进入时编号"]
+    B --- D["D：标签 2<br/>本次起点"]
+    E --- F["F：标签 4<br/>本次终点"]
+    class A,C,D,F red;
+    class B,E black;
+    linkStyle 0,1,3,4 stroke:#d87b18,stroke-width:4px;
+
+classDef red fill:#fff1f2,stroke:#c33f54,stroke-width:2px,color:#861c31;
+classDef black fill:#263445,stroke:#152231,stroke-width:2px,color:#ffffff;

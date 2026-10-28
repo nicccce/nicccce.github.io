@@ -1,0 +1,9 @@
+flowchart LR
+    A["块：1<br/>颜色 0"] ---|"原匹配边 1—2"| B["块：2、3<br/>颜色 1"]
+    B ---|"原匹配边 3—4"| C["块：4、5<br/>颜色 0"]
+    class A,C red;
+    class B black;
+    linkStyle 0,1 stroke:#c33f54,stroke-width:3px;
+
+classDef red fill:#fff1f2,stroke:#c33f54,stroke-width:2px,color:#861c31;
+classDef black fill:#263445,stroke:#152231,stroke-width:2px,color:#ffffff;

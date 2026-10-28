@@ -1,0 +1,10 @@
+flowchart LR
+    A["红点 A<br/>只出不入"] --> B["黑点 B<br/>只入不出"]
+    C["红点 C<br/>只出不入"] --> B
+    C --> D["黑点 D<br/>只入不出"]
+    A --> D
+    class A,C red;
+    class B,D black;
+
+classDef red fill:#fff1f2,stroke:#c33f54,stroke-width:2px,color:#861c31;
+classDef black fill:#263445,stroke:#152231,stroke-width:2px,color:#ffffff;
