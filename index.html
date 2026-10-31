@@ -636,6 +636,159 @@
 
 
   
+    <article id="post-k-cyclic-shift" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/TechNotes/k-cyclic-shift/" target="_blank">k-循环与置换环</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/TechNotes/k-cyclic-shift/" class="archive-article-date">
+        <time datetime="2026-09-28T05:44:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2026-09-28</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="k-循环与置换环"><a href="#k-循环与置换环" class="headerlink" title="$k$-循环与置换环"></a>$k$-循环与置换环</h1><h3 id="一、基本定义"><a href="#一、基本定义" class="headerlink" title="一、基本定义"></a>一、基本定义</h3><p><strong>$k$-循环（$k$-Cycle Shift）</strong>：对一个序列中的连续 $k$ 个元素（或在广义题目中任选 $k$ 个位置的元素）进行循环位移。<br>例如对于以下序列（$1$-indexed），对下标区间 $[2, 4]$ 执行一次右移三循环操作：<br><code>[3, 1, 2, 5, 4] -&gt; [3, 5, 1, 2, 4]</code></p>
+<p><strong>置换环（Permutation Cycles）</strong>：对于一个长度为 $n$ 的排列 $p$，将每个索引 $i$ 连向其对应的值 $p_i$（即建立有向边 $i \to p_i$）。由于每个点的入度和出度均为 $1$，整张图会唯一分解为若干个互不相交的简单有向环，称之为<strong>置换环</strong>。<br>例如对于排列：</p>
+<ul>
+<li>索引 $i$：<code>[1, 2, 3, 4, 5]</code></li>
+<li>排列 $p$：<code>[3, 1, 2, 5, 4]</code></li>
+</ul>
+<p>该排列可以唯一分解为两个置换环：$(1 \to 3 \to 2 \to 1)$ 和 $(4 \to 5 \to 4)$，记作 $(1, 3, 2)(4, 5)$。当排列完全有序（即 $p_i = i$）时，图中共有 $n$ 个长度为 $1$ 的自环。</p>
+<p><code>&lt;!--more--&gt;</code></p>
+<h3 id="二、核心桥梁：对换、逆序对与置换环"><a href="#二、核心桥梁：对换、逆序对与置换环" class="headerlink" title="二、核心桥梁：对换、逆序对与置换环"></a>二、核心桥梁：对换、逆序对与置换环</h3><p>在分析 $k$-循环之前，先将操作拆解为最基础的原子操作——<strong>对换（2-循环，即交换任意两个元素）</strong>。</p>
+<ol>
+<li><strong>对换与逆序对奇偶性</strong><br>交换排列中的任意两个元素 $p_i$ 和 $p_j$（无论是否相邻），排列的<strong>逆序对数（$\text{inv}$）的奇偶性必然发生翻转</strong>。</li>
+<li><strong>对换与置换环数量</strong><br>设当前排列共有 $c$ 个置换环。对 $p_i$ 和 $p_j$ 执行一次交换：</li>
+</ol>
+<ul>
+<li>若 $i$ 和 $j$ 原本在<strong>同一个</strong>置换环中，这次交换会将该环裂解为 $2$ 个独立的环，环数 $c \gets c + 1$。</li>
+<li>若 $i$ 和 $j$ 原本在<strong>不同的</strong>置换环中，这次交换会将两个环合并为 $1$ 个环，环数 $c \gets c - 1$。</li>
+</ul>
+<p>因此，<strong>任意一次对换都会使置换环的数量 $c$ 改变 $\pm 1$，即 $c$ 的奇偶性必然翻转</strong>。</p>
+<ol>
+<li><strong>$O(n)$ 奇偶性恒等式</strong><br>有序排列满足 $\text{inv} = 0$ 且 $c = n$（即 $n - c = 0$）。每经过一次对换，$\text{inv}$ 与 $n - c$ 的奇偶性同步翻转，因此对任意排列恒有：</li>
+</ol>
+<script type="math/tex; mode=display">\text{inv} \equiv n - c \pmod 2</script><p><strong>竞赛技巧</strong>：若题目只需判断逆序对的奇偶性，无需写 $O(n \log n)$ 的树状数组或归并排序，直接 $O(n)$ 找置换环个数并计算 $(n - c) \bmod 2$ 即可。</p>
+<h3 id="三、基础结论（按-k-的奇偶性分类）"><a href="#三、基础结论（按-k-的奇偶性分类）" class="headerlink" title="三、基础结论（按 $k$ 的奇偶性分类）"></a>三、基础结论（按 $k$ 的奇偶性分类）</h3><p>一次长度为 $k$ 的循环位移 $(a_1, a_2, \dots, a_k) \to (a_k, a_1, \dots, a_{k-1})$，在代数上可以分解为 <strong>$k - 1$ 次对换</strong>（例如依次将 $a_k$ 与前一个元素交换，共需交换 $k - 1$ 次）。由此可以直接推导出 $k$ 的奇偶性带来的本质差异：</p>
+<h4 id="1-当-k-为奇数时（偶置换）"><a href="#1-当-k-为奇数时（偶置换）" class="headerlink" title="1. 当 $k$ 为奇数时（偶置换）"></a>1. 当 $k$ 为奇数时（偶置换）</h4><ul>
+<li><strong>核心不变量</strong>：由于 $k - 1$ 是<strong>偶数</strong>，执行一次 $k$-循环等价于执行偶数次对换。因此，<strong>任意次数的奇数 $k$-循环都不会改变排列逆序对的奇偶性</strong>（也不会改变 $n - c$ 的奇偶性）。</li>
+<li><strong>排序可达性判定（$3 \le k \lt n$）</strong>：<br>在群论中，长度为奇数的连续区间循环移位可以生成整个<strong>交错群 $A_n$</strong>（即所有偶置换构成的群）。因此：</li>
+<li><strong>无重复元素的排列</strong>：能够通过奇数 $k$-循环排好序，<strong>当且仅当初始排列的逆序对数为偶数</strong>（即 $(n - c) \bmod 2 = 0$）。</li>
+<li><strong>含重复元素的序列（高频坑点）</strong>：若原数组中<strong>存在至少两个相同的元素</strong>，则<strong>一定可以排好序</strong>。因为我们将相同元素视为不同个体赋予标号时，交换这两个相同元素的位置不会改变原序列的值，但能让对应排列的逆序对奇偶性翻转，从而凑出偶置换。</li>
+</ul>
+<h4 id="2-当-k-为偶数时（奇置换）"><a href="#2-当-k-为偶数时（奇置换）" class="headerlink" title="2. 当 $k$ 为偶数时（奇置换）"></a>2. 当 $k$ 为偶数时（奇置换）</h4><ul>
+<li><strong>奇偶性翻转</strong>：由于 $k - 1$ 是<strong>奇数</strong>，执行一次 $k$-循环等价于执行奇数次对换。因此，<strong>每执行一次偶数 $k$-循环，逆序对的奇偶性（及 $n - c$ 的奇偶性）都会翻转一次</strong>。</li>
+<li><strong>排序可达性判定（$2 \le k \lt n$）</strong>：<br>由于单次操作改变奇偶性、两次操作保持奇偶性，连续区间的偶数 $k$-循环可以生成整个<strong>对称群 $S_n$</strong>。因此：</li>
+<li><strong>任意排列均可还原</strong>：只要 $k \lt n$，无论初始逆序对是奇是偶，<strong>一定可以通过有限次偶数 $k$-循环将序列排好序</strong>。</li>
+<li><strong>限定步数奇偶性</strong>：若题目要求“恰好操作 $m$ 次”将无重排列排好序，则必要条件为 $m \equiv \text{inv} \equiv n - c \pmod 2$。</li>
+</ul>
+<h4 id="3-边界情况（-k-n-）"><a href="#3-边界情况（-k-n-）" class="headerlink" title="3. 边界情况（$k = n$）"></a>3. 边界情况（$k = n$）</h4><p>当 $k = n$ 时，每次操作只能对整个序列进行全局循环移位，总共只能到达 $n$ 种状态。此时退化为循环同构判定问题，直接枚举偏移量或使用字符串最小表示法 / KMP 即可。</p>
+<h3 id="四、进阶性质与构造策略"><a href="#四、进阶性质与构造策略" class="headerlink" title="四、进阶性质与构造策略"></a>四、进阶性质与构造策略</h3><h4 id="1-广义-k-轮换的最少操作次数下界"><a href="#1-广义-k-轮换的最少操作次数下界" class="headerlink" title="1. 广义 $k$-轮换的最少操作次数下界"></a>1. 广义 $k$-轮换的最少操作次数下界</h4><p>若题目允许<strong>任选 $k$ 个下标</strong>（不要求连续）进行循环位移：</p>
+<ul>
+<li>每次操作包含 $k - 1$ 次对换，最多使置换环的数量 $c$ 增加 $k - 1$。</li>
+<li>要将初始具有 $c$ 个环的排列还原为 $n$ 个自环，全局最少操作次数的理论下界为：</li>
+</ul>
+<script type="math/tex; mode=display">\text{ans} \ge \left\lceil \frac{n - c}{k - 1} \right\rceil</script><ul>
+<li>若不允许跨环借用元素，单独拆解一个长度为 $L$ 的置换环所需的最少操作次数为 $\left\lceil \frac{L - 1}{k - 1} \right\rceil$。</li>
+</ul>
+<h4 id="2-连续区间-k-循环的构造套路"><a href="#2-连续区间-k-循环的构造套路" class="headerlink" title="2. 连续区间 $k$-循环的构造套路"></a>2. 连续区间 $k$-循环的构造套路</h4><p>在要求输出具体操作序列的构造题中（以 $k = 3$ 为最常见模型）：</p>
+<ul>
+<li><strong>前 $n - k$ 个元素贪心归位</strong>：从左往右依次将 $1, 2, \dots, n - k$ 移到对应位置。以 $k = 3$ 为例，若目标元素距离当前位置 $\ge 2$，直接利用包含它的长度为 $3$ 的窗口一次左移 $2$ 格；若距离为 $1$，则利用长度 $3$ 的窗口旋转两次即可左移 $1$ 格。</li>
+<li><strong>末尾元素的收尾处理</strong>：</li>
+<li>当 $k = 3$ 时，前 $n - 2$ 个元素归位后，只剩最后 $2$ 个元素 $p_{n-1}, p_n$。此时已无法再对它们单独操作：若初始为偶置换，根据逆序对奇偶不变性，最后两个元素<strong>必然已经自动有序</strong>；若颠倒则说明初始为奇置换，直接判无解。</li>
+<li>当 $k \gt 3$ 时，可利用换位子（Commutator）思想：通过两个错位 $1$ 格的 $k$-循环交替执行（即 $A B A^{-1} B^{-1}$），可以在保持其余元素不动的前提下，在末尾区域复合出等价的 <strong>$3$-循环</strong>，从而转化为 $k = 3$ 的问题求解。</li>
+</ul>
+<h3 id="五、参考代码：-O-n-判定奇数-k-循环可行性"><a href="#五、参考代码：-O-n-判定奇数-k-循环可行性" class="headerlink" title="五、参考代码：$O(n)$ 判定奇数 $k$-循环可行性"></a>五、参考代码：$O(n)$ 判定奇数 $k$-循环可行性</h3><p>以下代码展示了如何利用置换环在 $O(n)$ 时间内判断一个排列（或含重序列）能否通过奇数 $k$-循环（$k \lt n$）排好序：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;numeric&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回是否能通过连续奇数 k-循环 (k &lt; n) 将数组 a 排好序</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">canSortWithOddK</span><span class="params">(<span class="type">const</span> vector&lt;<span class="type">int</span>&gt;&amp; a)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = a.<span class="built_in">size</span>();</span><br><span class="line">    <span class="comment">// 离散化并检查是否存在重复元素</span></span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">idx</span><span class="params">(n)</span></span>;</span><br><span class="line">    <span class="built_in">iota</span>(idx.<span class="built_in">begin</span>(), idx.<span class="built_in">end</span>(), <span class="number">0</span>);</span><br><span class="line">    <span class="built_in">sort</span>(idx.<span class="built_in">begin</span>(), idx.<span class="built_in">end</span>(), [&amp;](<span class="type">int</span> i, <span class="type">int</span> j) &#123;</span><br><span class="line">        <span class="keyword">return</span> a[i] &lt; a[j];</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i + <span class="number">1</span> &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[idx[i]] == a[idx[i + <span class="number">1</span>]]) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>; <span class="comment">// 存在相同元素，必定可以凑出偶置换</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 统计置换环个数 c</span></span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">vis</span><span class="params">(n, <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="type">int</span> cycles = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!vis[i]) &#123;</span><br><span class="line">            cycles++;</span><br><span class="line">            <span class="type">int</span> cur = i;</span><br><span class="line">            <span class="keyword">while</span> (!vis[cur]) &#123;</span><br><span class="line">                vis[cur] = <span class="number">1</span>;</span><br><span class="line">                cur = idx[cur];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 逆序对奇偶性等价于 (n - cycles) % 2</span></span><br><span class="line">    <span class="keyword">return</span> (n - cycles) % <span class="number">2</span> == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">c++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/TechNotes//" class="article-tag-list-link color5">TechNotes</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/TechNotes/k-cyclic-shift/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-ACM-templates" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -715,115 +868,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/TechNotes/ACM-templates/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-k-cyclic-shift" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/TechNotes/k-cyclic-shift/" target="_blank">k-cyclic-shift</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/TechNotes/k-cyclic-shift/" class="archive-article-date">
-        <time datetime="2026-08-28T05:44:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2026-08-28</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="k-循环与置换环"><a href="#k-循环与置换环" class="headerlink" title="$k$-循环与置换环"></a>$k$-循环与置换环</h1><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p><strong>$k$-循环</strong>：对一个序列中的连续k个元素进行循环位移</p>
-<p>例如对于以下序列，他存在一个对于下标（1索引）$2-4$ 能够执行一个三循环操作</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[3, 1, 2, 5, 4] -&gt; [3, 5, 1, 2, 4]</span><br></pre></td></tr></table></figure>
-<p><strong>置换环</strong>：Permutation Cycles，对于一个排列，将索引连向他的值，创建一条有向边，会形成若干个闭环，称之为置换环</p>
-<p>假设我们有一个的排列</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">索引 i：[1, 2, 3, 4, 5]</span><br><span class="line">排列 p：[3, 1, 2, 5, 4]</span><br></pre></td></tr></table></figure>
-<p>这个排列就可以唯一分解为两个置换环：$(1, 3, 2)$ 和 $(4, 5)$。</p>
-    
-    <a class="article-more-a" href="/TechNotes/k-cyclic-shift/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">c++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/TechNotes//" class="article-tag-list-link color5">TechNotes</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/TechNotes/k-cyclic-shift/">展开全文 >></a>
     </p>
     
 
