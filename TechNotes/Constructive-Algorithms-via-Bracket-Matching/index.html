@@ -10,15 +10,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="在算法竞赛与组合数学中，括号匹配（Regular Bracket Sequence, RBS） 远不止于字符串合法性判定。许多表面上与括号毫无关联的集合通信、未知置换拓扑重构、01 串变换、排列还原乃至区间差分问题，其底层的不变量与双射机制都建立在括号序列的代数与拓扑结构之上。 本文从七道典型构造题出发，剥离繁琐的实现细节，提炼括号匹配背后的三大底层共性与四大核心构造范式，并给出赛场上的模">
+  <meta name="description" content="在算法竞赛与组合数学中，括号匹配（Regular Bracket Sequence, RBS） 远不止于判断字符串是否合法。许多看似和括号毫不相关的题目——集合通信、未知置换下的图还原、01 串字典序重排、排列逆序构造乃至区间的差分清零，剥开外壳后，核心结构全都是括号序列。 本文从七道典型例题出发，剥离冗长的模板代码，总结出括号匹配背后的三大底层共性与四大核心构造范式。在每个专业性质后面，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="括号匹配的性质提炼与构造范式">
 <meta property="og:url" content="https://nicccce.github.io/TechNotes/Constructive-Algorithms-via-Bracket-Matching/">
 <meta property="og:site_name" content="NICCCCE">
-<meta property="og:description" content="在算法竞赛与组合数学中，括号匹配（Regular Bracket Sequence, RBS） 远不止于字符串合法性判定。许多表面上与括号毫无关联的集合通信、未知置换拓扑重构、01 串变换、排列还原乃至区间差分问题，其底层的不变量与双射机制都建立在括号序列的代数与拓扑结构之上。 本文从七道典型构造题出发，剥离繁琐的实现细节，提炼括号匹配背后的三大底层共性与四大核心构造范式，并给出赛场上的模">
+<meta property="og:description" content="在算法竞赛与组合数学中，括号匹配（Regular Bracket Sequence, RBS） 远不止于判断字符串是否合法。许多看似和括号毫不相关的题目——集合通信、未知置换下的图还原、01 串字典序重排、排列逆序构造乃至区间的差分清零，剥开外壳后，核心结构全都是括号序列。 本文从七道典型例题出发，剥离冗长的模板代码，总结出括号匹配背后的三大底层共性与四大核心构造范式。在每个专业性质后面，">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-10-31T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-11-02T10:38:01.019Z">
+<meta property="article:modified_time" content="2026-11-03T06:22:32.935Z">
 <meta property="article:author" content="NICK">
 <meta property="article:tag" content="构造">
 <meta property="article:tag" content="括号匹配">
@@ -236,7 +236,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">3.9k字</span>
+      <span class="post-count">4.6k字</span>
     </span>
   </span>
 
@@ -245,7 +245,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">15分</span>
+      <span class="post-count">17分</span>
     </span>
   </span>
 </div>
@@ -258,335 +258,301 @@
     
     <p>在算法竞赛与组合数学中，<strong>括号匹配（Regular Bracket Sequence,
 RBS）</strong>
-远不止于字符串合法性判定。许多表面上与括号毫无关联的集合通信、未知置换拓扑重构、01
-串变换、排列还原乃至区间差分问题，其底层的不变量与双射机制都建立在括号序列的代数与拓扑结构之上。</p>
-<p>本文从七道典型构造题出发，剥离繁琐的实现细节，提炼括号匹配背后的<strong>三大底层共性</strong>与<strong>四大核心构造范式</strong>，并给出赛场上的模型识别信号。</p>
+远不止于判断字符串是否合法。许多看似和括号毫不相关的题目——集合通信、未知置换下的图还原、01
+串字典序重排、排列逆序构造乃至区间的差分清零，剥开外壳后，核心结构全都是括号序列。</p>
+<p>本文从七道典型例题出发，剥离冗长的模板代码，总结出括号匹配背后的<strong>三大底层共性</strong>与<strong>四大核心构造范式</strong>。在每个专业性质后面，补充了直观的“白描”视角，帮助在赛场上快速捕捉模型特征。</p>
 <span id="more"></span>
-<h2 id="一-底层共性为什么构造题会归约到括号匹配">一、
-底层共性：为什么构造题会归约到括号匹配？</h2>
-<p>对任意二元序列 <span class="math inline">\(s \in \{\texttt{(},
-\texttt{)}\}^n\)</span>，可以从三个相互等价的数学视角审视其结构。凡是能归约为括号匹配的构造题，必然命中了以下<strong>三大底层共性</strong>之一：</p>
-<ol type="1">
-<li><strong>二元对偶与闭合透明性（自由消去视角）</strong>
-问题中存在天然的正反二元状态（入集/出集、进栈/出栈、<span
-class="math inline">\(+1/-1\)</span>、区间左/右端点）。在自由半群向 Dyck
-语言的商映射下，<strong>局部自平衡的闭合子结构一旦配对消去，对外部全局状态即呈“零干扰（透明）”</strong>，剩余未匹配元素呈现出高度规整的标准形态。</li>
-<li><strong>无交叉嵌套与树拓扑双射（层族 / Catalan 视角）</strong>
-凡受栈生命周期、DFS 时间戳或单调栈管辖范围支配的区间族 <span
-class="math inline">\(\mathcal{I}\)</span>，必然满足<strong>层族（Laminar
-Family）</strong>性质——任意两区间要么包含、要么相离，绝不严格相交：
+<h2 id="一-底层共性为什么构造题总能转成括号">一、
+底层共性：为什么构造题总能转成括号？</h2>
+<p>所有能归约为括号匹配的问题，本质上都命中了以下三种几何或代数直觉：</p>
+<h3 id="局部闭合与子结构消去自由消去视角">1.
+局部闭合与子结构消去（自由消去视角）</h3>
+<ul>
+<li><strong>专业性质</strong>：问题天然具有对称的正反状态（入集与出集、进栈与出栈、<span
+class="math inline">\(+1\)</span> 与 <span
+class="math inline">\(-1\)</span>、左端点与右端点）。一个局部自平衡的合法子串一旦配对消除，对外部环境的代数和与相对顺序产生的影响严格为零。</li>
+<li><strong>白描理解</strong>：成对匹配的闭合括号相当于相互抵消的原子。只要一对左右括号完成闭合（形如
+<code>(...)</code>），其内部结构便被整体封装；对外部环境而言，其代数和与相对序贡献均为零。持续进行消除后，序列最终必然沉淀为规整的不可约残差：<strong>左侧全是不及匹配的右括号，右侧全是有待匹配的左括号</strong>（即
+<code>))) ... ) ((( ... (</code>）。</li>
+</ul>
+<h3 id="区间嵌套与树形同构树拓扑双射视角">2.
+区间嵌套与树形同构（树拓扑双射视角）</h3>
+<ul>
+<li><strong>专业性质</strong>：受生命周期、DFS
+进出栈时间戳或单调栈支配的区间族，严格满足层族（Laminar
+Family）约束——任意两个有效区间要么完全包含，要么完全相离，绝不允许出现严格交叉：
 <span class="math display">\[\neg (l_1 &lt; l_2 &lt; r_1 &lt;
-r_2)\]</span> 这使得线性括号序、无交叉区间族与有根森林之间存在天然的
-<strong>Catalan 同构双射</strong>。</li>
-<li><strong>前缀势能与极值对偶（Dyck 折线视角）</strong> 令 <span
-class="math inline">\(\phi(\texttt{(}) = +1,\ \phi(\texttt{)}) =
--1\)</span>，定义前缀高程 <span class="math inline">\(S_i = \sum_{j=1}^i
-\phi(s_j)\)</span>。序列的配对可行性统一收敛为<strong>终点归零</strong>（<span
+r_2)\]</span></li>
+<li><strong>白描理解</strong>：类似规范的代码缩进或多层嵌套结构。两段管辖范围要么是“外层包含内层”（父子节点），要么是“互不干扰并列排布”（兄弟节点），绝不可能出现两段区间相互交错各跨越一半的情形。因此，<strong>无交叉区间集合在线性序列上天然对应一棵有根树</strong>；单调栈的压栈与弹栈，本质上就是在树的分支上自顶向下探索并回溯。</li>
+</ul>
+<h3 id="高程折线与前缀势能dyck-势能视角">3. 高程折线与前缀势能（Dyck
+势能视角）</h3>
+<ul>
+<li><strong>专业性质</strong>：令左括号 <span
+class="math inline">\(\phi(\texttt{(}) = +1\)</span>、右括号 <span
+class="math inline">\(\phi(\texttt{)}) = -1\)</span>，前缀和 <span
+class="math inline">\(S_i = \sum_{j=1}^i \phi(s_j)\)</span>
+构成一条高程折线。合法性判定归结为两个代数条件：<strong>终点归零</strong>（<span
 class="math inline">\(S_n =
 0\)</span>）与<strong>过程无赤字</strong>（<span
-class="math inline">\(\min S_i \ge
-0\)</span>）；而并发消除的最小轮数（或最小资源开销）则对偶地收敛为折线峰值，即<strong>最大嵌套深度</strong>
-<span class="math inline">\(\max S_i\)</span>。</li>
-</ol>
+class="math inline">\(\min S_i \ge 0\)</span>）。</li>
+<li><strong>白描理解</strong>：把左括号看作地势上升一步（存入势能），右括号看作地势下降一步（消耗势能）。合法的括号序列要求“势能全程不得为负（无赤字），且终点恰好耗尽归零”。若考察该序列最多同时嵌套了多少层、或并行消除最少需要几轮，在几何上直接对应了<strong>这条高程折线达到的最高峰值</strong>（<span
+class="math inline">\(\max S_i\)</span>）。</li>
+</ul>
 <hr />
 <h2 id="二-四大构造范式与典型应用">二、 四大构造范式与典型应用</h2>
-<p>按核心不变量的不同，可将七道构造题系统归纳为以下四个标准范式。</p>
+<hr />
 <h3
-id="范式一栈消去正则残差与可逆双射">范式一：栈消去正则残差与可逆双射</h3>
+id="范式一栈消去后的正则残差与可逆双射">范式一：栈消去后的正则残差与可逆双射</h3>
 <h4 id="核心机制">核心机制</h4>
-<p>对任意括号串不断消去相邻的 <span
-class="math inline">\(\texttt{()}\)</span>（等价于贪心栈匹配），该重写系统具备汇合性（Church-Rosser
-性质），最终剩余的未匹配子序列唯一确定，且<strong>必定严格呈现为先全
-<span class="math inline">\(\texttt{)}\)</span> 后全 <span
-class="math inline">\(\texttt{(}\)</span> 的不可约标准型</strong>：</p>
+<p>无论消除括号的具体顺序如何，贪心消除所有相邻配对的 <code>()</code>
+后，剩余的未匹配字符一定唯一确定，且严格呈现为：</p>
 <p><span class="math display">\[\operatorname{Reduce}(s) =
 \underbrace{\texttt{)}\ \texttt{)}\ \cdots\ \texttt{)}}_{p \text{ 个}}\
 \underbrace{\texttt{(}\ \texttt{(}\ \cdots\ \texttt{(}}_{q \text{
 个}}\]</span></p>
-<p>未匹配字符之间仅夹杂着若干完全自平衡的闭合块 <span
-class="math inline">\(M_0, M_1, \dots,
-M_{p+q}\)</span>。对分界点处的残差字符做单点翻转，或对整个残差子序列做全局反转，均不会破坏任何
-<span class="math inline">\(M_i\)</span> 内部的既有匹配。</p>
+<p>未匹配的括号之间交织着若干已经完全自闭合的平衡子串 <span
+class="math inline">\(M_0, M_1, \dots\)</span>。 *
+<strong>白描理解</strong>：残差的分界处是一个天然的“锚点”。若将残差中<strong>最后一个未匹配的
+<code>)</code></strong> 翻转为
+<code>(</code>，它原本就无法与左侧配对，翻转后同样无法与右侧配对；原先已经闭合的各子结构
+<span class="math inline">\(M_i\)</span>
+内部匹配丝毫未动，而该修改位置在新序列中，必然精确对应<strong>新序列中第一个未匹配的
+<code>(</code></strong>。这种原匹配结构恒定、修改点位置精准可逆的性质，为通信与构造题提供了无序环境下的单射桥梁。</p>
+<hr />
 <h4 id="集合单射通信ucup-4-extra-stage-5-h---telepathy">1.
 集合单射通信：UCup 4 Extra Stage 5 H - Telepathy</h4>
 <ul>
-<li><strong>问题简述</strong>：全集 <span
-class="math inline">\(\{1,\dots,n\}\)</span>，Alice 拿到大小为 <span
+<li><strong>问题</strong>：全集为 <span
+class="math inline">\(\{1,\dots,n\}\)</span>。Alice 拿到一个大小为 <span
 class="math inline">\(k &lt; n/2\)</span> 的子集 <span
-class="math inline">\(S\)</span>，需加入一个新元素 <span
-class="math inline">\(x \notin S\)</span> 将无序集合 <span
-class="math inline">\(S&#39; = S \cup \{x\}\)</span> 传给 Bob；Bob 仅凭
-<span class="math inline">\(S&#39;\)</span> 需唯一还原 <span
+class="math inline">\(S\)</span>。她必须添加一个元素 <span
+class="math inline">\(x \notin S\)</span>，将扩充后的无序集合 <span
+class="math inline">\(S&#39; = S \cup \{x\}\)</span> 传给 Bob。Bob
+需在元素顺序完全被打乱的情况下，精确找出 Alice 添加的元素 <span
 class="math inline">\(x\)</span>。</li>
-<li><strong>构造思路</strong>（Greene-Kleitman 对称链剖分）：
-<ol type="1">
-<li><strong>括号映射</strong>：令 <span class="math inline">\(i \in
-S\)</span> 为 <span class="math inline">\(\texttt{(}\)</span>，<span
-class="math inline">\(i \notin S\)</span> 为 <span
-class="math inline">\(\texttt{)}\)</span>。设栈消除后匹配了 <span
-class="math inline">\(m\)</span> 对，则残差中 <span
-class="math inline">\(\texttt{)}\)</span> 与 <span
-class="math inline">\(\texttt{(}\)</span> 的个数满足： <span
-class="math display">\[p - q = (n - k - m) - (k - m) = n - 2k \ge 1
-\implies p \ge 1\]</span> 即 <span class="math inline">\(k &lt;
-n/2\)</span> 保证了残差中<strong>至少存在一个未匹配的 <span
-class="math inline">\(\texttt{)}\)</span></strong>。</li>
-<li><strong>可逆翻转</strong>：Alice 找出残差中<strong>最后一个未匹配的
-<span class="math inline">\(\texttt{)}\)</span></strong>（设下标为 <span
-class="math inline">\(x\)</span>）并将其翻转为 <span
-class="math inline">\(\texttt{(}\)</span>。由于 <span
-class="math inline">\(x\)</span> 左侧全是未匹配 <span
-class="math inline">\(\texttt{)}\)</span>、右侧全是未匹配 <span
-class="math inline">\(\texttt{(}\)</span>，翻转后它既不能向左匹配也不能向右匹配，原闭合块
-<span class="math inline">\(M_i\)</span> 毫发无损，而 <span
-class="math inline">\(x\)</span> 在新串残差 <span
-class="math inline">\(\texttt{)}^{p-1}\texttt{(}^{q+1}\)</span>
-中恰好成为<strong>第一个未匹配的 <span
-class="math inline">\(\texttt{(}\)</span></strong>。</li>
-<li><strong>无损解码</strong>：Bob 将 <span
-class="math inline">\(S&#39;\)</span>
-转为括号串做栈消除，直接输出<strong>第一个未匹配 <span
-class="math inline">\(\texttt{(}\)</span></strong> 的下标即为 <span
-class="math inline">\(x\)</span>。</li>
-</ol></li>
+<li><strong>思路</strong>：
+<ul>
+<li><strong>括号建模</strong>：将属于集合的元素映射为
+<code>(</code>，不属于集合的元素映射为
+<code>)</code>。消除所有配对括号后，因 <span class="math inline">\(|S| =
+k &lt; n/2\)</span>，右括号数量严格大于左括号（<span
+class="math inline">\(p - q = n - 2k \ge
+1\)</span>），残差中<strong>必定至少包含一个未匹配的
+<code>)</code></strong>。</li>
+<li><strong>操作与还原</strong>：Alice
+找到残差中<strong>最后一个未匹配的 <code>)</code></strong>，将其改为
+<code>(</code>（即把下标 <span class="math inline">\(x\)</span>
+收入集合）。原有的所有配对关系完全保持闭合，而该位置在 Bob
+眼中恰好成为<strong>新序列中第一个未匹配的 <code>(</code></strong>。Bob
+接收到无序集合后建立括号序列并执行单调栈消除，取出首个未匹配左括号的位置即为答案。</li>
+</ul></li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 核心辅助函数：返回栈消除后所有未匹配括号的下标（前半全 &#x27;)&#x27;，后半全 &#x27;(&#x27;）</span></span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">get_unmatched</span><span class="params">(<span class="type">int</span> n, <span class="type">const</span> vector&lt;<span class="type">char</span>&gt;&amp; in_set)</span> </span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; st;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!in_set[i] &amp;&amp; !st.<span class="built_in">empty</span>() &amp;&amp; in_set[st.<span class="built_in">back</span>()]) st.<span class="built_in">pop_back</span>();</span><br><span class="line">        <span class="keyword">else</span> st.<span class="built_in">push_back</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> st; <span class="comment">// Alice 取最后一个 in_set=0 的下标；Bob 取第一个 in_set=1 的下标</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 返回未匹配括号下标：前半截全为 &#x27;)&#x27;，后半截全为 &#x27;(&#x27;</span></span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">get_unmatched</span><span class="params">(<span class="type">int</span> n, <span class="type">const</span> vector&lt;<span class="type">char</span>&gt;&amp; in_set)</span> </span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; st;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!in_set[i] &amp;&amp; !st.<span class="built_in">empty</span>() &amp;&amp; in_set[st.<span class="built_in">back</span>()]) st.<span class="built_in">pop_back</span>();</span><br><span class="line">        <span class="keyword">else</span> st.<span class="built_in">push_back</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> st; <span class="comment">// Alice 取最后一个 in_set=0 的位置；Bob 取第一个 in_set=1 的位置</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr />
 <h4 id="子序列正反分解cf-1837d---bracket-coloring">2. 子序列正反分解：<a
 target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1837/D">CF 1837D -
 Bracket Coloring</a></h4>
 <ul>
-<li><strong>问题简述</strong>：给定左右括号数量相等的串 <span
-class="math inline">\(s\)</span>，将其划分为最少数量的不相交子序列，使每个子序列要么自身是
-RBS，要么翻转（reverse）后是 RBS。</li>
-<li><strong>构造思路</strong>：
-<ol type="1">
-<li><strong>特判 <span class="math inline">\(1\)</span>
-色</strong>：若前缀和全程 <span class="math inline">\(S_i \ge
-0\)</span>（本身为正向 RBS）或全程 <span class="math inline">\(S_i \le
-0\)</span>（整体翻转后为 RBS），全染颜色 <span
-class="math inline">\(1\)</span> 即可。</li>
-<li><strong><span class="math inline">\(2\)</span>
-色上界证明</strong>：否则执行标准栈匹配，所有成功配对的字符直接构成正向
-RBS，染颜色 <span
-class="math inline">\(1\)</span>。因全局左右括号等量，剩余残差必满足
-<span class="math inline">\(p = q = k\)</span>，形态严格为 <span
-class="math inline">\(\texttt{)}^k\texttt{(}^k\)</span>；将其整体反转即得
-<span class="math inline">\(\texttt{(}^k\texttt{)}^k\)</span>，恰为合法
-RBS，全部染颜色 <span class="math inline">\(2\)</span>。故答案严格 <span
-class="math inline">\(\le 2\)</span>。</li>
-</ol></li>
+<li><strong>问题</strong>：给定一个左右括号总数相等的串 <span
+class="math inline">\(s\)</span>，将其划分为最少数量的不相交子序列，使每个子序列要么自身是合法括号串（RBS），要么<strong>整个反转（reverse）后</strong>是合法括号串。</li>
+<li><strong>思路</strong>：
+<ul>
+<li><strong>白描推导</strong>：划分所需颜色数至多为 2。</li>
+<li>运行标准的栈贪心消除：所有成功正向配对的字符直接构成合法
+RBS，赋予颜色 1 并分离。</li>
+<li>考察栈消除后剩余的未匹配残差：因全局左右括号总数相等，剩余未匹配字符中
+<code>)</code> 与 <code>(</code> 数量必定严格相同，形态必然为 <span
+class="math inline">\(k\)</span> 个 <code>)</code> 后紧随 <span
+class="math inline">\(k\)</span> 个 <code>(</code>（即 <span
+class="math inline">\(\texttt{))}\dots\texttt{)((}\dots\texttt{(}\)</span>）。</li>
+<li>将该残差子序列整体翻转（reverse），恰好变为 <span
+class="math inline">\(k\)</span> 个 <code>(</code> 紧随 <span
+class="math inline">\(k\)</span> 个 <code>)</code>（即 <span
+class="math inline">\(\texttt{((}\dots\texttt{())}\dots\texttt{)}\)</span>），其本身构成完全合法的括号序列！将其整体赋予颜色
+2 即可。</li>
+<li>故除原串本身直接正向合法或反向合法（1 色）外，其余情况均恒可在 2
+色内构造完成。</li>
+</ul></li>
 </ul>
 <hr />
 <h3
 id="范式二无交叉嵌套树编码与极值剥离">范式二：无交叉嵌套、树编码与极值剥离</h3>
 <h4 id="核心机制-1">核心机制</h4>
-<p>有根森林的拓扑结构可通过三种方式与括号序列互译： 1. <strong>DFS
-欧拉序编码</strong>：进子树记 <span
-class="math inline">\(\texttt{(}\)</span>、出子树记 <span
-class="math inline">\(\texttt{)}\)</span>，生成长 <span
-class="math inline">\(2n\)</span> 的 RBS；<strong>仅保留 <span
-class="math inline">\(n\)</span>
-个左括号的位置集合，即可唯一还原整片森林</strong>（其余 <span
-class="math inline">\(n\)</span> 个空位必为右括号）。 2.
-<strong>无交叉区间建树</strong>：半开区间族 <span
-class="math inline">\(\{[l_i, r_i)\}\)</span>
-若无严格交叉，则包含关系直接构成括号树。 3.
-<strong>最深层归并剥离</strong>：树上相邻兄弟叶节点的合并，等价于消去最内层的相邻括号对
-<span class="math inline">\(\texttt{()}\)</span>。</p>
+<p>树结构与括号序列具有天然的同构关系： 1. <strong>DFS
+进出栈</strong>：进入节点记录 <code>(</code>，离开节点记录
+<code>)</code>，长度为 <span class="math inline">\(2n\)</span>
+的括号序列无损记录整棵树的拓扑关系。 2.
+<strong>半信息充分性</strong>：因右括号仅代表回溯离开节点，<strong>只要确定全部
+<span class="math inline">\(n\)</span>
+个左括号所出现的时间戳位置，整棵树的拓扑结构便已唯一确定</strong>（其余空位必然全为右括号）。
+3.
+<strong>极值剥离归约</strong>：在树上将最深处的兄弟叶节点合并，在序列层面等价于定位局部极大值，并将其与相邻前驱/后继配对消除。</p>
+<hr />
 <h4 id="未知置换下的森林重构2026-icpc-成都站-i---invisible-edges">3.
 未知置换下的森林重构：2026 ICPC 成都站 I - Invisible Edges</h4>
 <ul>
-<li><strong>问题简述</strong>：通信题。第一轮已知 <span
-class="math inline">\(n\)</span> 点森林，给每点赋权 <span
+<li><strong>问题</strong>：通信题。第一轮 VegiCat 已知包含 <span
+class="math inline">\(n\)</span> 个节点的森林，需为每个节点赋权 <span
 class="math inline">\(a_u \in [1,
-2n]\)</span>；随后节点编号被未知排列随机打乱；第二轮仅凭打乱后的点权数组
-<span class="math inline">\(b_1, \dots, b_n\)</span> 重构所有树边。</li>
-<li><strong>构造思路</strong>：
-<ol type="1">
-<li><strong>半信息赋权</strong>：对森林做 DFS，维护全局时间戳
-<code>timer</code> <span class="math inline">\(\in [1,
-2n]\)</span>。首次进入点 <span class="math inline">\(u\)</span> 时令
-<span class="math inline">\(a_u =
-\text{++timer}\)</span>（记录左括号），离开点 <span
-class="math inline">\(u\)</span> 时仅执行 <code>++timer</code>
-而不分配给任何节点（留空作为右括号）。</li>
-<li><strong>栈式解码</strong>：接收方建立映射 <code>who[t]</code>（若
-<span class="math inline">\(b_i = t\)</span> 则
-<code>who[t] = i</code>，否则为 <span
-class="math inline">\(0\)</span>），随后令 <span
-class="math inline">\(t\)</span> 从 <span
-class="math inline">\(1\)</span> 扫到 <span
-class="math inline">\(2n\)</span> 维护栈：遇到有主时间戳 <span
-class="math inline">\(u\)</span>，若栈非空则连父子边
-<code>(stk.back(), u)</code>
-并压栈；遇到空置时间戳则弹栈。当一棵树遍历完毕时栈恰好排空，天然隔离不同连通块，时间复杂度
+2n]\)</span>；随后所有节点被未知置换随机打乱；第二轮 VegiDog
+仅根据新编号与对应权值，重构森林的所有边。</li>
+<li><strong>思路</strong>：
+<ul>
+<li><strong>白描理解</strong>：权值上限限制在 <span
+class="math inline">\([1, 2n]\)</span>，直接对应了 <span
+class="math inline">\(n\)</span> 个节点的树在 DFS 进出序列中的 <span
+class="math inline">\(2n\)</span> 个时间节点。</li>
+<li>VegiCat 执行 DFS：首次访问节点 <span
+class="math inline">\(u\)</span> 时赋予当前时间戳作为权值 <span
+class="math inline">\(a_u\)</span>（记录左括号位置）；回溯离开节点 <span
+class="math inline">\(u\)</span>
+时时间戳递增，但<strong>该时间戳留空、不分配给任何节点</strong>（代表隐式右括号）。</li>
+<li>VegiDog 获得权值后，在区间 <span class="math inline">\([1,
+2n]\)</span>
+上扫描：有节点占位的时间戳即为左括号，空闲时间戳即为右括号。维护一个遍历栈：遇到有节点占位，连一条该节点与当前栈顶之间的父子边并压栈；遇到空闲时间戳则弹栈。每棵树遍历完毕后栈自然清空，连通块之间自动隔离，时空复杂度均为严格的
 <span class="math inline">\(O(n)\)</span>。</li>
-</ol></li>
+</ul></li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 接收方 O(n) 还原森林边集核心逻辑</span></span><br><span class="line">vector&lt;<span class="type">int</span>&gt; stk;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> t = <span class="number">1</span>; t &lt;= <span class="number">2</span> * n; ++t) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="type">int</span> u = who[t]) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!stk.<span class="built_in">empty</span>()) edges.<span class="built_in">emplace_back</span>(stk.<span class="built_in">back</span>(), u);</span><br><span class="line">        stk.<span class="built_in">push_back</span>(u);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        stk.<span class="built_in">pop_back</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="单调栈区间还原排列cf-1158c---permutation-recovery">4.
-单调栈区间还原排列：<a
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 接收方仅凭左括号位置重构森林拓扑</span></span><br><span class="line">vector&lt;<span class="type">int</span>&gt; stk;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> t = <span class="number">1</span>; t &lt;= <span class="number">2</span> * n; ++t) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="type">int</span> u = who[t]) &#123; <span class="comment">// 有节点占位：左括号</span></span><br><span class="line">        <span class="keyword">if</span> (!stk.<span class="built_in">empty</span>()) edges.<span class="built_in">emplace_back</span>(stk.<span class="built_in">back</span>(), u);</span><br><span class="line">        stk.<span class="built_in">push_back</span>(u);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;              <span class="comment">// 空闲时间戳：隐式右括号</span></span><br><span class="line">        stk.<span class="built_in">pop_back</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr />
+<h4 id="单调栈管辖区间还原排列cf-1158c---permutation-recovery">4.
+单调栈管辖区间还原排列：<a
 target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1158/C">CF 1158C -
 Permutation Recovery</a></h4>
 <ul>
-<li><strong>问题简述</strong>：未知排列 <span
-class="math inline">\(p\)</span>，给出每个位置右侧首个满足 <span
-class="math inline">\(p_j &gt; p_i\)</span> 的下标 <span
-class="math inline">\(nxt[i]\)</span>（不存在则为 <span
-class="math inline">\(n+1\)</span>，缺失则为 <span
-class="math inline">\(-1\)</span>），判断是否有解并构造合法排列。</li>
-<li><strong>构造思路</strong>：
-<ol type="1">
-<li><strong>无交叉性判据</strong>：约束等价于 <span
-class="math inline">\(\forall k \in (i, nxt[i]),\ p_k &lt; p_i\)</span>
-且 <span class="math inline">\(p_{nxt[i]} &gt;
-p_i\)</span>。若两区间严格交叉（<span class="math inline">\(i &lt; j
-&lt; nxt[i] &lt; nxt[j]\)</span>），会导出 <span
-class="math inline">\(p_{nxt[i]} &lt; p_j &lt; p_i &lt;
-p_{nxt[i]}\)</span> 的矛盾。缺失项直接令 <span
-class="math inline">\(nxt[i] = i +
-1\)</span>（最小跨度，绝不引入交叉），再用单调栈 <span
-class="math inline">\(O(n)\)</span> 检验区间是否无交叉。</li>
-<li><strong>括号树拓扑赋权</strong>：以 <span
-class="math inline">\(nxt[i]\)</span> 为 <span
-class="math inline">\(i\)</span> 的父节点建树（根为虚拟点 <span
-class="math inline">\(n+1\)</span>）。父节点权值需大于子树，同层靠左兄弟需小于靠右兄弟；故按编号从小到大连入邻接表，从
-<span class="math inline">\(n+1\)</span> 出发做
-DFS，在<strong>后序位置</strong>用全局递减计数器 <code>cur_val--</code>
-依次赋值即可。</li>
-</ol></li>
+<li><strong>问题</strong>：排列未知，仅给出每个位置右侧首个比它大的位置
+<span class="math inline">\(nxt[i]\)</span>（不存在则为 <span
+class="math inline">\(n+1\)</span>），部分信息可能丢失（给出 <span
+class="math inline">\(-1\)</span>），要求构造一个合法排列。</li>
+<li><strong>思路</strong>：
+<ul>
+<li><strong>白描理解</strong>：<span
+class="math inline">\(nxt[i]\)</span> 意味着开区间 <span
+class="math inline">\((i, nxt[i])\)</span> 内的所有元素都必须严格小于
+<span class="math inline">\(p_i\)</span>，而 <span
+class="math inline">\(p_{nxt[i]} &gt;
+p_i\)</span>。将管辖范围视作半开区间 <span class="math inline">\([i,
+nxt[i])\)</span>。</li>
+<li>若存在两区间严格交叉（例如 <span class="math inline">\([2,
+5)\)</span> 与 <span class="math inline">\([4,
+7)\)</span>），由包含关系将推导出 <span class="math inline">\(p_2 &gt;
+p_4\)</span> 且 <span class="math inline">\(p_4 &gt; p_5\)</span>，但
+<span class="math inline">\(nxt[2]=5\)</span> 又要求 <span
+class="math inline">\(p_5 &gt; p_2\)</span>，直接产生偏序矛盾。</li>
+<li>因此合法区间族<strong>绝不允许严格交叉</strong>，必须构成自顶向下的嵌套括号树。缺失信息默认令
+<span class="math inline">\(nxt[i] =
+i+1\)</span>（最小跨度，不引入交叉）；以 <span
+class="math inline">\(nxt[i]\)</span>
+为父节点建树，在树上执行后序遍历，自顶向下分配递减数值，外层节点自然严格大于内层子节点。</li>
+</ul></li>
 </ul>
-<h4 id="叶子深度序列判定树结构cf-1919d---01-tree">5.
-叶子深度序列判定树结构：<a
+<hr />
+<h4 id="树叶深度序列判树cf-1919d---01-tree">5. 树叶深度序列判树：<a
 target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1919/D">CF 1919D - 01
 Tree</a></h4>
 <ul>
-<li><strong>问题简述</strong>：给定数组 <span class="math inline">\(a_1,
-\dots, a_n\)</span>，问是否存在边权属于 <span class="math inline">\(\{0,
-1\}\)</span> 且内部节点度数 <span class="math inline">\(\ge 2\)</span>
-的有根树，使其叶子按从左到右顺序到根的距离恰为 <span
-class="math inline">\(a_i\)</span>。</li>
-<li><strong>构造思路</strong>： 在合法的 01
-树中，每次把同一最深内节点的相邻叶子合并为其父节点，表现为：两个深度为
-<span class="math inline">\(x\)</span> 与 <span
-class="math inline">\(x-1\)</span>（或同父转化后差 <span
-class="math inline">\(1\)</span>）的相邻元素配对，消去较大者 <span
-class="math inline">\(x\)</span> 并保留 <span
-class="math inline">\(x-1\)</span> 代表子树。
-因此充要条件为：全局<strong>恰好有一个 <span
-class="math inline">\(0\)</span></strong>，且每个非零局部极大值都能在当前存活序列中与相邻的
-<span class="math inline">\(x - 1\)</span>
-配对消去。用双向链表维护存活相邻关系，配合大根堆从大到小贪心剥离满足相邻差
-<span class="math inline">\(1\)</span> 的元素，最终仅剩单元素 <span
-class="math inline">\(0\)</span> 即有解。</li>
+<li><strong>问题</strong>：给定一排叶子到根节点的距离数组 <span
+class="math inline">\(a_1, \dots,
+a_n\)</span>，判定是否存在一棵非叶节点度数 <span
+class="math inline">\(\ge 2\)</span>、边权属于 <span
+class="math inline">\(\{0, 1\}\)</span>
+的树，使得其中序遍历的叶子深度恰好为该序列。</li>
+<li><strong>思路</strong>：
+<ul>
+<li><strong>白描理解</strong>：在合法的树结构中，最深层的兄弟叶节点在序列中必然呈现为局部的“高程峰值”。</li>
+<li>深度为 <span class="math inline">\(x\)</span>
+的叶子若能合法归约为其父节点，其相邻位置必须存在深度为 <span
+class="math inline">\(x\)</span> 或 <span
+class="math inline">\(x-1\)</span> 的兄弟节点（合并后由 <span
+class="math inline">\(x-1\)</span> 代表父分支）。</li>
+<li>这等价于消去最内层匹配项：利用双向链表与大根堆，动态检索当前存活序列中的局部极大值，验证其与相邻元素差值是否为
+1；若满足则将其消去并由较小邻居代表。若该归约过程能顺利进行直至仅余单一根节点
+<span class="math inline">\(0\)</span>，则树结构成立。</li>
+</ul></li>
 </ul>
 <hr />
 <h3 id="范式三dyck-高程折线与欧拉多重图">范式三：Dyck
 高程折线与欧拉多重图</h3>
 <h4 id="核心机制-2">核心机制</h4>
-<p>在 01 串上令 <span class="math inline">\(\texttt{1} \to +1,\
-\texttt{0} \to -1\)</span>，前缀高度 <span
-class="math inline">\(h_i\)</span> 构成数轴上的连续折线： * 子串 <span
-class="math inline">\(s[l..r]\)</span> 满足 <span
-class="math inline">\(0, 1\)</span> 个数相等 <span
-class="math inline">\(\iff h_{l-1} =
-h_r\)</span>，即对应高程图上的一条<strong>闭合回路（Closed
-Walk）</strong>。 * 将每个整数高度视作顶点、每步转移视作连接 <span
+<p>定义字符映射 <span class="math inline">\(\phi(\texttt{1}) = +1,\
+\phi(\texttt{0}) = -1\)</span>： * <strong>回路对应</strong>：子串中 0
+和 1 数量相等 <span class="math inline">\(\iff\)</span>
+其对应的高程折线始末高度相同，在以高度为顶点的图模型中对应一条<strong>闭合回路（Closed
+Walk）</strong>。 *
+<strong>变换的几何意义</strong>：对平衡子串执行“按位取反并翻转（Flip
+&amp; Reverse）”，原折线中自高度 <span class="math inline">\(h\)</span>
+至 <span class="math inline">\(h+1\)</span>
+的上升步，经取反变为下降，倒序遍历时再次改变方向，最终依然是在高度 <span
 class="math inline">\(h\)</span> 与 <span
 class="math inline">\(h+1\)</span>
-的边，则原串对应高程多重图上的一条欧拉路径。</p>
-<h4 id="平衡子串取反翻转求最小字典序cf-1458d---flip-and-reverse">6.
-平衡子串取反翻转求最小字典序：<a
+之间移动。<strong>操作完全不改变相邻高度间的无向边多重集合，边重数 <span
+class="math inline">\(cnt[h]\)</span>
+是严格守恒的拓扑不变量。</strong></p>
+<hr />
+<h4 id="平衡子串取反反转求最小字典序cf-1458d---flip-and-reverse">6.
+平衡子串取反反转求最小字典序：<a
 target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1458/D">CF 1458D - Flip
 and Reverse</a></h4>
 <ul>
-<li><strong>问题简述</strong>：给定 01 串 <span
-class="math inline">\(s\)</span>，允许任意次任选一个 <span
-class="math inline">\(0, 1\)</span>
-等量的子串，将其按位取反（Flip）后再整体反转（Reverse），求能得到的字典序最小串。</li>
-<li><strong>构造思路</strong>：
-<ol type="1">
-<li><strong>边重数守恒不变量</strong>：原折线中从 <span
-class="math inline">\(h\)</span> 到 <span
-class="math inline">\(h+1\)</span> 的一步（字符
-<code>1</code>），取反后变为 <span
-class="math inline">\(-1\)</span>，再倒序遍历时恰好变成从 <span
-class="math inline">\(h+1\)</span> 回到 <span
-class="math inline">\(h\)</span> 的一步！换言之，“取反 +
-反转”一段闭合回路，在图上仅仅是<strong>将该闭合环无向化并反向走一遍</strong>，相邻高度
-<span class="math inline">\([h, h+1]\)</span> 之间的<strong>无向边总重数
-<code>cnt[h]</code> 严格守恒</strong>。</li>
-<li><strong>欧拉路径字典序贪心</strong>：任意环反转等价于可在连通重边图上任选欧拉路径。从起点高度
-<span class="math inline">\(cur\)</span>
-出发贪心填字符，优先尝试向下走（输出 <code>0</code>，消耗
-<code>cnt[cur - 1]</code>）：
+<li><strong>问题</strong>：给定 01 串，每次可任选一个 0 和 1
+等量的子串，将其按位取反并整体翻转，求任意次操作后可获得的字典序最小串。</li>
+<li><strong>思路</strong>：
 <ul>
-<li>若下方无边（<code>cnt[cur - 1] == 0</code>），只能向上输出
-<code>1</code>；</li>
-<li>若下方有边，但上方<strong>恰好只剩 <span
-class="math inline">\(1\)</span>
-条边</strong>（<code>cnt[cur] == 1</code>），此时一旦向下走就会用光回升通道或将上方未遍历子图孤立（单桥不可回溯），故必须先向上输出
-<code>1</code> 清空上方子图；其余情况（<code>cnt[cur] == 0</code> 或
-<code>cnt[cur] &gt; 1</code>）均可安全向下输出 <code>0</code>。</li>
+<li><strong>图模型转化</strong>：由于平衡环反转不改变相邻高度间的连边重数，原问题等价于：在高度顶点构成的多重图上，寻找一条自起点高度出发、走完所有边且字典序最小的欧拉路径。</li>
+<li><strong>字典序贪心与割边规避（Fleury 思想）</strong>：在当前高度
+<span class="math inline">\(cur\)</span>
+处，字典序贪心要求优先走向下（输出 <code>0</code>，转移到 <span
+class="math inline">\(cur -
+1\)</span>）。判定能否安全向下走的充要条件是：<strong>不提前切断通向上方的割边</strong>。
+<ul>
+<li>若下方无可用边（<code>cnt[cur - 1] == 0</code>），只能向上走；</li>
+<li>若下方有边，但上方<strong>恰好只剩一条通路</strong>（<code>cnt[cur] == 1</code>），且上方仍有待遍历边，此时若走向下，通向上方的连通性将被提前切断，导致上方子图无法再被访问；</li>
+<li>因此，仅当 <code>cnt[cur] == 1</code>
+且上方未完工时，必须强制向上走输出 <code>1</code>
+以清空上方子图；其余情况下只要下方有边，均可贪心向下走输出
+<code>0</code>。</li>
 </ul></li>
-</ol></li>
+</ul></li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 统计 cnt[h] 后，O(n) 贪心构造字典序最小欧拉路径</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">    <span class="keyword">if</span> (cnt[cur - <span class="number">1</span>] &gt; <span class="number">0</span> &amp;&amp; (cnt[cur] == <span class="number">0</span> || cnt[cur] &gt; <span class="number">1</span>)) &#123;</span><br><span class="line">        ans += <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">        cnt[--cur]--;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ans += <span class="string">&#x27;1&#x27;</span>;</span><br><span class="line">        cnt[cur++]--;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 统计高度连边数 cnt[h] 后，按割边规避准则贪心生成字典序最小串</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">    <span class="keyword">if</span> (cnt[cur - <span class="number">1</span>] &gt; <span class="number">0</span> &amp;&amp; (cnt[cur] == <span class="number">0</span> || cnt[cur] &gt; <span class="number">1</span>)) &#123;</span><br><span class="line">        ans += <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">        cnt[--cur]--; <span class="comment">// 安全走向下</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ans += <span class="string">&#x27;1&#x27;</span>;</span><br><span class="line">        cnt[cur++]--; <span class="comment">// 上方存在关键割边或下方无路，必须向上走</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr />
 <h3
 id="范式四前缀势能与并联消除深度">范式四：前缀势能与并联消除深度</h3>
 <h4 id="核心机制-3">核心机制</h4>
-<p>当操作允许“任选递增下标子序列，交替执行奇位减、偶位加”时，每次操作等价于从原序列中<strong>并发抽取一组互不重叠的合法括号对
-<span
-class="math inline">\(\texttt{()}\texttt{()}\cdots\texttt{()}\)</span></strong>
-各消去 <span class="math inline">\(1\)</span>
-单位势能。其可行性与最优步数无需显式模拟匹配，直接由前缀和折线的上下界唯一刻画。</p>
-<h4 id="区间交错增减清零cf-1556e---equilibrium">7. 区间交错增减清零：<a
+<p>当题目允许“任选递增子序列，奇数项 <span
+class="math inline">\(-1\)</span>、偶数项 <span
+class="math inline">\(+1\)</span>”时，本质上允许<strong>并发抽取若干互不交叉的括号对进行统一削减</strong>。该类问题无需进行显式括号配对，其可行性与极值开销完全由前缀和折线投影唯一决定。</p>
+<hr />
+<h4 id="区间交错增减归零cf-1556e---equilibrium">7. 区间交错增减归零：<a
 target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1556/E">CF 1556E -
 Equilibrium</a></h4>
 <ul>
-<li><strong>问题简述</strong>：给定数组 <span class="math inline">\(a,
-b\)</span>，定义差值 <span class="math inline">\(d_i = b_i -
-a_i\)</span>。多次独立询问区间 <span class="math inline">\([l,
-r]\)</span>：每次可任选偶数长递增子序列，在奇数项令 <span
-class="math inline">\(d\)</span> 减 <span
-class="math inline">\(1\)</span>、偶数项令 <span
-class="math inline">\(d\)</span> 加 <span
-class="math inline">\(1\)</span>（等价于向 <span
-class="math inline">\(a\)</span> 的奇位加 <span
-class="math inline">\(1\)</span>、偶位减 <span
-class="math inline">\(1\)</span> 以逼近 <span
-class="math inline">\(b\)</span>），求将区间清零的最少操作次数。</li>
-<li><strong>构造思路</strong>： 令需要减少的位置（<span
-class="math inline">\(d_i &gt; 0\)</span>）提供 <span
-class="math inline">\(d_i\)</span> 个左括号 <span
-class="math inline">\(\texttt{(}\)</span>，需要增加的位置（<span
-class="math inline">\(d_i &lt; 0\)</span>）提供 <span
-class="math inline">\(|d_i|\)</span> 个右括号 <span
-class="math inline">\(\texttt{)}\)</span>。记全局前缀和 <span
-class="math inline">\(P_k = \sum_{i=1}^k d_i\)</span>，则区间 <span
-class="math inline">\([l, r]\)</span> 内的相对前缀高程为 <span
-class="math inline">\(S_k = P_k - P_{l-1}\)</span>：
-<ol type="1">
-<li><strong>充要条件</strong>：全局收支平衡（<span
-class="math inline">\(S_r =
-0\)</span>），且任意前缀左括号不少于右括号（<span
-class="math inline">\(\min_{k \in [l, r]} S_k \ge
-0\)</span>），否则必有右括号前置赤字，判 <code>-1</code>。</li>
-<li><strong>最少操作轮数</strong>：单次操作对同一嵌套层至多削减 <span
-class="math inline">\(1\)</span>
-单位高度，故最少操作次数精确等于折线峰值（最大嵌套深度）： <span
-class="math display">\[\text{Ans} = \max_{k \in [l, r]} (P_k -
-P_{l-1})\]</span> 用 ST 表预处理 <span
-class="math inline">\(P_k\)</span> 的区间最值，即可 <span
-class="math inline">\(O(n \log n)\)</span> 预处理、<span
-class="math inline">\(O(1)\)</span> 回答询问。</li>
-</ol></li>
+<li><strong>问题</strong>：给出数组 <span
+class="math inline">\(a\)</span> 和 <span
+class="math inline">\(b\)</span>，定义差值 <span
+class="math inline">\(d_i = b_i - a_i\)</span>。多次独立询问区间 <span
+class="math inline">\([l, r]\)</span>，每次可任选偶数长递增序列，奇数项
+<span class="math inline">\(-1\)</span>、偶数项 <span
+class="math inline">\(+1\)</span>，求使区间完全清零的最少操作次数。</li>
+<li><strong>思路</strong>：
+<ul>
+<li><strong>白描映射</strong>：奇数项减 1 对应提供左括号，偶数项加 1
+对应提供右括号。</li>
+<li><strong>可行性判定（何时无解）</strong>：若区间内部某处的前缀和跌为负数（<span
+class="math inline">\(\min S_k &lt;
+0\)</span>），说明当前已产生“右括号多于左括号”的赤字，后续操作无论如何也无法合法抵消，直接判定无解输出
+<code>-1</code>；区间终点总和不为 0 亦属收支不平衡，同理无解。</li>
+<li><strong>最少操作步数</strong>：单次交错操作至多将某一嵌套层的高度削减
+1。因此，将整个区间清零所需的最少轮数，<strong>精确等于前缀高程折线所达到的最大峰值</strong>（即
+<span class="math inline">\(\max S_k\)</span>）。使用 ST 表做 <span
+class="math inline">\(O(1)\)</span> 区间极值查询即可。</li>
+</ul></li>
 </ul>
 <hr />
-<h2 id="三-总结构造范式速查与赛场识别信号">三、
-总结：构造范式速查与赛场识别信号</h2>
-<h3 id="七道题的核心映射对照">1. 七道题的核心映射对照</h3>
+<h2 id="三-总结构造范式速查与赛场信号">三、
+总结：构造范式速查与赛场信号</h2>
+<h3 id="七道题的核心不变量速查">1. 七道题的核心不变量速查</h3>
 <table>
 <colgroup>
 <col style="width: 25%" />
@@ -597,98 +563,92 @@ class="math inline">\(O(1)\)</span> 回答询问。</li>
 <thead>
 <tr class="header">
 <th style="text-align: left;">范式分类</th>
-<th style="text-align: left;">典型题目</th>
+<th style="text-align: left;">代表题目</th>
 <th style="text-align: left;">括号映射载体</th>
-<th style="text-align: left;">核心不变量 / 极值定理</th>
+<th style="text-align: left;">核心直觉与白描机制</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"><strong>正则残差型</strong></td>
 <td style="text-align: left;">UCup 4 Shenzhen H (Telepathy)</td>
-<td style="text-align: left;"><span class="math inline">\(i \in S
-\mapsto \texttt{(},\ i \notin S \mapsto \texttt{)}\)</span></td>
-<td style="text-align: left;">残差恒为 <span
-class="math inline">\(\texttt{)}^p\texttt{(}^q\)</span>；翻转末位 <span
-class="math inline">\(\texttt{)}\)</span> 可逆变为首位 <span
-class="math inline">\(\texttt{(}\)</span></td>
+<td style="text-align: left;">元素在集合为 <code>(</code>，否则为
+<code>)</code></td>
+<td style="text-align: left;">栈消除后剩余 <code>)))(((</code>；翻转末位
+<code>)</code> 即成新串首位 <code>(</code>，原闭合结构完全不受扰动</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>正则残差型</strong></td>
 <td style="text-align: left;">CF 1837D (Bracket Coloring)</td>
-<td style="text-align: left;">原串贪心栈匹配</td>
-<td style="text-align: left;">正向配对染 <span
-class="math inline">\(1\)</span>，残差 <span
-class="math inline">\(\texttt{)}^k\texttt{(}^k\)</span> 反转即合法，答案
-<span class="math inline">\(\le 2\)</span></td>
+<td style="text-align: left;">原串贪心栈消除</td>
+<td style="text-align: left;">正向配对归入颜色 1；未匹配残差
+<code>)))(((</code> 整体反转即成合法 RBS 归入颜色 2，至多 2 色</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><strong>树与嵌套型</strong></td>
 <td style="text-align: left;">2026 ICPC 成都 I (Invisible Edges)</td>
-<td style="text-align: left;">森林 DFS 进点 <span
-class="math inline">\(\texttt{(}\)</span>、出点 <span
-class="math inline">\(\texttt{)}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(n\)</span>
-个左括号时间戳 <span class="math inline">\(\subseteq [1,2n]\)</span>
-足以无损恢复全森林</td>
+<td style="text-align: left;">森林 DFS 进点 <code>(</code>、出点
+<code>)</code></td>
+<td
+style="text-align: left;">访问进入记录左括号，回溯离开留出右括号空位；已知左括号时间戳即可唯一重构全树</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>树与嵌套型</strong></td>
 <td style="text-align: left;">CF 1158C (Permutation Recovery)</td>
-<td style="text-align: left;">单调栈管辖区间 <span
+<td style="text-align: left;">单调栈管辖跨度 <span
 class="math inline">\([i, nxt[i])\)</span></td>
-<td style="text-align: left;">区间无严格交叉 <span
-class="math inline">\(\iff\)</span> 合法括号树，逆后序赋权</td>
+<td
+style="text-align: left;">区间严格交叉必致偏序矛盾；无交叉区间构成嵌套括号树，后序遍历自顶向下分配递减数值</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><strong>树与嵌套型</strong></td>
 <td style="text-align: left;">CF 1919D (01 Tree)</td>
-<td style="text-align: left;">相邻叶子深度差 <span
-class="math inline">\(1\)</span> 归并</td>
-<td style="text-align: left;">局部极大值 <span
-class="math inline">\(x\)</span> 向相邻 <span
-class="math inline">\(x-1\)</span> 缩点，剥离至单根 <span
-class="math inline">\(0\)</span></td>
+<td style="text-align: left;">相邻叶子深度差 1 合并</td>
+<td
+style="text-align: left;">优先合并最深局部极大值与相邻前驱/后继，类似逐层消除内层括号，归约至单根
+0</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>高程欧拉型</strong></td>
 <td style="text-align: left;">CF 1458D (Flip and Reverse)</td>
-<td style="text-align: left;"><span class="math inline">\(\texttt{1}
-\mapsto +1,\ \texttt{0} \mapsto -1\)</span> 折线</td>
+<td style="text-align: left;"><span class="math inline">\(1 \to +1,\ 0
+\to -1\)</span> 高程图</td>
 <td
-style="text-align: left;">平衡串取反翻转等价于环反向遍历，高度间边数守恒</td>
+style="text-align: left;">闭合子串翻转等价于回路反向，相邻高度间边重数严格守恒；欧拉路径贪心输出
+0 时避免切断上方割边</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><strong>前缀势能型</strong></td>
 <td style="text-align: left;">CF 1556E (Equilibrium)</td>
-<td style="text-align: left;"><span class="math inline">\(d_i &gt; 0
-\mapsto \texttt{(},\ d_i &lt; 0 \mapsto \texttt{)}\)</span></td>
-<td style="text-align: left;">可消除 <span class="math inline">\(\iff
-S_r=0 \land \min S_k \ge 0\)</span>；步数 <span class="math inline">\(=
-\max S_k\)</span></td>
+<td style="text-align: left;">差值正负映射为括号高程</td>
+<td
+style="text-align: left;">前缀和全程非负保证无赤字；最少操作轮数精确等于前缀高程折线的最大峰值</td>
 </tr>
 </tbody>
 </table>
-<h3 id="赛场实战的五类识别信号">2. 赛场实战的五类识别信号</h3>
-<p>遇到陌生构造或通信题时，出现以下特征即可优先尝试括号匹配建模：</p>
+<h3 id="赛场直觉-checklist何时该联想括号匹配">2. 赛场直觉
+Checklist（何时该联想括号匹配？）</h3>
+<p>在比赛中观察到以下五类特征时，可优先尝试建立括号模型：</p>
 <ol type="1">
-<li><strong>精准的 <span class="math inline">\(2n\)</span>
-值域或子集增一通信</strong>：点权限制恰好为 <span
-class="math inline">\([1, 2n]\)</span>（提示 DFS
-进出序只传左括号），或要求在大小 <span class="math inline">\(k\)</span>
-与 <span class="math inline">\(k+1\)</span>
-的无序子集间建立无记忆双射（提示 <span
-class="math inline">\(\texttt{)}^p\texttt{(}^q\)</span>
-分界点翻转）。</li>
-<li><strong>管辖区间禁止交叉</strong>：题面出现单调栈、<code>nxt[i]</code>、笛卡尔树或“晚开启的约束必须早闭合”，直接建括号树按拓扑序构造。</li>
-<li><strong>限定在“等量 01 子串”上的变换</strong>：操作前提是子串内
-<span class="math inline">\(0, 1\)</span> 数量相等（即 <span
-class="math inline">\(\Delta h = 0\)</span>
-闭合回路），优先画出前缀高程折线，检查高度间转移边是否守恒。</li>
-<li><strong>奇偶位交替 <span class="math inline">\(+1/-1\)</span>
-的子序列操作</strong>：允许任选子序列做正负交替修改，本质是并发抽取括号对，直接转化为前缀和折线的非负判定与最大值查询。</li>
-<li><strong>相邻差 <span class="math inline">\(1\)</span>
-缩点或成对消去</strong>：树叶深度合并、相邻配对消除问题，考虑类比“消去最内层括号”，从全局或局部极值处用栈/堆向两侧归约。</li>
+<li><strong>值域恰为 <span
+class="math inline">\(2n\)</span>，或子集基数差 1 的无序通信</strong>：
+<span class="math inline">\(2n\)</span> 的离散点位往往对应 <span
+class="math inline">\(n\)</span> 点树在 DFS
+欧拉序中进出事件的总数；<span class="math inline">\(k\)</span> 与 <span
+class="math inline">\(k+1\)</span> 的无序通信，常利用残差
+<code>)))(((</code> 分界点的翻转。</li>
+<li><strong>管辖区间天然“严禁严格交叉”</strong>：
+单调栈、<code>nxt[i]</code>
+或“先开始的约束必须晚结束”等条件，天然构成无交叉层族，可直接转化为括号树上的拓扑序赋值。</li>
+<li><strong>变换操作限定在“0 与 1 数量相等的平衡子串”</strong>： 将 01
+映射为 <span class="math inline">\(\pm 1\)</span>
+折线。平衡条件对应高程图上的闭合回路，重点考察在环的反向遍历下是否存在边集或度数的守恒不变量。</li>
+<li><strong>奇偶项交替增减 <span class="math inline">\(+1/-1\)</span>
+的子序列操作</strong>：
+本质是并发削减多层括号嵌套。直接转化为前缀和折线分析：负值代表前缀赤字不可行，极值代表嵌套层数下界。</li>
+<li><strong>相邻差 1 的递推消除与缩点</strong>：
+树深度或高度序列中相邻差 1 的合并，等价于消除最内层的相邻匹配括号对
+<code>()</code>，应考虑从全局或局部极值处向两侧贪心收缩。</li>
 </ol>
 
     
@@ -858,20 +818,23 @@ class="math inline">\(\Delta h = 0\)</span>
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E5%BA%95%E5%B1%82%E5%85%B1%E6%80%A7%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9E%84%E9%80%A0%E9%A2%98%E4%BC%9A%E5%BD%92%E7%BA%A6%E5%88%B0%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D"><span class="toc-number">1.</span> <span class="toc-text">一、
-底层共性：为什么构造题会归约到括号匹配？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E5%9B%9B%E5%A4%A7%E6%9E%84%E9%80%A0%E8%8C%83%E5%BC%8F%E4%B8%8E%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">二、 四大构造范式与典型应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8C%83%E5%BC%8F%E4%B8%80%E6%A0%88%E6%B6%88%E5%8E%BB%E6%AD%A3%E5%88%99%E6%AE%8B%E5%B7%AE%E4%B8%8E%E5%8F%AF%E9%80%86%E5%8F%8C%E5%B0%84"><span class="toc-number">2.1.</span> <span class="toc-text">范式一：栈消去正则残差与可逆双射</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%9C%BA%E5%88%B6"><span class="toc-number">2.1.1.</span> <span class="toc-text">核心机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E5%8D%95%E5%B0%84%E9%80%9A%E4%BF%A1ucup-4-extra-stage-5-h---telepathy"><span class="toc-number">2.1.2.</span> <span class="toc-text">1.
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E5%BA%95%E5%B1%82%E5%85%B1%E6%80%A7%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9E%84%E9%80%A0%E9%A2%98%E6%80%BB%E8%83%BD%E8%BD%AC%E6%88%90%E6%8B%AC%E5%8F%B7"><span class="toc-number">1.</span> <span class="toc-text">一、
+底层共性：为什么构造题总能转成括号？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%80%E9%83%A8%E9%97%AD%E5%90%88%E4%B8%8E%E5%AD%90%E7%BB%93%E6%9E%84%E6%B6%88%E5%8E%BB%E8%87%AA%E7%94%B1%E6%B6%88%E5%8E%BB%E8%A7%86%E8%A7%92"><span class="toc-number">1.1.</span> <span class="toc-text">1.
+局部闭合与子结构消去（自由消去视角）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E9%97%B4%E5%B5%8C%E5%A5%97%E4%B8%8E%E6%A0%91%E5%BD%A2%E5%90%8C%E6%9E%84%E6%A0%91%E6%8B%93%E6%89%91%E5%8F%8C%E5%B0%84%E8%A7%86%E8%A7%92"><span class="toc-number">1.2.</span> <span class="toc-text">2.
+区间嵌套与树形同构（树拓扑双射视角）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E7%A8%8B%E6%8A%98%E7%BA%BF%E4%B8%8E%E5%89%8D%E7%BC%80%E5%8A%BF%E8%83%BDdyck-%E5%8A%BF%E8%83%BD%E8%A7%86%E8%A7%92"><span class="toc-number">1.3.</span> <span class="toc-text">3. 高程折线与前缀势能（Dyck
+势能视角）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E5%9B%9B%E5%A4%A7%E6%9E%84%E9%80%A0%E8%8C%83%E5%BC%8F%E4%B8%8E%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">二、 四大构造范式与典型应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8C%83%E5%BC%8F%E4%B8%80%E6%A0%88%E6%B6%88%E5%8E%BB%E5%90%8E%E7%9A%84%E6%AD%A3%E5%88%99%E6%AE%8B%E5%B7%AE%E4%B8%8E%E5%8F%AF%E9%80%86%E5%8F%8C%E5%B0%84"><span class="toc-number">2.1.</span> <span class="toc-text">范式一：栈消去后的正则残差与可逆双射</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%9C%BA%E5%88%B6"><span class="toc-number">2.1.1.</span> <span class="toc-text">核心机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E5%8D%95%E5%B0%84%E9%80%9A%E4%BF%A1ucup-4-extra-stage-5-h---telepathy"><span class="toc-number">2.1.2.</span> <span class="toc-text">1.
 集合单射通信：UCup 4 Extra Stage 5 H - Telepathy</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%90%E5%BA%8F%E5%88%97%E6%AD%A3%E5%8F%8D%E5%88%86%E8%A7%A3cf-1837d---bracket-coloring"><span class="toc-number">2.1.3.</span> <span class="toc-text">2. 子序列正反分解：CF 1837D -
 Bracket Coloring</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8C%83%E5%BC%8F%E4%BA%8C%E6%97%A0%E4%BA%A4%E5%8F%89%E5%B5%8C%E5%A5%97%E6%A0%91%E7%BC%96%E7%A0%81%E4%B8%8E%E6%9E%81%E5%80%BC%E5%89%A5%E7%A6%BB"><span class="toc-number">2.2.</span> <span class="toc-text">范式二：无交叉嵌套、树编码与极值剥离</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%9C%BA%E5%88%B6-1"><span class="toc-number">2.2.1.</span> <span class="toc-text">核心机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%AA%E7%9F%A5%E7%BD%AE%E6%8D%A2%E4%B8%8B%E7%9A%84%E6%A3%AE%E6%9E%97%E9%87%8D%E6%9E%842026-icpc-%E6%88%90%E9%83%BD%E7%AB%99-i---invisible-edges"><span class="toc-number">2.2.2.</span> <span class="toc-text">3.
-未知置换下的森林重构：2026 ICPC 成都站 I - Invisible Edges</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E8%B0%83%E6%A0%88%E5%8C%BA%E9%97%B4%E8%BF%98%E5%8E%9F%E6%8E%92%E5%88%97cf-1158c---permutation-recovery"><span class="toc-number">2.2.3.</span> <span class="toc-text">4.
-单调栈区间还原排列：CF 1158C -
-Permutation Recovery</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%B6%E5%AD%90%E6%B7%B1%E5%BA%A6%E5%BA%8F%E5%88%97%E5%88%A4%E5%AE%9A%E6%A0%91%E7%BB%93%E6%9E%84cf-1919d---01-tree"><span class="toc-number">2.2.4.</span> <span class="toc-text">5.
-叶子深度序列判定树结构：CF 1919D - 01
+未知置换下的森林重构：2026 ICPC 成都站 I - Invisible Edges</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E8%B0%83%E6%A0%88%E7%AE%A1%E8%BE%96%E5%8C%BA%E9%97%B4%E8%BF%98%E5%8E%9F%E6%8E%92%E5%88%97cf-1158c---permutation-recovery"><span class="toc-number">2.2.3.</span> <span class="toc-text">4.
+单调栈管辖区间还原排列：CF 1158C -
+Permutation Recovery</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%91%E5%8F%B6%E6%B7%B1%E5%BA%A6%E5%BA%8F%E5%88%97%E5%88%A4%E6%A0%91cf-1919d---01-tree"><span class="toc-number">2.2.4.</span> <span class="toc-text">5. 树叶深度序列判树：CF 1919D - 01
 Tree</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8C%83%E5%BC%8F%E4%B8%89dyck-%E9%AB%98%E7%A8%8B%E6%8A%98%E7%BA%BF%E4%B8%8E%E6%AC%A7%E6%8B%89%E5%A4%9A%E9%87%8D%E5%9B%BE"><span class="toc-number">2.3.</span> <span class="toc-text">范式三：Dyck
-高程折线与欧拉多重图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%9C%BA%E5%88%B6-2"><span class="toc-number">2.3.1.</span> <span class="toc-text">核心机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B9%B3%E8%A1%A1%E5%AD%90%E4%B8%B2%E5%8F%96%E5%8F%8D%E7%BF%BB%E8%BD%AC%E6%B1%82%E6%9C%80%E5%B0%8F%E5%AD%97%E5%85%B8%E5%BA%8Fcf-1458d---flip-and-reverse"><span class="toc-number">2.3.2.</span> <span class="toc-text">6.
-平衡子串取反翻转求最小字典序：CF 1458D - Flip
-and Reverse</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8C%83%E5%BC%8F%E5%9B%9B%E5%89%8D%E7%BC%80%E5%8A%BF%E8%83%BD%E4%B8%8E%E5%B9%B6%E8%81%94%E6%B6%88%E9%99%A4%E6%B7%B1%E5%BA%A6"><span class="toc-number">2.4.</span> <span class="toc-text">范式四：前缀势能与并联消除深度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%9C%BA%E5%88%B6-3"><span class="toc-number">2.4.1.</span> <span class="toc-text">核心机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%BA%E9%97%B4%E4%BA%A4%E9%94%99%E5%A2%9E%E5%87%8F%E6%B8%85%E9%9B%B6cf-1556e---equilibrium"><span class="toc-number">2.4.2.</span> <span class="toc-text">7. 区间交错增减清零：CF 1556E -
-Equilibrium</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-%E6%80%BB%E7%BB%93%E6%9E%84%E9%80%A0%E8%8C%83%E5%BC%8F%E9%80%9F%E6%9F%A5%E4%B8%8E%E8%B5%9B%E5%9C%BA%E8%AF%86%E5%88%AB%E4%BF%A1%E5%8F%B7"><span class="toc-number">3.</span> <span class="toc-text">三、
-总结：构造范式速查与赛场识别信号</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%E9%81%93%E9%A2%98%E7%9A%84%E6%A0%B8%E5%BF%83%E6%98%A0%E5%B0%84%E5%AF%B9%E7%85%A7"><span class="toc-number">3.1.</span> <span class="toc-text">1. 七道题的核心映射对照</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%9B%E5%9C%BA%E5%AE%9E%E6%88%98%E7%9A%84%E4%BA%94%E7%B1%BB%E8%AF%86%E5%88%AB%E4%BF%A1%E5%8F%B7"><span class="toc-number">3.2.</span> <span class="toc-text">2. 赛场实战的五类识别信号</span></a></li></ol></li></ol>
+高程折线与欧拉多重图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%9C%BA%E5%88%B6-2"><span class="toc-number">2.3.1.</span> <span class="toc-text">核心机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B9%B3%E8%A1%A1%E5%AD%90%E4%B8%B2%E5%8F%96%E5%8F%8D%E5%8F%8D%E8%BD%AC%E6%B1%82%E6%9C%80%E5%B0%8F%E5%AD%97%E5%85%B8%E5%BA%8Fcf-1458d---flip-and-reverse"><span class="toc-number">2.3.2.</span> <span class="toc-text">6.
+平衡子串取反反转求最小字典序：CF 1458D - Flip
+and Reverse</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8C%83%E5%BC%8F%E5%9B%9B%E5%89%8D%E7%BC%80%E5%8A%BF%E8%83%BD%E4%B8%8E%E5%B9%B6%E8%81%94%E6%B6%88%E9%99%A4%E6%B7%B1%E5%BA%A6"><span class="toc-number">2.4.</span> <span class="toc-text">范式四：前缀势能与并联消除深度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%9C%BA%E5%88%B6-3"><span class="toc-number">2.4.1.</span> <span class="toc-text">核心机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%BA%E9%97%B4%E4%BA%A4%E9%94%99%E5%A2%9E%E5%87%8F%E5%BD%92%E9%9B%B6cf-1556e---equilibrium"><span class="toc-number">2.4.2.</span> <span class="toc-text">7. 区间交错增减归零：CF 1556E -
+Equilibrium</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-%E6%80%BB%E7%BB%93%E6%9E%84%E9%80%A0%E8%8C%83%E5%BC%8F%E9%80%9F%E6%9F%A5%E4%B8%8E%E8%B5%9B%E5%9C%BA%E4%BF%A1%E5%8F%B7"><span class="toc-number">3.</span> <span class="toc-text">三、
+总结：构造范式速查与赛场信号</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%E9%81%93%E9%A2%98%E7%9A%84%E6%A0%B8%E5%BF%83%E4%B8%8D%E5%8F%98%E9%87%8F%E9%80%9F%E6%9F%A5"><span class="toc-number">3.1.</span> <span class="toc-text">1. 七道题的核心不变量速查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%9B%E5%9C%BA%E7%9B%B4%E8%A7%89-checklist%E4%BD%95%E6%97%B6%E8%AF%A5%E8%81%94%E6%83%B3%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D"><span class="toc-number">3.2.</span> <span class="toc-text">2. 赛场直觉
+Checklist（何时该联想括号匹配？）</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
