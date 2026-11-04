@@ -286,6 +286,277 @@
 
 
   
+    <article id="post-Generating-Function-Note" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/Algorithm/Generating-Function-Note/" target="_blank">常用生成函数与广义二项式定理及应用</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/Algorithm/Generating-Function-Note/" class="archive-article-date">
+        <time datetime="2026-11-04T16:48:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2026-11-05</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="常用生成函数">常用生成函数</h1>
+<h3 id="table-1-useful-generating-functions.">TABLE 1 Useful Generating
+Functions.</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><span
+class="math inline">\(G(x)\)</span></th>
+<th style="text-align: left;"><span
+class="math inline">\(a_k\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\((1 + x)^n =
+\sum_{k=0}^n C(n, k)x^k = 1 + C(n, 1)x + C(n, 2)x^2 + \dots +
+x^n\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(C(n,
+k)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\((1 + ax)^n =
+\sum_{k=0}^n C(n, k)a^k x^k = 1 + C(n, 1)ax + C(n, 2)a^2 x^2 + \dots +
+a^n x^n\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(C(n,
+k)a^k\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\((1 + x^r)^n =
+\sum_{k=0}^n C(n, k)x^{rk} = 1 + C(n, 1)x^r + C(n, 2)x^{2r} + \dots +
+x^{nr}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(C(n, k/r)
+\text{ if } r \mid k;\ 0 \text{ otherwise}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\frac{1 -
+x^{n+1}}{1 - x} = \sum_{k=0}^n x^k = 1 + x + x^2 + \dots +
+x^n\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(1 \text{ if }
+k \le n;\ 0 \text{ otherwise}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\frac{1}{1 -
+x} = \sum_{k=0}^\infty x^k = 1 + x + x^2 + \dots\)</span></td>
+<td style="text-align: left;"><span
+class="math inline">\(1\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\frac{1}{1 -
+ax} = \sum_{k=0}^\infty a^k x^k = 1 + ax + a^2 x^2 + \dots\)</span></td>
+<td style="text-align: left;"><span
+class="math inline">\(a^k\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\frac{1}{1 -
+x^r} = \sum_{k=0}^\infty x^{rk} = 1 + x^r + x^{2r} + \dots\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(1 \text{ if }
+r \mid k;\ 0 \text{ otherwise}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\frac{1}{(1 -
+x)^2} = \sum_{k=0}^\infty (k + 1)x^k = 1 + 2x + 3x^2 +
+\dots\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(k +
+1\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\frac{1}{(1 -
+x)^n} = \sum_{k=0}^\infty C(n + k - 1, k)x^k = 1 + C(n, 1)x + C(n+1,
+2)x^2 + \dots\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(C(n + k - 1,
+k) = C(n + k - 1, n - 1)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\frac{1}{(1 +
+x)^n} = \sum_{k=0}^\infty C(n + k - 1, k)(-1)^k x^k = 1 - C(n, 1)x +
+C(n+1, 2)x^2 - \dots\)</span></td>
+<td style="text-align: left;"><span class="math inline">\((-1)^k C(n + k
+- 1, k) = (-1)^k C(n + k - 1, n - 1)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\frac{1}{(1 -
+ax)^n} = \sum_{k=0}^\infty C(n + k - 1, k)a^k x^k = 1 + C(n, 1)ax +
+C(n+1, 2)a^2 x^2 + \dots\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(C(n + k - 1,
+k)a^k = C(n + k - 1, n - 1)a^k\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>上面的这几种可以通过分母有理化的定义表示，具体推导过程需要广义二项式定理配合。</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><span
+class="math inline">\(G(x)\)</span></th>
+<th style="text-align: left;"><span
+class="math inline">\(a_k\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(e^x =
+\sum_{k=0}^\infty \frac{x^k}{k!} = 1 + x + \frac{x^2}{2!} +
+\frac{x^3}{3!} + \dots\)</span></td>
+<td style="text-align: left;"><span
+class="math inline">\(1/k!\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\ln(1 + x) =
+\sum_{k=1}^\infty \frac{(-1)^{k-1}}{k}x^k = x - \frac{x^2}{2} +
+\frac{x^3}{3} - \frac{x^4}{4} + \dots\)</span></td>
+<td style="text-align: left;"><span
+class="math inline">\((-1)^{k-1}/k\)</span></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="广义二项式定理">广义二项式定理</h3>
+<p><span class="math display">\[(x + y)^\alpha = x^\alpha
+\sum_{k=0}^\infty \binom{\alpha}{k}
+\left(\frac{y}{x}\right)^k\]</span></p>
+<hr />
+<h3 id="广义二项式系数">广义二项式系数</h3>
+<p><span class="math display">\[\binom{\alpha}{k} = \alpha(\alpha -
+1)(\alpha - 2)\dots(\alpha - k + 1)/k! \quad \text{定义当 } k \ge
+1\]</span></p>
+<p><span class="math display">\[\binom{\alpha}{0} = 1\]</span></p>
+<hr />
+<h3 id="特殊函数">▼ 特殊函数</h3>
+<p>这种函数叫 gamma 函数</p>
+<p><span class="math display">\[\Gamma(x) = \int_0^{+\infty} t^{x-1}
+e^{-t} \, dt\]</span></p>
+<p>或者</p>
+<p><span class="math display">\[\Gamma(z) = \lim_{n \to \infty} \frac{n!
+\times n^z}{z(z + 1)(z + 2)\dots(z + n)}\]</span></p>
+<hr />
+<h3 id="应用求-k-阶前缀和">应用：求 k 阶前缀和</h3>
+<p>对待求序列 <span class="math inline">\(a_0, a_1, a_2
+\dots\)</span></p>
+<p>写出生成函数</p>
+<p><span class="math display">\[A(x) = \sum_{i=0}^{n-1} x^i \times
+a_i\]</span></p>
+<p>一阶前缀和</p>
+<p><span class="math display">\[S_k = \sum_{i=0}^k a_i\]</span></p>
+<p>它的生成函数（由于大于等于 <span class="math inline">\(n\)</span>
+的部分不用管）：</p>
+<p><span class="math display">\[F_1(x) = A(x) \cdot \frac{1}{1-x}
+\pmod{x^n}\]</span></p>
+<p>所以同理，k 阶前缀和的生成函数就是</p>
+<p><span class="math display">\[F_k(x) = A(x) \cdot
+\left(\frac{1}{1-x}\right)^k \pmod{x^n}\]</span></p>
+<p>利用广义二项式定理展开</p>
+<p><span class="math display">\[\left(\frac{1}{1-x}\right)^k = (1 -
+x)^{-k} = \sum_{i=0}^\infty \binom{-k}{i} (-x)^i\]</span></p>
+<p>然后发现这俩个多项式卷积好了，跑一下NTT</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">组合数学</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">生成函数</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NTT</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Algorithm//" class="article-tag-list-link color5">Algorithm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/Algorithm/Generating-Function-Note/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Constructive-Algorithms-via-Bracket-Matching" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -5670,6 +5941,14 @@ FATAL。fatal等级最高</p>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">组合数学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">生成函数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NTT</a>
               </li>
             
             <div class="clearfix"></div>
