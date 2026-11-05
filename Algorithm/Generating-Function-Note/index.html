@@ -10,15 +10,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="常用生成函数 TABLE 1 Useful Generating Functions.        \(G(x)\) \(a_k\)     \((1 + x)^n &#x3D; \sum_{k&#x3D;0}^n C(n, k)x^k &#x3D; 1 + C(n, 1)x + C(n, 2)x^2 + \dots + x^n\) \(C(n, k)\)   \((1 + ax">
+  <meta name="description" content="常用生成函数TABLE 1 Useful Generating Functions.    $G(x)$ $a_k$     $(1 + x)^n &#x3D; \sum_{k&#x3D;0}^n C(n, k)x^k &#x3D; 1 + C(n, 1)x + C(n, 2)x^2 + \dots + x^n$ $C(n, k)$   $(1 + ax)^n &#x3D; \sum_{k&#x3D;0}^n C(n, k)a^k x^k &#x3D; 1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常用生成函数与广义二项式定理及应用">
 <meta property="og:url" content="https://nicccce.github.io/Algorithm/Generating-Function-Note/">
 <meta property="og:site_name" content="NICCCCE">
-<meta property="og:description" content="常用生成函数 TABLE 1 Useful Generating Functions.        \(G(x)\) \(a_k\)     \((1 + x)^n &#x3D; \sum_{k&#x3D;0}^n C(n, k)x^k &#x3D; 1 + C(n, 1)x + C(n, 2)x^2 + \dots + x^n\) \(C(n, k)\)   \((1 + ax">
+<meta property="og:description" content="常用生成函数TABLE 1 Useful Generating Functions.    $G(x)$ $a_k$     $(1 + x)^n &#x3D; \sum_{k&#x3D;0}^n C(n, k)x^k &#x3D; 1 + C(n, 1)x + C(n, 2)x^2 + \dots + x^n$ $C(n, k)$   $(1 + ax)^n &#x3D; \sum_{k&#x3D;0}^n C(n, k)a^k x^k &#x3D; 1">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-11-04T16:48:31.000Z">
-<meta property="article:modified_time" content="2026-11-04T16:58:26.589Z">
+<meta property="article:modified_time" content="2026-11-05T06:54:37.491Z">
 <meta property="article:author" content="NICK">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="组合数学">
@@ -246,169 +246,97 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h1 id="常用生成函数">常用生成函数</h1>
-<h3 id="table-1-useful-generating-functions.">TABLE 1 Useful Generating
-Functions.</h3>
+    <h1 id="常用生成函数"><a href="#常用生成函数" class="headerlink" title="常用生成函数"></a>常用生成函数</h1><h3 id="TABLE-1-Useful-Generating-Functions"><a href="#TABLE-1-Useful-Generating-Functions" class="headerlink" title="TABLE 1 Useful Generating Functions."></a>TABLE 1 Useful Generating Functions.</h3><div class="table-container">
 <table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
 <thead>
-<tr class="header">
-<th style="text-align: left;"><span
-class="math inline">\(G(x)\)</span></th>
-<th style="text-align: left;"><span
-class="math inline">\(a_k\)</span></th>
+<tr>
+<th style="text-align:left">$G(x)$</th>
+<th style="text-align:left">$a_k$</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;"><span class="math inline">\((1 + x)^n =
-\sum_{k=0}^n C(n, k)x^k = 1 + C(n, 1)x + C(n, 2)x^2 + \dots +
-x^n\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(C(n,
-k)\)</span></td>
+<tr>
+<td style="text-align:left">$(1 + x)^n = \sum_{k=0}^n C(n, k)x^k = 1 + C(n, 1)x + C(n, 2)x^2 + \dots + x^n$</td>
+<td style="text-align:left">$C(n, k)$</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><span class="math inline">\((1 + ax)^n =
-\sum_{k=0}^n C(n, k)a^k x^k = 1 + C(n, 1)ax + C(n, 2)a^2 x^2 + \dots +
-a^n x^n\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(C(n,
-k)a^k\)</span></td>
+<tr>
+<td style="text-align:left">$(1 + ax)^n = \sum_{k=0}^n C(n, k)a^k x^k = 1 + C(n, 1)ax + C(n, 2)a^2 x^2 + \dots + a^n x^n$</td>
+<td style="text-align:left">$C(n, k)a^k$</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><span class="math inline">\((1 + x^r)^n =
-\sum_{k=0}^n C(n, k)x^{rk} = 1 + C(n, 1)x^r + C(n, 2)x^{2r} + \dots +
-x^{nr}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(C(n, k/r)
-\text{ if } r \mid k;\ 0 \text{ otherwise}\)</span></td>
+<tr>
+<td style="text-align:left">$(1 + x^r)^n = \sum_{k=0}^n C(n, k)x^{rk} = 1 + C(n, 1)x^r + C(n, 2)x^{2r} + \dots + x^{nr}$</td>
+<td style="text-align:left">$C(n, k/r) \text{ if } r \mid k;\ 0 \text{ otherwise}$</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><span class="math inline">\(\frac{1 -
-x^{n+1}}{1 - x} = \sum_{k=0}^n x^k = 1 + x + x^2 + \dots +
-x^n\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(1 \text{ if }
-k \le n;\ 0 \text{ otherwise}\)</span></td>
+<tr>
+<td style="text-align:left">$\frac{1 - x^{n+1}}{1 - x} = \sum_{k=0}^n x^k = 1 + x + x^2 + \dots + x^n$</td>
+<td style="text-align:left">$1 \text{ if } k \le n;\ 0 \text{ otherwise}$</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><span class="math inline">\(\frac{1}{1 -
-x} = \sum_{k=0}^\infty x^k = 1 + x + x^2 + \dots\)</span></td>
-<td style="text-align: left;"><span
-class="math inline">\(1\)</span></td>
+<tr>
+<td style="text-align:left">$\frac{1}{1 - x} = \sum_{k=0}^\infty x^k = 1 + x + x^2 + \dots$</td>
+<td style="text-align:left">$1$</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><span class="math inline">\(\frac{1}{1 -
-ax} = \sum_{k=0}^\infty a^k x^k = 1 + ax + a^2 x^2 + \dots\)</span></td>
-<td style="text-align: left;"><span
-class="math inline">\(a^k\)</span></td>
+<tr>
+<td style="text-align:left">$\frac{1}{1 - ax} = \sum_{k=0}^\infty a^k x^k = 1 + ax + a^2 x^2 + \dots$</td>
+<td style="text-align:left">$a^k$</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><span class="math inline">\(\frac{1}{1 -
-x^r} = \sum_{k=0}^\infty x^{rk} = 1 + x^r + x^{2r} + \dots\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(1 \text{ if }
-r \mid k;\ 0 \text{ otherwise}\)</span></td>
+<tr>
+<td style="text-align:left">$\frac{1}{1 - x^r} = \sum_{k=0}^\infty x^{rk} = 1 + x^r + x^{2r} + \dots$</td>
+<td style="text-align:left">$1 \text{ if } r \mid k;\ 0 \text{ otherwise}$</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><span class="math inline">\(\frac{1}{(1 -
-x)^2} = \sum_{k=0}^\infty (k + 1)x^k = 1 + 2x + 3x^2 +
-\dots\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(k +
-1\)</span></td>
+<tr>
+<td style="text-align:left">$\frac{1}{(1 - x)^2} = \sum_{k=0}^\infty (k + 1)x^k = 1 + 2x + 3x^2 + \dots$</td>
+<td style="text-align:left">$k + 1$</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><span class="math inline">\(\frac{1}{(1 -
-x)^n} = \sum_{k=0}^\infty C(n + k - 1, k)x^k = 1 + C(n, 1)x + C(n+1,
-2)x^2 + \dots\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(C(n + k - 1,
-k) = C(n + k - 1, n - 1)\)</span></td>
+<tr>
+<td style="text-align:left">$\frac{1}{(1 - x)^n} = \sum_{k=0}^\infty C(n + k - 1, k)x^k = 1 + C(n, 1)x + C(n+1, 2)x^2 + \dots$</td>
+<td style="text-align:left">$C(n + k - 1, k) = C(n + k - 1, n - 1)$</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><span class="math inline">\(\frac{1}{(1 +
-x)^n} = \sum_{k=0}^\infty C(n + k - 1, k)(-1)^k x^k = 1 - C(n, 1)x +
-C(n+1, 2)x^2 - \dots\)</span></td>
-<td style="text-align: left;"><span class="math inline">\((-1)^k C(n + k
-- 1, k) = (-1)^k C(n + k - 1, n - 1)\)</span></td>
+<tr>
+<td style="text-align:left">$\frac{1}{(1 + x)^n} = \sum_{k=0}^\infty C(n + k - 1, k)(-1)^k x^k = 1 - C(n, 1)x + C(n+1, 2)x^2 - \dots$</td>
+<td style="text-align:left">$(-1)^k C(n + k - 1, k) = (-1)^k C(n + k - 1, n - 1)$</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><span class="math inline">\(\frac{1}{(1 -
-ax)^n} = \sum_{k=0}^\infty C(n + k - 1, k)a^k x^k = 1 + C(n, 1)ax +
-C(n+1, 2)a^2 x^2 + \dots\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(C(n + k - 1,
-k)a^k = C(n + k - 1, n - 1)a^k\)</span></td>
+<tr>
+<td style="text-align:left">$\frac{1}{(1 - ax)^n} = \sum_{k=0}^\infty C(n + k - 1, k)a^k x^k = 1 + C(n, 1)ax + C(n+1, 2)a^2 x^2 + \dots$</td>
+<td style="text-align:left">$C(n + k - 1, k)a^k = C(n + k - 1, n - 1)a^k$</td>
 </tr>
 </tbody>
 </table>
+</div>
 <p>上面的这几种可以通过分母有理化的定义表示，具体推导过程需要广义二项式定理配合。</p>
+<div class="table-container">
 <table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
 <thead>
-<tr class="header">
-<th style="text-align: left;"><span
-class="math inline">\(G(x)\)</span></th>
-<th style="text-align: left;"><span
-class="math inline">\(a_k\)</span></th>
+<tr>
+<th style="text-align:left">$G(x)$</th>
+<th style="text-align:left">$a_k$</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;"><span class="math inline">\(e^x =
-\sum_{k=0}^\infty \frac{x^k}{k!} = 1 + x + \frac{x^2}{2!} +
-\frac{x^3}{3!} + \dots\)</span></td>
-<td style="text-align: left;"><span
-class="math inline">\(1/k!\)</span></td>
+<tr>
+<td style="text-align:left">$e^x = \sum_{k=0}^\infty \frac{x^k}{k!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \dots$</td>
+<td style="text-align:left">$1/k!$</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><span class="math inline">\(\ln(1 + x) =
-\sum_{k=1}^\infty \frac{(-1)^{k-1}}{k}x^k = x - \frac{x^2}{2} +
-\frac{x^3}{3} - \frac{x^4}{4} + \dots\)</span></td>
-<td style="text-align: left;"><span
-class="math inline">\((-1)^{k-1}/k\)</span></td>
+<tr>
+<td style="text-align:left">$\ln(1 + x) = \sum_{k=1}^\infty \frac{(-1)^{k-1}}{k}x^k = x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \dots$</td>
+<td style="text-align:left">$(-1)^{k-1}/k$</td>
 </tr>
 </tbody>
 </table>
-<hr />
-<h3 id="广义二项式定理">广义二项式定理</h3>
-<p><span class="math display">\[(x + y)^\alpha = x^\alpha
-\sum_{k=0}^\infty \binom{\alpha}{k}
-\left(\frac{y}{x}\right)^k\]</span></p>
-<hr />
-<h3 id="广义二项式系数">广义二项式系数</h3>
-<p><span class="math display">\[\binom{\alpha}{k} = \alpha(\alpha -
-1)(\alpha - 2)\dots(\alpha - k + 1)/k! \quad \text{定义当 } k \ge
-1\]</span></p>
-<p><span class="math display">\[\binom{\alpha}{0} = 1\]</span></p>
-<hr />
-<h3 id="特殊函数">▼ 特殊函数</h3>
-<p>这种函数叫 gamma 函数</p>
-<p><span class="math display">\[\Gamma(x) = \int_0^{+\infty} t^{x-1}
-e^{-t} \, dt\]</span></p>
-<p>或者</p>
-<p><span class="math display">\[\Gamma(z) = \lim_{n \to \infty} \frac{n!
-\times n^z}{z(z + 1)(z + 2)\dots(z + n)}\]</span></p>
-<hr />
-<h3 id="应用求-k-阶前缀和">应用：求 k 阶前缀和</h3>
-<p>对待求序列 <span class="math inline">\(a_0, a_1, a_2
-\dots\)</span></p>
+</div>
+<span id="more"></span>
+<hr>
+<h3 id="广义二项式定理"><a href="#广义二项式定理" class="headerlink" title="广义二项式定理"></a>广义二项式定理</h3><script type="math/tex; mode=display">(x + y)^\alpha = x^\alpha \sum_{k=0}^\infty \binom{\alpha}{k} \left(\frac{y}{x}\right)^k</script><hr>
+<h3 id="广义二项式系数"><a href="#广义二项式系数" class="headerlink" title="广义二项式系数"></a>广义二项式系数</h3><script type="math/tex; mode=display">\binom{\alpha}{k} = \alpha(\alpha - 1)(\alpha - 2)\dots(\alpha - k + 1)/k! \quad \text{定义当 } k \ge 1</script><script type="math/tex; mode=display">\binom{\alpha}{0} = 1</script><hr>
+<h3 id="▼-特殊函数"><a href="#▼-特殊函数" class="headerlink" title="▼ 特殊函数"></a>▼ 特殊函数</h3><p>这种函数叫 gamma 函数</p>
+<script type="math/tex; mode=display">\Gamma(x) = \int_0^{+\infty} t^{x-1} e^{-t} \, dt</script><p>或者</p>
+<script type="math/tex; mode=display">\Gamma(z) = \lim_{n \to \infty} \frac{n! \times n^z}{z(z + 1)(z + 2)\dots(z + n)}</script><hr>
+<h3 id="应用：求-k-阶前缀和"><a href="#应用：求-k-阶前缀和" class="headerlink" title="应用：求 k 阶前缀和"></a>应用：求 k 阶前缀和</h3><p>对待求序列 $a_0, a_1, a_2 \dots$</p>
 <p>写出生成函数</p>
-<p><span class="math display">\[A(x) = \sum_{i=0}^{n-1} x^i \times
-a_i\]</span></p>
-<p>一阶前缀和</p>
-<p><span class="math display">\[S_k = \sum_{i=0}^k a_i\]</span></p>
-<p>它的生成函数（由于大于等于 <span class="math inline">\(n\)</span>
-的部分不用管）：</p>
-<p><span class="math display">\[F_1(x) = A(x) \cdot \frac{1}{1-x}
-\pmod{x^n}\]</span></p>
-<p>所以同理，k 阶前缀和的生成函数就是</p>
-<p><span class="math display">\[F_k(x) = A(x) \cdot
-\left(\frac{1}{1-x}\right)^k \pmod{x^n}\]</span></p>
-<p>利用广义二项式定理展开</p>
-<p><span class="math display">\[\left(\frac{1}{1-x}\right)^k = (1 -
-x)^{-k} = \sum_{i=0}^\infty \binom{-k}{i} (-x)^i\]</span></p>
-<p>然后发现这俩个多项式卷积好了，跑一下NTT</p>
+<script type="math/tex; mode=display">A(x) = \sum_{i=0}^{n-1} x^i \times a_i</script><p>一阶前缀和</p>
+<script type="math/tex; mode=display">S_k = \sum_{i=0}^k a_i</script><p>它的生成函数（由于大于等于 $n$ 的部分不用管）：</p>
+<script type="math/tex; mode=display">F_1(x) = A(x) \cdot \frac{1}{1-x} \pmod{x^n}</script><p>所以同理，k 阶前缀和的生成函数就是</p>
+<script type="math/tex; mode=display">F_k(x) = A(x) \cdot \left(\frac{1}{1-x}\right)^k \pmod{x^n}</script><p>利用广义二项式定理展开</p>
+<script type="math/tex; mode=display">\left(\frac{1}{1-x}\right)^k = (1 - x)^{-k} = \sum_{i=0}^\infty \binom{-k}{i} (-x)^i</script><p>然后发现这俩个多项式卷积好了，跑一下NTT</p>
 
     
 
@@ -577,8 +505,7 @@ x)^{-k} = \sum_{i=0}^\infty \binom{-k}{i} (-x)^i\]</span></p>
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">常用生成函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#table-1-useful-generating-functions."><span class="toc-number">1.0.1.</span> <span class="toc-text">TABLE 1 Useful Generating
-Functions.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%BF%E4%B9%89%E4%BA%8C%E9%A1%B9%E5%BC%8F%E5%AE%9A%E7%90%86"><span class="toc-number">1.0.2.</span> <span class="toc-text">广义二项式定理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%BF%E4%B9%89%E4%BA%8C%E9%A1%B9%E5%BC%8F%E7%B3%BB%E6%95%B0"><span class="toc-number">1.0.3.</span> <span class="toc-text">广义二项式系数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E5%87%BD%E6%95%B0"><span class="toc-number">1.0.4.</span> <span class="toc-text">▼ 特殊函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E6%B1%82-k-%E9%98%B6%E5%89%8D%E7%BC%80%E5%92%8C"><span class="toc-number">1.0.5.</span> <span class="toc-text">应用：求 k 阶前缀和</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">常用生成函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TABLE-1-Useful-Generating-Functions"><span class="toc-number">1.0.1.</span> <span class="toc-text">TABLE 1 Useful Generating Functions.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%BF%E4%B9%89%E4%BA%8C%E9%A1%B9%E5%BC%8F%E5%AE%9A%E7%90%86"><span class="toc-number">1.0.2.</span> <span class="toc-text">广义二项式定理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%BF%E4%B9%89%E4%BA%8C%E9%A1%B9%E5%BC%8F%E7%B3%BB%E6%95%B0"><span class="toc-number">1.0.3.</span> <span class="toc-text">广义二项式系数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%96%BC-%E7%89%B9%E6%AE%8A%E5%87%BD%E6%95%B0"><span class="toc-number">1.0.4.</span> <span class="toc-text">▼ 特殊函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%EF%BC%9A%E6%B1%82-k-%E9%98%B6%E5%89%8D%E7%BC%80%E5%92%8C"><span class="toc-number">1.0.5.</span> <span class="toc-text">应用：求 k 阶前缀和</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
